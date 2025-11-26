@@ -1,0 +1,28 @@
+module ModerationAPI
+  module Models
+    module Actions
+      type execute_execute_by_id_response =
+        { action_id: String, ids: ::Array[String], success: bool }
+
+      class ExecuteExecuteByIDResponse < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor action_id: String
+
+        attr_accessor ids: ::Array[String]
+
+        attr_accessor success: bool
+
+        def initialize: (
+          action_id: String,
+          ids: ::Array[String],
+          success: bool
+        ) -> void
+
+        def to_hash: -> {
+          action_id: String,
+          ids: ::Array[String],
+          success: bool
+        }
+      end
+    end
+  end
+end

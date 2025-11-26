@@ -1,0 +1,33 @@
+module ModerationAPI
+  module Resources
+    class Wordlist
+      attr_reader words: ModerationAPI::Resources::Wordlist::Words
+
+      def retrieve: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WordlistRetrieveResponse
+
+      def update: (
+        String id,
+        ?description: String,
+        ?key: String,
+        ?name: String,
+        ?strict: bool,
+        ?words: ::Array[String],
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WordlistUpdateResponse
+
+      def list: (
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::wordlist_list_response
+
+      def get_embedding_status: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WordlistGetEmbeddingStatusResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,26 @@
+module ModerationAPI
+  module Models
+    module Wordlist
+      type word_remove_params =
+        { words: ::Array[String] }
+        & ModerationAPI::Internal::Type::request_parameters
+
+      class WordRemoveParams < ModerationAPI::Internal::Type::BaseModel
+        extend ModerationAPI::Internal::Type::RequestParameters::Converter
+        include ModerationAPI::Internal::Type::RequestParameters
+
+        attr_accessor words: ::Array[String]
+
+        def initialize: (
+          words: ::Array[String],
+          ?request_options: ModerationAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          words: ::Array[String],
+          request_options: ModerationAPI::RequestOptions
+        }
+      end
+    end
+  end
+end

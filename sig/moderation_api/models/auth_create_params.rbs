@@ -1,0 +1,15 @@
+module ModerationAPI
+  module Models
+    type auth_create_params =
+      {  } & ModerationAPI::Internal::Type::request_parameters
+
+    class AuthCreateParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: ModerationAPI::request_opts) -> void
+
+      def to_hash: -> { request_options: ModerationAPI::RequestOptions }
+    end
+  end
+end

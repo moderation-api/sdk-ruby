@@ -1,0 +1,15 @@
+module ModerationAPI
+  module Models
+    module Actions
+      type execute_execute_response = { success: bool }
+
+      class ExecuteExecuteResponse < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor success: bool
+
+        def initialize: (success: bool) -> void
+
+        def to_hash: -> { success: bool }
+      end
+    end
+  end
+end

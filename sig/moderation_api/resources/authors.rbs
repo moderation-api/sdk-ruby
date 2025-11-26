@@ -1,0 +1,54 @@
+module ModerationAPI
+  module Resources
+    class Authors
+      def create: (
+        external_id: String,
+        ?email: String?,
+        ?external_link: String?,
+        ?first_seen: Float,
+        ?last_seen: Float,
+        ?manual_trust_level: Float?,
+        ?metadata: ModerationAPI::AuthorCreateParams::Metadata,
+        ?name: String?,
+        ?profile_picture: String?,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthorCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthorRetrieveResponse
+
+      def update: (
+        String id,
+        ?email: String?,
+        ?external_link: String?,
+        ?first_seen: Float,
+        ?last_seen: Float,
+        ?manual_trust_level: Float?,
+        ?metadata: ModerationAPI::AuthorUpdateParams::Metadata,
+        ?name: String?,
+        ?profile_picture: String?,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthorUpdateResponse
+
+      def list: (
+        ?content_types: String,
+        ?last_active_date: String,
+        ?member_since_date: String,
+        ?page_number: String,
+        ?page_size: String,
+        ?sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
+        ?sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthorListResponse
+
+      def delete: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthorDeleteResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

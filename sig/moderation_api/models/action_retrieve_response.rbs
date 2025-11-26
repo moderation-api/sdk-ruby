@@ -1,0 +1,181 @@
+module ModerationAPI
+  module Models
+    type action_retrieve_response =
+      {
+        id: String,
+        built_in: bool?,
+        created_at: String,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        name: String,
+        position: ModerationAPI::Models::ActionRetrieveResponse::position,
+        possible_values: ::Array[ModerationAPI::Models::ActionRetrieveResponse::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionRetrieveResponse::queue_behaviour,
+        value_required: bool,
+        webhooks: ::Array[ModerationAPI::Models::ActionRetrieveResponse::Webhook],
+        description: String?,
+        key: String?,
+        type: ModerationAPI::Models::ActionRetrieveResponse::type_?
+      }
+
+    class ActionRetrieveResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor built_in: bool?
+
+      attr_accessor created_at: String
+
+      attr_accessor filter_in_queue_ids: ::Array[String]
+
+      attr_accessor free_text: bool
+
+      attr_accessor name: String
+
+      attr_accessor position: ModerationAPI::Models::ActionRetrieveResponse::position
+
+      attr_accessor possible_values: ::Array[ModerationAPI::Models::ActionRetrieveResponse::PossibleValue]
+
+      attr_accessor queue_behaviour: ModerationAPI::Models::ActionRetrieveResponse::queue_behaviour
+
+      attr_accessor value_required: bool
+
+      attr_accessor webhooks: ::Array[ModerationAPI::Models::ActionRetrieveResponse::Webhook]
+
+      attr_accessor description: String?
+
+      attr_accessor key: String?
+
+      attr_accessor type: ModerationAPI::Models::ActionRetrieveResponse::type_?
+
+      def initialize: (
+        id: String,
+        built_in: bool?,
+        created_at: String,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        name: String,
+        position: ModerationAPI::Models::ActionRetrieveResponse::position,
+        possible_values: ::Array[ModerationAPI::Models::ActionRetrieveResponse::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionRetrieveResponse::queue_behaviour,
+        value_required: bool,
+        webhooks: ::Array[ModerationAPI::Models::ActionRetrieveResponse::Webhook],
+        ?description: String?,
+        ?key: String?,
+        ?type: ModerationAPI::Models::ActionRetrieveResponse::type_?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        built_in: bool?,
+        created_at: String,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        name: String,
+        position: ModerationAPI::Models::ActionRetrieveResponse::position,
+        possible_values: ::Array[ModerationAPI::Models::ActionRetrieveResponse::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionRetrieveResponse::queue_behaviour,
+        value_required: bool,
+        webhooks: ::Array[ModerationAPI::Models::ActionRetrieveResponse::Webhook],
+        description: String?,
+        key: String?,
+        type: ModerationAPI::Models::ActionRetrieveResponse::type_?
+      }
+
+      type position = :ALL_QUEUES | :SOME_QUEUES | :HIDDEN
+
+      module Position
+        extend ModerationAPI::Internal::Type::Enum
+
+        ALL_QUEUES: :ALL_QUEUES
+        SOME_QUEUES: :SOME_QUEUES
+        HIDDEN: :HIDDEN
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionRetrieveResponse::position]
+      end
+
+      type possible_value = { value: String }
+
+      class PossibleValue < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor value: String
+
+        def initialize: (value: String) -> void
+
+        def to_hash: -> { value: String }
+      end
+
+      type queue_behaviour = :REMOVE | :ADD | :NO_CHANGE
+
+      module QueueBehaviour
+        extend ModerationAPI::Internal::Type::Enum
+
+        REMOVE: :REMOVE
+        ADD: :ADD
+        NO_CHANGE: :NO_CHANGE
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionRetrieveResponse::queue_behaviour]
+      end
+
+      type webhook =
+        {
+          id: String,
+          name: String,
+          url: String,
+          description: String?,
+          moderation_action_id: String?
+        }
+
+      class Webhook < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        attr_accessor url: String
+
+        attr_accessor description: String?
+
+        attr_accessor moderation_action_id: String?
+
+        def initialize: (
+          id: String,
+          name: String,
+          url: String,
+          ?description: String?,
+          ?moderation_action_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          name: String,
+          url: String,
+          description: String?,
+          moderation_action_id: String?
+        }
+      end
+
+      type type_ =
+        :AUTHOR_BLOCK
+        | :AUTHOR_BLOCK_TEMP
+        | :AUTHOR_UNBLOCK
+        | :AUTHOR_DELETE
+        | :AUTHOR_REPORT
+        | :AUTHOR_WARN
+        | :AUTHOR_CUSTOM
+        | :ITEM_CUSTOM
+
+      module Type
+        extend ModerationAPI::Internal::Type::Enum
+
+        AUTHOR_BLOCK: :AUTHOR_BLOCK
+        AUTHOR_BLOCK_TEMP: :AUTHOR_BLOCK_TEMP
+        AUTHOR_UNBLOCK: :AUTHOR_UNBLOCK
+        AUTHOR_DELETE: :AUTHOR_DELETE
+        AUTHOR_REPORT: :AUTHOR_REPORT
+        AUTHOR_WARN: :AUTHOR_WARN
+        AUTHOR_CUSTOM: :AUTHOR_CUSTOM
+        ITEM_CUSTOM: :ITEM_CUSTOM
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionRetrieveResponse::type_]
+      end
+    end
+  end
+end

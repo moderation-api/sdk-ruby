@@ -1,0 +1,207 @@
+module ModerationAPI
+  module Models
+    type queue_get_stats_response =
+      {
+        action_stats: ::Array[ModerationAPI::Models::QueueGetStatsResponse::ActionStat],
+        review_stats: ModerationAPI::Models::QueueGetStatsResponse::ReviewStats,
+        top_reviewers: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer],
+        trends: ModerationAPI::Models::QueueGetStatsResponse::Trends
+      }
+
+    class QueueGetStatsResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor action_stats: ::Array[ModerationAPI::Models::QueueGetStatsResponse::ActionStat]
+
+      attr_accessor review_stats: ModerationAPI::Models::QueueGetStatsResponse::ReviewStats
+
+      attr_accessor top_reviewers: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer]
+
+      attr_accessor trends: ModerationAPI::Models::QueueGetStatsResponse::Trends
+
+      def initialize: (
+        action_stats: ::Array[ModerationAPI::Models::QueueGetStatsResponse::ActionStat],
+        review_stats: ModerationAPI::Models::QueueGetStatsResponse::ReviewStats,
+        top_reviewers: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer],
+        trends: ModerationAPI::Models::QueueGetStatsResponse::Trends
+      ) -> void
+
+      def to_hash: -> {
+        action_stats: ::Array[ModerationAPI::Models::QueueGetStatsResponse::ActionStat],
+        review_stats: ModerationAPI::Models::QueueGetStatsResponse::ReviewStats,
+        top_reviewers: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer],
+        trends: ModerationAPI::Models::QueueGetStatsResponse::Trends
+      }
+
+      type action_stat =
+        {
+          action_id: String,
+          action_name: String,
+          count: Float,
+          percentage_of_total: Float
+        }
+
+      class ActionStat < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor action_id: String
+
+        attr_accessor action_name: String
+
+        attr_accessor count: Float
+
+        attr_accessor percentage_of_total: Float
+
+        def initialize: (
+          action_id: String,
+          action_name: String,
+          count: Float,
+          percentage_of_total: Float
+        ) -> void
+
+        def to_hash: -> {
+          action_id: String,
+          action_name: String,
+          count: Float,
+          percentage_of_total: Float
+        }
+      end
+
+      type review_stats =
+        {
+          average_time_to_review: Float,
+          total_pending: Float,
+          total_reviewed: Float
+        }
+
+      class ReviewStats < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor average_time_to_review: Float
+
+        attr_accessor total_pending: Float
+
+        attr_accessor total_reviewed: Float
+
+        def initialize: (
+          average_time_to_review: Float,
+          total_pending: Float,
+          total_reviewed: Float
+        ) -> void
+
+        def to_hash: -> {
+          average_time_to_review: Float,
+          total_pending: Float,
+          total_reviewed: Float
+        }
+      end
+
+      type top_reviewer =
+        {
+          average_time_per_review: Float,
+          name: String,
+          review_count: Float,
+          top_actions: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer::TopAction],
+          user_id: String,
+          accuracy_score: Float
+        }
+
+      class TopReviewer < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor average_time_per_review: Float
+
+        attr_accessor name: String
+
+        attr_accessor review_count: Float
+
+        attr_accessor top_actions: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer::TopAction]
+
+        attr_accessor user_id: String
+
+        attr_reader accuracy_score: Float?
+
+        def accuracy_score=: (Float) -> Float
+
+        def initialize: (
+          average_time_per_review: Float,
+          name: String,
+          review_count: Float,
+          top_actions: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer::TopAction],
+          user_id: String,
+          ?accuracy_score: Float
+        ) -> void
+
+        def to_hash: -> {
+          average_time_per_review: Float,
+          name: String,
+          review_count: Float,
+          top_actions: ::Array[ModerationAPI::Models::QueueGetStatsResponse::TopReviewer::TopAction],
+          user_id: String,
+          accuracy_score: Float
+        }
+
+        type top_action =
+          { action_id: String, action_name: String, count: Float }
+
+        class TopAction < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor action_id: String
+
+          attr_accessor action_name: String
+
+          attr_accessor count: Float
+
+          def initialize: (
+            action_id: String,
+            action_name: String,
+            count: Float
+          ) -> void
+
+          def to_hash: -> {
+            action_id: String,
+            action_name: String,
+            count: Float
+          }
+        end
+      end
+
+      type trends =
+        {
+          daily_review_counts: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::DailyReviewCount],
+          flagged_content_trends: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::FlaggedContentTrend]
+        }
+
+      class Trends < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor daily_review_counts: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::DailyReviewCount]
+
+        attr_accessor flagged_content_trends: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::FlaggedContentTrend]
+
+        def initialize: (
+          daily_review_counts: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::DailyReviewCount],
+          flagged_content_trends: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::FlaggedContentTrend]
+        ) -> void
+
+        def to_hash: -> {
+          daily_review_counts: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::DailyReviewCount],
+          flagged_content_trends: ::Array[ModerationAPI::Models::QueueGetStatsResponse::Trends::FlaggedContentTrend]
+        }
+
+        type daily_review_count = { count: Float, date: String }
+
+        class DailyReviewCount < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor count: Float
+
+          attr_accessor date: String
+
+          def initialize: (count: Float, date: String) -> void
+
+          def to_hash: -> { count: Float, date: String }
+        end
+
+        type flagged_content_trend = { label: String, trend: Float }
+
+        class FlaggedContentTrend < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor label: String
+
+          attr_accessor trend: Float
+
+          def initialize: (label: String, trend: Float) -> void
+
+          def to_hash: -> { label: String, trend: Float }
+        end
+      end
+    end
+  end
+end

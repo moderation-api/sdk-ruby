@@ -1,0 +1,127 @@
+module ModerationAPI
+  module Models
+    module Queue
+      type item_list_params =
+        {
+          after_date: String,
+          author_id: String,
+          before_date: String,
+          conversation_ids: String,
+          filtered_action_ids: String,
+          include_resolved: String,
+          labels: String,
+          page_number: String,
+          page_size: String,
+          sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
+          sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field
+        }
+        & ModerationAPI::Internal::Type::request_parameters
+
+      class ItemListParams < ModerationAPI::Internal::Type::BaseModel
+        extend ModerationAPI::Internal::Type::RequestParameters::Converter
+        include ModerationAPI::Internal::Type::RequestParameters
+
+        attr_reader after_date: String?
+
+        def after_date=: (String) -> String
+
+        attr_reader author_id: String?
+
+        def author_id=: (String) -> String
+
+        attr_reader before_date: String?
+
+        def before_date=: (String) -> String
+
+        attr_reader conversation_ids: String?
+
+        def conversation_ids=: (String) -> String
+
+        attr_reader filtered_action_ids: String?
+
+        def filtered_action_ids=: (String) -> String
+
+        attr_reader include_resolved: String?
+
+        def include_resolved=: (String) -> String
+
+        attr_reader labels: String?
+
+        def labels=: (String) -> String
+
+        attr_reader page_number: String?
+
+        def page_number=: (String) -> String
+
+        attr_reader page_size: String?
+
+        def page_size=: (String) -> String
+
+        attr_reader sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction?
+
+        def sort_direction=: (
+          ModerationAPI::Models::Queue::ItemListParams::sort_direction
+        ) -> ModerationAPI::Models::Queue::ItemListParams::sort_direction
+
+        attr_reader sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field?
+
+        def sort_field=: (
+          ModerationAPI::Models::Queue::ItemListParams::sort_field
+        ) -> ModerationAPI::Models::Queue::ItemListParams::sort_field
+
+        def initialize: (
+          ?after_date: String,
+          ?author_id: String,
+          ?before_date: String,
+          ?conversation_ids: String,
+          ?filtered_action_ids: String,
+          ?include_resolved: String,
+          ?labels: String,
+          ?page_number: String,
+          ?page_size: String,
+          ?sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
+          ?sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field,
+          ?request_options: ModerationAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          after_date: String,
+          author_id: String,
+          before_date: String,
+          conversation_ids: String,
+          filtered_action_ids: String,
+          include_resolved: String,
+          labels: String,
+          page_number: String,
+          page_size: String,
+          sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
+          sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field,
+          request_options: ModerationAPI::RequestOptions
+        }
+
+        type sort_direction = :asc | :desc
+
+        module SortDirection
+          extend ModerationAPI::Internal::Type::Enum
+
+          ASC: :asc
+          DESC: :desc
+
+          def self?.values: -> ::Array[ModerationAPI::Models::Queue::ItemListParams::sort_direction]
+        end
+
+        type sort_field = :createdAt | :severity | :reviewedAt
+
+        module SortField
+          extend ModerationAPI::Internal::Type::Enum
+
+          CREATED_AT: :createdAt
+          SEVERITY: :severity
+          REVIEWED_AT: :reviewedAt
+
+          def self?.values: -> ::Array[ModerationAPI::Models::Queue::ItemListParams::sort_field]
+        end
+      end
+    end
+  end
+end

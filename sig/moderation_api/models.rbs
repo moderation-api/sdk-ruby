@@ -1,0 +1,57 @@
+module ModerationAPI
+  class AccountListParams = ModerationAPI::Models::AccountListParams
+
+  class ActionCreateParams = ModerationAPI::Models::ActionCreateParams
+
+  class ActionDeleteParams = ModerationAPI::Models::ActionDeleteParams
+
+  class ActionListParams = ModerationAPI::Models::ActionListParams
+
+  class ActionRetrieveParams = ModerationAPI::Models::ActionRetrieveParams
+
+  module Actions = ModerationAPI::Models::Actions
+
+  class ActionUpdateParams = ModerationAPI::Models::ActionUpdateParams
+
+  class AuthCreateParams = ModerationAPI::Models::AuthCreateParams
+
+  class AuthorCreateParams = ModerationAPI::Models::AuthorCreateParams
+
+  class AuthorDeleteParams = ModerationAPI::Models::AuthorDeleteParams
+
+  class AuthorListParams = ModerationAPI::Models::AuthorListParams
+
+  class AuthorRetrieveParams = ModerationAPI::Models::AuthorRetrieveParams
+
+  class AuthorUpdateParams = ModerationAPI::Models::AuthorUpdateParams
+
+  class AuthRetrieveParams = ModerationAPI::Models::AuthRetrieveParams
+
+  class ModerateAnalyzeAudioParams = ModerationAPI::Models::ModerateAnalyzeAudioParams
+
+  class ModerateAnalyzeImageParams = ModerationAPI::Models::ModerateAnalyzeImageParams
+
+  class ModerateAnalyzeObjectParams = ModerationAPI::Models::ModerateAnalyzeObjectParams
+
+  class ModerateAnalyzeParams = ModerationAPI::Models::ModerateAnalyzeParams
+
+  class ModerateAnalyzeTextParams = ModerationAPI::Models::ModerateAnalyzeTextParams
+
+  class ModerateAnalyzeVideoParams = ModerationAPI::Models::ModerateAnalyzeVideoParams
+
+  module Queue = ModerationAPI::Models::Queue
+
+  class QueueGetStatsParams = ModerationAPI::Models::QueueGetStatsParams
+
+  class QueueRetrieveParams = ModerationAPI::Models::QueueRetrieveParams
+
+  module Wordlist = ModerationAPI::Models::Wordlist
+
+  class WordlistGetEmbeddingStatusParams = ModerationAPI::Models::WordlistGetEmbeddingStatusParams
+
+  class WordlistListParams = ModerationAPI::Models::WordlistListParams
+
+  class WordlistRetrieveParams = ModerationAPI::Models::WordlistRetrieveParams
+
+  class WordlistUpdateParams = ModerationAPI::Models::WordlistUpdateParams
+end

@@ -1,0 +1,186 @@
+# frozen_string_literal: true
+
+module ModerationAPI
+  module Models
+    # @see ModerationAPI::Resources::Actions#update
+    class ActionUpdateResponse < ModerationAPI::Internal::Type::BaseModel
+      # @!attribute id
+      #   The ID of the action.
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!attribute built_in
+      #   Whether the action is a built-in action or a custom one.
+      #
+      #   @return [Boolean, nil]
+      required :built_in, ModerationAPI::Internal::Type::Boolean, api_name: :builtIn, nil?: true
+
+      # @!attribute created_at
+      #   The date the action was created.
+      #
+      #   @return [String]
+      required :created_at, String, api_name: :createdAt
+
+      # @!attribute filter_in_queue_ids
+      #   The IDs of the queues the action is available in.
+      #
+      #   @return [Array<String>]
+      required :filter_in_queue_ids,
+               ModerationAPI::Internal::Type::ArrayOf[String],
+               api_name: :filterInQueueIds
+
+      # @!attribute free_text
+      #   Whether the action allows any text to be entered as a value or if it must be one
+      #   of the possible values.
+      #
+      #   @return [Boolean]
+      required :free_text, ModerationAPI::Internal::Type::Boolean, api_name: :freeText
+
+      # @!attribute name
+      #   The name of the action.
+      #
+      #   @return [String]
+      required :name, String
+
+      # @!attribute position
+      #   Show the action in all queues, selected queues or no queues (to use via API
+      #   only).
+      #
+      #   @return [Symbol, ModerationAPI::Models::ActionUpdateResponse::Position]
+      required :position, enum: -> { ModerationAPI::Models::ActionUpdateResponse::Position }
+
+      # @!attribute possible_values
+      #   The possible values of the action. The user will be prompted to select one of
+      #   these values when executing the action.
+      #
+      #   @return [Array<ModerationAPI::Models::ActionUpdateResponse::PossibleValue>]
+      required :possible_values,
+               -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ActionUpdateResponse::PossibleValue] },
+               api_name: :possibleValues
+
+      # @!attribute queue_behaviour
+      #   Whether the action resolves and removes the item, unresolves and re-add it to
+      #   the queue, or does not change the resolve status.
+      #
+      #   @return [Symbol, ModerationAPI::Models::ActionUpdateResponse::QueueBehaviour]
+      required :queue_behaviour,
+               enum: -> { ModerationAPI::Models::ActionUpdateResponse::QueueBehaviour },
+               api_name: :queueBehaviour
+
+      # @!attribute value_required
+      #   Whether the action requires a value to be executed.
+      #
+      #   @return [Boolean]
+      required :value_required, ModerationAPI::Internal::Type::Boolean, api_name: :valueRequired
+
+      # @!attribute description
+      #   The description of the action.
+      #
+      #   @return [String, nil]
+      optional :description, String, nil?: true
+
+      # @!attribute key
+      #   User defined key of the action.
+      #
+      #   @return [String, nil]
+      optional :key, String, nil?: true
+
+      # @!attribute type
+      #   The type of the action.
+      #
+      #   @return [Symbol, ModerationAPI::Models::ActionUpdateResponse::Type, nil]
+      optional :type, enum: -> { ModerationAPI::Models::ActionUpdateResponse::Type }, nil?: true
+
+      # @!method initialize(id:, built_in:, created_at:, filter_in_queue_ids:, free_text:, name:, position:, possible_values:, queue_behaviour:, value_required:, description: nil, key: nil, type: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {ModerationAPI::Models::ActionUpdateResponse} for more details.
+      #
+      #   @param id [String] The ID of the action.
+      #
+      #   @param built_in [Boolean, nil] Whether the action is a built-in action or a custom one.
+      #
+      #   @param created_at [String] The date the action was created.
+      #
+      #   @param filter_in_queue_ids [Array<String>] The IDs of the queues the action is available in.
+      #
+      #   @param free_text [Boolean] Whether the action allows any text to be entered as a value or if it must be one
+      #
+      #   @param name [String] The name of the action.
+      #
+      #   @param position [Symbol, ModerationAPI::Models::ActionUpdateResponse::Position] Show the action in all queues, selected queues or no queues (to use via API only
+      #
+      #   @param possible_values [Array<ModerationAPI::Models::ActionUpdateResponse::PossibleValue>] The possible values of the action. The user will be prompted to select one of th
+      #
+      #   @param queue_behaviour [Symbol, ModerationAPI::Models::ActionUpdateResponse::QueueBehaviour] Whether the action resolves and removes the item, unresolves and re-add it to th
+      #
+      #   @param value_required [Boolean] Whether the action requires a value to be executed.
+      #
+      #   @param description [String, nil] The description of the action.
+      #
+      #   @param key [String, nil] User defined key of the action.
+      #
+      #   @param type [Symbol, ModerationAPI::Models::ActionUpdateResponse::Type, nil] The type of the action.
+
+      # Show the action in all queues, selected queues or no queues (to use via API
+      # only).
+      #
+      # @see ModerationAPI::Models::ActionUpdateResponse#position
+      module Position
+        extend ModerationAPI::Internal::Type::Enum
+
+        ALL_QUEUES = :ALL_QUEUES
+        SOME_QUEUES = :SOME_QUEUES
+        HIDDEN = :HIDDEN
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      class PossibleValue < ModerationAPI::Internal::Type::BaseModel
+        # @!attribute value
+        #   The value of the action.
+        #
+        #   @return [String]
+        required :value, String
+
+        # @!method initialize(value:)
+        #   @param value [String] The value of the action.
+      end
+
+      # Whether the action resolves and removes the item, unresolves and re-add it to
+      # the queue, or does not change the resolve status.
+      #
+      # @see ModerationAPI::Models::ActionUpdateResponse#queue_behaviour
+      module QueueBehaviour
+        extend ModerationAPI::Internal::Type::Enum
+
+        REMOVE = :REMOVE
+        ADD = :ADD
+        NO_CHANGE = :NO_CHANGE
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The type of the action.
+      #
+      # @see ModerationAPI::Models::ActionUpdateResponse#type
+      module Type
+        extend ModerationAPI::Internal::Type::Enum
+
+        AUTHOR_BLOCK = :AUTHOR_BLOCK
+        AUTHOR_BLOCK_TEMP = :AUTHOR_BLOCK_TEMP
+        AUTHOR_UNBLOCK = :AUTHOR_UNBLOCK
+        AUTHOR_DELETE = :AUTHOR_DELETE
+        AUTHOR_REPORT = :AUTHOR_REPORT
+        AUTHOR_WARN = :AUTHOR_WARN
+        AUTHOR_CUSTOM = :AUTHOR_CUSTOM
+        ITEM_CUSTOM = :ITEM_CUSTOM
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+    end
+  end
+end

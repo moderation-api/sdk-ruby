@@ -1,0 +1,26 @@
+module ModerationAPI
+  module Models
+    module Queue
+      type item_resolve_response =
+        { resolved_at: String, success: bool, comment: String }
+
+      class ItemResolveResponse < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor resolved_at: String
+
+        attr_accessor success: bool
+
+        attr_reader comment: String?
+
+        def comment=: (String) -> String
+
+        def initialize: (
+          resolved_at: String,
+          success: bool,
+          ?comment: String
+        ) -> void
+
+        def to_hash: -> { resolved_at: String, success: bool, comment: String }
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module ModerationAPI
+  module Resources
+    class Actions
+      class Execute
+        def execute: (
+          action_key: String,
+          ?author_ids: ::Array[String],
+          ?content_ids: ::Array[String],
+          ?duration: Float,
+          ?queue_id: String,
+          ?value: String,
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Actions::ExecuteExecuteResponse
+
+        def execute_by_id: (
+          String action_id,
+          ?author_ids: ::Array[String],
+          ?content_ids: ::Array[String],
+          ?queue_id: String,
+          ?value: String,
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Actions::ExecuteExecuteByIDResponse
+
+        def initialize: (client: ModerationAPI::Client) -> void
+      end
+    end
+  end
+end

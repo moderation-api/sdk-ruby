@@ -1,0 +1,11 @@
+module ModerationAPI
+  module Resources
+    class Account
+      def list: (
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AccountListResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module ModerationAPI
+  module Resources
+    class Wordlist
+      class Words
+        def add: (
+          String id,
+          words: ::Array[String],
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Wordlist::WordAddResponse
+
+        def remove: (
+          String id,
+          words: ::Array[String],
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Wordlist::WordRemoveResponse
+
+        def initialize: (client: ModerationAPI::Client) -> void
+      end
+    end
+  end
+end

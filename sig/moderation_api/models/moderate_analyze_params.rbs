@@ -1,0 +1,245 @@
+module ModerationAPI
+  module Models
+    type moderate_analyze_params =
+      {
+        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+        author_id: String,
+        channel: String,
+        content_id: String,
+        conversation_id: String,
+        do_not_store: bool,
+        metadata: ::Hash[Symbol, top],
+        meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class ModerateAnalyzeParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor content: ModerationAPI::Models::ModerateAnalyzeParams::content
+
+      attr_reader author_id: String?
+
+      def author_id=: (String) -> String
+
+      attr_reader channel: String?
+
+      def channel=: (String) -> String
+
+      attr_reader content_id: String?
+
+      def content_id=: (String) -> String
+
+      attr_reader conversation_id: String?
+
+      def conversation_id=: (String) -> String
+
+      attr_reader do_not_store: bool?
+
+      def do_not_store=: (bool) -> bool
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type?
+
+      def meta_type=: (
+        ModerationAPI::Models::ModerateAnalyzeParams::meta_type
+      ) -> ModerationAPI::Models::ModerateAnalyzeParams::meta_type
+
+      def initialize: (
+        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+        ?author_id: String,
+        ?channel: String,
+        ?content_id: String,
+        ?conversation_id: String,
+        ?do_not_store: bool,
+        ?metadata: ::Hash[Symbol, top],
+        ?meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+        author_id: String,
+        channel: String,
+        content_id: String,
+        conversation_id: String,
+        do_not_store: bool,
+        metadata: ::Hash[Symbol, top],
+        meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type,
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type content =
+        ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0
+        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1
+        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2
+        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3
+        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4
+
+      module Content
+        extend ModerationAPI::Internal::Type::Union
+
+        type union_member0 = { text: String, type: :text }
+
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor text: String
+
+          attr_accessor type: :text
+
+          def initialize: (text: String, ?type: :text) -> void
+
+          def to_hash: -> { text: String, type: :text }
+        end
+
+        type union_member1 = { type: :image, url: String }
+
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor type: :image
+
+          attr_accessor url: String
+
+          def initialize: (url: String, ?type: :image) -> void
+
+          def to_hash: -> { type: :image, url: String }
+        end
+
+        type union_member2 = { type: :video, url: String }
+
+        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor type: :video
+
+          attr_accessor url: String
+
+          def initialize: (url: String, ?type: :video) -> void
+
+          def to_hash: -> { type: :video, url: String }
+        end
+
+        type union_member3 = { type: :audio, url: String }
+
+        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor type: :audio
+
+          attr_accessor url: String
+
+          def initialize: (url: String, ?type: :audio) -> void
+
+          def to_hash: -> { type: :audio, url: String }
+        end
+
+        type union_member4 =
+          {
+            data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data],
+            type: :object
+          }
+
+        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data]
+
+          attr_accessor type: :object
+
+          def initialize: (
+            data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data],
+            ?type: :object
+          ) -> void
+
+          def to_hash: -> {
+            data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data],
+            type: :object
+          }
+
+          type data =
+            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0
+            | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1
+            | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2
+            | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3
+
+          module Data
+            extend ModerationAPI::Internal::Type::Union
+
+            type union_member0 = { text: String, type: :text }
+
+            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor text: String
+
+              attr_accessor type: :text
+
+              def initialize: (text: String, ?type: :text) -> void
+
+              def to_hash: -> { text: String, type: :text }
+            end
+
+            type union_member1 = { type: :image, url: String }
+
+            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor type: :image
+
+              attr_accessor url: String
+
+              def initialize: (url: String, ?type: :image) -> void
+
+              def to_hash: -> { type: :image, url: String }
+            end
+
+            type union_member2 = { type: :video, url: String }
+
+            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor type: :video
+
+              attr_accessor url: String
+
+              def initialize: (url: String, ?type: :video) -> void
+
+              def to_hash: -> { type: :video, url: String }
+            end
+
+            type union_member3 = { type: :audio, url: String }
+
+            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor type: :audio
+
+              attr_accessor url: String
+
+              def initialize: (url: String, ?type: :audio) -> void
+
+              def to_hash: -> { type: :audio, url: String }
+            end
+
+            def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data]
+          end
+        end
+
+        def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeParams::content]
+      end
+
+      type meta_type =
+        :profile
+        | :message
+        | :post
+        | :comment
+        | :event
+        | :product
+        | :review
+        | :other
+
+      module MetaType
+        extend ModerationAPI::Internal::Type::Enum
+
+        PROFILE: :profile
+        MESSAGE: :message
+        POST: :post
+        COMMENT: :comment
+        EVENT: :event
+        PRODUCT: :product
+        REVIEW: :review
+        OTHER: :other
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeParams::meta_type]
+      end
+    end
+  end
+end

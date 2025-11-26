@@ -1,0 +1,13 @@
+module ModerationAPI
+  module Models
+    type author_delete_response = { success: bool }
+
+    class AuthorDeleteResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor success: bool
+
+      def initialize: (success: bool) -> void
+
+      def to_hash: -> { success: bool }
+    end
+  end
+end

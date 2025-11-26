@@ -1,0 +1,67 @@
+# typed: strong
+
+module ModerationAPI
+  class Client < ModerationAPI::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES = 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS = T.let(60.0, Float)
+
+    DEFAULT_INITIAL_RETRY_DELAY = T.let(0.5, Float)
+
+    DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
+
+    sig { returns(String) }
+    attr_reader :bearer_token
+
+    sig { returns(ModerationAPI::Resources::Authors) }
+    attr_reader :authors
+
+    sig { returns(ModerationAPI::Resources::Queue) }
+    attr_reader :queue
+
+    sig { returns(ModerationAPI::Resources::Actions) }
+    attr_reader :actions
+
+    sig { returns(ModerationAPI::Resources::Moderate) }
+    attr_reader :moderate
+
+    sig { returns(ModerationAPI::Resources::Account) }
+    attr_reader :account
+
+    sig { returns(ModerationAPI::Resources::Auth) }
+    attr_reader :auth
+
+    sig { returns(ModerationAPI::Resources::Wordlist) }
+    attr_reader :wordlist
+
+    # @api private
+    sig { override.returns(T::Hash[String, String]) }
+    private def auth_headers
+    end
+
+    # Creates and returns a new client for interacting with the API.
+    sig do
+      params(
+        bearer_token: T.nilable(String),
+        base_url: T.nilable(String),
+        max_retries: Integer,
+        timeout: Float,
+        initial_retry_delay: Float,
+        max_retry_delay: Float
+      ).returns(T.attached_class)
+    end
+    def self.new(
+      # Defaults to `ENV["MODERATION_API_BEARER_TOKEN"]`
+      bearer_token: ENV["MODERATION_API_BEARER_TOKEN"],
+      # Override the default base URL for the API, e.g.,
+      # `"https://api.example.com/v2/"`. Defaults to `ENV["MODERATION_API_BASE_URL"]`
+      base_url: ENV["MODERATION_API_BASE_URL"],
+      # Max number of retries to attempt after a failed retryable request.
+      max_retries: ModerationAPI::Client::DEFAULT_MAX_RETRIES,
+      timeout: ModerationAPI::Client::DEFAULT_TIMEOUT_IN_SECONDS,
+      initial_retry_delay: ModerationAPI::Client::DEFAULT_INITIAL_RETRY_DELAY,
+      max_retry_delay: ModerationAPI::Client::DEFAULT_MAX_RETRY_DELAY
+    )
+    end
+  end
+end

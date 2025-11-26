@@ -1,0 +1,10 @@
+module ModerationAPI
+  module Internal
+    extend ModerationAPI::Internal::Util::SorbetRuntimeSupport
+
+    type file_input =
+      Pathname | StringIO | IO | String | ModerationAPI::FilePart
+
+    OMIT: Object
+  end
+end

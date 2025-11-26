@@ -1,0 +1,312 @@
+module ModerationAPI
+  module Models
+    type moderate_analyze_object_response =
+      {
+        author: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author?,
+        data_found: bool,
+        entities: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Entity],
+        fields: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Field],
+        flagged: bool,
+        labels: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Label],
+        request: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Request,
+        status: String,
+        unicode_spoofing: bool,
+        content_id: String,
+        error: top,
+        wordlists: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist]
+      }
+
+    class ModerateAnalyzeObjectResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor author: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author?
+
+      attr_accessor data_found: bool
+
+      attr_accessor entities: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Entity]
+
+      attr_accessor fields: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Field]
+
+      attr_accessor flagged: bool
+
+      attr_accessor labels: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Label]
+
+      attr_accessor request: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Request
+
+      attr_accessor status: String
+
+      attr_accessor unicode_spoofing: bool
+
+      attr_reader content_id: String?
+
+      def content_id=: (String) -> String
+
+      attr_reader error: top?
+
+      def error=: (top) -> top
+
+      attr_reader wordlists: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist]?
+
+      def wordlists=: (
+        ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist]
+      ) -> ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist]
+
+      def initialize: (
+        author: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author?,
+        data_found: bool,
+        entities: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Entity],
+        fields: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Field],
+        flagged: bool,
+        labels: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Label],
+        request: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Request,
+        status: String,
+        unicode_spoofing: bool,
+        ?content_id: String,
+        ?error: top,
+        ?wordlists: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist]
+      ) -> void
+
+      def to_hash: -> {
+        author: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author?,
+        data_found: bool,
+        entities: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Entity],
+        fields: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Field],
+        flagged: bool,
+        labels: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Label],
+        request: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Request,
+        status: String,
+        unicode_spoofing: bool,
+        content_id: String,
+        error: top,
+        wordlists: ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist]
+      }
+
+      type author =
+        {
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::TrustLevel,
+          external_id: String?
+        }
+
+      class Author < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor block: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::Block?
+
+        attr_accessor status: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::status
+
+        attr_accessor trust_level: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::TrustLevel
+
+        attr_accessor external_id: String?
+
+        def initialize: (
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::TrustLevel,
+          ?external_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::TrustLevel,
+          external_id: String?
+        }
+
+        type block = { reason: String?, until_: Float? }
+
+        class Block < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor reason: String?
+
+          attr_accessor until_: Float?
+
+          def initialize: (?reason: String?, ?until_: Float?) -> void
+
+          def to_hash: -> { reason: String?, until_: Float? }
+        end
+
+        type status = :enabled | :suspended | :blocked
+
+        module Status
+          extend ModerationAPI::Internal::Type::Enum
+
+          ENABLED: :enabled
+          SUSPENDED: :suspended
+          BLOCKED: :blocked
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Author::status]
+        end
+
+        type trust_level = { level: Float, manual: bool }
+
+        class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor level: Float
+
+          attr_accessor manual: bool
+
+          def initialize: (level: Float, manual: bool) -> void
+
+          def to_hash: -> { level: Float, manual: bool }
+        end
+      end
+
+      type entity = { matches: ::Array[String], model: String, score: Float }
+
+      class Entity < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor matches: ::Array[String]
+
+        attr_accessor model: String
+
+        attr_reader score: Float?
+
+        def score=: (Float) -> Float
+
+        def initialize: (
+          matches: ::Array[String],
+          model: String,
+          ?score: Float
+        ) -> void
+
+        def to_hash: -> {
+          matches: ::Array[String],
+          model: String,
+          score: Float
+        }
+      end
+
+      type field = { flagged: bool, flagged_by: ::Array[String], key: String }
+
+      class Field < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor flagged: bool
+
+        attr_accessor flagged_by: ::Array[String]
+
+        attr_accessor key: String
+
+        def initialize: (
+          flagged: bool,
+          flagged_by: ::Array[String],
+          key: String
+        ) -> void
+
+        def to_hash: -> {
+          flagged: bool,
+          flagged_by: ::Array[String],
+          key: String
+        }
+      end
+
+      type label = { label: String, model: String, score: Float }
+
+      class Label < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor label: String
+
+        attr_accessor model: String
+
+        attr_accessor score: Float
+
+        def initialize: (label: String, model: String, score: Float) -> void
+
+        def to_hash: -> { label: String, model: String, score: Float }
+      end
+
+      type request = { quota_usage: Float, timestamp: Float }
+
+      class Request < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor quota_usage: Float
+
+        attr_accessor timestamp: Float
+
+        def initialize: (quota_usage: Float, timestamp: Float) -> void
+
+        def to_hash: -> { quota_usage: Float, timestamp: Float }
+      end
+
+      type wordlist =
+        {
+          id: String,
+          flagged: bool,
+          mode: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist::mode,
+          name: String,
+          score: Float,
+          components: top,
+          error: String,
+          found: bool,
+          matches: ::Array[String],
+          warning: String
+        }
+
+      class Wordlist < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor flagged: bool
+
+        attr_accessor mode: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist::mode
+
+        attr_accessor name: String
+
+        attr_accessor score: Float
+
+        attr_reader components: top?
+
+        def components=: (top) -> top
+
+        attr_reader error: String?
+
+        def error=: (String) -> String
+
+        attr_reader found: bool?
+
+        def found=: (bool) -> bool
+
+        attr_reader matches: ::Array[String]?
+
+        def matches=: (::Array[String]) -> ::Array[String]
+
+        attr_reader warning: String?
+
+        def warning=: (String) -> String
+
+        def initialize: (
+          id: String,
+          flagged: bool,
+          mode: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist::mode,
+          name: String,
+          score: Float,
+          ?components: top,
+          ?error: String,
+          ?found: bool,
+          ?matches: ::Array[String],
+          ?warning: String
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          flagged: bool,
+          mode: ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist::mode,
+          name: String,
+          score: Float,
+          components: top,
+          error: String,
+          found: bool,
+          matches: ::Array[String],
+          warning: String
+        }
+
+        type mode = :BLOCK_LIST | :REQUIRE_LIST | :PASS_LIST
+
+        module Mode
+          extend ModerationAPI::Internal::Type::Enum
+
+          BLOCK_LIST: :BLOCK_LIST
+          REQUIRE_LIST: :REQUIRE_LIST
+          PASS_LIST: :PASS_LIST
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeObjectResponse::Wordlist::mode]
+        end
+      end
+    end
+  end
+end

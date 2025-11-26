@@ -1,0 +1,57 @@
+module ModerationAPI
+  module Resources
+    class Actions
+      attr_reader execute: ModerationAPI::Resources::Actions::Execute
+
+      def create: (
+        name: String,
+        ?built_in: bool?,
+        ?description: String?,
+        ?filter_in_queue_ids: ::Array[String],
+        ?free_text: bool,
+        ?key: String?,
+        ?position: ModerationAPI::Models::ActionCreateParams::position,
+        ?possible_values: ::Array[ModerationAPI::ActionCreateParams::PossibleValue],
+        ?queue_behaviour: ModerationAPI::Models::ActionCreateParams::queue_behaviour,
+        ?type: ModerationAPI::Models::ActionCreateParams::type_?,
+        ?value_required: bool,
+        ?webhooks: ::Array[ModerationAPI::ActionCreateParams::Webhook],
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::ActionCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::ActionRetrieveResponse
+
+      def update: (
+        String id,
+        ?built_in: bool?,
+        ?description: String?,
+        ?filter_in_queue_ids: ::Array[String],
+        ?free_text: bool,
+        ?key: String?,
+        ?name: String,
+        ?position: ModerationAPI::Models::ActionUpdateParams::position,
+        ?possible_values: ::Array[ModerationAPI::ActionUpdateParams::PossibleValue],
+        ?queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
+        ?type: ModerationAPI::Models::ActionUpdateParams::type_?,
+        ?value_required: bool,
+        ?webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook],
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::ActionUpdateResponse
+
+      def list: (
+        ?queue_id: String,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::action_list_response
+
+      def delete: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::ActionDeleteResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

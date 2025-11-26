@@ -1,0 +1,209 @@
+module ModerationAPI
+  module Models
+    module Queue
+      type item_list_response =
+        {
+          items: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item],
+          pagination: ModerationAPI::Models::Queue::ItemListResponse::Pagination
+        }
+
+      class ItemListResponse < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor items: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item]
+
+        attr_accessor pagination: ModerationAPI::Models::Queue::ItemListResponse::Pagination
+
+        def initialize: (
+          items: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item],
+          pagination: ModerationAPI::Models::Queue::ItemListResponse::Pagination
+        ) -> void
+
+        def to_hash: -> {
+          items: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item],
+          pagination: ModerationAPI::Models::Queue::ItemListResponse::Pagination
+        }
+
+        type item =
+          {
+            id: String,
+            content: String,
+            flagged: bool,
+            labels: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Label],
+            status: ModerationAPI::Models::Queue::ItemListResponse::Item::status,
+            timestamp: Float,
+            actions: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Action],
+            author_id: String,
+            content_type: String,
+            conversation_id: String,
+            language: String
+          }
+
+        class Item < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content: String
+
+          attr_accessor flagged: bool
+
+          attr_accessor labels: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Label]
+
+          attr_accessor status: ModerationAPI::Models::Queue::ItemListResponse::Item::status
+
+          attr_accessor timestamp: Float
+
+          attr_reader actions: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Action]?
+
+          def actions=: (
+            ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Action]
+          ) -> ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Action]
+
+          attr_reader author_id: String?
+
+          def author_id=: (String) -> String
+
+          attr_reader content_type: String?
+
+          def content_type=: (String) -> String
+
+          attr_reader conversation_id: String?
+
+          def conversation_id=: (String) -> String
+
+          attr_reader language: String?
+
+          def language=: (String) -> String
+
+          def initialize: (
+            id: String,
+            content: String,
+            flagged: bool,
+            labels: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Label],
+            status: ModerationAPI::Models::Queue::ItemListResponse::Item::status,
+            timestamp: Float,
+            ?actions: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Action],
+            ?author_id: String,
+            ?content_type: String,
+            ?conversation_id: String,
+            ?language: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content: String,
+            flagged: bool,
+            labels: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Label],
+            status: ModerationAPI::Models::Queue::ItemListResponse::Item::status,
+            timestamp: Float,
+            actions: ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::Action],
+            author_id: String,
+            content_type: String,
+            conversation_id: String,
+            language: String
+          }
+
+          type label = { flagged: bool, label: String, score: Float }
+
+          class Label < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor flagged: bool
+
+            attr_accessor label: String
+
+            attr_accessor score: Float
+
+            def initialize: (flagged: bool, label: String, score: Float) -> void
+
+            def to_hash: -> { flagged: bool, label: String, score: Float }
+          end
+
+          type status = :pending | :resolved
+
+          module Status
+            extend ModerationAPI::Internal::Type::Enum
+
+            PENDING: :pending
+            RESOLVED: :resolved
+
+            def self?.values: -> ::Array[ModerationAPI::Models::Queue::ItemListResponse::Item::status]
+          end
+
+          type action =
+            {
+              id: String,
+              name: String,
+              timestamp: Float,
+              comment: String,
+              reviewer: String
+            }
+
+          class Action < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor name: String
+
+            attr_accessor timestamp: Float
+
+            attr_reader comment: String?
+
+            def comment=: (String) -> String
+
+            attr_reader reviewer: String?
+
+            def reviewer=: (String) -> String
+
+            def initialize: (
+              id: String,
+              name: String,
+              timestamp: Float,
+              ?comment: String,
+              ?reviewer: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              name: String,
+              timestamp: Float,
+              comment: String,
+              reviewer: String
+            }
+          end
+        end
+
+        type pagination =
+          {
+            current_page: Float,
+            has_next_page: bool,
+            has_previous_page: bool,
+            total_items: Float,
+            total_pages: Float
+          }
+
+        class Pagination < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor current_page: Float
+
+          attr_accessor has_next_page: bool
+
+          attr_accessor has_previous_page: bool
+
+          attr_accessor total_items: Float
+
+          attr_accessor total_pages: Float
+
+          def initialize: (
+            current_page: Float,
+            has_next_page: bool,
+            has_previous_page: bool,
+            total_items: Float,
+            total_pages: Float
+          ) -> void
+
+          def to_hash: -> {
+            current_page: Float,
+            has_next_page: bool,
+            has_previous_page: bool,
+            total_items: Float,
+            total_pages: Float
+          }
+        end
+      end
+    end
+  end
+end

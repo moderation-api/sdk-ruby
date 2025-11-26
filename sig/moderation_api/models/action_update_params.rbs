@@ -1,0 +1,193 @@
+module ModerationAPI
+  module Models
+    type action_update_params =
+      {
+        built_in: bool?,
+        description: String?,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        key: String?,
+        name: String,
+        position: ModerationAPI::Models::ActionUpdateParams::position,
+        possible_values: ::Array[ModerationAPI::ActionUpdateParams::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
+        type: ModerationAPI::Models::ActionUpdateParams::type_?,
+        value_required: bool,
+        webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook]
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class ActionUpdateParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor built_in: bool?
+
+      attr_accessor description: String?
+
+      attr_reader filter_in_queue_ids: ::Array[String]?
+
+      def filter_in_queue_ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader free_text: bool?
+
+      def free_text=: (bool) -> bool
+
+      attr_accessor key: String?
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader position: ModerationAPI::Models::ActionUpdateParams::position?
+
+      def position=: (
+        ModerationAPI::Models::ActionUpdateParams::position
+      ) -> ModerationAPI::Models::ActionUpdateParams::position
+
+      attr_reader possible_values: ::Array[ModerationAPI::ActionUpdateParams::PossibleValue]?
+
+      def possible_values=: (
+        ::Array[ModerationAPI::ActionUpdateParams::PossibleValue]
+      ) -> ::Array[ModerationAPI::ActionUpdateParams::PossibleValue]
+
+      attr_reader queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour?
+
+      def queue_behaviour=: (
+        ModerationAPI::Models::ActionUpdateParams::queue_behaviour
+      ) -> ModerationAPI::Models::ActionUpdateParams::queue_behaviour
+
+      attr_accessor type: ModerationAPI::Models::ActionUpdateParams::type_?
+
+      attr_reader value_required: bool?
+
+      def value_required=: (bool) -> bool
+
+      attr_reader webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook]?
+
+      def webhooks=: (
+        ::Array[ModerationAPI::ActionUpdateParams::Webhook]
+      ) -> ::Array[ModerationAPI::ActionUpdateParams::Webhook]
+
+      def initialize: (
+        ?built_in: bool?,
+        ?description: String?,
+        ?filter_in_queue_ids: ::Array[String],
+        ?free_text: bool,
+        ?key: String?,
+        ?name: String,
+        ?position: ModerationAPI::Models::ActionUpdateParams::position,
+        ?possible_values: ::Array[ModerationAPI::ActionUpdateParams::PossibleValue],
+        ?queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
+        ?type: ModerationAPI::Models::ActionUpdateParams::type_?,
+        ?value_required: bool,
+        ?webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook],
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        built_in: bool?,
+        description: String?,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        key: String?,
+        name: String,
+        position: ModerationAPI::Models::ActionUpdateParams::position,
+        possible_values: ::Array[ModerationAPI::ActionUpdateParams::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
+        type: ModerationAPI::Models::ActionUpdateParams::type_?,
+        value_required: bool,
+        webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook],
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type position = :ALL_QUEUES | :SOME_QUEUES | :HIDDEN
+
+      module Position
+        extend ModerationAPI::Internal::Type::Enum
+
+        ALL_QUEUES: :ALL_QUEUES
+        SOME_QUEUES: :SOME_QUEUES
+        HIDDEN: :HIDDEN
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionUpdateParams::position]
+      end
+
+      type possible_value = { value: String }
+
+      class PossibleValue < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor value: String
+
+        def initialize: (value: String) -> void
+
+        def to_hash: -> { value: String }
+      end
+
+      type queue_behaviour = :REMOVE | :ADD | :NO_CHANGE
+
+      module QueueBehaviour
+        extend ModerationAPI::Internal::Type::Enum
+
+        REMOVE: :REMOVE
+        ADD: :ADD
+        NO_CHANGE: :NO_CHANGE
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionUpdateParams::queue_behaviour]
+      end
+
+      type type_ =
+        :AUTHOR_BLOCK
+        | :AUTHOR_BLOCK_TEMP
+        | :AUTHOR_UNBLOCK
+        | :AUTHOR_DELETE
+        | :AUTHOR_REPORT
+        | :AUTHOR_WARN
+        | :AUTHOR_CUSTOM
+        | :ITEM_CUSTOM
+
+      module Type
+        extend ModerationAPI::Internal::Type::Enum
+
+        AUTHOR_BLOCK: :AUTHOR_BLOCK
+        AUTHOR_BLOCK_TEMP: :AUTHOR_BLOCK_TEMP
+        AUTHOR_UNBLOCK: :AUTHOR_UNBLOCK
+        AUTHOR_DELETE: :AUTHOR_DELETE
+        AUTHOR_REPORT: :AUTHOR_REPORT
+        AUTHOR_WARN: :AUTHOR_WARN
+        AUTHOR_CUSTOM: :AUTHOR_CUSTOM
+        ITEM_CUSTOM: :ITEM_CUSTOM
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionUpdateParams::type_]
+      end
+
+      type webhook =
+        { name: String, url: String, id: String, description: String? }
+
+      class Webhook < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_accessor url: String
+
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_accessor description: String?
+
+        def initialize: (
+          name: String,
+          url: String,
+          ?id: String,
+          ?description: String?
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          url: String,
+          id: String,
+          description: String?
+        }
+      end
+    end
+  end
+end

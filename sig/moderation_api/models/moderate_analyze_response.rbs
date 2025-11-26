@@ -1,0 +1,598 @@
+module ModerationAPI
+  module Models
+    type moderate_analyze_response =
+      {
+        author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?,
+        content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
+        evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
+        insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight],
+        meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
+        policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy],
+        recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
+        errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+      }
+
+    class ModerateAnalyzeResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?
+
+      attr_accessor content: ModerationAPI::Models::ModerateAnalyzeResponse::Content
+
+      attr_accessor evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation
+
+      attr_accessor insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight]
+
+      attr_accessor meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta
+
+      attr_accessor policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy]
+
+      attr_accessor recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation
+
+      attr_reader errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]?
+
+      def errors=: (
+        ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+      ) -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+
+      def initialize: (
+        author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?,
+        content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
+        evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
+        insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight],
+        meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
+        policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy],
+        recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
+        ?errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+      ) -> void
+
+      def to_hash: -> {
+        author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?,
+        content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
+        evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
+        insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight],
+        meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
+        policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy],
+        recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
+        errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+      }
+
+      type author =
+        {
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+          external_id: String?
+        }
+
+      class Author < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?
+
+        attr_accessor status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status
+
+        attr_accessor trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel
+
+        attr_accessor external_id: String?
+
+        def initialize: (
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+          ?external_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+          external_id: String?
+        }
+
+        type block = { reason: String?, until_: Float? }
+
+        class Block < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor reason: String?
+
+          attr_accessor until_: Float?
+
+          def initialize: (?reason: String?, ?until_: Float?) -> void
+
+          def to_hash: -> { reason: String?, until_: Float? }
+        end
+
+        type status = :enabled | :suspended | :blocked
+
+        module Status
+          extend ModerationAPI::Internal::Type::Enum
+
+          ENABLED: :enabled
+          SUSPENDED: :suspended
+          BLOCKED: :blocked
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Author::status]
+        end
+
+        type trust_level = { level: Float, manual: bool }
+
+        class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor level: Float
+
+          attr_accessor manual: bool
+
+          def initialize: (level: Float, manual: bool) -> void
+
+          def to_hash: -> { level: Float, manual: bool }
+        end
+      end
+
+      type content =
+        {
+          id: String,
+          masked: bool,
+          modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+        }
+
+      class Content < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor masked: bool
+
+        attr_accessor modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+
+        def initialize: (
+          id: String,
+          masked: bool,
+          modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          masked: bool,
+          modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+        }
+
+        type modified =
+          String
+          | ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::union_member1]
+
+        module Modified
+          extend ModerationAPI::Internal::Type::Union
+
+          type union_member1 =
+            ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0
+            | ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1
+            | ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2
+            | ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3
+
+          module UnionMember1
+            extend ModerationAPI::Internal::Type::Union
+
+            type union_member0 = { text: String, type: :text }
+
+            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor text: String
+
+              attr_accessor type: :text
+
+              def initialize: (text: String, ?type: :text) -> void
+
+              def to_hash: -> { text: String, type: :text }
+            end
+
+            type union_member1 = { type: :image, url: String }
+
+            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor type: :image
+
+              attr_accessor url: String
+
+              def initialize: (url: String, ?type: :image) -> void
+
+              def to_hash: -> { type: :image, url: String }
+            end
+
+            type union_member2 = { type: :video, url: String }
+
+            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor type: :video
+
+              attr_accessor url: String
+
+              def initialize: (url: String, ?type: :video) -> void
+
+              def to_hash: -> { type: :video, url: String }
+            end
+
+            type union_member3 = { type: :audio, url: String }
+
+            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor type: :audio
+
+              attr_accessor url: String
+
+              def initialize: (url: String, ?type: :audio) -> void
+
+              def to_hash: -> { type: :audio, url: String }
+            end
+
+            def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::union_member1]
+          end
+
+          def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified]
+
+          UnionMember1Map: ModerationAPI::Internal::Type::Converter
+        end
+      end
+
+      type evaluation =
+        {
+          flag_probability: Float,
+          flagged: bool,
+          severity_score: Float,
+          unicode_spoofed: bool
+        }
+
+      class Evaluation < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor flag_probability: Float
+
+        attr_accessor flagged: bool
+
+        attr_accessor severity_score: Float
+
+        attr_reader unicode_spoofed: bool?
+
+        def unicode_spoofed=: (bool) -> bool
+
+        def initialize: (
+          flag_probability: Float,
+          flagged: bool,
+          severity_score: Float,
+          ?unicode_spoofed: bool
+        ) -> void
+
+        def to_hash: -> {
+          flag_probability: Float,
+          flagged: bool,
+          severity_score: Float,
+          unicode_spoofed: bool
+        }
+      end
+
+      type insight =
+        ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0
+        | ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1
+
+      module Insight
+        extend ModerationAPI::Internal::Type::Union
+
+        type union_member0 =
+          {
+            id: :sentiment,
+            probability: Float,
+            type: :insight,
+            value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?
+          }
+
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :sentiment
+
+          attr_accessor probability: Float
+
+          attr_accessor type: :insight
+
+          attr_accessor value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?
+
+          def initialize: (
+            probability: Float,
+            value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?,
+            ?id: :sentiment,
+            ?type: :insight
+          ) -> void
+
+          def to_hash: -> {
+            id: :sentiment,
+            probability: Float,
+            type: :insight,
+            value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?
+          }
+
+          type value = :positive | :neutral | :negative
+
+          module Value
+            extend ModerationAPI::Internal::Type::Enum
+
+            POSITIVE: :positive
+            NEUTRAL: :neutral
+            NEGATIVE: :negative
+
+            def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value]
+          end
+        end
+
+        type union_member1 =
+          { id: :language, probability: Float, type: :insight, value: String? }
+
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :language
+
+          attr_accessor probability: Float
+
+          attr_accessor type: :insight
+
+          attr_accessor value: String?
+
+          def initialize: (
+            probability: Float,
+            value: String?,
+            ?id: :language,
+            ?type: :insight
+          ) -> void
+
+          def to_hash: -> {
+            id: :language,
+            probability: Float,
+            type: :insight,
+            value: String?
+          }
+        end
+
+        def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight]
+      end
+
+      type meta =
+        {
+          channel_key: String,
+          status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status,
+          timestamp: Float,
+          usage: Float,
+          processing_time: String
+        }
+
+      class Meta < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor channel_key: String
+
+        attr_accessor status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status
+
+        attr_accessor timestamp: Float
+
+        attr_accessor usage: Float
+
+        attr_reader processing_time: String?
+
+        def processing_time=: (String) -> String
+
+        def initialize: (
+          channel_key: String,
+          status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status,
+          timestamp: Float,
+          usage: Float,
+          ?processing_time: String
+        ) -> void
+
+        def to_hash: -> {
+          channel_key: String,
+          status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status,
+          timestamp: Float,
+          usage: Float,
+          processing_time: String
+        }
+
+        type status = :success | :partial_success
+
+        module Status
+          extend ModerationAPI::Internal::Type::Enum
+
+          SUCCESS: :success
+          PARTIAL_SUCCESS: :partial_success
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status]
+        end
+      end
+
+      type policy =
+        ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0
+        | ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1
+
+      module Policy
+        extend ModerationAPI::Internal::Type::Union
+
+        type union_member0 =
+          {
+            id: String,
+            flagged: bool,
+            probability: Float,
+            type: :classifier,
+            flagged_fields: ::Array[String],
+            labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+          }
+
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor flagged: bool
+
+          attr_accessor probability: Float
+
+          attr_accessor type: :classifier
+
+          attr_reader flagged_fields: ::Array[String]?
+
+          def flagged_fields=: (::Array[String]) -> ::Array[String]
+
+          attr_reader labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]?
+
+          def labels=: (
+            ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+          ) -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+
+          def initialize: (
+            id: String,
+            flagged: bool,
+            probability: Float,
+            ?flagged_fields: ::Array[String],
+            ?labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label],
+            ?type: :classifier
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            flagged: bool,
+            probability: Float,
+            type: :classifier,
+            flagged_fields: ::Array[String],
+            labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+          }
+
+          type label = { id: String, flagged: bool, probability: Float }
+
+          class Label < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor flagged: bool
+
+            attr_accessor probability: Float
+
+            def initialize: (
+              id: String,
+              flagged: bool,
+              probability: Float
+            ) -> void
+
+            def to_hash: -> { id: String, flagged: bool, probability: Float }
+          end
+        end
+
+        type union_member1 =
+          {
+            id: String,
+            flagged: bool,
+            matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match],
+            probability: Float,
+            type: :entity_matcher,
+            flagged_fields: ::Array[String]
+          }
+
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor flagged: bool
+
+          attr_accessor matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match]
+
+          attr_accessor probability: Float
+
+          attr_accessor type: :entity_matcher
+
+          attr_reader flagged_fields: ::Array[String]?
+
+          def flagged_fields=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            id: String,
+            flagged: bool,
+            matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match],
+            probability: Float,
+            ?flagged_fields: ::Array[String],
+            ?type: :entity_matcher
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            flagged: bool,
+            matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match],
+            probability: Float,
+            type: :entity_matcher,
+            flagged_fields: ::Array[String]
+          }
+
+          type match = { match: String, probability: Float, span: ::Array[top] }
+
+          class Match < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor match: String
+
+            attr_accessor probability: Float
+
+            attr_accessor span: ::Array[top]
+
+            def initialize: (
+              match: String,
+              probability: Float,
+              span: ::Array[top]
+            ) -> void
+
+            def to_hash: -> {
+              match: String,
+              probability: Float,
+              span: ::Array[top]
+            }
+          end
+        end
+
+        def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy]
+      end
+
+      type recommendation =
+        {
+          action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action,
+          reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+        }
+
+      class Recommendation < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action
+
+        attr_accessor reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+
+        def initialize: (
+          action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action,
+          reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+        ) -> void
+
+        def to_hash: -> {
+          action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action,
+          reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+        }
+
+        type action = :review | :allow | :reject
+
+        module Action
+          extend ModerationAPI::Internal::Type::Enum
+
+          REVIEW: :review
+          ALLOW: :allow
+          REJECT: :reject
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action]
+        end
+
+        type reason_code =
+          :severity_reject | :severity_review | :author_block | :dry_run
+
+        module ReasonCode
+          extend ModerationAPI::Internal::Type::Enum
+
+          SEVERITY_REJECT: :severity_reject
+          SEVERITY_REVIEW: :severity_review
+          AUTHOR_BLOCK: :author_block
+          DRY_RUN: :dry_run
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+        end
+      end
+
+      type error = { id: String, message: String }
+
+      class Error < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor message: String
+
+        def initialize: (id: String, message: String) -> void
+
+        def to_hash: -> { id: String, message: String }
+      end
+    end
+  end
+end

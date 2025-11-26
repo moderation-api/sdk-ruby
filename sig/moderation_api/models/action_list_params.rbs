@@ -1,0 +1,25 @@
+module ModerationAPI
+  module Models
+    type action_list_params =
+      { queue_id: String } & ModerationAPI::Internal::Type::request_parameters
+
+    class ActionListParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_reader queue_id: String?
+
+      def queue_id=: (String) -> String
+
+      def initialize: (
+        ?queue_id: String,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        queue_id: String,
+        request_options: ModerationAPI::RequestOptions
+      }
+    end
+  end
+end

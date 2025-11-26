@@ -1,0 +1,195 @@
+module ModerationAPI
+  module Models
+    type author_retrieve_response =
+      {
+        id: String,
+        block: ModerationAPI::Models::AuthorRetrieveResponse::Block?,
+        first_seen: Float,
+        last_seen: Float,
+        metadata: ModerationAPI::Models::AuthorRetrieveResponse::Metadata,
+        metrics: ModerationAPI::Models::AuthorRetrieveResponse::Metrics,
+        risk_evaluation: ModerationAPI::Models::AuthorRetrieveResponse::RiskEvaluation?,
+        status: ModerationAPI::Models::AuthorRetrieveResponse::status,
+        trust_level: ModerationAPI::Models::AuthorRetrieveResponse::TrustLevel,
+        email: String?,
+        external_id: String?,
+        external_link: String?,
+        last_incident: Float?,
+        name: String?,
+        profile_picture: String?
+      }
+
+    class AuthorRetrieveResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor block: ModerationAPI::Models::AuthorRetrieveResponse::Block?
+
+      attr_accessor first_seen: Float
+
+      attr_accessor last_seen: Float
+
+      attr_accessor metadata: ModerationAPI::Models::AuthorRetrieveResponse::Metadata
+
+      attr_accessor metrics: ModerationAPI::Models::AuthorRetrieveResponse::Metrics
+
+      attr_accessor risk_evaluation: ModerationAPI::Models::AuthorRetrieveResponse::RiskEvaluation?
+
+      attr_accessor status: ModerationAPI::Models::AuthorRetrieveResponse::status
+
+      attr_accessor trust_level: ModerationAPI::Models::AuthorRetrieveResponse::TrustLevel
+
+      attr_accessor email: String?
+
+      attr_accessor external_id: String?
+
+      attr_accessor external_link: String?
+
+      attr_accessor last_incident: Float?
+
+      attr_accessor name: String?
+
+      attr_accessor profile_picture: String?
+
+      def initialize: (
+        id: String,
+        block: ModerationAPI::Models::AuthorRetrieveResponse::Block?,
+        first_seen: Float,
+        last_seen: Float,
+        metadata: ModerationAPI::Models::AuthorRetrieveResponse::Metadata,
+        metrics: ModerationAPI::Models::AuthorRetrieveResponse::Metrics,
+        risk_evaluation: ModerationAPI::Models::AuthorRetrieveResponse::RiskEvaluation?,
+        status: ModerationAPI::Models::AuthorRetrieveResponse::status,
+        trust_level: ModerationAPI::Models::AuthorRetrieveResponse::TrustLevel,
+        ?email: String?,
+        ?external_id: String?,
+        ?external_link: String?,
+        ?last_incident: Float?,
+        ?name: String?,
+        ?profile_picture: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        block: ModerationAPI::Models::AuthorRetrieveResponse::Block?,
+        first_seen: Float,
+        last_seen: Float,
+        metadata: ModerationAPI::Models::AuthorRetrieveResponse::Metadata,
+        metrics: ModerationAPI::Models::AuthorRetrieveResponse::Metrics,
+        risk_evaluation: ModerationAPI::Models::AuthorRetrieveResponse::RiskEvaluation?,
+        status: ModerationAPI::Models::AuthorRetrieveResponse::status,
+        trust_level: ModerationAPI::Models::AuthorRetrieveResponse::TrustLevel,
+        email: String?,
+        external_id: String?,
+        external_link: String?,
+        last_incident: Float?,
+        name: String?,
+        profile_picture: String?
+      }
+
+      type block = { reason: String?, until_: Float? }
+
+      class Block < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor reason: String?
+
+        attr_accessor until_: Float?
+
+        def initialize: (?reason: String?, ?until_: Float?) -> void
+
+        def to_hash: -> { reason: String?, until_: Float? }
+      end
+
+      type metadata =
+        {
+          email_verified: bool?,
+          identity_verified: bool?,
+          is_paying_customer: bool?,
+          phone_verified: bool?
+        }
+
+      class Metadata < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor email_verified: bool?
+
+        attr_accessor identity_verified: bool?
+
+        attr_accessor is_paying_customer: bool?
+
+        attr_accessor phone_verified: bool?
+
+        def initialize: (
+          ?email_verified: bool?,
+          ?identity_verified: bool?,
+          ?is_paying_customer: bool?,
+          ?phone_verified: bool?
+        ) -> void
+
+        def to_hash: -> {
+          email_verified: bool?,
+          identity_verified: bool?,
+          is_paying_customer: bool?,
+          phone_verified: bool?
+        }
+      end
+
+      type metrics =
+        {
+          flagged_content: Float,
+          total_content: Float,
+          average_sentiment: Float?
+        }
+
+      class Metrics < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor flagged_content: Float
+
+        attr_accessor total_content: Float
+
+        attr_accessor average_sentiment: Float?
+
+        def initialize: (
+          flagged_content: Float,
+          total_content: Float,
+          ?average_sentiment: Float?
+        ) -> void
+
+        def to_hash: -> {
+          flagged_content: Float,
+          total_content: Float,
+          average_sentiment: Float?
+        }
+      end
+
+      type risk_evaluation = { risk_level: Float? }
+
+      class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor risk_level: Float?
+
+        def initialize: (?risk_level: Float?) -> void
+
+        def to_hash: -> { risk_level: Float? }
+      end
+
+      type status = :enabled | :suspended | :blocked
+
+      module Status
+        extend ModerationAPI::Internal::Type::Enum
+
+        ENABLED: :enabled
+        SUSPENDED: :suspended
+        BLOCKED: :blocked
+
+        def self?.values: -> ::Array[ModerationAPI::Models::AuthorRetrieveResponse::status]
+      end
+
+      type trust_level = { level: Float, manual: bool }
+
+      class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor level: Float
+
+        attr_accessor manual: bool
+
+        def initialize: (level: Float, manual: bool) -> void
+
+        def to_hash: -> { level: Float, manual: bool }
+      end
+    end
+  end
+end

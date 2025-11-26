@@ -1,0 +1,51 @@
+module ModerationAPI
+  module Models
+    module Actions
+      type execute_execute_by_id_params =
+        {
+          author_ids: ::Array[String],
+          content_ids: ::Array[String],
+          queue_id: String,
+          value: String
+        }
+        & ModerationAPI::Internal::Type::request_parameters
+
+      class ExecuteExecuteByIDParams < ModerationAPI::Internal::Type::BaseModel
+        extend ModerationAPI::Internal::Type::RequestParameters::Converter
+        include ModerationAPI::Internal::Type::RequestParameters
+
+        attr_reader author_ids: ::Array[String]?
+
+        def author_ids=: (::Array[String]) -> ::Array[String]
+
+        attr_reader content_ids: ::Array[String]?
+
+        def content_ids=: (::Array[String]) -> ::Array[String]
+
+        attr_reader queue_id: String?
+
+        def queue_id=: (String) -> String
+
+        attr_reader value: String?
+
+        def value=: (String) -> String
+
+        def initialize: (
+          ?author_ids: ::Array[String],
+          ?content_ids: ::Array[String],
+          ?queue_id: String,
+          ?value: String,
+          ?request_options: ModerationAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          author_ids: ::Array[String],
+          content_ids: ::Array[String],
+          queue_id: String,
+          value: String,
+          request_options: ModerationAPI::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,110 @@
+module ModerationAPI
+  module Models
+    type author_list_params =
+      {
+        content_types: String,
+        last_active_date: String,
+        member_since_date: String,
+        page_number: String,
+        page_size: String,
+        sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
+        sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class AuthorListParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_reader content_types: String?
+
+      def content_types=: (String) -> String
+
+      attr_reader last_active_date: String?
+
+      def last_active_date=: (String) -> String
+
+      attr_reader member_since_date: String?
+
+      def member_since_date=: (String) -> String
+
+      attr_reader page_number: String?
+
+      def page_number=: (String) -> String
+
+      attr_reader page_size: String?
+
+      def page_size=: (String) -> String
+
+      attr_reader sort_by: ModerationAPI::Models::AuthorListParams::sort_by?
+
+      def sort_by=: (
+        ModerationAPI::Models::AuthorListParams::sort_by
+      ) -> ModerationAPI::Models::AuthorListParams::sort_by
+
+      attr_reader sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction?
+
+      def sort_direction=: (
+        ModerationAPI::Models::AuthorListParams::sort_direction
+      ) -> ModerationAPI::Models::AuthorListParams::sort_direction
+
+      def initialize: (
+        ?content_types: String,
+        ?last_active_date: String,
+        ?member_since_date: String,
+        ?page_number: String,
+        ?page_size: String,
+        ?sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
+        ?sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        content_types: String,
+        last_active_date: String,
+        member_since_date: String,
+        page_number: String,
+        page_size: String,
+        sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
+        sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction,
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type sort_by =
+        :trustLevel
+        | :violationCount
+        | :reportCount
+        | :memberSince
+        | :lastActive
+        | :contentCount
+        | :flaggedContentRatio
+        | :averageSentiment
+
+      module SortBy
+        extend ModerationAPI::Internal::Type::Enum
+
+        TRUST_LEVEL: :trustLevel
+        VIOLATION_COUNT: :violationCount
+        REPORT_COUNT: :reportCount
+        MEMBER_SINCE: :memberSince
+        LAST_ACTIVE: :lastActive
+        CONTENT_COUNT: :contentCount
+        FLAGGED_CONTENT_RATIO: :flaggedContentRatio
+        AVERAGE_SENTIMENT: :averageSentiment
+
+        def self?.values: -> ::Array[ModerationAPI::Models::AuthorListParams::sort_by]
+      end
+
+      type sort_direction = :asc | :desc
+
+      module SortDirection
+        extend ModerationAPI::Internal::Type::Enum
+
+        ASC: :asc
+        DESC: :desc
+
+        def self?.values: -> ::Array[ModerationAPI::Models::AuthorListParams::sort_direction]
+      end
+    end
+  end
+end

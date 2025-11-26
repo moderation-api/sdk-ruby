@@ -1,0 +1,15 @@
+module ModerationAPI
+  module Resources
+    class Auth
+      def create: (
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthCreateResponse
+
+      def retrieve: (
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::AuthRetrieveResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

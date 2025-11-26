@@ -1,0 +1,101 @@
+module ModerationAPI
+  module Models
+    type author_update_params =
+      {
+        email: String?,
+        external_link: String?,
+        first_seen: Float,
+        last_seen: Float,
+        manual_trust_level: Float?,
+        metadata: ModerationAPI::AuthorUpdateParams::Metadata,
+        name: String?,
+        profile_picture: String?
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class AuthorUpdateParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor email: String?
+
+      attr_accessor external_link: String?
+
+      attr_reader first_seen: Float?
+
+      def first_seen=: (Float) -> Float
+
+      attr_reader last_seen: Float?
+
+      def last_seen=: (Float) -> Float
+
+      attr_accessor manual_trust_level: Float?
+
+      attr_reader metadata: ModerationAPI::AuthorUpdateParams::Metadata?
+
+      def metadata=: (
+        ModerationAPI::AuthorUpdateParams::Metadata
+      ) -> ModerationAPI::AuthorUpdateParams::Metadata
+
+      attr_accessor name: String?
+
+      attr_accessor profile_picture: String?
+
+      def initialize: (
+        ?email: String?,
+        ?external_link: String?,
+        ?first_seen: Float,
+        ?last_seen: Float,
+        ?manual_trust_level: Float?,
+        ?metadata: ModerationAPI::AuthorUpdateParams::Metadata,
+        ?name: String?,
+        ?profile_picture: String?,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email: String?,
+        external_link: String?,
+        first_seen: Float,
+        last_seen: Float,
+        manual_trust_level: Float?,
+        metadata: ModerationAPI::AuthorUpdateParams::Metadata,
+        name: String?,
+        profile_picture: String?,
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type metadata =
+        {
+          email_verified: bool?,
+          identity_verified: bool?,
+          is_paying_customer: bool?,
+          phone_verified: bool?
+        }
+
+      class Metadata < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor email_verified: bool?
+
+        attr_accessor identity_verified: bool?
+
+        attr_accessor is_paying_customer: bool?
+
+        attr_accessor phone_verified: bool?
+
+        def initialize: (
+          ?email_verified: bool?,
+          ?identity_verified: bool?,
+          ?is_paying_customer: bool?,
+          ?phone_verified: bool?
+        ) -> void
+
+        def to_hash: -> {
+          email_verified: bool?,
+          identity_verified: bool?,
+          is_paying_customer: bool?,
+          phone_verified: bool?
+        }
+      end
+    end
+  end
+end

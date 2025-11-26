@@ -1,0 +1,32 @@
+module ModerationAPI
+  module Models
+    module Wordlist
+      type word_remove_response =
+        {
+          removed_count: Float,
+          removed_words: ::Array[String],
+          total_count: Float
+        }
+
+      class WordRemoveResponse < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor removed_count: Float
+
+        attr_accessor removed_words: ::Array[String]
+
+        attr_accessor total_count: Float
+
+        def initialize: (
+          removed_count: Float,
+          removed_words: ::Array[String],
+          total_count: Float
+        ) -> void
+
+        def to_hash: -> {
+          removed_count: Float,
+          removed_words: ::Array[String],
+          total_count: Float
+        }
+      end
+    end
+  end
+end

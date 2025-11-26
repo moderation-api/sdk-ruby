@@ -1,0 +1,207 @@
+module ModerationAPI
+  module Models
+    type queue_retrieve_response =
+      { queue: ModerationAPI::Models::QueueRetrieveResponse::Queue }
+
+    class QueueRetrieveResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor queue: ModerationAPI::Models::QueueRetrieveResponse::Queue
+
+      def initialize: (
+        queue: ModerationAPI::Models::QueueRetrieveResponse::Queue
+      ) -> void
+
+      def to_hash: -> {
+        queue: ModerationAPI::Models::QueueRetrieveResponse::Queue
+      }
+
+      type queue =
+        {
+          id: String,
+          description: String,
+          filter: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter,
+          name: String,
+          resolved_items_count: Float,
+          total_items_count: Float,
+          unresolved_items_count: Float
+        }
+
+      class Queue < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor description: String
+
+        attr_accessor filter: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter
+
+        attr_accessor name: String
+
+        attr_accessor resolved_items_count: Float
+
+        attr_accessor total_items_count: Float
+
+        attr_accessor unresolved_items_count: Float
+
+        def initialize: (
+          id: String,
+          description: String,
+          filter: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter,
+          name: String,
+          resolved_items_count: Float,
+          total_items_count: Float,
+          unresolved_items_count: Float
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          description: String,
+          filter: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter,
+          name: String,
+          resolved_items_count: Float,
+          total_items_count: Float,
+          unresolved_items_count: Float
+        }
+
+        type filter =
+          {
+            after_date: String,
+            author_id: String,
+            before_date: String,
+            conversation_ids: ::Array[String?],
+            filtered_action_ids: ::Array[String],
+            filtered_channel_ids: ::Array[String],
+            filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel],
+            labels: ::Array[String],
+            recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
+            show_checked: bool
+          }
+
+        class Filter < ModerationAPI::Internal::Type::BaseModel
+          attr_reader after_date: String?
+
+          def after_date=: (String) -> String
+
+          attr_reader author_id: String?
+
+          def author_id=: (String) -> String
+
+          attr_reader before_date: String?
+
+          def before_date=: (String) -> String
+
+          attr_reader conversation_ids: ::Array[String?]?
+
+          def conversation_ids=: (::Array[String?]) -> ::Array[String?]
+
+          attr_reader filtered_action_ids: ::Array[String]?
+
+          def filtered_action_ids=: (::Array[String]) -> ::Array[String]
+
+          attr_reader filtered_channel_ids: ::Array[String]?
+
+          def filtered_channel_ids=: (::Array[String]) -> ::Array[String]
+
+          attr_reader filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel]?
+
+          def filter_labels=: (
+            ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel]
+          ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel]
+
+          attr_reader labels: ::Array[String]?
+
+          def labels=: (::Array[String]) -> ::Array[String]
+
+          attr_reader recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]?
+
+          def recommendation_actions=: (
+            ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]
+          ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]
+
+          attr_reader show_checked: bool?
+
+          def show_checked=: (bool) -> bool
+
+          def initialize: (
+            ?after_date: String,
+            ?author_id: String,
+            ?before_date: String,
+            ?conversation_ids: ::Array[String?],
+            ?filtered_action_ids: ::Array[String],
+            ?filtered_channel_ids: ::Array[String],
+            ?filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel],
+            ?labels: ::Array[String],
+            ?recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
+            ?show_checked: bool
+          ) -> void
+
+          def to_hash: -> {
+            after_date: String,
+            author_id: String,
+            before_date: String,
+            conversation_ids: ::Array[String?],
+            filtered_action_ids: ::Array[String],
+            filtered_channel_ids: ::Array[String],
+            filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel],
+            labels: ::Array[String],
+            recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
+            show_checked: bool
+          }
+
+          type filter_label =
+            {
+              label: String,
+              type: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::type_,
+              max_threshold: Float?,
+              min_threshold: Float?
+            }
+
+          class FilterLabel < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor label: String
+
+            attr_accessor type: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::type_
+
+            attr_accessor max_threshold: Float?
+
+            attr_accessor min_threshold: Float?
+
+            def initialize: (
+              label: String,
+              type: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::type_,
+              ?max_threshold: Float?,
+              ?min_threshold: Float?
+            ) -> void
+
+            def to_hash: -> {
+              label: String,
+              type: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::type_,
+              max_threshold: Float?,
+              min_threshold: Float?
+            }
+
+            type type_ = :FLAGGED | :NOT_FLAGGED | :THRESHOLDS
+
+            module Type
+              extend ModerationAPI::Internal::Type::Enum
+
+              FLAGGED: :FLAGGED
+              NOT_FLAGGED: :NOT_FLAGGED
+              THRESHOLDS: :THRESHOLDS
+
+              def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::type_]
+            end
+          end
+
+          type recommendation_action = :review | :allow | :reject
+
+          module RecommendationAction
+            extend ModerationAPI::Internal::Type::Enum
+
+            REVIEW: :review
+            ALLOW: :allow
+            REJECT: :reject
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]
+          end
+        end
+      end
+    end
+  end
+end

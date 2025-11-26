@@ -1,0 +1,68 @@
+module ModerationAPI
+  module Models
+    type moderate_analyze_text_params =
+      {
+        value: String,
+        author_id: String,
+        channel_key: String,
+        content_id: String,
+        context_id: String,
+        do_not_store: bool,
+        metadata: ::Hash[Symbol, top]
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class ModerateAnalyzeTextParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor value: String
+
+      attr_reader author_id: String?
+
+      def author_id=: (String) -> String
+
+      attr_reader channel_key: String?
+
+      def channel_key=: (String) -> String
+
+      attr_reader content_id: String?
+
+      def content_id=: (String) -> String
+
+      attr_reader context_id: String?
+
+      def context_id=: (String) -> String
+
+      attr_reader do_not_store: bool?
+
+      def do_not_store=: (bool) -> bool
+
+      attr_reader metadata: ::Hash[Symbol, top]?
+
+      def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        value: String,
+        ?author_id: String,
+        ?channel_key: String,
+        ?content_id: String,
+        ?context_id: String,
+        ?do_not_store: bool,
+        ?metadata: ::Hash[Symbol, top],
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        value: String,
+        author_id: String,
+        channel_key: String,
+        content_id: String,
+        context_id: String,
+        do_not_store: bool,
+        metadata: ::Hash[Symbol, top],
+        request_options: ModerationAPI::RequestOptions
+      }
+    end
+  end
+end

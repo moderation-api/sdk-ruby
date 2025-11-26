@@ -1,0 +1,39 @@
+module ModerationAPI
+  module Resources
+    class Queue
+      class Items
+        def list: (
+          String id,
+          ?after_date: String,
+          ?author_id: String,
+          ?before_date: String,
+          ?conversation_ids: String,
+          ?filtered_action_ids: String,
+          ?include_resolved: String,
+          ?labels: String,
+          ?page_number: String,
+          ?page_size: String,
+          ?sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
+          ?sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field,
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Queue::ItemListResponse
+
+        def resolve: (
+          String item_id,
+          id: String,
+          ?comment: String,
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Queue::ItemResolveResponse
+
+        def unresolve: (
+          String item_id,
+          id: String,
+          ?comment: String,
+          ?request_options: ModerationAPI::request_opts
+        ) -> ModerationAPI::Models::Queue::ItemUnresolveResponse
+
+        def initialize: (client: ModerationAPI::Client) -> void
+      end
+    end
+  end
+end

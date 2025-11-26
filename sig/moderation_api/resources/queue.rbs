@@ -1,0 +1,20 @@
+module ModerationAPI
+  module Resources
+    class Queue
+      attr_reader items: ModerationAPI::Resources::Queue::Items
+
+      def retrieve: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::QueueRetrieveResponse
+
+      def get_stats: (
+        String id,
+        ?within_days: String,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::QueueGetStatsResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,139 @@
+module ModerationAPI
+  module Models
+    type action_create_response =
+      {
+        id: String,
+        built_in: bool?,
+        created_at: String,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        name: String,
+        position: ModerationAPI::Models::ActionCreateResponse::position,
+        possible_values: ::Array[ModerationAPI::Models::ActionCreateResponse::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionCreateResponse::queue_behaviour,
+        value_required: bool,
+        description: String?,
+        key: String?,
+        type: ModerationAPI::Models::ActionCreateResponse::type_?
+      }
+
+    class ActionCreateResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor built_in: bool?
+
+      attr_accessor created_at: String
+
+      attr_accessor filter_in_queue_ids: ::Array[String]
+
+      attr_accessor free_text: bool
+
+      attr_accessor name: String
+
+      attr_accessor position: ModerationAPI::Models::ActionCreateResponse::position
+
+      attr_accessor possible_values: ::Array[ModerationAPI::Models::ActionCreateResponse::PossibleValue]
+
+      attr_accessor queue_behaviour: ModerationAPI::Models::ActionCreateResponse::queue_behaviour
+
+      attr_accessor value_required: bool
+
+      attr_accessor description: String?
+
+      attr_accessor key: String?
+
+      attr_accessor type: ModerationAPI::Models::ActionCreateResponse::type_?
+
+      def initialize: (
+        id: String,
+        built_in: bool?,
+        created_at: String,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        name: String,
+        position: ModerationAPI::Models::ActionCreateResponse::position,
+        possible_values: ::Array[ModerationAPI::Models::ActionCreateResponse::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionCreateResponse::queue_behaviour,
+        value_required: bool,
+        ?description: String?,
+        ?key: String?,
+        ?type: ModerationAPI::Models::ActionCreateResponse::type_?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        built_in: bool?,
+        created_at: String,
+        filter_in_queue_ids: ::Array[String],
+        free_text: bool,
+        name: String,
+        position: ModerationAPI::Models::ActionCreateResponse::position,
+        possible_values: ::Array[ModerationAPI::Models::ActionCreateResponse::PossibleValue],
+        queue_behaviour: ModerationAPI::Models::ActionCreateResponse::queue_behaviour,
+        value_required: bool,
+        description: String?,
+        key: String?,
+        type: ModerationAPI::Models::ActionCreateResponse::type_?
+      }
+
+      type position = :ALL_QUEUES | :SOME_QUEUES | :HIDDEN
+
+      module Position
+        extend ModerationAPI::Internal::Type::Enum
+
+        ALL_QUEUES: :ALL_QUEUES
+        SOME_QUEUES: :SOME_QUEUES
+        HIDDEN: :HIDDEN
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionCreateResponse::position]
+      end
+
+      type possible_value = { value: String }
+
+      class PossibleValue < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor value: String
+
+        def initialize: (value: String) -> void
+
+        def to_hash: -> { value: String }
+      end
+
+      type queue_behaviour = :REMOVE | :ADD | :NO_CHANGE
+
+      module QueueBehaviour
+        extend ModerationAPI::Internal::Type::Enum
+
+        REMOVE: :REMOVE
+        ADD: :ADD
+        NO_CHANGE: :NO_CHANGE
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionCreateResponse::queue_behaviour]
+      end
+
+      type type_ =
+        :AUTHOR_BLOCK
+        | :AUTHOR_BLOCK_TEMP
+        | :AUTHOR_UNBLOCK
+        | :AUTHOR_DELETE
+        | :AUTHOR_REPORT
+        | :AUTHOR_WARN
+        | :AUTHOR_CUSTOM
+        | :ITEM_CUSTOM
+
+      module Type
+        extend ModerationAPI::Internal::Type::Enum
+
+        AUTHOR_BLOCK: :AUTHOR_BLOCK
+        AUTHOR_BLOCK_TEMP: :AUTHOR_BLOCK_TEMP
+        AUTHOR_UNBLOCK: :AUTHOR_UNBLOCK
+        AUTHOR_DELETE: :AUTHOR_DELETE
+        AUTHOR_REPORT: :AUTHOR_REPORT
+        AUTHOR_WARN: :AUTHOR_WARN
+        AUTHOR_CUSTOM: :AUTHOR_CUSTOM
+        ITEM_CUSTOM: :ITEM_CUSTOM
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ActionCreateResponse::type_]
+      end
+    end
+  end
+end

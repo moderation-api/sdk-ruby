@@ -1,0 +1,50 @@
+module ModerationAPI
+  module Models
+    type wordlist_retrieve_response =
+      {
+        id: String,
+        created_at: String,
+        name: String?,
+        organization_id: String,
+        strict: bool,
+        user_id: String?,
+        words: ::Array[String]
+      }
+
+    class WordlistRetrieveResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: String
+
+      attr_accessor name: String?
+
+      attr_accessor organization_id: String
+
+      attr_accessor strict: bool
+
+      attr_accessor user_id: String?
+
+      attr_accessor words: ::Array[String]
+
+      def initialize: (
+        id: String,
+        created_at: String,
+        name: String?,
+        organization_id: String,
+        strict: bool,
+        user_id: String?,
+        words: ::Array[String]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: String,
+        name: String?,
+        organization_id: String,
+        strict: bool,
+        user_id: String?,
+        words: ::Array[String]
+      }
+    end
+  end
+end

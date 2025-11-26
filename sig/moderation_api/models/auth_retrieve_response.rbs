@@ -1,0 +1,15 @@
+module ModerationAPI
+  module Models
+    type auth_retrieve_response = { message: String, status: String }
+
+    class AuthRetrieveResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor message: String
+
+      attr_accessor status: String
+
+      def initialize: (message: String, status: String) -> void
+
+      def to_hash: -> { message: String, status: String }
+    end
+  end
+end

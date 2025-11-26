@@ -1,0 +1,56 @@
+module ModerationAPI
+  module Models
+    type account_list_response =
+      {
+        id: String,
+        paid_plan_name: String,
+        remaining_quota: Float,
+        text_api_quota: Float,
+        current_project: ModerationAPI::Models::AccountListResponse::CurrentProject
+      }
+
+    class AccountListResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor paid_plan_name: String
+
+      attr_accessor remaining_quota: Float
+
+      attr_accessor text_api_quota: Float
+
+      attr_reader current_project: ModerationAPI::Models::AccountListResponse::CurrentProject?
+
+      def current_project=: (
+        ModerationAPI::Models::AccountListResponse::CurrentProject
+      ) -> ModerationAPI::Models::AccountListResponse::CurrentProject
+
+      def initialize: (
+        id: String,
+        paid_plan_name: String,
+        remaining_quota: Float,
+        text_api_quota: Float,
+        ?current_project: ModerationAPI::Models::AccountListResponse::CurrentProject
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        paid_plan_name: String,
+        remaining_quota: Float,
+        text_api_quota: Float,
+        current_project: ModerationAPI::Models::AccountListResponse::CurrentProject
+      }
+
+      type current_project = { id: String, name: String }
+
+      class CurrentProject < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor name: String
+
+        def initialize: (id: String, name: String) -> void
+
+        def to_hash: -> { id: String, name: String }
+      end
+    end
+  end
+end

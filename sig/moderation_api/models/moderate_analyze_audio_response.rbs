@@ -1,0 +1,134 @@
+module ModerationAPI
+  module Models
+    type moderate_analyze_audio_response =
+      {
+        author: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author?,
+        flagged: bool,
+        request: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Request,
+        status: String,
+        content_id: String,
+        error: top
+      }
+
+    class ModerateAnalyzeAudioResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor author: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author?
+
+      attr_accessor flagged: bool
+
+      attr_accessor request: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Request
+
+      attr_accessor status: String
+
+      attr_reader content_id: String?
+
+      def content_id=: (String) -> String
+
+      attr_reader error: top?
+
+      def error=: (top) -> top
+
+      def initialize: (
+        author: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author?,
+        flagged: bool,
+        request: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Request,
+        status: String,
+        ?content_id: String,
+        ?error: top
+      ) -> void
+
+      def to_hash: -> {
+        author: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author?,
+        flagged: bool,
+        request: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Request,
+        status: String,
+        content_id: String,
+        error: top
+      }
+
+      type author =
+        {
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::TrustLevel,
+          external_id: String?
+        }
+
+      class Author < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor block: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::Block?
+
+        attr_accessor status: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::status
+
+        attr_accessor trust_level: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::TrustLevel
+
+        attr_accessor external_id: String?
+
+        def initialize: (
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::TrustLevel,
+          ?external_id: String?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          block: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::Block?,
+          status: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::status,
+          trust_level: ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::TrustLevel,
+          external_id: String?
+        }
+
+        type block = { reason: String?, until_: Float? }
+
+        class Block < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor reason: String?
+
+          attr_accessor until_: Float?
+
+          def initialize: (?reason: String?, ?until_: Float?) -> void
+
+          def to_hash: -> { reason: String?, until_: Float? }
+        end
+
+        type status = :enabled | :suspended | :blocked
+
+        module Status
+          extend ModerationAPI::Internal::Type::Enum
+
+          ENABLED: :enabled
+          SUSPENDED: :suspended
+          BLOCKED: :blocked
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeAudioResponse::Author::status]
+        end
+
+        type trust_level = { level: Float, manual: bool }
+
+        class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor level: Float
+
+          attr_accessor manual: bool
+
+          def initialize: (level: Float, manual: bool) -> void
+
+          def to_hash: -> { level: Float, manual: bool }
+        end
+      end
+
+      type request = { quota_usage: Float, timestamp: Float }
+
+      class Request < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor quota_usage: Float
+
+        attr_accessor timestamp: Float
+
+        def initialize: (quota_usage: Float, timestamp: Float) -> void
+
+        def to_hash: -> { quota_usage: Float, timestamp: Float }
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module ModerationAPI
+  module Models
+    module Wordlist
+      type word_add_response =
+        { added_count: Float, added_words: ::Array[String], total_count: Float }
+
+      class WordAddResponse < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor added_count: Float
+
+        attr_accessor added_words: ::Array[String]
+
+        attr_accessor total_count: Float
+
+        def initialize: (
+          added_count: Float,
+          added_words: ::Array[String],
+          total_count: Float
+        ) -> void
+
+        def to_hash: -> {
+          added_count: Float,
+          added_words: ::Array[String],
+          total_count: Float
+        }
+      end
+    end
+  end
+end

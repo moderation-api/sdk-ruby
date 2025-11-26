@@ -1,0 +1,38 @@
+module ModerationAPI
+  class Client < ModerationAPI::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader bearer_token: String
+
+    attr_reader authors: ModerationAPI::Resources::Authors
+
+    attr_reader queue: ModerationAPI::Resources::Queue
+
+    attr_reader actions: ModerationAPI::Resources::Actions
+
+    attr_reader moderate: ModerationAPI::Resources::Moderate
+
+    attr_reader account: ModerationAPI::Resources::Account
+
+    attr_reader auth: ModerationAPI::Resources::Auth
+
+    attr_reader wordlist: ModerationAPI::Resources::Wordlist
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?bearer_token: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

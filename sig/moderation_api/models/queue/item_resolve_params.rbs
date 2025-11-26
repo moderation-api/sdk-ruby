@@ -1,0 +1,32 @@
+module ModerationAPI
+  module Models
+    module Queue
+      type item_resolve_params =
+        { id: String, comment: String }
+        & ModerationAPI::Internal::Type::request_parameters
+
+      class ItemResolveParams < ModerationAPI::Internal::Type::BaseModel
+        extend ModerationAPI::Internal::Type::RequestParameters::Converter
+        include ModerationAPI::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_reader comment: String?
+
+        def comment=: (String) -> String
+
+        def initialize: (
+          id: String,
+          ?comment: String,
+          ?request_options: ModerationAPI::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          comment: String,
+          request_options: ModerationAPI::RequestOptions
+        }
+      end
+    end
+  end
+end

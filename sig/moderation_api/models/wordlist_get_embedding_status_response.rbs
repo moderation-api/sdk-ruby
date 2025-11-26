@@ -1,0 +1,26 @@
+module ModerationAPI
+  module Models
+    type wordlist_get_embedding_status_response =
+      { progress: Float, remaining_words: Float, total_words: Float }
+
+    class WordlistGetEmbeddingStatusResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor progress: Float
+
+      attr_accessor remaining_words: Float
+
+      attr_accessor total_words: Float
+
+      def initialize: (
+        progress: Float,
+        remaining_words: Float,
+        total_words: Float
+      ) -> void
+
+      def to_hash: -> {
+        progress: Float,
+        remaining_words: Float,
+        total_words: Float
+      }
+    end
+  end
+end

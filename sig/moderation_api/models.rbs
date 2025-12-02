@@ -27,17 +27,7 @@ module ModerationAPI
 
   class AuthRetrieveParams = ModerationAPI::Models::AuthRetrieveParams
 
-  class ModerateAnalyzeAudioParams = ModerationAPI::Models::ModerateAnalyzeAudioParams
-
-  class ModerateAnalyzeImageParams = ModerationAPI::Models::ModerateAnalyzeImageParams
-
-  class ModerateAnalyzeObjectParams = ModerationAPI::Models::ModerateAnalyzeObjectParams
-
   class ModerateAnalyzeParams = ModerationAPI::Models::ModerateAnalyzeParams
-
-  class ModerateAnalyzeTextParams = ModerationAPI::Models::ModerateAnalyzeTextParams
-
-  class ModerateAnalyzeVideoParams = ModerationAPI::Models::ModerateAnalyzeVideoParams
 
   module Queue = ModerationAPI::Models::Queue
 

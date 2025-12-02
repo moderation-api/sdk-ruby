@@ -13,61 +13,6 @@ module ModerationAPI
         ?request_options: ModerationAPI::request_opts
       ) -> ModerationAPI::Models::ModerateAnalyzeResponse
 
-      def analyze_audio: (
-        url: String,
-        ?author_id: String,
-        ?channel_key: String,
-        ?content_id: String,
-        ?context_id: String,
-        ?do_not_store: bool,
-        ?metadata: ::Hash[Symbol, top],
-        ?request_options: ModerationAPI::request_opts
-      ) -> ModerationAPI::Models::ModerateAnalyzeAudioResponse
-
-      def analyze_image: (
-        url: String,
-        ?author_id: String,
-        ?channel_key: String,
-        ?content_id: String,
-        ?context_id: String,
-        ?do_not_store: bool,
-        ?metadata: ::Hash[Symbol, top],
-        ?request_options: ModerationAPI::request_opts
-      ) -> ModerationAPI::Models::ModerateAnalyzeImageResponse
-
-      def analyze_object: (
-        value: ModerationAPI::ModerateAnalyzeObjectParams::Value,
-        ?author_id: String,
-        ?channel_key: String,
-        ?content_id: String,
-        ?context_id: String,
-        ?do_not_store: bool,
-        ?metadata: ::Hash[Symbol, top],
-        ?request_options: ModerationAPI::request_opts
-      ) -> ModerationAPI::Models::ModerateAnalyzeObjectResponse
-
-      def analyze_text: (
-        value: String,
-        ?author_id: String,
-        ?channel_key: String,
-        ?content_id: String,
-        ?context_id: String,
-        ?do_not_store: bool,
-        ?metadata: ::Hash[Symbol, top],
-        ?request_options: ModerationAPI::request_opts
-      ) -> ModerationAPI::Models::ModerateAnalyzeTextResponse
-
-      def analyze_video: (
-        url: String,
-        ?author_id: String,
-        ?channel_key: String,
-        ?content_id: String,
-        ?context_id: String,
-        ?do_not_store: bool,
-        ?metadata: ::Hash[Symbol, top],
-        ?request_options: ModerationAPI::request_opts
-      ) -> ModerationAPI::Models::ModerateAnalyzeVideoResponse
-
       def initialize: (client: ModerationAPI::Client) -> void
     end
   end

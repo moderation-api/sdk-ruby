@@ -2,16 +2,16 @@
 
 module ModerationAPI
   module Resources
-    class Moderate
+    class Content
       sig do
         params(
           content:
             T.any(
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::OrHash
+              ModerationAPI::ContentSubmitParams::Content::UnionMember0::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember1::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember2::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember3::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember4::OrHash
             ),
           author_id: String,
           channel: String,
@@ -19,11 +19,11 @@ module ModerationAPI
           conversation_id: String,
           do_not_store: T::Boolean,
           metadata: T::Hash[Symbol, T.anything],
-          meta_type: ModerationAPI::ModerateAnalyzeParams::MetaType::OrSymbol,
+          meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol,
           request_options: ModerationAPI::RequestOptions::OrHash
-        ).returns(ModerationAPI::Models::ModerateAnalyzeResponse)
+        ).returns(ModerationAPI::Models::ContentSubmitResponse)
       end
-      def analyze(
+      def submit(
         # The content sent for moderation
         content:,
         # The author of the content.

@@ -1,23 +1,23 @@
 module ModerationAPI
   module Models
-    type moderate_analyze_params =
+    type content_submit_params =
       {
-        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+        content: ModerationAPI::Models::ContentSubmitParams::content,
         author_id: String,
         channel: String,
         content_id: String,
         conversation_id: String,
         do_not_store: bool,
         metadata: ::Hash[Symbol, top],
-        meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type
+        meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type
       }
       & ModerationAPI::Internal::Type::request_parameters
 
-    class ModerateAnalyzeParams < ModerationAPI::Internal::Type::BaseModel
+    class ContentSubmitParams < ModerationAPI::Internal::Type::BaseModel
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
-      attr_accessor content: ModerationAPI::Models::ModerateAnalyzeParams::content
+      attr_accessor content: ModerationAPI::Models::ContentSubmitParams::content
 
       attr_reader author_id: String?
 
@@ -43,42 +43,42 @@ module ModerationAPI
 
       def metadata=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
-      attr_reader meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type?
+      attr_reader meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type?
 
       def meta_type=: (
-        ModerationAPI::Models::ModerateAnalyzeParams::meta_type
-      ) -> ModerationAPI::Models::ModerateAnalyzeParams::meta_type
+        ModerationAPI::Models::ContentSubmitParams::meta_type
+      ) -> ModerationAPI::Models::ContentSubmitParams::meta_type
 
       def initialize: (
-        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+        content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,
         ?channel: String,
         ?content_id: String,
         ?conversation_id: String,
         ?do_not_store: bool,
         ?metadata: ::Hash[Symbol, top],
-        ?meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type,
+        ?meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
         ?request_options: ModerationAPI::request_opts
       ) -> void
 
       def to_hash: -> {
-        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+        content: ModerationAPI::Models::ContentSubmitParams::content,
         author_id: String,
         channel: String,
         content_id: String,
         conversation_id: String,
         do_not_store: bool,
         metadata: ::Hash[Symbol, top],
-        meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type,
+        meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
         request_options: ModerationAPI::RequestOptions
       }
 
       type content =
-        ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0
-        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1
-        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2
-        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3
-        | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4
+        ModerationAPI::ContentSubmitParams::Content::UnionMember0
+        | ModerationAPI::ContentSubmitParams::Content::UnionMember1
+        | ModerationAPI::ContentSubmitParams::Content::UnionMember2
+        | ModerationAPI::ContentSubmitParams::Content::UnionMember3
+        | ModerationAPI::ContentSubmitParams::Content::UnionMember4
 
       module Content
         extend ModerationAPI::Internal::Type::Union
@@ -133,30 +133,30 @@ module ModerationAPI
 
         type union_member4 =
           {
-            data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data],
             type: :object
           }
 
         class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
-          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data]
+          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data]
 
           attr_accessor type: :object
 
           def initialize: (
-            data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data],
             ?type: :object
           ) -> void
 
           def to_hash: -> {
-            data: ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data],
             type: :object
           }
 
           type data =
-            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0
-            | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1
-            | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2
-            | ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3
+            ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0
+            | ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1
+            | ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2
+            | ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
 
           module Data
             extend ModerationAPI::Internal::Type::Union
@@ -209,11 +209,11 @@ module ModerationAPI
               def to_hash: -> { type: :audio, url: String }
             end
 
-            def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::data]
+            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data]
           end
         end
 
-        def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeParams::content]
+        def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::content]
       end
 
       type meta_type =
@@ -238,7 +238,7 @@ module ModerationAPI
         REVIEW: :review
         OTHER: :other
 
-        def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeParams::meta_type]
+        def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::meta_type]
       end
     end
   end

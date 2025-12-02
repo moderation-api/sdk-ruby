@@ -16,7 +16,7 @@ module ModerationAPI
 
     attr_reader actions: ModerationAPI::Resources::Actions
 
-    attr_reader moderate: ModerationAPI::Resources::Moderate
+    attr_reader content: ModerationAPI::Resources::Content
 
     attr_reader account: ModerationAPI::Resources::Account
 

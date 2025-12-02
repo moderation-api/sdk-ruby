@@ -2,14 +2,14 @@
 
 module ModerationAPI
   module Models
-    class ModerateAnalyzeParams < ModerationAPI::Internal::Type::BaseModel
+    class ContentSubmitParams < ModerationAPI::Internal::Type::BaseModel
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            ModerationAPI::ModerateAnalyzeParams,
+            ModerationAPI::ContentSubmitParams,
             ModerationAPI::Internal::AnyHash
           )
         end
@@ -18,11 +18,11 @@ module ModerationAPI
       sig do
         returns(
           T.any(
-            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0,
-            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1,
-            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2,
-            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3,
-            ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4
+            ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember4
           )
         )
       end
@@ -74,14 +74,14 @@ module ModerationAPI
       # The meta type of content being moderated
       sig do
         returns(
-          T.nilable(ModerationAPI::ModerateAnalyzeParams::MetaType::OrSymbol)
+          T.nilable(ModerationAPI::ContentSubmitParams::MetaType::OrSymbol)
         )
       end
       attr_reader :meta_type
 
       sig do
         params(
-          meta_type: ModerationAPI::ModerateAnalyzeParams::MetaType::OrSymbol
+          meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol
         ).void
       end
       attr_writer :meta_type
@@ -90,11 +90,11 @@ module ModerationAPI
         params(
           content:
             T.any(
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3::OrHash,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::OrHash
+              ModerationAPI::ContentSubmitParams::Content::UnionMember0::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember1::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember2::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember3::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember4::OrHash
             ),
           author_id: String,
           channel: String,
@@ -102,7 +102,7 @@ module ModerationAPI
           conversation_id: String,
           do_not_store: T::Boolean,
           metadata: T::Hash[Symbol, T.anything],
-          meta_type: ModerationAPI::ModerateAnalyzeParams::MetaType::OrSymbol,
+          meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol,
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -133,11 +133,11 @@ module ModerationAPI
           {
             content:
               T.any(
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0,
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1,
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2,
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3,
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4
+                ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember4
               ),
             author_id: String,
             channel: String,
@@ -145,7 +145,7 @@ module ModerationAPI
             conversation_id: String,
             do_not_store: T::Boolean,
             metadata: T::Hash[Symbol, T.anything],
-            meta_type: ModerationAPI::ModerateAnalyzeParams::MetaType::OrSymbol,
+            meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol,
             request_options: ModerationAPI::RequestOptions
           }
         )
@@ -160,11 +160,11 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3,
-              ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4
+              ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember4
             )
           end
 
@@ -172,7 +172,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -202,7 +202,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -232,7 +232,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember2,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -262,7 +262,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember3,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -292,7 +292,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember4,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -303,10 +303,10 @@ module ModerationAPI
               T::Hash[
                 Symbol,
                 T.any(
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0,
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1,
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2,
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
                 )
               ]
             )
@@ -323,10 +323,10 @@ module ModerationAPI
                 T::Hash[
                   Symbol,
                   T.any(
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0::OrHash,
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1::OrHash,
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2::OrHash,
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3::OrHash
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3::OrHash
                   )
                 ],
               type: Symbol
@@ -346,10 +346,10 @@ module ModerationAPI
                   T::Hash[
                     Symbol,
                     T.any(
-                      ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0,
-                      ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1,
-                      ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2,
-                      ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
                     )
                   ],
                 type: Symbol
@@ -366,10 +366,10 @@ module ModerationAPI
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0,
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1,
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2,
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
                 )
               end
 
@@ -377,7 +377,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -409,7 +409,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -441,7 +441,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -473,7 +473,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -504,7 +504,7 @@ module ModerationAPI
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::Variants
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::Variants
                 ]
               )
             end
@@ -515,7 +515,7 @@ module ModerationAPI
 
         sig do
           override.returns(
-            T::Array[ModerationAPI::ModerateAnalyzeParams::Content::Variants]
+            T::Array[ModerationAPI::ContentSubmitParams::Content::Variants]
           )
         end
         def self.variants
@@ -528,56 +528,54 @@ module ModerationAPI
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, ModerationAPI::ModerateAnalyzeParams::MetaType)
+            T.all(Symbol, ModerationAPI::ContentSubmitParams::MetaType)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         PROFILE =
           T.let(
             :profile,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         MESSAGE =
           T.let(
             :message,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         POST =
           T.let(
             :post,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         COMMENT =
           T.let(
             :comment,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         EVENT =
           T.let(
             :event,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         PRODUCT =
           T.let(
             :product,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         REVIEW =
           T.let(
             :review,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
         OTHER =
           T.let(
             :other,
-            ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
 
         sig do
           override.returns(
-            T::Array[
-              ModerationAPI::ModerateAnalyzeParams::MetaType::TaggedSymbol
-            ]
+            T::Array[ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol]
           )
         end
         def self.values

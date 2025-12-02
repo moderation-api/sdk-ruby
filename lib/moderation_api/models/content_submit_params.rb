@@ -2,16 +2,16 @@
 
 module ModerationAPI
   module Models
-    # @see ModerationAPI::Resources::Moderate#analyze
-    class ModerateAnalyzeParams < ModerationAPI::Internal::Type::BaseModel
+    # @see ModerationAPI::Resources::Content#submit
+    class ContentSubmitParams < ModerationAPI::Internal::Type::BaseModel
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
       # @!attribute content
       #   The content sent for moderation
       #
-      #   @return [ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember3, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4]
-      required :content, union: -> { ModerationAPI::ModerateAnalyzeParams::Content }
+      #   @return [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4]
+      required :content, union: -> { ModerationAPI::ContentSubmitParams::Content }
 
       # @!attribute author_id
       #   The author of the content.
@@ -53,14 +53,14 @@ module ModerationAPI
       # @!attribute meta_type
       #   The meta type of content being moderated
       #
-      #   @return [Symbol, ModerationAPI::Models::ModerateAnalyzeParams::MetaType, nil]
-      optional :meta_type, enum: -> { ModerationAPI::ModerateAnalyzeParams::MetaType }, api_name: :metaType
+      #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType, nil]
+      optional :meta_type, enum: -> { ModerationAPI::ContentSubmitParams::MetaType }, api_name: :metaType
 
       # @!method initialize(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
-      #   {ModerationAPI::Models::ModerateAnalyzeParams} for more details.
+      #   {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
-      #   @param content [ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember3, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4] The content sent for moderation
+      #   @param content [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4] The content sent for moderation
       #
       #   @param author_id [String] The author of the content.
       #
@@ -74,7 +74,7 @@ module ModerationAPI
       #
       #   @param metadata [Hash{Symbol=>Object}] Any metadata you want to store with the content
       #
-      #   @param meta_type [Symbol, ModerationAPI::Models::ModerateAnalyzeParams::MetaType] The meta type of content being moderated
+      #   @param meta_type [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType] The meta type of content being moderated
       #
       #   @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}]
 
@@ -83,19 +83,19 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::Union
 
         # Text
-        variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember0 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember0 }
 
         # Image
-        variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember1 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember1 }
 
         # Video
-        variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember2 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember2 }
 
         # Audio
-        variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember3 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember3 }
 
         # Object
-        variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4 }
 
         class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute text
@@ -181,9 +181,9 @@ module ModerationAPI
           # @!attribute data
           #   Values in the object. Can be mixed content types.
           #
-          #   @return [Hash{Symbol=>ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3}]
+          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3}]
           required :data,
-                   -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data] }
+                   -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data] }
 
           # @!attribute type
           #
@@ -193,7 +193,7 @@ module ModerationAPI
           # @!method initialize(data:, type: :object)
           #   Object
           #
-          #   @param data [Hash{Symbol=>ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3}] Values in the object. Can be mixed content types.
+          #   @param data [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3}] Values in the object. Can be mixed content types.
           #
           #   @param type [Symbol, :object]
 
@@ -202,16 +202,16 @@ module ModerationAPI
             extend ModerationAPI::Internal::Type::Union
 
             # Text
-            variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0 }
 
             # Image
-            variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1 }
 
             # Video
-            variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2 }
 
             # Audio
-            variant -> { ModerationAPI::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3 }
 
             class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
               # @!attribute text
@@ -294,12 +294,12 @@ module ModerationAPI
             end
 
             # @!method self.variants
-            #   @return [Array(ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4::Data::UnionMember3)]
+            #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3)]
           end
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember3, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4)]
       end
 
       # The meta type of content being moderated

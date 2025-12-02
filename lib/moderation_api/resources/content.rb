@@ -2,13 +2,13 @@
 
 module ModerationAPI
   module Resources
-    class Moderate
+    class Content
       # Some parameter documentations has been truncated, see
-      # {ModerationAPI::Models::ModerateAnalyzeParams} for more details.
+      # {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
-      # @overload analyze(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, request_options: {})
+      # @overload submit(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, request_options: {})
       #
-      # @param content [ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember0, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember1, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember2, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember3, ModerationAPI::Models::ModerateAnalyzeParams::Content::UnionMember4] The content sent for moderation
+      # @param content [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4] The content sent for moderation
       #
       # @param author_id [String] The author of the content.
       #
@@ -22,20 +22,20 @@ module ModerationAPI
       #
       # @param metadata [Hash{Symbol=>Object}] Any metadata you want to store with the content
       #
-      # @param meta_type [Symbol, ModerationAPI::Models::ModerateAnalyzeParams::MetaType] The meta type of content being moderated
+      # @param meta_type [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType] The meta type of content being moderated
       #
       # @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [ModerationAPI::Models::ModerateAnalyzeResponse]
+      # @return [ModerationAPI::Models::ContentSubmitResponse]
       #
-      # @see ModerationAPI::Models::ModerateAnalyzeParams
-      def analyze(params)
-        parsed, options = ModerationAPI::ModerateAnalyzeParams.dump_request(params)
+      # @see ModerationAPI::Models::ContentSubmitParams
+      def submit(params)
+        parsed, options = ModerationAPI::ContentSubmitParams.dump_request(params)
         @client.request(
           method: :post,
           path: "moderate",
           body: parsed,
-          model: ModerationAPI::Models::ModerateAnalyzeResponse,
+          model: ModerationAPI::Models::ContentSubmitResponse,
           options: options
         )
       end

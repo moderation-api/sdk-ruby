@@ -27,8 +27,8 @@ module ModerationAPI
     # @return [ModerationAPI::Resources::Actions]
     attr_reader :actions
 
-    # @return [ModerationAPI::Resources::Moderate]
-    attr_reader :moderate
+    # @return [ModerationAPI::Resources::Content]
+    attr_reader :content
 
     # @return [ModerationAPI::Resources::Account]
     attr_reader :account
@@ -89,7 +89,7 @@ module ModerationAPI
       @authors = ModerationAPI::Resources::Authors.new(client: self)
       @queue = ModerationAPI::Resources::Queue.new(client: self)
       @actions = ModerationAPI::Resources::Actions.new(client: self)
-      @moderate = ModerationAPI::Resources::Moderate.new(client: self)
+      @content = ModerationAPI::Resources::Content.new(client: self)
       @account = ModerationAPI::Resources::Account.new(client: self)
       @auth = ModerationAPI::Resources::Auth.new(client: self)
       @wordlist = ModerationAPI::Resources::Wordlist.new(client: self)

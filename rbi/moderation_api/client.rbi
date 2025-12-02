@@ -22,8 +22,8 @@ module ModerationAPI
     sig { returns(ModerationAPI::Resources::Actions) }
     attr_reader :actions
 
-    sig { returns(ModerationAPI::Resources::Moderate) }
-    attr_reader :moderate
+    sig { returns(ModerationAPI::Resources::Content) }
+    attr_reader :content
 
     sig { returns(ModerationAPI::Resources::Account) }
     attr_reader :account

@@ -2,11 +2,11 @@
 
 module ModerationAPI
   module Models
-    class ModerateAnalyzeResponse < ModerationAPI::Internal::Type::BaseModel
+    class ContentSubmitResponse < ModerationAPI::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            ModerationAPI::Models::ModerateAnalyzeResponse,
+            ModerationAPI::Models::ContentSubmitResponse,
             ModerationAPI::Internal::AnyHash
           )
         end
@@ -14,9 +14,7 @@ module ModerationAPI
       # The author of the content if your account has authors enabled. Requires you to
       # send authorId when submitting content.
       sig do
-        returns(
-          T.nilable(ModerationAPI::Models::ModerateAnalyzeResponse::Author)
-        )
+        returns(T.nilable(ModerationAPI::Models::ContentSubmitResponse::Author))
       end
       attr_reader :author
 
@@ -24,34 +22,31 @@ module ModerationAPI
         params(
           author:
             T.nilable(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::OrHash
+              ModerationAPI::Models::ContentSubmitResponse::Author::OrHash
             )
         ).void
       end
       attr_writer :author
 
       # Potentially modified content.
-      sig { returns(ModerationAPI::Models::ModerateAnalyzeResponse::Content) }
+      sig { returns(ModerationAPI::Models::ContentSubmitResponse::Content) }
       attr_reader :content
 
       sig do
         params(
-          content:
-            ModerationAPI::Models::ModerateAnalyzeResponse::Content::OrHash
+          content: ModerationAPI::Models::ContentSubmitResponse::Content::OrHash
         ).void
       end
       attr_writer :content
 
       # The evaluation of the content after running the channel policies.
-      sig do
-        returns(ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation)
-      end
+      sig { returns(ModerationAPI::Models::ContentSubmitResponse::Evaluation) }
       attr_reader :evaluation
 
       sig do
         params(
           evaluation:
-            ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation::OrHash
+            ModerationAPI::Models::ContentSubmitResponse::Evaluation::OrHash
         ).void
       end
       attr_writer :evaluation
@@ -60,19 +55,19 @@ module ModerationAPI
       sig do
         returns(
           T::Array[
-            ModerationAPI::Models::ModerateAnalyzeResponse::Insight::Variants
+            ModerationAPI::Models::ContentSubmitResponse::Insight::Variants
           ]
         )
       end
       attr_accessor :insights
 
       # Metadata about the moderation request
-      sig { returns(ModerationAPI::Models::ModerateAnalyzeResponse::Meta) }
+      sig { returns(ModerationAPI::Models::ContentSubmitResponse::Meta) }
       attr_reader :meta
 
       sig do
         params(
-          meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::OrHash
+          meta: ModerationAPI::Models::ContentSubmitResponse::Meta::OrHash
         ).void
       end
       attr_writer :meta
@@ -81,7 +76,7 @@ module ModerationAPI
       sig do
         returns(
           T::Array[
-            ModerationAPI::Models::ModerateAnalyzeResponse::Policy::Variants
+            ModerationAPI::Models::ContentSubmitResponse::Policy::Variants
           ]
         )
       end
@@ -89,14 +84,14 @@ module ModerationAPI
 
       # The recommendation for the content based on the evaluation.
       sig do
-        returns(ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation)
+        returns(ModerationAPI::Models::ContentSubmitResponse::Recommendation)
       end
       attr_reader :recommendation
 
       sig do
         params(
           recommendation:
-            ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::OrHash
+            ModerationAPI::Models::ContentSubmitResponse::Recommendation::OrHash
         ).void
       end
       attr_writer :recommendation
@@ -105,7 +100,7 @@ module ModerationAPI
       sig do
         returns(
           T.nilable(
-            T::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+            T::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
           )
         )
       end
@@ -115,7 +110,7 @@ module ModerationAPI
         params(
           errors:
             T::Array[
-              ModerationAPI::Models::ModerateAnalyzeResponse::Error::OrHash
+              ModerationAPI::Models::ContentSubmitResponse::Error::OrHash
             ]
         ).void
       end
@@ -125,32 +120,32 @@ module ModerationAPI
         params(
           author:
             T.nilable(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::OrHash
+              ModerationAPI::Models::ContentSubmitResponse::Author::OrHash
             ),
           content:
-            ModerationAPI::Models::ModerateAnalyzeResponse::Content::OrHash,
+            ModerationAPI::Models::ContentSubmitResponse::Content::OrHash,
           evaluation:
-            ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation::OrHash,
+            ModerationAPI::Models::ContentSubmitResponse::Evaluation::OrHash,
           insights:
             T::Array[
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::OrHash,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1::OrHash
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::OrHash,
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1::OrHash
               )
             ],
-          meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::OrHash,
+          meta: ModerationAPI::Models::ContentSubmitResponse::Meta::OrHash,
           policies:
             T::Array[
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::OrHash,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::OrHash
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::OrHash,
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::OrHash
               )
             ],
           recommendation:
-            ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::OrHash,
+            ModerationAPI::Models::ContentSubmitResponse::Recommendation::OrHash,
           errors:
             T::Array[
-              ModerationAPI::Models::ModerateAnalyzeResponse::Error::OrHash
+              ModerationAPI::Models::ContentSubmitResponse::Error::OrHash
             ]
         ).returns(T.attached_class)
       end
@@ -179,23 +174,23 @@ module ModerationAPI
         override.returns(
           {
             author:
-              T.nilable(ModerationAPI::Models::ModerateAnalyzeResponse::Author),
-            content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
+              T.nilable(ModerationAPI::Models::ContentSubmitResponse::Author),
+            content: ModerationAPI::Models::ContentSubmitResponse::Content,
             evaluation:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
+              ModerationAPI::Models::ContentSubmitResponse::Evaluation,
             insights:
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::Variants
+                ModerationAPI::Models::ContentSubmitResponse::Insight::Variants
               ],
-            meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
+            meta: ModerationAPI::Models::ContentSubmitResponse::Meta,
             policies:
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Policy::Variants
+                ModerationAPI::Models::ContentSubmitResponse::Policy::Variants
               ],
             recommendation:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation,
             errors:
-              T::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+              T::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
           }
         )
       end
@@ -206,7 +201,7 @@ module ModerationAPI
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author,
+              ModerationAPI::Models::ContentSubmitResponse::Author,
               ModerationAPI::Internal::AnyHash
             )
           end
@@ -219,7 +214,7 @@ module ModerationAPI
         sig do
           returns(
             T.nilable(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block
+              ModerationAPI::Models::ContentSubmitResponse::Author::Block
             )
           )
         end
@@ -229,7 +224,7 @@ module ModerationAPI
           params(
             block:
               T.nilable(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block::OrHash
+                ModerationAPI::Models::ContentSubmitResponse::Author::Block::OrHash
               )
           ).void
         end
@@ -238,14 +233,14 @@ module ModerationAPI
         # Current author status
         sig do
           returns(
-            ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::TaggedSymbol
+            ModerationAPI::Models::ContentSubmitResponse::Author::Status::TaggedSymbol
           )
         end
         attr_accessor :status
 
         sig do
           returns(
-            ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel
+            ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel
           )
         end
         attr_reader :trust_level
@@ -253,7 +248,7 @@ module ModerationAPI
         sig do
           params(
             trust_level:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel::OrHash
+              ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel::OrHash
           ).void
         end
         attr_writer :trust_level
@@ -269,12 +264,12 @@ module ModerationAPI
             id: String,
             block:
               T.nilable(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block::OrHash
+                ModerationAPI::Models::ContentSubmitResponse::Author::Block::OrHash
               ),
             status:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::OrSymbol,
+              ModerationAPI::Models::ContentSubmitResponse::Author::Status::OrSymbol,
             trust_level:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel::OrHash,
+              ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel::OrHash,
             external_id: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -297,12 +292,12 @@ module ModerationAPI
               id: String,
               block:
                 T.nilable(
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block
+                  ModerationAPI::Models::ContentSubmitResponse::Author::Block
                 ),
               status:
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::TaggedSymbol,
+                ModerationAPI::Models::ContentSubmitResponse::Author::Status::TaggedSymbol,
               trust_level:
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+                ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel,
               external_id: T.nilable(String)
             }
           )
@@ -314,7 +309,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block,
+                ModerationAPI::Models::ContentSubmitResponse::Author::Block,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -358,7 +353,7 @@ module ModerationAPI
             T.type_alias do
               T.all(
                 Symbol,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status
+                ModerationAPI::Models::ContentSubmitResponse::Author::Status
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -366,23 +361,23 @@ module ModerationAPI
           ENABLED =
             T.let(
               :enabled,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Author::Status::TaggedSymbol
             )
           SUSPENDED =
             T.let(
               :suspended,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Author::Status::TaggedSymbol
             )
           BLOCKED =
             T.let(
               :blocked,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Author::Status::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Author::Status::TaggedSymbol
               ]
             )
           end
@@ -394,7 +389,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+                ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -428,7 +423,7 @@ module ModerationAPI
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Content,
+              ModerationAPI::Models::ContentSubmitResponse::Content,
               ModerationAPI::Internal::AnyHash
             )
           end
@@ -446,7 +441,7 @@ module ModerationAPI
         sig do
           returns(
             T.nilable(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::Variants
+              ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
             )
           )
         end
@@ -459,7 +454,7 @@ module ModerationAPI
             masked: T::Boolean,
             modified:
               T.nilable(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::Variants
+                ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
               )
           ).returns(T.attached_class)
         end
@@ -481,7 +476,7 @@ module ModerationAPI
               masked: T::Boolean,
               modified:
                 T.nilable(
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::Variants
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
                 )
             }
           )
@@ -499,7 +494,7 @@ module ModerationAPI
                 String,
                 T::Hash[
                   Symbol,
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::Variants
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Variants
                 ]
               )
             end
@@ -511,10 +506,10 @@ module ModerationAPI
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0,
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1,
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2,
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3
                 )
               end
 
@@ -522,7 +517,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -554,7 +549,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -586,7 +581,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -618,7 +613,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -649,7 +644,7 @@ module ModerationAPI
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::Variants
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Variants
                 ]
               )
             end
@@ -660,7 +655,7 @@ module ModerationAPI
           sig do
             override.returns(
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::Variants
+                ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
               ]
             )
           end
@@ -671,7 +666,7 @@ module ModerationAPI
             T.let(
               ModerationAPI::Internal::Type::HashOf[
                 union:
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1
               ],
               ModerationAPI::Internal::Type::Converter
             )
@@ -682,7 +677,7 @@ module ModerationAPI
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
+              ModerationAPI::Models::ContentSubmitResponse::Evaluation,
               ModerationAPI::Internal::AnyHash
             )
           end
@@ -748,8 +743,8 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1
+              ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0,
+              ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1
             )
           end
 
@@ -757,7 +752,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0,
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -774,7 +769,7 @@ module ModerationAPI
           sig do
             returns(
               T.nilable(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
             )
           end
@@ -786,7 +781,7 @@ module ModerationAPI
               probability: Float,
               value:
                 T.nilable(
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::OrSymbol
+                  ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::OrSymbol
                 ),
               id: Symbol,
               type: Symbol
@@ -803,7 +798,7 @@ module ModerationAPI
                 type: Symbol,
                 value:
                   T.nilable(
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::TaggedSymbol
+                    ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
                   )
               }
             )
@@ -818,7 +813,7 @@ module ModerationAPI
               T.type_alias do
                 T.all(
                   Symbol,
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value
+                  ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -826,23 +821,23 @@ module ModerationAPI
             POSITIVE =
               T.let(
                 :positive,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
             NEUTRAL =
               T.let(
                 :neutral,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
             NEGATIVE =
               T.let(
                 :negative,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value::TaggedSymbol
+                  ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
                 ]
               )
             end
@@ -855,7 +850,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1,
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -901,7 +896,7 @@ module ModerationAPI
         sig do
           override.returns(
             T::Array[
-              ModerationAPI::Models::ModerateAnalyzeResponse::Insight::Variants
+              ModerationAPI::Models::ContentSubmitResponse::Insight::Variants
             ]
           )
         end
@@ -913,7 +908,7 @@ module ModerationAPI
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
+              ModerationAPI::Models::ContentSubmitResponse::Meta,
               ModerationAPI::Internal::AnyHash
             )
           end
@@ -925,7 +920,7 @@ module ModerationAPI
 
         sig do
           returns(
-            ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status::TaggedSymbol
+            ModerationAPI::Models::ContentSubmitResponse::Meta::Status::TaggedSymbol
           )
         end
         attr_accessor :status
@@ -947,7 +942,7 @@ module ModerationAPI
           params(
             channel_key: String,
             status:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status::OrSymbol,
+              ModerationAPI::Models::ContentSubmitResponse::Meta::Status::OrSymbol,
             timestamp: Float,
             usage: Float,
             processing_time: String
@@ -969,7 +964,7 @@ module ModerationAPI
             {
               channel_key: String,
               status:
-                ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status::TaggedSymbol,
+                ModerationAPI::Models::ContentSubmitResponse::Meta::Status::TaggedSymbol,
               timestamp: Float,
               usage: Float,
               processing_time: String
@@ -986,7 +981,7 @@ module ModerationAPI
             T.type_alias do
               T.all(
                 Symbol,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status
+                ModerationAPI::Models::ContentSubmitResponse::Meta::Status
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -994,18 +989,18 @@ module ModerationAPI
           SUCCESS =
             T.let(
               :success,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Meta::Status::TaggedSymbol
             )
           PARTIAL_SUCCESS =
             T.let(
               :partial_success,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Meta::Status::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Meta::Status::TaggedSymbol
               ]
             )
           end
@@ -1021,8 +1016,8 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1
+              ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0,
+              ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1
             )
           end
 
@@ -1030,7 +1025,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0,
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1059,7 +1054,7 @@ module ModerationAPI
             returns(
               T.nilable(
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label
                 ]
               )
             )
@@ -1070,7 +1065,7 @@ module ModerationAPI
             params(
               labels:
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label::OrHash
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label::OrHash
                 ]
             ).void
           end
@@ -1085,7 +1080,7 @@ module ModerationAPI
               flagged_fields: T::Array[String],
               labels:
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label::OrHash
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label::OrHash
                 ],
               type: Symbol
             ).returns(T.attached_class)
@@ -1112,7 +1107,7 @@ module ModerationAPI
                 flagged_fields: T::Array[String],
                 labels:
                   T::Array[
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label
                   ]
               }
             )
@@ -1124,7 +1119,7 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label,
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label,
                   ModerationAPI::Internal::AnyHash
                 )
               end
@@ -1162,7 +1157,7 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1,
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1176,7 +1171,7 @@ module ModerationAPI
           sig do
             returns(
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match
               ]
             )
           end
@@ -1201,7 +1196,7 @@ module ModerationAPI
               flagged: T::Boolean,
               matches:
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match::OrHash
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match::OrHash
                 ],
               probability: Float,
               flagged_fields: T::Array[String],
@@ -1225,7 +1220,7 @@ module ModerationAPI
                 flagged: T::Boolean,
                 matches:
                   T::Array[
-                    ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match
                   ],
                 probability: Float,
                 type: Symbol,
@@ -1240,7 +1235,7 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match,
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match,
                   ModerationAPI::Internal::AnyHash
                 )
               end
@@ -1281,7 +1276,7 @@ module ModerationAPI
         sig do
           override.returns(
             T::Array[
-              ModerationAPI::Models::ModerateAnalyzeResponse::Policy::Variants
+              ModerationAPI::Models::ContentSubmitResponse::Policy::Variants
             ]
           )
         end
@@ -1293,7 +1288,7 @@ module ModerationAPI
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation,
               ModerationAPI::Internal::AnyHash
             )
           end
@@ -1301,7 +1296,7 @@ module ModerationAPI
         # The action to take based on the recommendation
         sig do
           returns(
-            ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::TaggedSymbol
+            ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol
           )
         end
         attr_accessor :action
@@ -1311,7 +1306,7 @@ module ModerationAPI
         sig do
           returns(
             T::Array[
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             ]
           )
         end
@@ -1321,10 +1316,10 @@ module ModerationAPI
         sig do
           params(
             action:
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::OrSymbol,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::OrSymbol,
             reason_codes:
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::OrSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::OrSymbol
               ]
           ).returns(T.attached_class)
         end
@@ -1341,10 +1336,10 @@ module ModerationAPI
           override.returns(
             {
               action:
-                ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::TaggedSymbol,
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol,
               reason_codes:
                 T::Array[
-                  ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+                  ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
                 ]
             }
           )
@@ -1360,7 +1355,7 @@ module ModerationAPI
             T.type_alias do
               T.all(
                 Symbol,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1368,23 +1363,23 @@ module ModerationAPI
           REVIEW =
             T.let(
               :review,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol
             )
           ALLOW =
             T.let(
               :allow,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol
             )
           REJECT =
             T.let(
               :reject,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol
               ]
             )
           end
@@ -1399,7 +1394,7 @@ module ModerationAPI
             T.type_alias do
               T.all(
                 Symbol,
-                ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1407,28 +1402,28 @@ module ModerationAPI
           SEVERITY_REJECT =
             T.let(
               :severity_reject,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
           SEVERITY_REVIEW =
             T.let(
               :severity_review,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
           AUTHOR_BLOCK =
             T.let(
               :author_block,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
           DRY_RUN =
             T.let(
               :dry_run,
-              ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
               ]
             )
           end
@@ -1441,7 +1436,7 @@ module ModerationAPI
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ModerateAnalyzeResponse::Error,
+              ModerationAPI::Models::ContentSubmitResponse::Error,
               ModerationAPI::Internal::AnyHash
             )
           end

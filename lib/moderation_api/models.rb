@@ -70,7 +70,7 @@ module ModerationAPI
 
   AuthRetrieveParams = ModerationAPI::Models::AuthRetrieveParams
 
-  ModerateAnalyzeParams = ModerationAPI::Models::ModerateAnalyzeParams
+  ContentSubmitParams = ModerationAPI::Models::ContentSubmitParams
 
   Queue = ModerationAPI::Models::Queue
 

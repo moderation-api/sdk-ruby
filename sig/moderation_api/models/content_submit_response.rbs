@@ -1,93 +1,93 @@
 module ModerationAPI
   module Models
-    type moderate_analyze_response =
+    type content_submit_response =
       {
-        author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?,
-        content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
-        evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
-        insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight],
-        meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
-        policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy],
-        recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
-        errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+        author: ModerationAPI::Models::ContentSubmitResponse::Author?,
+        content: ModerationAPI::Models::ContentSubmitResponse::Content,
+        evaluation: ModerationAPI::Models::ContentSubmitResponse::Evaluation,
+        insights: ::Array[ModerationAPI::Models::ContentSubmitResponse::insight],
+        meta: ModerationAPI::Models::ContentSubmitResponse::Meta,
+        policies: ::Array[ModerationAPI::Models::ContentSubmitResponse::policy],
+        recommendation: ModerationAPI::Models::ContentSubmitResponse::Recommendation,
+        errors: ::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
       }
 
-    class ModerateAnalyzeResponse < ModerationAPI::Internal::Type::BaseModel
-      attr_accessor author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?
+    class ContentSubmitResponse < ModerationAPI::Internal::Type::BaseModel
+      attr_accessor author: ModerationAPI::Models::ContentSubmitResponse::Author?
 
-      attr_accessor content: ModerationAPI::Models::ModerateAnalyzeResponse::Content
+      attr_accessor content: ModerationAPI::Models::ContentSubmitResponse::Content
 
-      attr_accessor evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation
+      attr_accessor evaluation: ModerationAPI::Models::ContentSubmitResponse::Evaluation
 
-      attr_accessor insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight]
+      attr_accessor insights: ::Array[ModerationAPI::Models::ContentSubmitResponse::insight]
 
-      attr_accessor meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta
+      attr_accessor meta: ModerationAPI::Models::ContentSubmitResponse::Meta
 
-      attr_accessor policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy]
+      attr_accessor policies: ::Array[ModerationAPI::Models::ContentSubmitResponse::policy]
 
-      attr_accessor recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation
+      attr_accessor recommendation: ModerationAPI::Models::ContentSubmitResponse::Recommendation
 
-      attr_reader errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]?
+      attr_reader errors: ::Array[ModerationAPI::Models::ContentSubmitResponse::Error]?
 
       def errors=: (
-        ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
-      ) -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+        ::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
+      ) -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
 
       def initialize: (
-        author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?,
-        content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
-        evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
-        insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight],
-        meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
-        policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy],
-        recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
-        ?errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+        author: ModerationAPI::Models::ContentSubmitResponse::Author?,
+        content: ModerationAPI::Models::ContentSubmitResponse::Content,
+        evaluation: ModerationAPI::Models::ContentSubmitResponse::Evaluation,
+        insights: ::Array[ModerationAPI::Models::ContentSubmitResponse::insight],
+        meta: ModerationAPI::Models::ContentSubmitResponse::Meta,
+        policies: ::Array[ModerationAPI::Models::ContentSubmitResponse::policy],
+        recommendation: ModerationAPI::Models::ContentSubmitResponse::Recommendation,
+        ?errors: ::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
       ) -> void
 
       def to_hash: -> {
-        author: ModerationAPI::Models::ModerateAnalyzeResponse::Author?,
-        content: ModerationAPI::Models::ModerateAnalyzeResponse::Content,
-        evaluation: ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation,
-        insights: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight],
-        meta: ModerationAPI::Models::ModerateAnalyzeResponse::Meta,
-        policies: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy],
-        recommendation: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation,
-        errors: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Error]
+        author: ModerationAPI::Models::ContentSubmitResponse::Author?,
+        content: ModerationAPI::Models::ContentSubmitResponse::Content,
+        evaluation: ModerationAPI::Models::ContentSubmitResponse::Evaluation,
+        insights: ::Array[ModerationAPI::Models::ContentSubmitResponse::insight],
+        meta: ModerationAPI::Models::ContentSubmitResponse::Meta,
+        policies: ::Array[ModerationAPI::Models::ContentSubmitResponse::policy],
+        recommendation: ModerationAPI::Models::ContentSubmitResponse::Recommendation,
+        errors: ::Array[ModerationAPI::Models::ContentSubmitResponse::Error]
       }
 
       type author =
         {
           id: String,
-          block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?,
-          status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status,
-          trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+          block: ModerationAPI::Models::ContentSubmitResponse::Author::Block?,
+          status: ModerationAPI::Models::ContentSubmitResponse::Author::status,
+          trust_level: ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel,
           external_id: String?
         }
 
       class Author < ModerationAPI::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?
+        attr_accessor block: ModerationAPI::Models::ContentSubmitResponse::Author::Block?
 
-        attr_accessor status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status
+        attr_accessor status: ModerationAPI::Models::ContentSubmitResponse::Author::status
 
-        attr_accessor trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel
+        attr_accessor trust_level: ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel
 
         attr_accessor external_id: String?
 
         def initialize: (
           id: String,
-          block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?,
-          status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status,
-          trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+          block: ModerationAPI::Models::ContentSubmitResponse::Author::Block?,
+          status: ModerationAPI::Models::ContentSubmitResponse::Author::status,
+          trust_level: ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel,
           ?external_id: String?
         ) -> void
 
         def to_hash: -> {
           id: String,
-          block: ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block?,
-          status: ModerationAPI::Models::ModerateAnalyzeResponse::Author::status,
-          trust_level: ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel,
+          block: ModerationAPI::Models::ContentSubmitResponse::Author::Block?,
+          status: ModerationAPI::Models::ContentSubmitResponse::Author::status,
+          trust_level: ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel,
           external_id: String?
         }
 
@@ -112,7 +112,7 @@ module ModerationAPI
           SUSPENDED: :suspended
           BLOCKED: :blocked
 
-          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Author::status]
+          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Author::status]
         end
 
         type trust_level = { level: Float, manual: bool }
@@ -132,7 +132,7 @@ module ModerationAPI
         {
           id: String,
           masked: bool,
-          modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
         }
 
       class Content < ModerationAPI::Internal::Type::BaseModel
@@ -140,32 +140,32 @@ module ModerationAPI
 
         attr_accessor masked: bool
 
-        attr_accessor modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+        attr_accessor modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
 
         def initialize: (
           id: String,
           masked: bool,
-          modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
         ) -> void
 
         def to_hash: -> {
           id: String,
           masked: bool,
-          modified: ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified?
+          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
         }
 
         type modified =
           String
-          | ::Hash[Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::union_member1]
+          | ::Hash[Symbol, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::union_member1]
 
         module Modified
           extend ModerationAPI::Internal::Type::Union
 
           type union_member1 =
-            ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0
-            | ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1
-            | ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2
-            | ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3
+            ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3
 
           module UnionMember1
             extend ModerationAPI::Internal::Type::Union
@@ -218,10 +218,10 @@ module ModerationAPI
               def to_hash: -> { type: :audio, url: String }
             end
 
-            def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::union_member1]
+            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Content::Modified::union_member1]
           end
 
-          def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Content::modified]
+          def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Content::modified]
 
           UnionMember1Map: ModerationAPI::Internal::Type::Converter
         end
@@ -262,8 +262,8 @@ module ModerationAPI
       end
 
       type insight =
-        ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0
-        | ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1
+        ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0
+        | ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1
 
       module Insight
         extend ModerationAPI::Internal::Type::Union
@@ -273,7 +273,7 @@ module ModerationAPI
             id: :sentiment,
             probability: Float,
             type: :insight,
-            value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
           }
 
         class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
@@ -283,11 +283,11 @@ module ModerationAPI
 
           attr_accessor type: :insight
 
-          attr_accessor value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?
+          attr_accessor value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
 
           def initialize: (
             probability: Float,
-            value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?,
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?,
             ?id: :sentiment,
             ?type: :insight
           ) -> void
@@ -296,7 +296,7 @@ module ModerationAPI
             id: :sentiment,
             probability: Float,
             type: :insight,
-            value: ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value?
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
           }
 
           type value = :positive | :neutral | :negative
@@ -308,7 +308,7 @@ module ModerationAPI
             NEUTRAL: :neutral
             NEGATIVE: :negative
 
-            def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::value]
+            def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value]
           end
         end
 
@@ -339,13 +339,13 @@ module ModerationAPI
           }
         end
 
-        def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::insight]
+        def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::insight]
       end
 
       type meta =
         {
           channel_key: String,
-          status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status,
+          status: ModerationAPI::Models::ContentSubmitResponse::Meta::status,
           timestamp: Float,
           usage: Float,
           processing_time: String
@@ -354,7 +354,7 @@ module ModerationAPI
       class Meta < ModerationAPI::Internal::Type::BaseModel
         attr_accessor channel_key: String
 
-        attr_accessor status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status
+        attr_accessor status: ModerationAPI::Models::ContentSubmitResponse::Meta::status
 
         attr_accessor timestamp: Float
 
@@ -366,7 +366,7 @@ module ModerationAPI
 
         def initialize: (
           channel_key: String,
-          status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status,
+          status: ModerationAPI::Models::ContentSubmitResponse::Meta::status,
           timestamp: Float,
           usage: Float,
           ?processing_time: String
@@ -374,7 +374,7 @@ module ModerationAPI
 
         def to_hash: -> {
           channel_key: String,
-          status: ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status,
+          status: ModerationAPI::Models::ContentSubmitResponse::Meta::status,
           timestamp: Float,
           usage: Float,
           processing_time: String
@@ -388,13 +388,13 @@ module ModerationAPI
           SUCCESS: :success
           PARTIAL_SUCCESS: :partial_success
 
-          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Meta::status]
+          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Meta::status]
         end
       end
 
       type policy =
-        ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0
-        | ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1
+        ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0
+        | ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1
 
       module Policy
         extend ModerationAPI::Internal::Type::Union
@@ -406,7 +406,7 @@ module ModerationAPI
             probability: Float,
             type: :classifier,
             flagged_fields: ::Array[String],
-            labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+            labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
           }
 
         class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
@@ -422,18 +422,18 @@ module ModerationAPI
 
           def flagged_fields=: (::Array[String]) -> ::Array[String]
 
-          attr_reader labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]?
+          attr_reader labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]?
 
           def labels=: (
-            ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
-          ) -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+            ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
+          ) -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
 
           def initialize: (
             id: String,
             flagged: bool,
             probability: Float,
             ?flagged_fields: ::Array[String],
-            ?labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label],
+            ?labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label],
             ?type: :classifier
           ) -> void
 
@@ -443,7 +443,7 @@ module ModerationAPI
             probability: Float,
             type: :classifier,
             flagged_fields: ::Array[String],
-            labels: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label]
+            labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
           }
 
           type label = { id: String, flagged: bool, probability: Float }
@@ -469,7 +469,7 @@ module ModerationAPI
           {
             id: String,
             flagged: bool,
-            matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match],
+            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match],
             probability: Float,
             type: :entity_matcher,
             flagged_fields: ::Array[String]
@@ -480,7 +480,7 @@ module ModerationAPI
 
           attr_accessor flagged: bool
 
-          attr_accessor matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match]
+          attr_accessor matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match]
 
           attr_accessor probability: Float
 
@@ -493,7 +493,7 @@ module ModerationAPI
           def initialize: (
             id: String,
             flagged: bool,
-            matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match],
+            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match],
             probability: Float,
             ?flagged_fields: ::Array[String],
             ?type: :entity_matcher
@@ -502,7 +502,7 @@ module ModerationAPI
           def to_hash: -> {
             id: String,
             flagged: bool,
-            matches: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match],
+            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match],
             probability: Float,
             type: :entity_matcher,
             flagged_fields: ::Array[String]
@@ -531,28 +531,28 @@ module ModerationAPI
           end
         end
 
-        def self?.variants: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::policy]
+        def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::policy]
       end
 
       type recommendation =
         {
-          action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action,
-          reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+          action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action,
+          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         }
 
       class Recommendation < ModerationAPI::Internal::Type::BaseModel
-        attr_accessor action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action
+        attr_accessor action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action
 
-        attr_accessor reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+        attr_accessor reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
 
         def initialize: (
-          action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action,
-          reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+          action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action,
+          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         ) -> void
 
         def to_hash: -> {
-          action: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action,
-          reason_codes: ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+          action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action,
+          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         }
 
         type action = :review | :allow | :reject
@@ -564,7 +564,7 @@ module ModerationAPI
           ALLOW: :allow
           REJECT: :reject
 
-          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::action]
+          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::action]
         end
 
         type reason_code =
@@ -578,7 +578,7 @@ module ModerationAPI
           AUTHOR_BLOCK: :author_block
           DRY_RUN: :dry_run
 
-          def self?.values: -> ::Array[ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::reason_code]
+          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         end
       end
 

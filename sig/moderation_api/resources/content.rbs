@@ -1,17 +1,17 @@
 module ModerationAPI
   module Resources
-    class Moderate
-      def analyze: (
-        content: ModerationAPI::Models::ModerateAnalyzeParams::content,
+    class Content
+      def submit: (
+        content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,
         ?channel: String,
         ?content_id: String,
         ?conversation_id: String,
         ?do_not_store: bool,
         ?metadata: ::Hash[Symbol, top],
-        ?meta_type: ModerationAPI::Models::ModerateAnalyzeParams::meta_type,
+        ?meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
         ?request_options: ModerationAPI::request_opts
-      ) -> ModerationAPI::Models::ModerateAnalyzeResponse
+      ) -> ModerationAPI::Models::ContentSubmitResponse
 
       def initialize: (client: ModerationAPI::Client) -> void
     end

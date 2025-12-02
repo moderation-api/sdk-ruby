@@ -2,81 +2,81 @@
 
 module ModerationAPI
   module Models
-    # @see ModerationAPI::Resources::Moderate#analyze
-    class ModerateAnalyzeResponse < ModerationAPI::Internal::Type::BaseModel
+    # @see ModerationAPI::Resources::Content#submit
+    class ContentSubmitResponse < ModerationAPI::Internal::Type::BaseModel
       # @!attribute author
       #   The author of the content if your account has authors enabled. Requires you to
       #   send authorId when submitting content.
       #
-      #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Author, nil]
-      required :author, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Author }, nil?: true
+      #   @return [ModerationAPI::Models::ContentSubmitResponse::Author, nil]
+      required :author, -> { ModerationAPI::Models::ContentSubmitResponse::Author }, nil?: true
 
       # @!attribute content
       #   Potentially modified content.
       #
-      #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Content]
-      required :content, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content }
+      #   @return [ModerationAPI::Models::ContentSubmitResponse::Content]
+      required :content, -> { ModerationAPI::Models::ContentSubmitResponse::Content }
 
       # @!attribute evaluation
       #   The evaluation of the content after running the channel policies.
       #
-      #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation]
-      required :evaluation, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation }
+      #   @return [ModerationAPI::Models::ContentSubmitResponse::Evaluation]
+      required :evaluation, -> { ModerationAPI::Models::ContentSubmitResponse::Evaluation }
 
       # @!attribute insights
       #   Results of all insights enabled in the channel.
       #
-      #   @return [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1>]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1>]
       required :insights,
-               -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ModerateAnalyzeResponse::Insight] }
+               -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Insight] }
 
       # @!attribute meta
       #   Metadata about the moderation request
       #
-      #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Meta]
-      required :meta, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Meta }
+      #   @return [ModerationAPI::Models::ContentSubmitResponse::Meta]
+      required :meta, -> { ModerationAPI::Models::ContentSubmitResponse::Meta }
 
       # @!attribute policies
       #   Results of all policies in the channel. Sorted by highest probability.
       #
-      #   @return [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1>]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1>]
       required :policies,
-               -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ModerateAnalyzeResponse::Policy] }
+               -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Policy] }
 
       # @!attribute recommendation
       #   The recommendation for the content based on the evaluation.
       #
-      #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation]
-      required :recommendation, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation }
+      #   @return [ModerationAPI::Models::ContentSubmitResponse::Recommendation]
+      required :recommendation, -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation }
 
       # @!attribute errors
       #   Policies that had errors
       #
-      #   @return [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Error>, nil]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Error>, nil]
       optional :errors,
-               -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ModerateAnalyzeResponse::Error] }
+               -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Error] }
 
       # @!method initialize(author:, content:, evaluation:, insights:, meta:, policies:, recommendation:, errors: nil)
       #   Some parameter documentations has been truncated, see
-      #   {ModerationAPI::Models::ModerateAnalyzeResponse} for more details.
+      #   {ModerationAPI::Models::ContentSubmitResponse} for more details.
       #
-      #   @param author [ModerationAPI::Models::ModerateAnalyzeResponse::Author, nil] The author of the content if your account has authors enabled. Requires you to s
+      #   @param author [ModerationAPI::Models::ContentSubmitResponse::Author, nil] The author of the content if your account has authors enabled. Requires you to s
       #
-      #   @param content [ModerationAPI::Models::ModerateAnalyzeResponse::Content] Potentially modified content.
+      #   @param content [ModerationAPI::Models::ContentSubmitResponse::Content] Potentially modified content.
       #
-      #   @param evaluation [ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation] The evaluation of the content after running the channel policies.
+      #   @param evaluation [ModerationAPI::Models::ContentSubmitResponse::Evaluation] The evaluation of the content after running the channel policies.
       #
-      #   @param insights [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1>] Results of all insights enabled in the channel.
+      #   @param insights [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1>] Results of all insights enabled in the channel.
       #
-      #   @param meta [ModerationAPI::Models::ModerateAnalyzeResponse::Meta] Metadata about the moderation request
+      #   @param meta [ModerationAPI::Models::ContentSubmitResponse::Meta] Metadata about the moderation request
       #
-      #   @param policies [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1>] Results of all policies in the channel. Sorted by highest probability.
+      #   @param policies [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1>] Results of all policies in the channel. Sorted by highest probability.
       #
-      #   @param recommendation [ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation] The recommendation for the content based on the evaluation.
+      #   @param recommendation [ModerationAPI::Models::ContentSubmitResponse::Recommendation] The recommendation for the content based on the evaluation.
       #
-      #   @param errors [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Error>] Policies that had errors
+      #   @param errors [Array<ModerationAPI::Models::ContentSubmitResponse::Error>] Policies that had errors
 
-      # @see ModerationAPI::Models::ModerateAnalyzeResponse#author
+      # @see ModerationAPI::Models::ContentSubmitResponse#author
       class Author < ModerationAPI::Internal::Type::BaseModel
         # @!attribute id
         #   Author ID in Moderation API
@@ -87,19 +87,19 @@ module ModerationAPI
         # @!attribute block
         #   Block or suspension details, if applicable. Null if the author is enabled.
         #
-        #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block, nil]
-        required :block, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block }, nil?: true
+        #   @return [ModerationAPI::Models::ContentSubmitResponse::Author::Block, nil]
+        required :block, -> { ModerationAPI::Models::ContentSubmitResponse::Author::Block }, nil?: true
 
         # @!attribute status
         #   Current author status
         #
-        #   @return [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status]
-        required :status, enum: -> { ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status }
+        #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Author::Status]
+        required :status, enum: -> { ModerationAPI::Models::ContentSubmitResponse::Author::Status }
 
         # @!attribute trust_level
         #
-        #   @return [ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel]
-        required :trust_level, -> { ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel }
+        #   @return [ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel]
+        required :trust_level, -> { ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel }
 
         # @!attribute external_id
         #   The author's ID from your system
@@ -113,15 +113,15 @@ module ModerationAPI
         #
         #   @param id [String] Author ID in Moderation API
         #
-        #   @param block [ModerationAPI::Models::ModerateAnalyzeResponse::Author::Block, nil] Block or suspension details, if applicable. Null if the author is enabled.
+        #   @param block [ModerationAPI::Models::ContentSubmitResponse::Author::Block, nil] Block or suspension details, if applicable. Null if the author is enabled.
         #
-        #   @param status [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Author::Status] Current author status
+        #   @param status [Symbol, ModerationAPI::Models::ContentSubmitResponse::Author::Status] Current author status
         #
-        #   @param trust_level [ModerationAPI::Models::ModerateAnalyzeResponse::Author::TrustLevel]
+        #   @param trust_level [ModerationAPI::Models::ContentSubmitResponse::Author::TrustLevel]
         #
         #   @param external_id [String, nil] The author's ID from your system
 
-        # @see ModerationAPI::Models::ModerateAnalyzeResponse::Author#block
+        # @see ModerationAPI::Models::ContentSubmitResponse::Author#block
         class Block < ModerationAPI::Internal::Type::BaseModel
           # @!attribute reason
           #   The moderators reason why the author was blocked or suspended.
@@ -145,7 +145,7 @@ module ModerationAPI
 
         # Current author status
         #
-        # @see ModerationAPI::Models::ModerateAnalyzeResponse::Author#status
+        # @see ModerationAPI::Models::ContentSubmitResponse::Author#status
         module Status
           extend ModerationAPI::Internal::Type::Enum
 
@@ -157,7 +157,7 @@ module ModerationAPI
           #   @return [Array<Symbol>]
         end
 
-        # @see ModerationAPI::Models::ModerateAnalyzeResponse::Author#trust_level
+        # @see ModerationAPI::Models::ContentSubmitResponse::Author#trust_level
         class TrustLevel < ModerationAPI::Internal::Type::BaseModel
           # @!attribute level
           #   Author trust level (-1, 0, 1, 2, 3, or 4)
@@ -178,7 +178,7 @@ module ModerationAPI
         end
       end
 
-      # @see ModerationAPI::Models::ModerateAnalyzeResponse#content
+      # @see ModerationAPI::Models::ContentSubmitResponse#content
       class Content < ModerationAPI::Internal::Type::BaseModel
         # @!attribute id
         #   The unique identifier for the content. Either the contentId provided by you or
@@ -196,14 +196,14 @@ module ModerationAPI
         # @!attribute modified
         #   The modified content, if any.
         #
-        #   @return [String, Hash{Symbol=>ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3}, nil]
+        #   @return [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3}, nil]
         required :modified,
-                 union: -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified },
+                 union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified },
                  nil?: true
 
         # @!method initialize(id:, masked:, modified:)
         #   Some parameter documentations has been truncated, see
-        #   {ModerationAPI::Models::ModerateAnalyzeResponse::Content} for more details.
+        #   {ModerationAPI::Models::ContentSubmitResponse::Content} for more details.
         #
         #   Potentially modified content.
         #
@@ -211,33 +211,33 @@ module ModerationAPI
         #
         #   @param masked [Boolean] Whether any values have been masked.
         #
-        #   @param modified [String, Hash{Symbol=>ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3}, nil] The modified content, if any.
+        #   @param modified [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3}, nil] The modified content, if any.
 
         # The modified content, if any.
         #
-        # @see ModerationAPI::Models::ModerateAnalyzeResponse::Content#modified
+        # @see ModerationAPI::Models::ContentSubmitResponse::Content#modified
         module Modified
           extend ModerationAPI::Internal::Type::Union
 
           variant String
 
-          variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1Map }
+          variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1Map }
 
           # Text
           module UnionMember1
             extend ModerationAPI::Internal::Type::Union
 
             # Text
-            variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0 }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0 }
 
             # Image
-            variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1 }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1 }
 
             # Video
-            variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2 }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2 }
 
             # Audio
-            variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3 }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3 }
 
             class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
               # @!attribute text
@@ -320,19 +320,19 @@ module ModerationAPI
             end
 
             # @!method self.variants
-            #   @return [Array(ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3)]
+            #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3)]
           end
 
           # @!method self.variants
-          #   @return [Array(String, Hash{Symbol=>ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1::UnionMember3})]
+          #   @return [Array(String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3})]
 
           # @type [ModerationAPI::Internal::Type::Converter]
           UnionMember1Map =
-            ModerationAPI::Internal::Type::HashOf[union: -> { ModerationAPI::Models::ModerateAnalyzeResponse::Content::Modified::UnionMember1 }]
+            ModerationAPI::Internal::Type::HashOf[union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1 }]
         end
       end
 
-      # @see ModerationAPI::Models::ModerateAnalyzeResponse#evaluation
+      # @see ModerationAPI::Models::ContentSubmitResponse#evaluation
       class Evaluation < ModerationAPI::Internal::Type::BaseModel
         # @!attribute flag_probability
         #   The probability that the content should be flagged.
@@ -360,7 +360,7 @@ module ModerationAPI
 
         # @!method initialize(flag_probability:, flagged:, severity_score:, unicode_spoofed: nil)
         #   Some parameter documentations has been truncated, see
-        #   {ModerationAPI::Models::ModerateAnalyzeResponse::Evaluation} for more details.
+        #   {ModerationAPI::Models::ContentSubmitResponse::Evaluation} for more details.
         #
         #   The evaluation of the content after running the channel policies.
         #
@@ -378,10 +378,10 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::Union
 
         # Sentiment insight
-        variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0 }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0 }
 
         # Language insight
-        variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1 }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1 }
 
         class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
@@ -401,20 +401,20 @@ module ModerationAPI
 
           # @!attribute value
           #
-          #   @return [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value, nil]
+          #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value, nil]
           required :value,
-                   enum: -> { ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value },
+                   enum: -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value },
                    nil?: true
 
           # @!method initialize(probability:, value:, id: :sentiment, type: :insight)
           #   Sentiment insight
           #
           #   @param probability [Float]
-          #   @param value [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0::Value, nil]
+          #   @param value [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value, nil]
           #   @param id [Symbol, :sentiment]
           #   @param type [Symbol, :insight]
 
-          # @see ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0#value
+          # @see ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0#value
           module Value
             extend ModerationAPI::Internal::Type::Enum
 
@@ -458,10 +458,10 @@ module ModerationAPI
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Insight::UnionMember1)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1)]
       end
 
-      # @see ModerationAPI::Models::ModerateAnalyzeResponse#meta
+      # @see ModerationAPI::Models::ContentSubmitResponse#meta
       class Meta < ModerationAPI::Internal::Type::BaseModel
         # @!attribute channel_key
         #   The unique key of the channel where the content was handled. Either the channel
@@ -472,8 +472,8 @@ module ModerationAPI
 
         # @!attribute status
         #
-        #   @return [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status]
-        required :status, enum: -> { ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status }
+        #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Meta::Status]
+        required :status, enum: -> { ModerationAPI::Models::ContentSubmitResponse::Meta::Status }
 
         # @!attribute timestamp
         #
@@ -492,13 +492,13 @@ module ModerationAPI
 
         # @!method initialize(channel_key:, status:, timestamp:, usage:, processing_time: nil)
         #   Some parameter documentations has been truncated, see
-        #   {ModerationAPI::Models::ModerateAnalyzeResponse::Meta} for more details.
+        #   {ModerationAPI::Models::ContentSubmitResponse::Meta} for more details.
         #
         #   Metadata about the moderation request
         #
         #   @param channel_key [String] The unique key of the channel where the content was handled. Either the channel
         #
-        #   @param status [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Meta::Status]
+        #   @param status [Symbol, ModerationAPI::Models::ContentSubmitResponse::Meta::Status]
         #
         #   @param timestamp [Float]
         #
@@ -506,7 +506,7 @@ module ModerationAPI
         #
         #   @param processing_time [String]
 
-        # @see ModerationAPI::Models::ModerateAnalyzeResponse::Meta#status
+        # @see ModerationAPI::Models::ContentSubmitResponse::Meta#status
         module Status
           extend ModerationAPI::Internal::Type::Enum
 
@@ -523,10 +523,10 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::Union
 
         # Classifier policy.
-        variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0 }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0 }
 
         # Entity matcher policy.
-        variant -> { ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1 }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1 }
 
         class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
@@ -558,9 +558,9 @@ module ModerationAPI
 
           # @!attribute labels
           #
-          #   @return [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label>, nil]
+          #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label>, nil]
           optional :labels,
-                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label] }
+                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label] }
 
           # @!method initialize(id:, flagged:, probability:, flagged_fields: nil, labels: nil, type: :classifier)
           #   Classifier policy.
@@ -573,7 +573,7 @@ module ModerationAPI
           #
           #   @param flagged_fields [Array<String>] The keys of the flagged fields if submitting an object.
           #
-          #   @param labels [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0::Label>]
+          #   @param labels [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label>]
           #
           #   @param type [Symbol, :classifier]
 
@@ -613,9 +613,9 @@ module ModerationAPI
 
           # @!attribute matches
           #
-          #   @return [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match>]
+          #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match>]
           required :matches,
-                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match] }
+                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match] }
 
           # @!attribute probability
           #
@@ -637,7 +637,7 @@ module ModerationAPI
           #
           #   @param id [String]
           #   @param flagged [Boolean]
-          #   @param matches [Array<ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1::Match>]
+          #   @param matches [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match>]
           #   @param probability [Float]
           #   @param flagged_fields [Array<String>]
           #   @param type [Symbol, :entity_matcher]
@@ -666,39 +666,38 @@ module ModerationAPI
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember0, ModerationAPI::Models::ModerateAnalyzeResponse::Policy::UnionMember1)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1)]
       end
 
-      # @see ModerationAPI::Models::ModerateAnalyzeResponse#recommendation
+      # @see ModerationAPI::Models::ContentSubmitResponse#recommendation
       class Recommendation < ModerationAPI::Internal::Type::BaseModel
         # @!attribute action
         #   The action to take based on the recommendation
         #
-        #   @return [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action]
-        required :action, enum: -> { ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action }
+        #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action]
+        required :action, enum: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action }
 
         # @!attribute reason_codes
         #   The reason code for the recommendation. Can be used to display a reason to the
         #   user.
         #
-        #   @return [Array<Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode>]
+        #   @return [Array<Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>]
         required :reason_codes,
-                 -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode] }
+                 -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode] }
 
         # @!method initialize(action:, reason_codes:)
         #   Some parameter documentations has been truncated, see
-        #   {ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation} for more
-        #   details.
+        #   {ModerationAPI::Models::ContentSubmitResponse::Recommendation} for more details.
         #
         #   The recommendation for the content based on the evaluation.
         #
-        #   @param action [Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::Action] The action to take based on the recommendation
+        #   @param action [Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action] The action to take based on the recommendation
         #
-        #   @param reason_codes [Array<Symbol, ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation::ReasonCode>] The reason code for the recommendation. Can be used to display a reason to the u
+        #   @param reason_codes [Array<Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>] The reason code for the recommendation. Can be used to display a reason to the u
 
         # The action to take based on the recommendation
         #
-        # @see ModerationAPI::Models::ModerateAnalyzeResponse::Recommendation#action
+        # @see ModerationAPI::Models::ContentSubmitResponse::Recommendation#action
         module Action
           extend ModerationAPI::Internal::Type::Enum
 

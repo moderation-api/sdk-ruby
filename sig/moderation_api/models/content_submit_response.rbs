@@ -162,17 +162,17 @@ module ModerationAPI
           extend ModerationAPI::Internal::Type::Union
 
           type union_member1 =
-            ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text
-            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image
-            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video
-            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio
+            ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3
 
           module UnionMember1
             extend ModerationAPI::Internal::Type::Union
 
-            type text = { text: String, type: :text }
+            type union_member0 = { text: String, type: :text }
 
-            class Text < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
               attr_accessor text: String
 
               attr_accessor type: :text
@@ -182,9 +182,9 @@ module ModerationAPI
               def to_hash: -> { text: String, type: :text }
             end
 
-            type image = { type: :image, url: String }
+            type union_member1 = { type: :image, url: String }
 
-            class Image < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :image
 
               attr_accessor url: String
@@ -194,9 +194,9 @@ module ModerationAPI
               def to_hash: -> { type: :image, url: String }
             end
 
-            type video = { type: :video, url: String }
+            type union_member2 = { type: :video, url: String }
 
-            class Video < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :video
 
               attr_accessor url: String
@@ -206,9 +206,9 @@ module ModerationAPI
               def to_hash: -> { type: :video, url: String }
             end
 
-            type audio = { type: :audio, url: String }
+            type union_member3 = { type: :audio, url: String }
 
-            class Audio < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :audio
 
               attr_accessor url: String
@@ -262,32 +262,32 @@ module ModerationAPI
       end
 
       type insight =
-        ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight
-        | ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight
+        ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0
+        | ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1
 
       module Insight
         extend ModerationAPI::Internal::Type::Union
 
-        type sentiment_insight =
+        type union_member0 =
           {
             id: :sentiment,
             probability: Float,
             type: :insight,
-            value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::value?
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
           }
 
-        class SentimentInsight < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :sentiment
 
           attr_accessor probability: Float
 
           attr_accessor type: :insight
 
-          attr_accessor value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::value?
+          attr_accessor value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
 
           def initialize: (
             probability: Float,
-            value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::value?,
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?,
             ?id: :sentiment,
             ?type: :insight
           ) -> void
@@ -296,7 +296,7 @@ module ModerationAPI
             id: :sentiment,
             probability: Float,
             type: :insight,
-            value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::value?
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
           }
 
           type value = :positive | :neutral | :negative
@@ -308,14 +308,14 @@ module ModerationAPI
             NEUTRAL: :neutral
             NEGATIVE: :negative
 
-            def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::value]
+            def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value]
           end
         end
 
-        type language_insight =
+        type union_member1 =
           { id: :language, probability: Float, type: :insight, value: String? }
 
-        class LanguageInsight < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :language
 
           attr_accessor probability: Float
@@ -393,23 +393,23 @@ module ModerationAPI
       end
 
       type policy =
-        ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput
-        | ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput
+        ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0
+        | ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1
 
       module Policy
         extend ModerationAPI::Internal::Type::Union
 
-        type classifier_output =
+        type union_member0 =
           {
             id: String,
             flagged: bool,
             probability: Float,
             type: :classifier,
             flagged_fields: ::Array[String],
-            labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
+            labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
           }
 
-        class ClassifierOutput < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor flagged: bool
@@ -422,18 +422,18 @@ module ModerationAPI
 
           def flagged_fields=: (::Array[String]) -> ::Array[String]
 
-          attr_reader labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]?
+          attr_reader labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]?
 
           def labels=: (
-            ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
-          ) -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
+            ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
+          ) -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
 
           def initialize: (
             id: String,
             flagged: bool,
             probability: Float,
             ?flagged_fields: ::Array[String],
-            ?labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label],
+            ?labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label],
             ?type: :classifier
           ) -> void
 
@@ -443,7 +443,7 @@ module ModerationAPI
             probability: Float,
             type: :classifier,
             flagged_fields: ::Array[String],
-            labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
+            labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label]
           }
 
           type label = { id: String, flagged: bool, probability: Float }
@@ -465,22 +465,22 @@ module ModerationAPI
           end
         end
 
-        type entity_matcher_output =
+        type union_member1 =
           {
             id: String,
             flagged: bool,
-            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match],
+            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match],
             probability: Float,
             type: :entity_matcher,
             flagged_fields: ::Array[String]
           }
 
-        class EntityMatcherOutput < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: String
 
           attr_accessor flagged: bool
 
-          attr_accessor matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match]
+          attr_accessor matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match]
 
           attr_accessor probability: Float
 
@@ -493,7 +493,7 @@ module ModerationAPI
           def initialize: (
             id: String,
             flagged: bool,
-            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match],
+            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match],
             probability: Float,
             ?flagged_fields: ::Array[String],
             ?type: :entity_matcher
@@ -502,32 +502,31 @@ module ModerationAPI
           def to_hash: -> {
             id: String,
             flagged: bool,
-            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match],
+            matches: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match],
             probability: Float,
             type: :entity_matcher,
             flagged_fields: ::Array[String]
           }
 
-          type match =
-            { match: String, probability: Float, span: ::Array[Integer] }
+          type match = { match: String, probability: Float, span: ::Array[top] }
 
           class Match < ModerationAPI::Internal::Type::BaseModel
             attr_accessor match: String
 
             attr_accessor probability: Float
 
-            attr_accessor span: ::Array[Integer]
+            attr_accessor span: ::Array[top]
 
             def initialize: (
               match: String,
               probability: Float,
-              span: ::Array[Integer]
+              span: ::Array[top]
             ) -> void
 
             def to_hash: -> {
               match: String,
               probability: Float,
-              span: ::Array[Integer]
+              span: ::Array[top]
             }
           end
         end

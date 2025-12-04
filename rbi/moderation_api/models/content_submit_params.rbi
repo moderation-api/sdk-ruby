@@ -18,11 +18,11 @@ module ModerationAPI
       sig do
         returns(
           T.any(
-            ModerationAPI::ContentSubmitParams::Content::Text,
-            ModerationAPI::ContentSubmitParams::Content::Image,
-            ModerationAPI::ContentSubmitParams::Content::Video,
-            ModerationAPI::ContentSubmitParams::Content::Audio,
-            ModerationAPI::ContentSubmitParams::Content::ContentNode
+            ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+            ModerationAPI::ContentSubmitParams::Content::UnionMember4
           )
         )
       end
@@ -93,29 +93,29 @@ module ModerationAPI
           T.nilable(
             T::Array[
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Toxicity,
-                ModerationAPI::ContentSubmitParams::Policy::PersonalInformation,
-                ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere,
-                ModerationAPI::ContentSubmitParams::Policy::Hate,
-                ModerationAPI::ContentSubmitParams::Policy::Illicit,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
-                ModerationAPI::ContentSubmitParams::Policy::Sexual,
-                ModerationAPI::ContentSubmitParams::Policy::Flirtation,
-                ModerationAPI::ContentSubmitParams::Policy::Profanity,
-                ModerationAPI::ContentSubmitParams::Policy::Violence,
-                ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
-                ModerationAPI::ContentSubmitParams::Policy::Spam,
-                ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
-                ModerationAPI::ContentSubmitParams::Policy::Political,
-                ModerationAPI::ContentSubmitParams::Policy::Religion,
-                ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking,
-                ModerationAPI::ContentSubmitParams::Policy::Guideline
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22
               )
             ]
           )
@@ -128,29 +128,29 @@ module ModerationAPI
           policies:
             T::Array[
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Toxicity::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::PersonalInformation::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Hate::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Illicit::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Violence::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22::OrHash
               )
             ]
         ).void
@@ -161,11 +161,11 @@ module ModerationAPI
         params(
           content:
             T.any(
-              ModerationAPI::ContentSubmitParams::Content::Text::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::Image::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::Video::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::Audio::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::ContentNode::OrHash
+              ModerationAPI::ContentSubmitParams::Content::UnionMember0::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember1::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember2::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember3::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember4::OrHash
             ),
           author_id: String,
           channel: String,
@@ -177,29 +177,29 @@ module ModerationAPI
           policies:
             T::Array[
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Toxicity::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::PersonalInformation::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Hate::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Illicit::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Violence::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
-                ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22::OrHash
               )
             ],
           request_options: ModerationAPI::RequestOptions::OrHash
@@ -235,11 +235,11 @@ module ModerationAPI
           {
             content:
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::Text,
-                ModerationAPI::ContentSubmitParams::Content::Image,
-                ModerationAPI::ContentSubmitParams::Content::Video,
-                ModerationAPI::ContentSubmitParams::Content::Audio,
-                ModerationAPI::ContentSubmitParams::Content::ContentNode
+                ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember4
               ),
             author_id: String,
             channel: String,
@@ -251,29 +251,29 @@ module ModerationAPI
             policies:
               T::Array[
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Policy::Toxicity,
-                  ModerationAPI::ContentSubmitParams::Policy::PersonalInformation,
-                  ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere,
-                  ModerationAPI::ContentSubmitParams::Policy::Hate,
-                  ModerationAPI::ContentSubmitParams::Policy::Illicit,
-                  ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs,
-                  ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol,
-                  ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
-                  ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
-                  ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
-                  ModerationAPI::ContentSubmitParams::Policy::Sexual,
-                  ModerationAPI::ContentSubmitParams::Policy::Flirtation,
-                  ModerationAPI::ContentSubmitParams::Policy::Profanity,
-                  ModerationAPI::ContentSubmitParams::Policy::Violence,
-                  ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
-                  ModerationAPI::ContentSubmitParams::Policy::Spam,
-                  ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
-                  ModerationAPI::ContentSubmitParams::Policy::Political,
-                  ModerationAPI::ContentSubmitParams::Policy::Religion,
-                  ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking,
-                  ModerationAPI::ContentSubmitParams::Policy::Guideline
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember22
                 )
               ],
             request_options: ModerationAPI::RequestOptions
@@ -290,19 +290,19 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::ContentSubmitParams::Content::Text,
-              ModerationAPI::ContentSubmitParams::Content::Image,
-              ModerationAPI::ContentSubmitParams::Content::Video,
-              ModerationAPI::ContentSubmitParams::Content::Audio,
-              ModerationAPI::ContentSubmitParams::Content::ContentNode
+              ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+              ModerationAPI::ContentSubmitParams::Content::UnionMember4
             )
           end
 
-        class Text < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::Text,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -328,11 +328,11 @@ module ModerationAPI
           end
         end
 
-        class Image < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::Image,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -358,11 +358,11 @@ module ModerationAPI
           end
         end
 
-        class Video < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::Video,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember2,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -388,11 +388,11 @@ module ModerationAPI
           end
         end
 
-        class Audio < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::Audio,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember3,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -418,11 +418,11 @@ module ModerationAPI
           end
         end
 
-        class ContentNode < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::ContentNode,
+                ModerationAPI::ContentSubmitParams::Content::UnionMember4,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -433,10 +433,10 @@ module ModerationAPI
               T::Hash[
                 Symbol,
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
                 )
               ]
             )
@@ -453,10 +453,10 @@ module ModerationAPI
                 T::Hash[
                   Symbol,
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio::OrHash
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3::OrHash
                   )
                 ],
               type: Symbol
@@ -476,10 +476,10 @@ module ModerationAPI
                   T::Hash[
                     Symbol,
                     T.any(
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
                     )
                   ],
                 type: Symbol
@@ -496,18 +496,18 @@ module ModerationAPI
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
                 )
               end
 
-            class Text < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -535,11 +535,11 @@ module ModerationAPI
               end
             end
 
-            class Image < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -567,11 +567,11 @@ module ModerationAPI
               end
             end
 
-            class Video < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -599,11 +599,11 @@ module ModerationAPI
               end
             end
 
-            class Audio < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio,
+                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -634,7 +634,7 @@ module ModerationAPI
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Variants
+                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::Variants
                 ]
               )
             end
@@ -718,37 +718,37 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::ContentSubmitParams::Policy::Toxicity,
-              ModerationAPI::ContentSubmitParams::Policy::PersonalInformation,
-              ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere,
-              ModerationAPI::ContentSubmitParams::Policy::Hate,
-              ModerationAPI::ContentSubmitParams::Policy::Illicit,
-              ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs,
-              ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol,
-              ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
-              ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
-              ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
-              ModerationAPI::ContentSubmitParams::Policy::Sexual,
-              ModerationAPI::ContentSubmitParams::Policy::Flirtation,
-              ModerationAPI::ContentSubmitParams::Policy::Profanity,
-              ModerationAPI::ContentSubmitParams::Policy::Violence,
-              ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
-              ModerationAPI::ContentSubmitParams::Policy::Spam,
-              ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
-              ModerationAPI::ContentSubmitParams::Policy::Political,
-              ModerationAPI::ContentSubmitParams::Policy::Religion,
-              ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
-              ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
-              ModerationAPI::ContentSubmitParams::Policy::URLMasking,
-              ModerationAPI::ContentSubmitParams::Policy::Guideline
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember22
             )
           end
 
-        class Toxicity < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Toxicity,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -768,11 +768,11 @@ module ModerationAPI
           end
         end
 
-        class PersonalInformation < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::PersonalInformation,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -792,11 +792,11 @@ module ModerationAPI
           end
         end
 
-        class ToxicitySevere < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -816,11 +816,11 @@ module ModerationAPI
           end
         end
 
-        class Hate < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Hate,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -840,11 +840,11 @@ module ModerationAPI
           end
         end
 
-        class Illicit < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Illicit,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -864,11 +864,11 @@ module ModerationAPI
           end
         end
 
-        class IllicitDrugs < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember5 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -888,11 +888,11 @@ module ModerationAPI
           end
         end
 
-        class IllicitAlcohol < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember6 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -912,11 +912,11 @@ module ModerationAPI
           end
         end
 
-        class IllicitFirearms < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember7 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -936,11 +936,11 @@ module ModerationAPI
           end
         end
 
-        class IllicitTobacco < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember8 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -960,11 +960,11 @@ module ModerationAPI
           end
         end
 
-        class IllicitGambling < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember9 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -984,11 +984,11 @@ module ModerationAPI
           end
         end
 
-        class Sexual < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember10 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Sexual,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1008,11 +1008,11 @@ module ModerationAPI
           end
         end
 
-        class Flirtation < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember11 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Flirtation,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1032,11 +1032,11 @@ module ModerationAPI
           end
         end
 
-        class Profanity < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember12 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Profanity,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1056,11 +1056,11 @@ module ModerationAPI
           end
         end
 
-        class Violence < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember13 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Violence,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1080,11 +1080,11 @@ module ModerationAPI
           end
         end
 
-        class SelfHarm < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember14 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1104,11 +1104,11 @@ module ModerationAPI
           end
         end
 
-        class Spam < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember15 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Spam,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1128,11 +1128,11 @@ module ModerationAPI
           end
         end
 
-        class SelfPromotion < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember16 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1152,11 +1152,11 @@ module ModerationAPI
           end
         end
 
-        class Political < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember17 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Political,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1176,11 +1176,11 @@ module ModerationAPI
           end
         end
 
-        class Religion < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember18 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Religion,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1200,11 +1200,11 @@ module ModerationAPI
           end
         end
 
-        class CodeAbuse < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember19 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1224,11 +1224,11 @@ module ModerationAPI
           end
         end
 
-        class PiiMasking < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember20 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1240,7 +1240,7 @@ module ModerationAPI
             returns(
               T::Hash[
                 Symbol,
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity
               ]
             )
           end
@@ -1251,7 +1251,7 @@ module ModerationAPI
               entities:
                 T::Hash[
                   Symbol,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::OrHash
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::OrHash
                 ],
               id: Symbol
             ).returns(T.attached_class)
@@ -1266,7 +1266,7 @@ module ModerationAPI
                 entities:
                   T::Hash[
                     Symbol,
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity
                   ]
               }
             )
@@ -1278,14 +1278,14 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity,
                   ModerationAPI::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::OrSymbol
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::OrSymbol
               )
             end
             attr_accessor :id
@@ -1308,7 +1308,7 @@ module ModerationAPI
             sig do
               params(
                 id:
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::OrSymbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::OrSymbol,
                 enable: T::Boolean,
                 flag: T::Boolean,
                 should_mask: T::Boolean,
@@ -1322,7 +1322,7 @@ module ModerationAPI
               override.returns(
                 {
                   id:
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::OrSymbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::OrSymbol,
                   enable: T::Boolean,
                   flag: T::Boolean,
                   should_mask: T::Boolean,
@@ -1340,7 +1340,7 @@ module ModerationAPI
                 T.type_alias do
                   T.all(
                     Symbol,
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1348,53 +1348,53 @@ module ModerationAPI
               EMAIL =
                 T.let(
                   :email,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               PHONE =
                 T.let(
                   :phone,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               URL =
                 T.let(
                   :url,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               ADDRESS =
                 T.let(
                   :address,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               NAME =
                 T.let(
                   :name,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               USERNAME =
                 T.let(
                   :username,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               IP_ADDRESS =
                 T.let(
                   :ip_address,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               CREDIT_CARD =
                 T.let(
                   :credit_card,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
               SENSITIVE_OTHER =
                 T.let(
                   :sensitive_other,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
                   ]
                 )
               end
@@ -1404,11 +1404,11 @@ module ModerationAPI
           end
         end
 
-        class URLMasking < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember21 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1420,7 +1420,7 @@ module ModerationAPI
             returns(
               T::Hash[
                 Symbol,
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity
               ]
             )
           end
@@ -1431,7 +1431,7 @@ module ModerationAPI
               entities:
                 T::Hash[
                   Symbol,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::OrHash
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::OrHash
                 ],
               id: Symbol
             ).returns(T.attached_class)
@@ -1446,7 +1446,7 @@ module ModerationAPI
                 entities:
                   T::Hash[
                     Symbol,
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity
                   ]
               }
             )
@@ -1458,14 +1458,14 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity,
                   ModerationAPI::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::OrSymbol
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::OrSymbol
               )
             end
             attr_accessor :id
@@ -1488,7 +1488,7 @@ module ModerationAPI
             sig do
               params(
                 id:
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::OrSymbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::OrSymbol,
                 enable: T::Boolean,
                 flag: T::Boolean,
                 should_mask: T::Boolean,
@@ -1502,7 +1502,7 @@ module ModerationAPI
               override.returns(
                 {
                   id:
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::OrSymbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::OrSymbol,
                   enable: T::Boolean,
                   flag: T::Boolean,
                   should_mask: T::Boolean,
@@ -1520,7 +1520,7 @@ module ModerationAPI
                 T.type_alias do
                   T.all(
                     Symbol,
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -1528,53 +1528,53 @@ module ModerationAPI
               EMAIL =
                 T.let(
                   :email,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               PHONE =
                 T.let(
                   :phone,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               URL =
                 T.let(
                   :url,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               ADDRESS =
                 T.let(
                   :address,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               NAME =
                 T.let(
                   :name,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               USERNAME =
                 T.let(
                   :username,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               IP_ADDRESS =
                 T.let(
                   :ip_address,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               CREDIT_CARD =
                 T.let(
                   :credit_card,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
               SENSITIVE_OTHER =
                 T.let(
                   :sensitive_other,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
                   ]
                 )
               end
@@ -1584,11 +1584,11 @@ module ModerationAPI
           end
         end
 
-        class Guideline < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember22 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Policy::Guideline,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22,
                 ModerationAPI::Internal::AnyHash
               )
             end

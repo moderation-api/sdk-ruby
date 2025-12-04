@@ -1246,14 +1246,14 @@ module ModerationAPI
             sig { returns(Float) }
             attr_accessor :probability
 
-            sig { returns(T::Array[T.anything]) }
+            sig { returns(T::Array[Integer]) }
             attr_accessor :span
 
             sig do
               params(
                 match: String,
                 probability: Float,
-                span: T::Array[T.anything]
+                span: T::Array[Integer]
               ).returns(T.attached_class)
             end
             def self.new(match:, probability:, span:)
@@ -1261,11 +1261,7 @@ module ModerationAPI
 
             sig do
               override.returns(
-                {
-                  match: String,
-                  probability: Float,
-                  span: T::Array[T.anything]
-                }
+                { match: String, probability: Float, span: T::Array[Integer] }
               )
             end
             def to_hash

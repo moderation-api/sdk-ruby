@@ -508,25 +508,26 @@ module ModerationAPI
             flagged_fields: ::Array[String]
           }
 
-          type match = { match: String, probability: Float, span: ::Array[top] }
+          type match =
+            { match: String, probability: Float, span: ::Array[Integer] }
 
           class Match < ModerationAPI::Internal::Type::BaseModel
             attr_accessor match: String
 
             attr_accessor probability: Float
 
-            attr_accessor span: ::Array[top]
+            attr_accessor span: ::Array[Integer]
 
             def initialize: (
               match: String,
               probability: Float,
-              span: ::Array[top]
+              span: ::Array[Integer]
             ) -> void
 
             def to_hash: -> {
               match: String,
               probability: Float,
-              span: ::Array[top]
+              span: ::Array[Integer]
             }
           end
         end

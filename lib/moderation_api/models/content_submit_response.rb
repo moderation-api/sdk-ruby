@@ -655,13 +655,13 @@ module ModerationAPI
 
             # @!attribute span
             #
-            #   @return [Array<Object>]
-            required :span, ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Internal::Type::Unknown]
+            #   @return [Array<Integer>]
+            required :span, ModerationAPI::Internal::Type::ArrayOf[Integer]
 
             # @!method initialize(match:, probability:, span:)
             #   @param match [String]
             #   @param probability [Float]
-            #   @param span [Array<Object>]
+            #   @param span [Array<Integer>]
           end
         end
 

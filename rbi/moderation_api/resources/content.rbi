@@ -20,6 +20,34 @@ module ModerationAPI
           do_not_store: T::Boolean,
           metadata: T::Hash[Symbol, T.anything],
           meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol,
+          policies:
+            T::Array[
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22::OrHash
+              )
+            ],
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(ModerationAPI::Models::ContentSubmitResponse)
       end
@@ -41,6 +69,9 @@ module ModerationAPI
         metadata: nil,
         # The meta type of content being moderated
         meta_type: nil,
+        # Optionally override the channel policies for this moderation request only
+        # (enterprise).
+        policies: nil,
         request_options: {}
       )
       end

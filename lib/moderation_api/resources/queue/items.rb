@@ -24,9 +24,9 @@ module ModerationAPI
         #
         # @param labels [String]
         #
-        # @param page_number [String] Page number to fetch
+        # @param page_number [Float] Page number to fetch
         #
-        # @param page_size [String] Number of items per page
+        # @param page_size [Float] Number of items per page
         #
         # @param sort_direction [Symbol, ModerationAPI::Models::Queue::ItemListParams::SortDirection] Sort direction
         #

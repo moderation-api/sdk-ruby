@@ -46,14 +46,14 @@ module ModerationAPI
         # @!attribute page_number
         #   Page number to fetch
         #
-        #   @return [String, nil]
-        optional :page_number, String
+        #   @return [Float, nil]
+        optional :page_number, Float
 
         # @!attribute page_size
         #   Number of items per page
         #
-        #   @return [String, nil]
-        optional :page_size, String
+        #   @return [Float, nil]
+        optional :page_size, Float
 
         # @!attribute sort_direction
         #   Sort direction
@@ -81,9 +81,9 @@ module ModerationAPI
         #
         #   @param labels [String]
         #
-        #   @param page_number [String] Page number to fetch
+        #   @param page_number [Float] Page number to fetch
         #
-        #   @param page_size [String] Number of items per page
+        #   @param page_size [Float] Number of items per page
         #
         #   @param sort_direction [Symbol, ModerationAPI::Models::Queue::ItemListParams::SortDirection] Sort direction
         #

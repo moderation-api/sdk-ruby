@@ -129,16 +129,16 @@ module ModerationAPI
           insights:
             T::Array[
               T.any(
-                ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::OrHash,
-                ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight::OrHash
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::OrHash,
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1::OrHash
               )
             ],
           meta: ModerationAPI::Models::ContentSubmitResponse::Meta::OrHash,
           policies:
             T::Array[
               T.any(
-                ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::OrHash,
-                ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::OrHash
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::OrHash,
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::OrHash
               )
             ],
           recommendation:
@@ -506,18 +506,18 @@ module ModerationAPI
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3
                 )
               end
 
-            class Text < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -545,11 +545,11 @@ module ModerationAPI
               end
             end
 
-            class Image < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -577,11 +577,11 @@ module ModerationAPI
               end
             end
 
-            class Video < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -609,11 +609,11 @@ module ModerationAPI
               end
             end
 
-            class Audio < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -736,23 +736,23 @@ module ModerationAPI
         end
       end
 
-      # Sentiment insight
+      # Insight policy.
       module Insight
         extend ModerationAPI::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight,
-              ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight
+              ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0,
+              ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1
             )
           end
 
-        class SentimentInsight < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight,
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -769,7 +769,7 @@ module ModerationAPI
           sig do
             returns(
               T.nilable(
-                ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
             )
           end
@@ -781,7 +781,7 @@ module ModerationAPI
               probability: Float,
               value:
                 T.nilable(
-                  ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::OrSymbol
+                  ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::OrSymbol
                 ),
               id: Symbol,
               type: Symbol
@@ -798,7 +798,7 @@ module ModerationAPI
                 type: Symbol,
                 value:
                   T.nilable(
-                    ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::TaggedSymbol
+                    ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
                   )
               }
             )
@@ -813,7 +813,7 @@ module ModerationAPI
               T.type_alias do
                 T.all(
                   Symbol,
-                  ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value
+                  ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -821,23 +821,23 @@ module ModerationAPI
             POSITIVE =
               T.let(
                 :positive,
-                ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
             NEUTRAL =
               T.let(
                 :neutral,
-                ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
             NEGATIVE =
               T.let(
                 :negative,
-                ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::TaggedSymbol
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value::TaggedSymbol
+                  ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value::TaggedSymbol
                 ]
               )
             end
@@ -846,11 +846,11 @@ module ModerationAPI
           end
         end
 
-        class LanguageInsight < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight,
+                ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1016,16 +1016,16 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput,
-              ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput
+              ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0,
+              ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1
             )
           end
 
-        class ClassifierOutput < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput,
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1054,7 +1054,7 @@ module ModerationAPI
             returns(
               T.nilable(
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label
                 ]
               )
             )
@@ -1065,7 +1065,7 @@ module ModerationAPI
             params(
               labels:
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label::OrHash
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label::OrHash
                 ]
             ).void
           end
@@ -1080,7 +1080,7 @@ module ModerationAPI
               flagged_fields: T::Array[String],
               labels:
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label::OrHash
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label::OrHash
                 ],
               type: Symbol
             ).returns(T.attached_class)
@@ -1107,7 +1107,7 @@ module ModerationAPI
                 flagged_fields: T::Array[String],
                 labels:
                   T::Array[
-                    ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label
                   ]
               }
             )
@@ -1119,7 +1119,7 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label,
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label,
                   ModerationAPI::Internal::AnyHash
                 )
               end
@@ -1153,11 +1153,11 @@ module ModerationAPI
           end
         end
 
-        class EntityMatcherOutput < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput,
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -1171,7 +1171,7 @@ module ModerationAPI
           sig do
             returns(
               T::Array[
-                ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match
+                ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match
               ]
             )
           end
@@ -1196,7 +1196,7 @@ module ModerationAPI
               flagged: T::Boolean,
               matches:
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::OrHash
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match::OrHash
                 ],
               probability: Float,
               flagged_fields: T::Array[String],
@@ -1220,7 +1220,7 @@ module ModerationAPI
                 flagged: T::Boolean,
                 matches:
                   T::Array[
-                    ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match
                   ],
                 probability: Float,
                 type: Symbol,
@@ -1235,7 +1235,7 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match,
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match,
                   ModerationAPI::Internal::AnyHash
                 )
               end
@@ -1246,14 +1246,14 @@ module ModerationAPI
             sig { returns(Float) }
             attr_accessor :probability
 
-            sig { returns(T::Array[Integer]) }
+            sig { returns(T::Array[T.anything]) }
             attr_accessor :span
 
             sig do
               params(
                 match: String,
                 probability: Float,
-                span: T::Array[Integer]
+                span: T::Array[T.anything]
               ).returns(T.attached_class)
             end
             def self.new(match:, probability:, span:)
@@ -1261,7 +1261,11 @@ module ModerationAPI
 
             sig do
               override.returns(
-                { match: String, probability: Float, span: T::Array[Integer] }
+                {
+                  match: String,
+                  probability: Float,
+                  span: T::Array[T.anything]
+                }
               )
             end
             def to_hash

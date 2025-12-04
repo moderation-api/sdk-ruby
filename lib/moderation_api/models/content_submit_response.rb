@@ -26,7 +26,7 @@ module ModerationAPI
       # @!attribute insights
       #   Results of all insights enabled in the channel.
       #
-      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight, ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight>]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1>]
       required :insights,
                -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Insight] }
 
@@ -39,7 +39,7 @@ module ModerationAPI
       # @!attribute policies
       #   Results of all policies in the channel. Sorted by highest probability.
       #
-      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput, ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput>]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1>]
       required :policies,
                -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Policy] }
 
@@ -66,11 +66,11 @@ module ModerationAPI
       #
       #   @param evaluation [ModerationAPI::Models::ContentSubmitResponse::Evaluation] The evaluation of the content after running the channel policies.
       #
-      #   @param insights [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight, ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight>] Results of all insights enabled in the channel.
+      #   @param insights [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1>] Results of all insights enabled in the channel.
       #
       #   @param meta [ModerationAPI::Models::ContentSubmitResponse::Meta] Metadata about the moderation request
       #
-      #   @param policies [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput, ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput>] Results of all policies in the channel. Sorted by highest probability.
+      #   @param policies [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1>] Results of all policies in the channel. Sorted by highest probability.
       #
       #   @param recommendation [ModerationAPI::Models::ContentSubmitResponse::Recommendation] The recommendation for the content based on the evaluation.
       #
@@ -196,7 +196,7 @@ module ModerationAPI
         # @!attribute modified
         #   The modified content, if any.
         #
-        #   @return [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio}, nil]
+        #   @return [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3}, nil]
         required :modified,
                  union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified },
                  nil?: true
@@ -211,7 +211,7 @@ module ModerationAPI
         #
         #   @param masked [Boolean] Whether any values have been masked.
         #
-        #   @param modified [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio}, nil] The modified content, if any.
+        #   @param modified [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3}, nil] The modified content, if any.
 
         # The modified content, if any.
         #
@@ -228,18 +228,18 @@ module ModerationAPI
             extend ModerationAPI::Internal::Type::Union
 
             # Text
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0 }
 
             # Image
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1 }
 
             # Video
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2 }
 
             # Audio
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3 }
 
-            class Text < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
               # @!attribute text
               #   The content text
               #
@@ -259,7 +259,7 @@ module ModerationAPI
               #   @param type [Symbol, :text]
             end
 
-            class Image < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
               # @!attribute type
               #
               #   @return [Symbol, :image]
@@ -279,7 +279,7 @@ module ModerationAPI
               #   @param type [Symbol, :image]
             end
 
-            class Video < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
               # @!attribute type
               #
               #   @return [Symbol, :video]
@@ -299,7 +299,7 @@ module ModerationAPI
               #   @param type [Symbol, :video]
             end
 
-            class Audio < ModerationAPI::Internal::Type::BaseModel
+            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
               # @!attribute type
               #
               #   @return [Symbol, :audio]
@@ -320,11 +320,11 @@ module ModerationAPI
             end
 
             # @!method self.variants
-            #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio)]
+            #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3)]
           end
 
           # @!method self.variants
-          #   @return [Array(String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio})]
+          #   @return [Array(String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember1, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember2, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::UnionMember3})]
 
           # @type [ModerationAPI::Internal::Type::Converter]
           UnionMember1Map =
@@ -373,17 +373,17 @@ module ModerationAPI
         #   @param unicode_spoofed [Boolean] Whether the content was flagged for Unicode spoofing.
       end
 
-      # Sentiment insight
+      # Insight policy.
       module Insight
         extend ModerationAPI::Internal::Type::Union
 
         # Sentiment insight
-        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0 }
 
         # Language insight
-        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1 }
 
-        class SentimentInsight < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :sentiment]
@@ -401,20 +401,20 @@ module ModerationAPI
 
           # @!attribute value
           #
-          #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value, nil]
+          #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value, nil]
           required :value,
-                   enum: -> { ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value },
+                   enum: -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value },
                    nil?: true
 
           # @!method initialize(probability:, value:, id: :sentiment, type: :insight)
           #   Sentiment insight
           #
           #   @param probability [Float]
-          #   @param value [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight::Value, nil]
+          #   @param value [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value, nil]
           #   @param id [Symbol, :sentiment]
           #   @param type [Symbol, :insight]
 
-          # @see ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight#value
+          # @see ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0#value
           module Value
             extend ModerationAPI::Internal::Type::Enum
 
@@ -427,7 +427,7 @@ module ModerationAPI
           end
         end
 
-        class LanguageInsight < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :language]
@@ -458,7 +458,7 @@ module ModerationAPI
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsight, ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsight)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1)]
       end
 
       # @see ModerationAPI::Models::ContentSubmitResponse#meta
@@ -523,12 +523,12 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::Union
 
         # Classifier policy.
-        variant -> { ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0 }
 
         # Entity matcher policy.
-        variant -> { ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1 }
 
-        class ClassifierOutput < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #   The unique identifier for the classifier output.
           #
@@ -558,9 +558,9 @@ module ModerationAPI
 
           # @!attribute labels
           #
-          #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label>, nil]
+          #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label>, nil]
           optional :labels,
-                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label] }
+                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label] }
 
           # @!method initialize(id:, flagged:, probability:, flagged_fields: nil, labels: nil, type: :classifier)
           #   Classifier policy.
@@ -573,7 +573,7 @@ module ModerationAPI
           #
           #   @param flagged_fields [Array<String>] The keys of the flagged fields if submitting an object.
           #
-          #   @param labels [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label>]
+          #   @param labels [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0::Label>]
           #
           #   @param type [Symbol, :classifier]
 
@@ -600,7 +600,7 @@ module ModerationAPI
           end
         end
 
-        class EntityMatcherOutput < ModerationAPI::Internal::Type::BaseModel
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [String]
@@ -613,9 +613,9 @@ module ModerationAPI
 
           # @!attribute matches
           #
-          #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match>]
+          #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match>]
           required :matches,
-                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match] }
+                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match] }
 
           # @!attribute probability
           #
@@ -637,7 +637,7 @@ module ModerationAPI
           #
           #   @param id [String]
           #   @param flagged [Boolean]
-          #   @param matches [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match>]
+          #   @param matches [Array<ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1::Match>]
           #   @param probability [Float]
           #   @param flagged_fields [Array<String>]
           #   @param type [Symbol, :entity_matcher]
@@ -655,18 +655,18 @@ module ModerationAPI
 
             # @!attribute span
             #
-            #   @return [Array<Integer>]
-            required :span, ModerationAPI::Internal::Type::ArrayOf[Integer]
+            #   @return [Array<Object>]
+            required :span, ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Internal::Type::Unknown]
 
             # @!method initialize(match:, probability:, span:)
             #   @param match [String]
             #   @param probability [Float]
-            #   @param span [Array<Integer>]
+            #   @param span [Array<Object>]
           end
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput, ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Policy::UnionMember1)]
       end
 
       # @see ModerationAPI::Models::ContentSubmitResponse#recommendation

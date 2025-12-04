@@ -28,9 +28,9 @@ moderation_api = ModerationAPI::Client.new(
   secret_key: ENV["MODAPI_SECRET_KEY"] # This is the default and can be omitted
 )
 
-authors = moderation_api.authors.list
+response = moderation_api.content.submit(content: {text: "x", type: "text"})
 
-puts(authors.authors)
+puts(response.recommendation)
 ```
 
 ### Handling errors
@@ -39,7 +39,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  author = moderation_api.authors.list
+  content = moderation_api.content.submit(content: {text: "x", type: "text"})
 rescue ModerationAPI::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -82,7 +82,7 @@ moderation_api = ModerationAPI::Client.new(
 )
 
 # Or, configure per-request:
-moderation_api.authors.list(request_options: {max_retries: 5})
+moderation_api.content.submit(content: {text: "x", type: "text"}, request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -96,7 +96,7 @@ moderation_api = ModerationAPI::Client.new(
 )
 
 # Or, configure per-request:
-moderation_api.authors.list(request_options: {timeout: 5})
+moderation_api.content.submit(content: {text: "x", type: "text"}, request_options: {timeout: 5})
 ```
 
 On timeout, `ModerationAPI::Errors::APITimeoutError` is raised.
@@ -126,8 +126,9 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-authors =
-  moderation_api.authors.list(
+response =
+  moderation_api.content.submit(
+    content: {text: "x", type: "text"},
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -135,7 +136,7 @@ authors =
     }
   )
 
-puts(authors[:my_undocumented_property])
+puts(response[:my_undocumented_property])
 ```
 
 #### Undocumented request params
@@ -173,18 +174,20 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-moderation_api.authors.list
+moderation_api.content.submit(content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "x"))
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-moderation_api.authors.list
+moderation_api.content.submit(content: {text: "x", type: "text"})
 
 # You can also splat a full Params class:
-params = ModerationAPI::AuthorListParams.new
-moderation_api.authors.list(**params)
+params = ModerationAPI::ContentSubmitParams.new(
+  content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "x")
+)
+moderation_api.content.submit(**params)
 ```
 
 ### Enums

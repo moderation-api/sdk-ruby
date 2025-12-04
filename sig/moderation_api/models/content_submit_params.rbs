@@ -251,36 +251,36 @@ module ModerationAPI
       end
 
       type policy =
-        ModerationAPI::ContentSubmitParams::Policy::UnionMember0
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember1
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember2
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember3
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember4
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember5
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember6
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember7
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember8
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember9
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember10
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember11
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember12
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember13
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember14
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember15
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember16
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember17
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember18
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember19
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember20
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember21
-        | ModerationAPI::ContentSubmitParams::Policy::UnionMember22
+        ModerationAPI::ContentSubmitParams::Policy::Toxicity
+        | ModerationAPI::ContentSubmitParams::Policy::PersonalInformation
+        | ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere
+        | ModerationAPI::ContentSubmitParams::Policy::Hate
+        | ModerationAPI::ContentSubmitParams::Policy::Illicit
+        | ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs
+        | ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol
+        | ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms
+        | ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco
+        | ModerationAPI::ContentSubmitParams::Policy::IllicitGambling
+        | ModerationAPI::ContentSubmitParams::Policy::Sexual
+        | ModerationAPI::ContentSubmitParams::Policy::Flirtation
+        | ModerationAPI::ContentSubmitParams::Policy::Profanity
+        | ModerationAPI::ContentSubmitParams::Policy::Violence
+        | ModerationAPI::ContentSubmitParams::Policy::SelfHarm
+        | ModerationAPI::ContentSubmitParams::Policy::Spam
+        | ModerationAPI::ContentSubmitParams::Policy::SelfPromotion
+        | ModerationAPI::ContentSubmitParams::Policy::Political
+        | ModerationAPI::ContentSubmitParams::Policy::Religion
+        | ModerationAPI::ContentSubmitParams::Policy::CodeAbuse
+        | ModerationAPI::ContentSubmitParams::Policy::PiiMasking
+        | ModerationAPI::ContentSubmitParams::Policy::URLMasking
+        | ModerationAPI::ContentSubmitParams::Policy::Guideline
 
       module Policy
         extend ModerationAPI::Internal::Type::Union
 
-        type union_member0 = { id: :toxicity, flag: bool }
+        type toxicity = { id: :toxicity, flag: bool }
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class Toxicity < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :toxicity
 
           attr_accessor flag: bool
@@ -290,9 +290,9 @@ module ModerationAPI
           def to_hash: -> { id: :toxicity, flag: bool }
         end
 
-        type union_member1 = { id: :personal_information, flag: bool }
+        type personal_information = { id: :personal_information, flag: bool }
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class PersonalInformation < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :personal_information
 
           attr_accessor flag: bool
@@ -302,9 +302,9 @@ module ModerationAPI
           def to_hash: -> { id: :personal_information, flag: bool }
         end
 
-        type union_member2 = { id: :toxicity_severe, flag: bool }
+        type toxicity_severe = { id: :toxicity_severe, flag: bool }
 
-        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+        class ToxicitySevere < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :toxicity_severe
 
           attr_accessor flag: bool
@@ -314,9 +314,9 @@ module ModerationAPI
           def to_hash: -> { id: :toxicity_severe, flag: bool }
         end
 
-        type union_member3 = { id: :hate, flag: bool }
+        type hate = { id: :hate, flag: bool }
 
-        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+        class Hate < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :hate
 
           attr_accessor flag: bool
@@ -326,9 +326,9 @@ module ModerationAPI
           def to_hash: -> { id: :hate, flag: bool }
         end
 
-        type union_member4 = { id: :illicit, flag: bool }
+        type illicit = { id: :illicit, flag: bool }
 
-        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+        class Illicit < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit
 
           attr_accessor flag: bool
@@ -338,9 +338,9 @@ module ModerationAPI
           def to_hash: -> { id: :illicit, flag: bool }
         end
 
-        type union_member5 = { id: :illicit_drugs, flag: bool }
+        type illicit_drugs = { id: :illicit_drugs, flag: bool }
 
-        class UnionMember5 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitDrugs < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_drugs
 
           attr_accessor flag: bool
@@ -350,9 +350,9 @@ module ModerationAPI
           def to_hash: -> { id: :illicit_drugs, flag: bool }
         end
 
-        type union_member6 = { id: :illicit_alcohol, flag: bool }
+        type illicit_alcohol = { id: :illicit_alcohol, flag: bool }
 
-        class UnionMember6 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitAlcohol < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_alcohol
 
           attr_accessor flag: bool
@@ -362,9 +362,9 @@ module ModerationAPI
           def to_hash: -> { id: :illicit_alcohol, flag: bool }
         end
 
-        type union_member7 = { id: :illicit_firearms, flag: bool }
+        type illicit_firearms = { id: :illicit_firearms, flag: bool }
 
-        class UnionMember7 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitFirearms < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_firearms
 
           attr_accessor flag: bool
@@ -374,9 +374,9 @@ module ModerationAPI
           def to_hash: -> { id: :illicit_firearms, flag: bool }
         end
 
-        type union_member8 = { id: :illicit_tobacco, flag: bool }
+        type illicit_tobacco = { id: :illicit_tobacco, flag: bool }
 
-        class UnionMember8 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitTobacco < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_tobacco
 
           attr_accessor flag: bool
@@ -386,9 +386,9 @@ module ModerationAPI
           def to_hash: -> { id: :illicit_tobacco, flag: bool }
         end
 
-        type union_member9 = { id: :illicit_gambling, flag: bool }
+        type illicit_gambling = { id: :illicit_gambling, flag: bool }
 
-        class UnionMember9 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitGambling < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_gambling
 
           attr_accessor flag: bool
@@ -398,9 +398,9 @@ module ModerationAPI
           def to_hash: -> { id: :illicit_gambling, flag: bool }
         end
 
-        type union_member10 = { id: :sexual, flag: bool }
+        type sexual = { id: :sexual, flag: bool }
 
-        class UnionMember10 < ModerationAPI::Internal::Type::BaseModel
+        class Sexual < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :sexual
 
           attr_accessor flag: bool
@@ -410,9 +410,9 @@ module ModerationAPI
           def to_hash: -> { id: :sexual, flag: bool }
         end
 
-        type union_member11 = { id: :flirtation, flag: bool }
+        type flirtation = { id: :flirtation, flag: bool }
 
-        class UnionMember11 < ModerationAPI::Internal::Type::BaseModel
+        class Flirtation < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :flirtation
 
           attr_accessor flag: bool
@@ -422,9 +422,9 @@ module ModerationAPI
           def to_hash: -> { id: :flirtation, flag: bool }
         end
 
-        type union_member12 = { id: :profanity, flag: bool }
+        type profanity = { id: :profanity, flag: bool }
 
-        class UnionMember12 < ModerationAPI::Internal::Type::BaseModel
+        class Profanity < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :profanity
 
           attr_accessor flag: bool
@@ -434,9 +434,9 @@ module ModerationAPI
           def to_hash: -> { id: :profanity, flag: bool }
         end
 
-        type union_member13 = { id: :violence, flag: bool }
+        type violence = { id: :violence, flag: bool }
 
-        class UnionMember13 < ModerationAPI::Internal::Type::BaseModel
+        class Violence < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :violence
 
           attr_accessor flag: bool
@@ -446,9 +446,9 @@ module ModerationAPI
           def to_hash: -> { id: :violence, flag: bool }
         end
 
-        type union_member14 = { id: :self_harm, flag: bool }
+        type self_harm = { id: :self_harm, flag: bool }
 
-        class UnionMember14 < ModerationAPI::Internal::Type::BaseModel
+        class SelfHarm < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :self_harm
 
           attr_accessor flag: bool
@@ -458,9 +458,9 @@ module ModerationAPI
           def to_hash: -> { id: :self_harm, flag: bool }
         end
 
-        type union_member15 = { id: :spam, flag: bool }
+        type spam = { id: :spam, flag: bool }
 
-        class UnionMember15 < ModerationAPI::Internal::Type::BaseModel
+        class Spam < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :spam
 
           attr_accessor flag: bool
@@ -470,9 +470,9 @@ module ModerationAPI
           def to_hash: -> { id: :spam, flag: bool }
         end
 
-        type union_member16 = { id: :self_promotion, flag: bool }
+        type self_promotion = { id: :self_promotion, flag: bool }
 
-        class UnionMember16 < ModerationAPI::Internal::Type::BaseModel
+        class SelfPromotion < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :self_promotion
 
           attr_accessor flag: bool
@@ -482,9 +482,9 @@ module ModerationAPI
           def to_hash: -> { id: :self_promotion, flag: bool }
         end
 
-        type union_member17 = { id: :political, flag: bool }
+        type political = { id: :political, flag: bool }
 
-        class UnionMember17 < ModerationAPI::Internal::Type::BaseModel
+        class Political < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :political
 
           attr_accessor flag: bool
@@ -494,9 +494,9 @@ module ModerationAPI
           def to_hash: -> { id: :political, flag: bool }
         end
 
-        type union_member18 = { id: :religion, flag: bool }
+        type religion = { id: :religion, flag: bool }
 
-        class UnionMember18 < ModerationAPI::Internal::Type::BaseModel
+        class Religion < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :religion
 
           attr_accessor flag: bool
@@ -506,9 +506,9 @@ module ModerationAPI
           def to_hash: -> { id: :religion, flag: bool }
         end
 
-        type union_member19 = { id: :code_abuse, flag: bool }
+        type code_abuse = { id: :code_abuse, flag: bool }
 
-        class UnionMember19 < ModerationAPI::Internal::Type::BaseModel
+        class CodeAbuse < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :code_abuse
 
           attr_accessor flag: bool
@@ -518,30 +518,30 @@ module ModerationAPI
           def to_hash: -> { id: :code_abuse, flag: bool }
         end
 
-        type union_member20 =
+        type pii_masking =
           {
             id: :pii,
-            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity]
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity]
           }
 
-        class UnionMember20 < ModerationAPI::Internal::Type::BaseModel
+        class PiiMasking < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :pii
 
-          attr_accessor entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity]
+          attr_accessor entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity]
 
           def initialize: (
-            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity],
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity],
             ?id: :pii
           ) -> void
 
           def to_hash: -> {
             id: :pii,
-            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity]
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity]
           }
 
           type entity =
             {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id,
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id,
               enable: bool,
               flag: bool,
               should_mask: bool,
@@ -549,7 +549,7 @@ module ModerationAPI
             }
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
-            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id
+            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id
 
             attr_accessor enable: bool
 
@@ -562,7 +562,7 @@ module ModerationAPI
             def mask=: (String) -> String
 
             def initialize: (
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id,
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id,
               enable: bool,
               flag: bool,
               should_mask: bool,
@@ -570,7 +570,7 @@ module ModerationAPI
             ) -> void
 
             def to_hash: -> {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id,
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id,
               enable: bool,
               flag: bool,
               should_mask: bool,
@@ -601,35 +601,35 @@ module ModerationAPI
               CREDIT_CARD: :credit_card
               SENSITIVE_OTHER: :sensitive_other
 
-              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id]
+              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id]
             end
           end
         end
 
-        type union_member21 =
+        type url_masking =
           {
             id: :url,
-            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity]
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity]
           }
 
-        class UnionMember21 < ModerationAPI::Internal::Type::BaseModel
+        class URLMasking < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :url
 
-          attr_accessor entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity]
+          attr_accessor entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity]
 
           def initialize: (
-            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity],
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity],
             ?id: :url
           ) -> void
 
           def to_hash: -> {
             id: :url,
-            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity]
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity]
           }
 
           type entity =
             {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id,
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id,
               enable: bool,
               flag: bool,
               should_mask: bool,
@@ -637,7 +637,7 @@ module ModerationAPI
             }
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
-            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id
+            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id
 
             attr_accessor enable: bool
 
@@ -650,7 +650,7 @@ module ModerationAPI
             def mask=: (String) -> String
 
             def initialize: (
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id,
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id,
               enable: bool,
               flag: bool,
               should_mask: bool,
@@ -658,7 +658,7 @@ module ModerationAPI
             ) -> void
 
             def to_hash: -> {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id,
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id,
               enable: bool,
               flag: bool,
               should_mask: bool,
@@ -689,12 +689,12 @@ module ModerationAPI
               CREDIT_CARD: :credit_card
               SENSITIVE_OTHER: :sensitive_other
 
-              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id]
+              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id]
             end
           end
         end
 
-        type union_member22 =
+        type guideline =
           {
             id: :guideline,
             flag: bool,
@@ -702,7 +702,7 @@ module ModerationAPI
             instructions: String
           }
 
-        class UnionMember22 < ModerationAPI::Internal::Type::BaseModel
+        class Guideline < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :guideline
 
           attr_accessor flag: bool

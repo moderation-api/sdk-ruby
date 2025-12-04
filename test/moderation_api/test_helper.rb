@@ -48,7 +48,7 @@ class ModerationAPI::Test::SingletonClient < ModerationAPI::Client
   TEST_API_BASE_URL = ENV.fetch("TEST_API_BASE_URL", "http://localhost:4010")
 
   def initialize
-    super(base_url: ModerationAPI::Test::SingletonClient::TEST_API_BASE_URL, bearer_token: "My Bearer Token")
+    super(base_url: ModerationAPI::Test::SingletonClient::TEST_API_BASE_URL, secret_key: "My Secret Key")
   end
 end
 

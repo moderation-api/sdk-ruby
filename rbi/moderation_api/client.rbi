@@ -11,7 +11,7 @@ module ModerationAPI
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
     sig { returns(String) }
-    attr_reader :bearer_token
+    attr_reader :secret_key
 
     sig { returns(ModerationAPI::Resources::Authors) }
     attr_reader :authors
@@ -42,7 +42,7 @@ module ModerationAPI
     # Creates and returns a new client for interacting with the API.
     sig do
       params(
-        bearer_token: T.nilable(String),
+        secret_key: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
         timeout: Float,
@@ -51,8 +51,8 @@ module ModerationAPI
       ).returns(T.attached_class)
     end
     def self.new(
-      # Defaults to `ENV["MODERATION_API_BEARER_TOKEN"]`
-      bearer_token: ENV["MODERATION_API_BEARER_TOKEN"],
+      # Defaults to `ENV["MODAPI_SECRET_KEY"]`
+      secret_key: ENV["MODAPI_SECRET_KEY"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["MODERATION_API_BASE_URL"]`
       base_url: ENV["MODERATION_API_BASE_URL"],

@@ -16,7 +16,7 @@ module ModerationAPI
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
     # @return [String]
-    attr_reader :bearer_token
+    attr_reader :secret_key
 
     # @return [ModerationAPI::Resources::Authors]
     attr_reader :authors
@@ -43,14 +43,14 @@ module ModerationAPI
     #
     # @return [Hash{String=>String}]
     private def auth_headers
-      return {} if @bearer_token.nil?
+      return {} if @secret_key.nil?
 
-      {"authorization" => "Bearer #{@bearer_token}"}
+      {"authorization" => "Bearer #{@secret_key}"}
     end
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param bearer_token [String, nil] Defaults to `ENV["MODERATION_API_BEARER_TOKEN"]`
+    # @param secret_key [String, nil] Defaults to `ENV["MODAPI_SECRET_KEY"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["MODERATION_API_BASE_URL"]`
@@ -63,7 +63,7 @@ module ModerationAPI
     #
     # @param max_retry_delay [Float]
     def initialize(
-      bearer_token: ENV["MODERATION_API_BEARER_TOKEN"],
+      secret_key: ENV["MODAPI_SECRET_KEY"],
       base_url: ENV["MODERATION_API_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -72,11 +72,11 @@ module ModerationAPI
     )
       base_url ||= "https://api.moderationapi.com/v1"
 
-      if bearer_token.nil?
-        raise ArgumentError.new("bearer_token is required, and can be set via environ: \"MODERATION_API_BEARER_TOKEN\"")
+      if secret_key.nil?
+        raise ArgumentError.new("secret_key is required, and can be set via environ: \"MODAPI_SECRET_KEY\"")
       end
 
-      @bearer_token = bearer_token.to_s
+      @secret_key = secret_key.to_s
 
       super(
         base_url: base_url,

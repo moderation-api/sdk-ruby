@@ -25,7 +25,7 @@ require "bundler/setup"
 require "moderation_api"
 
 moderation_api = ModerationAPI::Client.new(
-  bearer_token: ENV["MODERATION_API_BEARER_TOKEN"] # This is the default and can be omitted
+  secret_key: ENV["MODAPI_SECRET_KEY"] # This is the default and can be omitted
 )
 
 authors = moderation_api.authors.list

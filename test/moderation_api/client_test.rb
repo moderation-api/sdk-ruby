@@ -37,7 +37,7 @@ class ModerationAPITest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list
@@ -50,7 +50,7 @@ class ModerationAPITest < Minitest::Test
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
     moderation_api =
-      ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token", max_retries: 3)
+      ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 3)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list
@@ -62,7 +62,7 @@ class ModerationAPITest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list(request_options: {max_retries: 3})
@@ -75,7 +75,7 @@ class ModerationAPITest < Minitest::Test
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
     moderation_api =
-      ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token", max_retries: 3)
+      ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 3)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list(request_options: {max_retries: 4})
@@ -92,7 +92,7 @@ class ModerationAPITest < Minitest::Test
     )
 
     moderation_api =
-      ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token", max_retries: 1)
+      ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 1)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list
@@ -110,7 +110,7 @@ class ModerationAPITest < Minitest::Test
     )
 
     moderation_api =
-      ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token", max_retries: 1)
+      ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 1)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
@@ -130,7 +130,7 @@ class ModerationAPITest < Minitest::Test
     )
 
     moderation_api =
-      ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token", max_retries: 1)
+      ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 1)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list
@@ -143,7 +143,7 @@ class ModerationAPITest < Minitest::Test
   def test_retry_count_header
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list
@@ -157,7 +157,7 @@ class ModerationAPITest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list(request_options: {extra_headers: {"x-stainless-retry-count" => nil}})
@@ -171,7 +171,7 @@ class ModerationAPITest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:get, "http://localhost/authors").to_return_json(status: 500, body: {})
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.authors.list(request_options: {extra_headers: {"x-stainless-retry-count" => "42"}})
@@ -191,7 +191,7 @@ class ModerationAPITest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
       moderation_api.authors.list(request_options: {extra_headers: {}})
@@ -220,7 +220,7 @@ class ModerationAPITest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
       moderation_api.authors.list(request_options: {extra_headers: {}})
@@ -244,7 +244,7 @@ class ModerationAPITest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
       moderation_api.authors.list(request_options: {extra_headers: {"authorization" => "Bearer xyz"}})
@@ -271,7 +271,7 @@ class ModerationAPITest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
       moderation_api.authors.list(request_options: {extra_headers: {"authorization" => "Bearer xyz"}})
@@ -286,7 +286,7 @@ class ModerationAPITest < Minitest::Test
   def test_default_headers
     stub_request(:get, "http://localhost/authors").to_return_json(status: 200, body: {})
 
-    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", bearer_token: "My Bearer Token")
+    moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     moderation_api.authors.list
 

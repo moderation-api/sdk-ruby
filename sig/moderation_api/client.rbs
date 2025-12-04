@@ -8,7 +8,7 @@ module ModerationAPI
 
     DEFAULT_MAX_RETRY_DELAY: Float
 
-    attr_reader bearer_token: String
+    attr_reader secret_key: String
 
     attr_reader authors: ModerationAPI::Resources::Authors
 
@@ -27,7 +27,7 @@ module ModerationAPI
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (
-      ?bearer_token: String?,
+      ?secret_key: String?,
       ?base_url: String?,
       ?max_retries: Integer,
       ?timeout: Float,

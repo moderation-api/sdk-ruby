@@ -60,7 +60,7 @@ module ModerationAPI
       #   Optionally override the channel policies for this moderation request only
       #   (enterprise).
       #
-      #   @return [Array<ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember4, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember5, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember6, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember7, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember8, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember9, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember10, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember11, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember12, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember13, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember14, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember15, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember16, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember17, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember18, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember19, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember22>, nil]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>, nil]
       optional :policies,
                -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::ContentSubmitParams::Policy] }
 
@@ -84,7 +84,7 @@ module ModerationAPI
       #
       #   @param meta_type [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType] The meta type of content being moderated
       #
-      #   @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember4, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember5, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember6, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember7, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember8, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember9, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember10, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember11, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember12, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember13, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember14, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember15, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember16, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember17, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember18, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember19, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember22>] Optionally override the channel policies for this moderation request only (enter
+      #   @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>] Optionally override the channel policies for this moderation request only (enter
       #
       #   @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}]
 
@@ -332,53 +332,53 @@ module ModerationAPI
       module Policy
         extend ModerationAPI::Internal::Type::Union
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember0 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Toxicity }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember1 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::PersonalInformation }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember2 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::ToxicitySevere }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember3 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Hate }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember4 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Illicit }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember5 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::IllicitDrugs }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember6 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::IllicitAlcohol }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember7 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember8 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember9 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::IllicitGambling }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember10 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Sexual }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember11 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Flirtation }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember12 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Profanity }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember13 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Violence }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember14 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::SelfHarm }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember15 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Spam }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember16 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::SelfPromotion }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember17 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Political }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember18 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Religion }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember19 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::CodeAbuse }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember20 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::PiiMasking }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember21 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::URLMasking }
 
-        variant -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember22 }
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::Guideline }
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class Toxicity < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :toxicity]
@@ -394,7 +394,7 @@ module ModerationAPI
           #   @param id [Symbol, :toxicity]
         end
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class PersonalInformation < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :personal_information]
@@ -410,7 +410,7 @@ module ModerationAPI
           #   @param id [Symbol, :personal_information]
         end
 
-        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+        class ToxicitySevere < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :toxicity_severe]
@@ -426,7 +426,7 @@ module ModerationAPI
           #   @param id [Symbol, :toxicity_severe]
         end
 
-        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+        class Hate < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :hate]
@@ -442,7 +442,7 @@ module ModerationAPI
           #   @param id [Symbol, :hate]
         end
 
-        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+        class Illicit < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :illicit]
@@ -458,7 +458,7 @@ module ModerationAPI
           #   @param id [Symbol, :illicit]
         end
 
-        class UnionMember5 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitDrugs < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :illicit_drugs]
@@ -474,7 +474,7 @@ module ModerationAPI
           #   @param id [Symbol, :illicit_drugs]
         end
 
-        class UnionMember6 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitAlcohol < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :illicit_alcohol]
@@ -490,7 +490,7 @@ module ModerationAPI
           #   @param id [Symbol, :illicit_alcohol]
         end
 
-        class UnionMember7 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitFirearms < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :illicit_firearms]
@@ -506,7 +506,7 @@ module ModerationAPI
           #   @param id [Symbol, :illicit_firearms]
         end
 
-        class UnionMember8 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitTobacco < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :illicit_tobacco]
@@ -522,7 +522,7 @@ module ModerationAPI
           #   @param id [Symbol, :illicit_tobacco]
         end
 
-        class UnionMember9 < ModerationAPI::Internal::Type::BaseModel
+        class IllicitGambling < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :illicit_gambling]
@@ -538,7 +538,7 @@ module ModerationAPI
           #   @param id [Symbol, :illicit_gambling]
         end
 
-        class UnionMember10 < ModerationAPI::Internal::Type::BaseModel
+        class Sexual < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :sexual]
@@ -554,7 +554,7 @@ module ModerationAPI
           #   @param id [Symbol, :sexual]
         end
 
-        class UnionMember11 < ModerationAPI::Internal::Type::BaseModel
+        class Flirtation < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :flirtation]
@@ -570,7 +570,7 @@ module ModerationAPI
           #   @param id [Symbol, :flirtation]
         end
 
-        class UnionMember12 < ModerationAPI::Internal::Type::BaseModel
+        class Profanity < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :profanity]
@@ -586,7 +586,7 @@ module ModerationAPI
           #   @param id [Symbol, :profanity]
         end
 
-        class UnionMember13 < ModerationAPI::Internal::Type::BaseModel
+        class Violence < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :violence]
@@ -602,7 +602,7 @@ module ModerationAPI
           #   @param id [Symbol, :violence]
         end
 
-        class UnionMember14 < ModerationAPI::Internal::Type::BaseModel
+        class SelfHarm < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :self_harm]
@@ -618,7 +618,7 @@ module ModerationAPI
           #   @param id [Symbol, :self_harm]
         end
 
-        class UnionMember15 < ModerationAPI::Internal::Type::BaseModel
+        class Spam < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :spam]
@@ -634,7 +634,7 @@ module ModerationAPI
           #   @param id [Symbol, :spam]
         end
 
-        class UnionMember16 < ModerationAPI::Internal::Type::BaseModel
+        class SelfPromotion < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :self_promotion]
@@ -650,7 +650,7 @@ module ModerationAPI
           #   @param id [Symbol, :self_promotion]
         end
 
-        class UnionMember17 < ModerationAPI::Internal::Type::BaseModel
+        class Political < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :political]
@@ -666,7 +666,7 @@ module ModerationAPI
           #   @param id [Symbol, :political]
         end
 
-        class UnionMember18 < ModerationAPI::Internal::Type::BaseModel
+        class Religion < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :religion]
@@ -682,7 +682,7 @@ module ModerationAPI
           #   @param id [Symbol, :religion]
         end
 
-        class UnionMember19 < ModerationAPI::Internal::Type::BaseModel
+        class CodeAbuse < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :code_abuse]
@@ -698,7 +698,7 @@ module ModerationAPI
           #   @param id [Symbol, :code_abuse]
         end
 
-        class UnionMember20 < ModerationAPI::Internal::Type::BaseModel
+        class PiiMasking < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :pii]
@@ -706,19 +706,19 @@ module ModerationAPI
 
           # @!attribute entities
           #
-          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity}]
+          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity}]
           required :entities,
-                   -> { ModerationAPI::Internal::Type::HashOf[ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity] }
+                   -> { ModerationAPI::Internal::Type::HashOf[ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity] }
 
           # @!method initialize(entities:, id: :pii)
-          #   @param entities [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity}]
+          #   @param entities [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity}]
           #   @param id [Symbol, :pii]
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
             # @!attribute id
             #
-            #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::ID]
-            required :id, enum: -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID }
+            #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::ID]
+            required :id, enum: -> { ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID }
 
             # @!attribute enable
             #
@@ -741,13 +741,13 @@ module ModerationAPI
             optional :mask, String
 
             # @!method initialize(id:, enable:, flag:, should_mask:, mask: nil)
-            #   @param id [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::ID]
+            #   @param id [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::ID]
             #   @param enable [Boolean]
             #   @param flag [Boolean]
             #   @param should_mask [Boolean]
             #   @param mask [String]
 
-            # @see ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity#id
+            # @see ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity#id
             module ID
               extend ModerationAPI::Internal::Type::Enum
 
@@ -767,7 +767,7 @@ module ModerationAPI
           end
         end
 
-        class UnionMember21 < ModerationAPI::Internal::Type::BaseModel
+        class URLMasking < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :url]
@@ -775,19 +775,19 @@ module ModerationAPI
 
           # @!attribute entities
           #
-          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity}]
+          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity}]
           required :entities,
-                   -> { ModerationAPI::Internal::Type::HashOf[ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity] }
+                   -> { ModerationAPI::Internal::Type::HashOf[ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity] }
 
           # @!method initialize(entities:, id: :url)
-          #   @param entities [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity}]
+          #   @param entities [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity}]
           #   @param id [Symbol, :url]
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
             # @!attribute id
             #
-            #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::ID]
-            required :id, enum: -> { ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID }
+            #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::ID]
+            required :id, enum: -> { ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID }
 
             # @!attribute enable
             #
@@ -810,13 +810,13 @@ module ModerationAPI
             optional :mask, String
 
             # @!method initialize(id:, enable:, flag:, should_mask:, mask: nil)
-            #   @param id [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::ID]
+            #   @param id [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::ID]
             #   @param enable [Boolean]
             #   @param flag [Boolean]
             #   @param should_mask [Boolean]
             #   @param mask [String]
 
-            # @see ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity#id
+            # @see ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity#id
             module ID
               extend ModerationAPI::Internal::Type::Enum
 
@@ -836,7 +836,7 @@ module ModerationAPI
           end
         end
 
-        class UnionMember22 < ModerationAPI::Internal::Type::BaseModel
+        class Guideline < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :guideline]
@@ -865,7 +865,7 @@ module ModerationAPI
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember4, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember5, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember6, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember7, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember8, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember9, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember10, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember11, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember12, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember13, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember14, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember15, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember16, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember17, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember18, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember19, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember22)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline)]
       end
     end
   end

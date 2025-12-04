@@ -18,11 +18,11 @@ module ModerationAPI
       sig do
         returns(
           T.any(
-            ModerationAPI::ContentSubmitParams::Content::UnionMember0,
-            ModerationAPI::ContentSubmitParams::Content::UnionMember1,
-            ModerationAPI::ContentSubmitParams::Content::UnionMember2,
-            ModerationAPI::ContentSubmitParams::Content::UnionMember3,
-            ModerationAPI::ContentSubmitParams::Content::UnionMember4
+            ModerationAPI::ContentSubmitParams::Content::Text,
+            ModerationAPI::ContentSubmitParams::Content::Image,
+            ModerationAPI::ContentSubmitParams::Content::Video,
+            ModerationAPI::ContentSubmitParams::Content::Audio,
+            ModerationAPI::ContentSubmitParams::Content::ContentNode
           )
         )
       end
@@ -161,11 +161,11 @@ module ModerationAPI
         params(
           content:
             T.any(
-              ModerationAPI::ContentSubmitParams::Content::UnionMember0::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember1::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember2::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember3::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember4::OrHash
+              ModerationAPI::ContentSubmitParams::Content::Text::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::Image::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::Video::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::Audio::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::ContentNode::OrHash
             ),
           author_id: String,
           channel: String,
@@ -235,11 +235,11 @@ module ModerationAPI
           {
             content:
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::UnionMember0,
-                ModerationAPI::ContentSubmitParams::Content::UnionMember1,
-                ModerationAPI::ContentSubmitParams::Content::UnionMember2,
-                ModerationAPI::ContentSubmitParams::Content::UnionMember3,
-                ModerationAPI::ContentSubmitParams::Content::UnionMember4
+                ModerationAPI::ContentSubmitParams::Content::Text,
+                ModerationAPI::ContentSubmitParams::Content::Image,
+                ModerationAPI::ContentSubmitParams::Content::Video,
+                ModerationAPI::ContentSubmitParams::Content::Audio,
+                ModerationAPI::ContentSubmitParams::Content::ContentNode
               ),
             author_id: String,
             channel: String,
@@ -290,19 +290,19 @@ module ModerationAPI
         Variants =
           T.type_alias do
             T.any(
-              ModerationAPI::ContentSubmitParams::Content::UnionMember0,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember1,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember2,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember3,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember4
+              ModerationAPI::ContentSubmitParams::Content::Text,
+              ModerationAPI::ContentSubmitParams::Content::Image,
+              ModerationAPI::ContentSubmitParams::Content::Video,
+              ModerationAPI::ContentSubmitParams::Content::Audio,
+              ModerationAPI::ContentSubmitParams::Content::ContentNode
             )
           end
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class Text < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::UnionMember0,
+                ModerationAPI::ContentSubmitParams::Content::Text,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -328,11 +328,11 @@ module ModerationAPI
           end
         end
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class Image < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::UnionMember1,
+                ModerationAPI::ContentSubmitParams::Content::Image,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -358,11 +358,11 @@ module ModerationAPI
           end
         end
 
-        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+        class Video < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::UnionMember2,
+                ModerationAPI::ContentSubmitParams::Content::Video,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -388,11 +388,11 @@ module ModerationAPI
           end
         end
 
-        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+        class Audio < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::UnionMember3,
+                ModerationAPI::ContentSubmitParams::Content::Audio,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -418,11 +418,11 @@ module ModerationAPI
           end
         end
 
-        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+        class ContentNode < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::UnionMember4,
+                ModerationAPI::ContentSubmitParams::Content::ContentNode,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -433,10 +433,10 @@ module ModerationAPI
               T::Hash[
                 Symbol,
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
                 )
               ]
             )
@@ -453,10 +453,10 @@ module ModerationAPI
                 T::Hash[
                   Symbol,
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3::OrHash
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio::OrHash
                   )
                 ],
               type: Symbol
@@ -476,10 +476,10 @@ module ModerationAPI
                   T::Hash[
                     Symbol,
                     T.any(
-                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
-                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
-                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
-                      ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
+                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
+                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
+                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
+                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
                     )
                   ],
                 type: Symbol
@@ -496,18 +496,18 @@ module ModerationAPI
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
                 )
               end
 
-            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+            class Text < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -535,11 +535,11 @@ module ModerationAPI
               end
             end
 
-            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+            class Image < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -567,11 +567,11 @@ module ModerationAPI
               end
             end
 
-            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+            class Video < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -599,11 +599,11 @@ module ModerationAPI
               end
             end
 
-            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+            class Audio < ModerationAPI::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3,
+                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -634,7 +634,7 @@ module ModerationAPI
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::Variants
+                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Variants
                 ]
               )
             end

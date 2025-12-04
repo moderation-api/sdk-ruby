@@ -8,7 +8,7 @@ module ModerationAPI
       #
       # @overload submit(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, policies: nil, request_options: {})
       #
-      # @param content [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4] The content sent for moderation
+      # @param content [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode] The content sent for moderation
       #
       # @param author_id [String] The author of the content.
       #

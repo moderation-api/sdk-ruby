@@ -26,7 +26,7 @@ module ModerationAPI
       # @!attribute insights
       #   Results of all insights enabled in the channel.
       #
-      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1>]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights, ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsights>]
       required :insights,
                -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Insight] }
 
@@ -66,7 +66,7 @@ module ModerationAPI
       #
       #   @param evaluation [ModerationAPI::Models::ContentSubmitResponse::Evaluation] The evaluation of the content after running the channel policies.
       #
-      #   @param insights [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1>] Results of all insights enabled in the channel.
+      #   @param insights [Array<ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights, ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsights>] Results of all insights enabled in the channel.
       #
       #   @param meta [ModerationAPI::Models::ContentSubmitResponse::Meta] Metadata about the moderation request
       #
@@ -378,12 +378,12 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::Union
 
         # Sentiment insight
-        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0 }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights }
 
         # Language insight
-        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1 }
+        variant -> { ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsights }
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class SentimentInsights < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :sentiment]
@@ -401,20 +401,20 @@ module ModerationAPI
 
           # @!attribute value
           #
-          #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value, nil]
+          #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::Value, nil]
           required :value,
-                   enum: -> { ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value },
+                   enum: -> { ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::Value },
                    nil?: true
 
           # @!method initialize(probability:, value:, id: :sentiment, type: :insight)
           #   Sentiment insight
           #
           #   @param probability [Float]
-          #   @param value [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::Value, nil]
+          #   @param value [Symbol, ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::Value, nil]
           #   @param id [Symbol, :sentiment]
           #   @param type [Symbol, :insight]
 
-          # @see ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0#value
+          # @see ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights#value
           module Value
             extend ModerationAPI::Internal::Type::Enum
 
@@ -427,7 +427,7 @@ module ModerationAPI
           end
         end
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class LanguageInsights < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
           #   @return [Symbol, :language]
@@ -458,7 +458,7 @@ module ModerationAPI
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0, ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights, ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsights)]
       end
 
       # @see ModerationAPI::Models::ContentSubmitResponse#meta

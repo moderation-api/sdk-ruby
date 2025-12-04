@@ -83,18 +83,18 @@ module ModerationAPI
       }
 
       type content =
-        ModerationAPI::ContentSubmitParams::Content::UnionMember0
-        | ModerationAPI::ContentSubmitParams::Content::UnionMember1
-        | ModerationAPI::ContentSubmitParams::Content::UnionMember2
-        | ModerationAPI::ContentSubmitParams::Content::UnionMember3
-        | ModerationAPI::ContentSubmitParams::Content::UnionMember4
+        ModerationAPI::ContentSubmitParams::Content::Text
+        | ModerationAPI::ContentSubmitParams::Content::Image
+        | ModerationAPI::ContentSubmitParams::Content::Video
+        | ModerationAPI::ContentSubmitParams::Content::Audio
+        | ModerationAPI::ContentSubmitParams::Content::ContentNode
 
       module Content
         extend ModerationAPI::Internal::Type::Union
 
-        type union_member0 = { text: String, type: :text }
+        type text = { text: String, type: :text }
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class Text < ModerationAPI::Internal::Type::BaseModel
           attr_accessor text: String
 
           attr_accessor type: :text
@@ -104,9 +104,9 @@ module ModerationAPI
           def to_hash: -> { text: String, type: :text }
         end
 
-        type union_member1 = { type: :image, url: String }
+        type image = { type: :image, url: String }
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class Image < ModerationAPI::Internal::Type::BaseModel
           attr_accessor type: :image
 
           attr_accessor url: String
@@ -116,9 +116,9 @@ module ModerationAPI
           def to_hash: -> { type: :image, url: String }
         end
 
-        type union_member2 = { type: :video, url: String }
+        type video = { type: :video, url: String }
 
-        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+        class Video < ModerationAPI::Internal::Type::BaseModel
           attr_accessor type: :video
 
           attr_accessor url: String
@@ -128,9 +128,9 @@ module ModerationAPI
           def to_hash: -> { type: :video, url: String }
         end
 
-        type union_member3 = { type: :audio, url: String }
+        type audio = { type: :audio, url: String }
 
-        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+        class Audio < ModerationAPI::Internal::Type::BaseModel
           attr_accessor type: :audio
 
           attr_accessor url: String
@@ -140,39 +140,39 @@ module ModerationAPI
           def to_hash: -> { type: :audio, url: String }
         end
 
-        type union_member4 =
+        type content_node =
           {
-            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data],
             type: :object
           }
 
-        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
-          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data]
+        class ContentNode < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data]
 
           attr_accessor type: :object
 
           def initialize: (
-            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data],
             ?type: :object
           ) -> void
 
           def to_hash: -> {
-            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data],
             type: :object
           }
 
           type data =
-            ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0
-            | ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1
-            | ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2
-            | ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3
+            ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text
+            | ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image
+            | ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video
+            | ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
 
           module Data
             extend ModerationAPI::Internal::Type::Union
 
-            type union_member0 = { text: String, type: :text }
+            type text = { text: String, type: :text }
 
-            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+            class Text < ModerationAPI::Internal::Type::BaseModel
               attr_accessor text: String
 
               attr_accessor type: :text
@@ -182,9 +182,9 @@ module ModerationAPI
               def to_hash: -> { text: String, type: :text }
             end
 
-            type union_member1 = { type: :image, url: String }
+            type image = { type: :image, url: String }
 
-            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+            class Image < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :image
 
               attr_accessor url: String
@@ -194,9 +194,9 @@ module ModerationAPI
               def to_hash: -> { type: :image, url: String }
             end
 
-            type union_member2 = { type: :video, url: String }
+            type video = { type: :video, url: String }
 
-            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+            class Video < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :video
 
               attr_accessor url: String
@@ -206,9 +206,9 @@ module ModerationAPI
               def to_hash: -> { type: :video, url: String }
             end
 
-            type union_member3 = { type: :audio, url: String }
+            type audio = { type: :audio, url: String }
 
-            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+            class Audio < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :audio
 
               attr_accessor url: String
@@ -218,7 +218,7 @@ module ModerationAPI
               def to_hash: -> { type: :audio, url: String }
             end
 
-            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::data]
+            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data]
           end
         end
 

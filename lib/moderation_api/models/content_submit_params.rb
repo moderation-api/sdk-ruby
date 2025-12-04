@@ -10,7 +10,7 @@ module ModerationAPI
       # @!attribute content
       #   The content sent for moderation
       #
-      #   @return [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4]
+      #   @return [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode]
       required :content, union: -> { ModerationAPI::ContentSubmitParams::Content }
 
       # @!attribute author_id
@@ -68,7 +68,7 @@ module ModerationAPI
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
-      #   @param content [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4] The content sent for moderation
+      #   @param content [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode] The content sent for moderation
       #
       #   @param author_id [String] The author of the content.
       #
@@ -93,21 +93,21 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::Union
 
         # Text
-        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember0 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::Text }
 
         # Image
-        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember1 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::Image }
 
         # Video
-        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember2 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::Video }
 
         # Audio
-        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember3 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::Audio }
 
         # Object
-        variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4 }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode }
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class Text < ModerationAPI::Internal::Type::BaseModel
           # @!attribute text
           #   The content text
           #
@@ -127,7 +127,7 @@ module ModerationAPI
           #   @param type [Symbol, :text]
         end
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class Image < ModerationAPI::Internal::Type::BaseModel
           # @!attribute type
           #
           #   @return [Symbol, :image]
@@ -147,7 +147,7 @@ module ModerationAPI
           #   @param type [Symbol, :image]
         end
 
-        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+        class Video < ModerationAPI::Internal::Type::BaseModel
           # @!attribute type
           #
           #   @return [Symbol, :video]
@@ -167,7 +167,7 @@ module ModerationAPI
           #   @param type [Symbol, :video]
         end
 
-        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+        class Audio < ModerationAPI::Internal::Type::BaseModel
           # @!attribute type
           #
           #   @return [Symbol, :audio]
@@ -187,13 +187,13 @@ module ModerationAPI
           #   @param type [Symbol, :audio]
         end
 
-        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+        class ContentNode < ModerationAPI::Internal::Type::BaseModel
           # @!attribute data
           #   Values in the object. Can be mixed content types.
           #
-          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3}]
+          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Audio}]
           required :data,
-                   -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data] }
+                   -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::ContentSubmitParams::Content::ContentNode::Data] }
 
           # @!attribute type
           #
@@ -203,7 +203,7 @@ module ModerationAPI
           # @!method initialize(data:, type: :object)
           #   Object
           #
-          #   @param data [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3}] Values in the object. Can be mixed content types.
+          #   @param data [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Audio}] Values in the object. Can be mixed content types.
           #
           #   @param type [Symbol, :object]
 
@@ -212,18 +212,18 @@ module ModerationAPI
             extend ModerationAPI::Internal::Type::Union
 
             # Text
-            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text }
 
             # Image
-            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image }
 
             # Video
-            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video }
 
             # Audio
-            variant -> { ModerationAPI::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3 }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio }
 
-            class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+            class Text < ModerationAPI::Internal::Type::BaseModel
               # @!attribute text
               #   The content text
               #
@@ -243,7 +243,7 @@ module ModerationAPI
               #   @param type [Symbol, :text]
             end
 
-            class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+            class Image < ModerationAPI::Internal::Type::BaseModel
               # @!attribute type
               #
               #   @return [Symbol, :image]
@@ -263,7 +263,7 @@ module ModerationAPI
               #   @param type [Symbol, :image]
             end
 
-            class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+            class Video < ModerationAPI::Internal::Type::BaseModel
               # @!attribute type
               #
               #   @return [Symbol, :video]
@@ -283,7 +283,7 @@ module ModerationAPI
               #   @param type [Symbol, :video]
             end
 
-            class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+            class Audio < ModerationAPI::Internal::Type::BaseModel
               # @!attribute type
               #
               #   @return [Symbol, :audio]
@@ -304,12 +304,12 @@ module ModerationAPI
             end
 
             # @!method self.variants
-            #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4::Data::UnionMember3)]
+            #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Audio)]
           end
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode)]
       end
 
       # The meta type of content being moderated

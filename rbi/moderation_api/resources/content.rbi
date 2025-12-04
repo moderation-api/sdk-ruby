@@ -7,11 +7,11 @@ module ModerationAPI
         params(
           content:
             T.any(
-              ModerationAPI::ContentSubmitParams::Content::UnionMember0::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember1::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember2::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember3::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::UnionMember4::OrHash
+              ModerationAPI::ContentSubmitParams::Content::Text::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::Image::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::Video::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::Audio::OrHash,
+              ModerationAPI::ContentSubmitParams::Content::ContentNode::OrHash
             ),
           author_id: String,
           channel: String,

@@ -6,7 +6,7 @@ module ModerationAPI
       # Some parameter documentations has been truncated, see
       # {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
-      # @overload submit(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, request_options: {})
+      # @overload submit(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, policies: nil, request_options: {})
       #
       # @param content [ModerationAPI::Models::ContentSubmitParams::Content::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Content::UnionMember4] The content sent for moderation
       #
@@ -23,6 +23,8 @@ module ModerationAPI
       # @param metadata [Hash{Symbol=>Object}] Any metadata you want to store with the content
       #
       # @param meta_type [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType] The meta type of content being moderated
+      #
+      # @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember0, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember1, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember2, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember3, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember4, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember5, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember6, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember7, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember8, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember9, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember10, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember11, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember12, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember13, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember14, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember15, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember16, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember17, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember18, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember19, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21, ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember22>] Optionally override the channel policies for this moderation request only (enter
       #
       # @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

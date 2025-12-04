@@ -170,6 +170,8 @@ module ModerationAPI
         AUTHOR_REPORT = :AUTHOR_REPORT
         AUTHOR_WARN = :AUTHOR_WARN
         AUTHOR_CUSTOM = :AUTHOR_CUSTOM
+        ITEM_REJECT = :ITEM_REJECT
+        ITEM_ALLOW = :ITEM_ALLOW
         ITEM_CUSTOM = :ITEM_CUSTOM
 
         # @!method self.values

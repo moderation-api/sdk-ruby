@@ -141,6 +141,8 @@ module ModerationAPI
         | :AUTHOR_REPORT
         | :AUTHOR_WARN
         | :AUTHOR_CUSTOM
+        | :ITEM_REJECT
+        | :ITEM_ALLOW
         | :ITEM_CUSTOM
 
       module Type
@@ -153,6 +155,8 @@ module ModerationAPI
         AUTHOR_REPORT: :AUTHOR_REPORT
         AUTHOR_WARN: :AUTHOR_WARN
         AUTHOR_CUSTOM: :AUTHOR_CUSTOM
+        ITEM_REJECT: :ITEM_REJECT
+        ITEM_ALLOW: :ITEM_ALLOW
         ITEM_CUSTOM: :ITEM_CUSTOM
 
         def self?.values: -> ::Array[ModerationAPI::Models::ActionCreateParams::type_]

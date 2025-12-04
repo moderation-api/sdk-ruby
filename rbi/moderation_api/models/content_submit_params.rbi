@@ -86,6 +86,77 @@ module ModerationAPI
       end
       attr_writer :meta_type
 
+      # Optionally override the channel policies for this moderation request only
+      # (enterprise).
+      sig do
+        returns(
+          T.nilable(
+            T::Array[
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22
+              )
+            ]
+          )
+        )
+      end
+      attr_reader :policies
+
+      sig do
+        params(
+          policies:
+            T::Array[
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22::OrHash
+              )
+            ]
+        ).void
+      end
+      attr_writer :policies
+
       sig do
         params(
           content:
@@ -103,6 +174,34 @@ module ModerationAPI
           do_not_store: T::Boolean,
           metadata: T::Hash[Symbol, T.anything],
           meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol,
+          policies:
+            T::Array[
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22::OrHash
+              )
+            ],
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -124,6 +223,9 @@ module ModerationAPI
         metadata: nil,
         # The meta type of content being moderated
         meta_type: nil,
+        # Optionally override the channel policies for this moderation request only
+        # (enterprise).
+        policies: nil,
         request_options: {}
       )
       end
@@ -146,6 +248,34 @@ module ModerationAPI
             do_not_store: T::Boolean,
             metadata: T::Hash[Symbol, T.anything],
             meta_type: ModerationAPI::ContentSubmitParams::MetaType::OrSymbol,
+            policies:
+              T::Array[
+                T.any(
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember22
+                )
+              ],
             request_options: ModerationAPI::RequestOptions
           }
         )
@@ -579,6 +709,933 @@ module ModerationAPI
           )
         end
         def self.values
+        end
+      end
+
+      module Policy
+        extend ModerationAPI::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+              ModerationAPI::ContentSubmitParams::Policy::UnionMember22
+            )
+          end
+
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember0,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :toxicity)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember1,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :personal_information)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember2,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :toxicity_severe)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember3,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :hate)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember4,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :illicit)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember5 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember5,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :illicit_drugs)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember6 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember6,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :illicit_alcohol)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember7 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember7,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :illicit_firearms)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember8 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember8,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :illicit_tobacco)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember9 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember9,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :illicit_gambling)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember10 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember10,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :sexual)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember11 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember11,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :flirtation)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember12 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember12,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :profanity)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember13 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember13,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :violence)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember14 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember14,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :self_harm)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember15 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember15,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :spam)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember16 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember16,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :self_promotion)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember17 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember17,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :political)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember18 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember18,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :religion)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember19 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember19,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
+          def self.new(flag:, id: :code_abuse)
+          end
+
+          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          def to_hash
+          end
+        end
+
+        class UnionMember20 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig do
+            returns(
+              T::Hash[
+                Symbol,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity
+              ]
+            )
+          end
+          attr_accessor :entities
+
+          sig do
+            params(
+              entities:
+                T::Hash[
+                  Symbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::OrHash
+                ],
+              id: Symbol
+            ).returns(T.attached_class)
+          end
+          def self.new(entities:, id: :pii)
+          end
+
+          sig do
+            override.returns(
+              {
+                id: Symbol,
+                entities:
+                  T::Hash[
+                    Symbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity
+                  ]
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Entity < ModerationAPI::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity,
+                  ModerationAPI::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::OrSymbol
+              )
+            end
+            attr_accessor :id
+
+            sig { returns(T::Boolean) }
+            attr_accessor :enable
+
+            sig { returns(T::Boolean) }
+            attr_accessor :flag
+
+            sig { returns(T::Boolean) }
+            attr_accessor :should_mask
+
+            sig { returns(T.nilable(String)) }
+            attr_reader :mask
+
+            sig { params(mask: String).void }
+            attr_writer :mask
+
+            sig do
+              params(
+                id:
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::OrSymbol,
+                enable: T::Boolean,
+                flag: T::Boolean,
+                should_mask: T::Boolean,
+                mask: String
+              ).returns(T.attached_class)
+            end
+            def self.new(id:, enable:, flag:, should_mask:, mask: nil)
+            end
+
+            sig do
+              override.returns(
+                {
+                  id:
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::OrSymbol,
+                  enable: T::Boolean,
+                  flag: T::Boolean,
+                  should_mask: T::Boolean,
+                  mask: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module ID
+              extend ModerationAPI::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              EMAIL =
+                T.let(
+                  :email,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              PHONE =
+                T.let(
+                  :phone,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              URL =
+                T.let(
+                  :url,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              ADDRESS =
+                T.let(
+                  :address,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              NAME =
+                T.let(
+                  :name,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              USERNAME =
+                T.let(
+                  :username,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              IP_ADDRESS =
+                T.let(
+                  :ip_address,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              CREDIT_CARD =
+                T.let(
+                  :credit_card,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+              SENSITIVE_OTHER =
+                T.let(
+                  :sensitive_other,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity::ID::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+
+        class UnionMember21 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig do
+            returns(
+              T::Hash[
+                Symbol,
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity
+              ]
+            )
+          end
+          attr_accessor :entities
+
+          sig do
+            params(
+              entities:
+                T::Hash[
+                  Symbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::OrHash
+                ],
+              id: Symbol
+            ).returns(T.attached_class)
+          end
+          def self.new(entities:, id: :url)
+          end
+
+          sig do
+            override.returns(
+              {
+                id: Symbol,
+                entities:
+                  T::Hash[
+                    Symbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity
+                  ]
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Entity < ModerationAPI::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity,
+                  ModerationAPI::Internal::AnyHash
+                )
+              end
+
+            sig do
+              returns(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::OrSymbol
+              )
+            end
+            attr_accessor :id
+
+            sig { returns(T::Boolean) }
+            attr_accessor :enable
+
+            sig { returns(T::Boolean) }
+            attr_accessor :flag
+
+            sig { returns(T::Boolean) }
+            attr_accessor :should_mask
+
+            sig { returns(T.nilable(String)) }
+            attr_reader :mask
+
+            sig { params(mask: String).void }
+            attr_writer :mask
+
+            sig do
+              params(
+                id:
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::OrSymbol,
+                enable: T::Boolean,
+                flag: T::Boolean,
+                should_mask: T::Boolean,
+                mask: String
+              ).returns(T.attached_class)
+            end
+            def self.new(id:, enable:, flag:, should_mask:, mask: nil)
+            end
+
+            sig do
+              override.returns(
+                {
+                  id:
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::OrSymbol,
+                  enable: T::Boolean,
+                  flag: T::Boolean,
+                  should_mask: T::Boolean,
+                  mask: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            module ID
+              extend ModerationAPI::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              EMAIL =
+                T.let(
+                  :email,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              PHONE =
+                T.let(
+                  :phone,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              URL =
+                T.let(
+                  :url,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              ADDRESS =
+                T.let(
+                  :address,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              NAME =
+                T.let(
+                  :name,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              USERNAME =
+                T.let(
+                  :username,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              IP_ADDRESS =
+                T.let(
+                  :ip_address,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              CREDIT_CARD =
+                T.let(
+                  :credit_card,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+              SENSITIVE_OTHER =
+                T.let(
+                  :sensitive_other,
+                  ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity::ID::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+
+        class UnionMember22 < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnionMember22,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { returns(String) }
+          attr_accessor :guideline_key
+
+          sig { returns(String) }
+          attr_accessor :instructions
+
+          sig do
+            params(
+              flag: T::Boolean,
+              guideline_key: String,
+              instructions: String,
+              id: Symbol
+            ).returns(T.attached_class)
+          end
+          def self.new(flag:, guideline_key:, instructions:, id: :guideline)
+          end
+
+          sig do
+            override.returns(
+              {
+                id: Symbol,
+                flag: T::Boolean,
+                guideline_key: String,
+                instructions: String
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        sig do
+          override.returns(
+            T::Array[ModerationAPI::ContentSubmitParams::Policy::Variants]
+          )
+        end
+        def self.variants
         end
       end
     end

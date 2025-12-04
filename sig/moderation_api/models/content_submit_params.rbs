@@ -9,7 +9,8 @@ module ModerationAPI
         conversation_id: String,
         do_not_store: bool,
         metadata: ::Hash[Symbol, top],
-        meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type
+        meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
+        policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
       }
       & ModerationAPI::Internal::Type::request_parameters
 
@@ -49,6 +50,12 @@ module ModerationAPI
         ModerationAPI::Models::ContentSubmitParams::meta_type
       ) -> ModerationAPI::Models::ContentSubmitParams::meta_type
 
+      attr_reader policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy]?
+
+      def policies=: (
+        ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
+      ) -> ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
+
       def initialize: (
         content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,
@@ -58,6 +65,7 @@ module ModerationAPI
         ?do_not_store: bool,
         ?metadata: ::Hash[Symbol, top],
         ?meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
+        ?policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy],
         ?request_options: ModerationAPI::request_opts
       ) -> void
 
@@ -70,6 +78,7 @@ module ModerationAPI
         do_not_store: bool,
         metadata: ::Hash[Symbol, top],
         meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
+        policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy],
         request_options: ModerationAPI::RequestOptions
       }
 
@@ -239,6 +248,485 @@ module ModerationAPI
         OTHER: :other
 
         def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::meta_type]
+      end
+
+      type policy =
+        ModerationAPI::ContentSubmitParams::Policy::UnionMember0
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember1
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember2
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember3
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember4
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember5
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember6
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember7
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember8
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember9
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember10
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember11
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember12
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember13
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember14
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember15
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember16
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember17
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember18
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember19
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember20
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember21
+        | ModerationAPI::ContentSubmitParams::Policy::UnionMember22
+
+      module Policy
+        extend ModerationAPI::Internal::Type::Union
+
+        type union_member0 = { id: :toxicity, flag: bool }
+
+        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :toxicity
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :toxicity) -> void
+
+          def to_hash: -> { id: :toxicity, flag: bool }
+        end
+
+        type union_member1 = { id: :personal_information, flag: bool }
+
+        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :personal_information
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :personal_information) -> void
+
+          def to_hash: -> { id: :personal_information, flag: bool }
+        end
+
+        type union_member2 = { id: :toxicity_severe, flag: bool }
+
+        class UnionMember2 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :toxicity_severe
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :toxicity_severe) -> void
+
+          def to_hash: -> { id: :toxicity_severe, flag: bool }
+        end
+
+        type union_member3 = { id: :hate, flag: bool }
+
+        class UnionMember3 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :hate
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :hate) -> void
+
+          def to_hash: -> { id: :hate, flag: bool }
+        end
+
+        type union_member4 = { id: :illicit, flag: bool }
+
+        class UnionMember4 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :illicit
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :illicit) -> void
+
+          def to_hash: -> { id: :illicit, flag: bool }
+        end
+
+        type union_member5 = { id: :illicit_drugs, flag: bool }
+
+        class UnionMember5 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :illicit_drugs
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :illicit_drugs) -> void
+
+          def to_hash: -> { id: :illicit_drugs, flag: bool }
+        end
+
+        type union_member6 = { id: :illicit_alcohol, flag: bool }
+
+        class UnionMember6 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :illicit_alcohol
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :illicit_alcohol) -> void
+
+          def to_hash: -> { id: :illicit_alcohol, flag: bool }
+        end
+
+        type union_member7 = { id: :illicit_firearms, flag: bool }
+
+        class UnionMember7 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :illicit_firearms
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :illicit_firearms) -> void
+
+          def to_hash: -> { id: :illicit_firearms, flag: bool }
+        end
+
+        type union_member8 = { id: :illicit_tobacco, flag: bool }
+
+        class UnionMember8 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :illicit_tobacco
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :illicit_tobacco) -> void
+
+          def to_hash: -> { id: :illicit_tobacco, flag: bool }
+        end
+
+        type union_member9 = { id: :illicit_gambling, flag: bool }
+
+        class UnionMember9 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :illicit_gambling
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :illicit_gambling) -> void
+
+          def to_hash: -> { id: :illicit_gambling, flag: bool }
+        end
+
+        type union_member10 = { id: :sexual, flag: bool }
+
+        class UnionMember10 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :sexual
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :sexual) -> void
+
+          def to_hash: -> { id: :sexual, flag: bool }
+        end
+
+        type union_member11 = { id: :flirtation, flag: bool }
+
+        class UnionMember11 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :flirtation
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :flirtation) -> void
+
+          def to_hash: -> { id: :flirtation, flag: bool }
+        end
+
+        type union_member12 = { id: :profanity, flag: bool }
+
+        class UnionMember12 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :profanity
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :profanity) -> void
+
+          def to_hash: -> { id: :profanity, flag: bool }
+        end
+
+        type union_member13 = { id: :violence, flag: bool }
+
+        class UnionMember13 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :violence
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :violence) -> void
+
+          def to_hash: -> { id: :violence, flag: bool }
+        end
+
+        type union_member14 = { id: :self_harm, flag: bool }
+
+        class UnionMember14 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :self_harm
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :self_harm) -> void
+
+          def to_hash: -> { id: :self_harm, flag: bool }
+        end
+
+        type union_member15 = { id: :spam, flag: bool }
+
+        class UnionMember15 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :spam
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :spam) -> void
+
+          def to_hash: -> { id: :spam, flag: bool }
+        end
+
+        type union_member16 = { id: :self_promotion, flag: bool }
+
+        class UnionMember16 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :self_promotion
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :self_promotion) -> void
+
+          def to_hash: -> { id: :self_promotion, flag: bool }
+        end
+
+        type union_member17 = { id: :political, flag: bool }
+
+        class UnionMember17 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :political
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :political) -> void
+
+          def to_hash: -> { id: :political, flag: bool }
+        end
+
+        type union_member18 = { id: :religion, flag: bool }
+
+        class UnionMember18 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :religion
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :religion) -> void
+
+          def to_hash: -> { id: :religion, flag: bool }
+        end
+
+        type union_member19 = { id: :code_abuse, flag: bool }
+
+        class UnionMember19 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :code_abuse
+
+          attr_accessor flag: bool
+
+          def initialize: (flag: bool, ?id: :code_abuse) -> void
+
+          def to_hash: -> { id: :code_abuse, flag: bool }
+        end
+
+        type union_member20 =
+          {
+            id: :pii,
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity]
+          }
+
+        class UnionMember20 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :pii
+
+          attr_accessor entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity]
+
+          def initialize: (
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity],
+            ?id: :pii
+          ) -> void
+
+          def to_hash: -> {
+            id: :pii,
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember20::Entity]
+          }
+
+          type entity =
+            {
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id,
+              enable: bool,
+              flag: bool,
+              should_mask: bool,
+              mask: String
+            }
+
+          class Entity < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id
+
+            attr_accessor enable: bool
+
+            attr_accessor flag: bool
+
+            attr_accessor should_mask: bool
+
+            attr_reader mask: String?
+
+            def mask=: (String) -> String
+
+            def initialize: (
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id,
+              enable: bool,
+              flag: bool,
+              should_mask: bool,
+              ?mask: String
+            ) -> void
+
+            def to_hash: -> {
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id,
+              enable: bool,
+              flag: bool,
+              should_mask: bool,
+              mask: String
+            }
+
+            type id =
+              :email
+              | :phone
+              | :url
+              | :address
+              | :name
+              | :username
+              | :ip_address
+              | :credit_card
+              | :sensitive_other
+
+            module ID
+              extend ModerationAPI::Internal::Type::Enum
+
+              EMAIL: :email
+              PHONE: :phone
+              URL: :url
+              ADDRESS: :address
+              NAME: :name
+              USERNAME: :username
+              IP_ADDRESS: :ip_address
+              CREDIT_CARD: :credit_card
+              SENSITIVE_OTHER: :sensitive_other
+
+              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember20::Entity::id]
+            end
+          end
+        end
+
+        type union_member21 =
+          {
+            id: :url,
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity]
+          }
+
+        class UnionMember21 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :url
+
+          attr_accessor entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity]
+
+          def initialize: (
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity],
+            ?id: :url
+          ) -> void
+
+          def to_hash: -> {
+            id: :url,
+            entities: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnionMember21::Entity]
+          }
+
+          type entity =
+            {
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id,
+              enable: bool,
+              flag: bool,
+              should_mask: bool,
+              mask: String
+            }
+
+          class Entity < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id
+
+            attr_accessor enable: bool
+
+            attr_accessor flag: bool
+
+            attr_accessor should_mask: bool
+
+            attr_reader mask: String?
+
+            def mask=: (String) -> String
+
+            def initialize: (
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id,
+              enable: bool,
+              flag: bool,
+              should_mask: bool,
+              ?mask: String
+            ) -> void
+
+            def to_hash: -> {
+              id: ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id,
+              enable: bool,
+              flag: bool,
+              should_mask: bool,
+              mask: String
+            }
+
+            type id =
+              :email
+              | :phone
+              | :url
+              | :address
+              | :name
+              | :username
+              | :ip_address
+              | :credit_card
+              | :sensitive_other
+
+            module ID
+              extend ModerationAPI::Internal::Type::Enum
+
+              EMAIL: :email
+              PHONE: :phone
+              URL: :url
+              ADDRESS: :address
+              NAME: :name
+              USERNAME: :username
+              IP_ADDRESS: :ip_address
+              CREDIT_CARD: :credit_card
+              SENSITIVE_OTHER: :sensitive_other
+
+              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::UnionMember21::Entity::id]
+            end
+          end
+        end
+
+        type union_member22 =
+          {
+            id: :guideline,
+            flag: bool,
+            guideline_key: String,
+            instructions: String
+          }
+
+        class UnionMember22 < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :guideline
+
+          attr_accessor flag: bool
+
+          attr_accessor guideline_key: String
+
+          attr_accessor instructions: String
+
+          def initialize: (
+            flag: bool,
+            guideline_key: String,
+            instructions: String,
+            ?id: :guideline
+          ) -> void
+
+          def to_hash: -> {
+            id: :guideline,
+            flag: bool,
+            guideline_key: String,
+            instructions: String
+          }
+        end
+
+        def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
       end
     end
   end

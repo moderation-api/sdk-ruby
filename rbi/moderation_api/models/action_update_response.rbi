@@ -323,6 +323,16 @@ module ModerationAPI
             :AUTHOR_CUSTOM,
             ModerationAPI::Models::ActionUpdateResponse::Type::TaggedSymbol
           )
+        ITEM_REJECT =
+          T.let(
+            :ITEM_REJECT,
+            ModerationAPI::Models::ActionUpdateResponse::Type::TaggedSymbol
+          )
+        ITEM_ALLOW =
+          T.let(
+            :ITEM_ALLOW,
+            ModerationAPI::Models::ActionUpdateResponse::Type::TaggedSymbol
+          )
         ITEM_CUSTOM =
           T.let(
             :ITEM_CUSTOM,

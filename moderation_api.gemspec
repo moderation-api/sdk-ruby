@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = ModerationAPI::VERSION
   s.summary = "Ruby library to access the Moderation API API"
   s.authors = ["Moderation API"]
-  s.email = ""
+  s.email = "support@moderationapi.com"
   s.homepage = "https://gemdocs.org/gems/moderation-api"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/moderation-api-ruby"

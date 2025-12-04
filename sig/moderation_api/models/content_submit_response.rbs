@@ -262,32 +262,32 @@ module ModerationAPI
       end
 
       type insight =
-        ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0
-        | ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember1
+        ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights
+        | ModerationAPI::Models::ContentSubmitResponse::Insight::LanguageInsights
 
       module Insight
         extend ModerationAPI::Internal::Type::Union
 
-        type union_member0 =
+        type sentiment_insights =
           {
             id: :sentiment,
             probability: Float,
             type: :insight,
-            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::value?
           }
 
-        class UnionMember0 < ModerationAPI::Internal::Type::BaseModel
+        class SentimentInsights < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :sentiment
 
           attr_accessor probability: Float
 
           attr_accessor type: :insight
 
-          attr_accessor value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
+          attr_accessor value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::value?
 
           def initialize: (
             probability: Float,
-            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?,
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::value?,
             ?id: :sentiment,
             ?type: :insight
           ) -> void
@@ -296,7 +296,7 @@ module ModerationAPI
             id: :sentiment,
             probability: Float,
             type: :insight,
-            value: ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value?
+            value: ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::value?
           }
 
           type value = :positive | :neutral | :negative
@@ -308,14 +308,14 @@ module ModerationAPI
             NEUTRAL: :neutral
             NEGATIVE: :negative
 
-            def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Insight::UnionMember0::value]
+            def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Insight::SentimentInsights::value]
           end
         end
 
-        type union_member1 =
+        type language_insights =
           { id: :language, probability: Float, type: :insight, value: String? }
 
-        class UnionMember1 < ModerationAPI::Internal::Type::BaseModel
+        class LanguageInsights < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :language
 
           attr_accessor probability: Float

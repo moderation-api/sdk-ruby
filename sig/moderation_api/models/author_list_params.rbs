@@ -5,8 +5,8 @@ module ModerationAPI
         content_types: String,
         last_active_date: String,
         member_since_date: String,
-        page_number: String,
-        page_size: String,
+        page_number: Float,
+        page_size: Float,
         sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
         sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction
       }
@@ -28,13 +28,13 @@ module ModerationAPI
 
       def member_since_date=: (String) -> String
 
-      attr_reader page_number: String?
+      attr_reader page_number: Float?
 
-      def page_number=: (String) -> String
+      def page_number=: (Float) -> Float
 
-      attr_reader page_size: String?
+      attr_reader page_size: Float?
 
-      def page_size=: (String) -> String
+      def page_size=: (Float) -> Float
 
       attr_reader sort_by: ModerationAPI::Models::AuthorListParams::sort_by?
 
@@ -52,8 +52,8 @@ module ModerationAPI
         ?content_types: String,
         ?last_active_date: String,
         ?member_since_date: String,
-        ?page_number: String,
-        ?page_size: String,
+        ?page_number: Float,
+        ?page_size: Float,
         ?sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
         ?sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction,
         ?request_options: ModerationAPI::request_opts
@@ -63,8 +63,8 @@ module ModerationAPI
         content_types: String,
         last_active_date: String,
         member_since_date: String,
-        page_number: String,
-        page_size: String,
+        page_number: Float,
+        page_size: Float,
         sort_by: ModerationAPI::Models::AuthorListParams::sort_by,
         sort_direction: ModerationAPI::Models::AuthorListParams::sort_direction,
         request_options: ModerationAPI::RequestOptions

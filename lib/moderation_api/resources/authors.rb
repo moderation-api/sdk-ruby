@@ -117,9 +117,9 @@ module ModerationAPI
       #
       # @param member_since_date [String]
       #
-      # @param page_number [String] Page number to fetch
+      # @param page_number [Float] Page number to fetch
       #
-      # @param page_size [String] Number of authors per page
+      # @param page_size [Float] Number of authors per page
       #
       # @param sort_by [Symbol, ModerationAPI::Models::AuthorListParams::SortBy]
       #

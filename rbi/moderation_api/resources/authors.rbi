@@ -101,8 +101,8 @@ module ModerationAPI
           content_types: String,
           last_active_date: String,
           member_since_date: String,
-          page_number: String,
-          page_size: String,
+          page_number: Float,
+          page_size: Float,
           sort_by: ModerationAPI::AuthorListParams::SortBy::OrSymbol,
           sort_direction:
             ModerationAPI::AuthorListParams::SortDirection::OrSymbol,

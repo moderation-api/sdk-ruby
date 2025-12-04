@@ -25,14 +25,14 @@ module ModerationAPI
       # @!attribute page_number
       #   Page number to fetch
       #
-      #   @return [String, nil]
-      optional :page_number, String
+      #   @return [Float, nil]
+      optional :page_number, Float
 
       # @!attribute page_size
       #   Number of authors per page
       #
-      #   @return [String, nil]
-      optional :page_size, String
+      #   @return [Float, nil]
+      optional :page_size, Float
 
       # @!attribute sort_by
       #
@@ -52,9 +52,9 @@ module ModerationAPI
       #
       #   @param member_since_date [String]
       #
-      #   @param page_number [String] Page number to fetch
+      #   @param page_number [Float] Page number to fetch
       #
-      #   @param page_size [String] Number of authors per page
+      #   @param page_size [Float] Number of authors per page
       #
       #   @param sort_by [Symbol, ModerationAPI::Models::AuthorListParams::SortBy]
       #

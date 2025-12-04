@@ -10,8 +10,8 @@ module ModerationAPI
           filtered_action_ids: String,
           include_resolved: String,
           labels: String,
-          page_number: String,
-          page_size: String,
+          page_number: Float,
+          page_size: Float,
           sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
           sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field
         }
@@ -49,13 +49,13 @@ module ModerationAPI
 
         def labels=: (String) -> String
 
-        attr_reader page_number: String?
+        attr_reader page_number: Float?
 
-        def page_number=: (String) -> String
+        def page_number=: (Float) -> Float
 
-        attr_reader page_size: String?
+        attr_reader page_size: Float?
 
-        def page_size=: (String) -> String
+        def page_size=: (Float) -> Float
 
         attr_reader sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction?
 
@@ -77,8 +77,8 @@ module ModerationAPI
           ?filtered_action_ids: String,
           ?include_resolved: String,
           ?labels: String,
-          ?page_number: String,
-          ?page_size: String,
+          ?page_number: Float,
+          ?page_size: Float,
           ?sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
           ?sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field,
           ?request_options: ModerationAPI::request_opts
@@ -92,8 +92,8 @@ module ModerationAPI
           filtered_action_ids: String,
           include_resolved: String,
           labels: String,
-          page_number: String,
-          page_size: String,
+          page_number: Float,
+          page_size: Float,
           sort_direction: ModerationAPI::Models::Queue::ItemListParams::sort_direction,
           sort_field: ModerationAPI::Models::Queue::ItemListParams::sort_field,
           request_options: ModerationAPI::RequestOptions

@@ -58,17 +58,17 @@ module ModerationAPI
         attr_writer :labels
 
         # Page number to fetch
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Float)) }
         attr_reader :page_number
 
-        sig { params(page_number: String).void }
+        sig { params(page_number: Float).void }
         attr_writer :page_number
 
         # Number of items per page
-        sig { returns(T.nilable(String)) }
+        sig { returns(T.nilable(Float)) }
         attr_reader :page_size
 
-        sig { params(page_size: String).void }
+        sig { params(page_size: Float).void }
         attr_writer :page_size
 
         # Sort direction
@@ -113,8 +113,8 @@ module ModerationAPI
             filtered_action_ids: String,
             include_resolved: String,
             labels: String,
-            page_number: String,
-            page_size: String,
+            page_number: Float,
+            page_size: Float,
             sort_direction:
               ModerationAPI::Queue::ItemListParams::SortDirection::OrSymbol,
             sort_field:
@@ -151,8 +151,8 @@ module ModerationAPI
               filtered_action_ids: String,
               include_resolved: String,
               labels: String,
-              page_number: String,
-              page_size: String,
+              page_number: Float,
+              page_size: Float,
               sort_direction:
                 ModerationAPI::Queue::ItemListParams::SortDirection::OrSymbol,
               sort_field:

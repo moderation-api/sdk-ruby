@@ -15,8 +15,8 @@ module ModerationAPI
             filtered_action_ids: String,
             include_resolved: String,
             labels: String,
-            page_number: String,
-            page_size: String,
+            page_number: Float,
+            page_size: Float,
             sort_direction:
               ModerationAPI::Queue::ItemListParams::SortDirection::OrSymbol,
             sort_field:

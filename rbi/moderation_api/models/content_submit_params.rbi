@@ -22,7 +22,7 @@ module ModerationAPI
             ModerationAPI::ContentSubmitParams::Content::Image,
             ModerationAPI::ContentSubmitParams::Content::Video,
             ModerationAPI::ContentSubmitParams::Content::Audio,
-            ModerationAPI::ContentSubmitParams::Content::ContentNode
+            ModerationAPI::ContentSubmitParams::Content::Object
           )
         )
       end
@@ -86,8 +86,7 @@ module ModerationAPI
       end
       attr_writer :meta_type
 
-      # Optionally override the channel policies for this moderation request only
-      # (enterprise).
+      # (Enterprise) override the channel policies for this moderation request only.
       sig do
         returns(
           T.nilable(
@@ -165,7 +164,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Content::Image::OrHash,
               ModerationAPI::ContentSubmitParams::Content::Video::OrHash,
               ModerationAPI::ContentSubmitParams::Content::Audio::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::ContentNode::OrHash
+              ModerationAPI::ContentSubmitParams::Content::Object::OrHash
             ),
           author_id: String,
           channel: String,
@@ -223,8 +222,7 @@ module ModerationAPI
         metadata: nil,
         # The meta type of content being moderated
         meta_type: nil,
-        # Optionally override the channel policies for this moderation request only
-        # (enterprise).
+        # (Enterprise) override the channel policies for this moderation request only.
         policies: nil,
         request_options: {}
       )
@@ -239,7 +237,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Content::Image,
                 ModerationAPI::ContentSubmitParams::Content::Video,
                 ModerationAPI::ContentSubmitParams::Content::Audio,
-                ModerationAPI::ContentSubmitParams::Content::ContentNode
+                ModerationAPI::ContentSubmitParams::Content::Object
               ),
             author_id: String,
             channel: String,
@@ -294,7 +292,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Content::Image,
               ModerationAPI::ContentSubmitParams::Content::Video,
               ModerationAPI::ContentSubmitParams::Content::Audio,
-              ModerationAPI::ContentSubmitParams::Content::ContentNode
+              ModerationAPI::ContentSubmitParams::Content::Object
             )
           end
 
@@ -418,11 +416,11 @@ module ModerationAPI
           end
         end
 
-        class ContentNode < ModerationAPI::Internal::Type::BaseModel
+        class Object < ModerationAPI::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::ContentSubmitParams::Content::ContentNode,
+                ModerationAPI::ContentSubmitParams::Content::Object,
                 ModerationAPI::Internal::AnyHash
               )
             end
@@ -433,10 +431,10 @@ module ModerationAPI
               T::Hash[
                 Symbol,
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Text,
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Image,
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Video,
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio
                 )
               ]
             )
@@ -453,10 +451,10 @@ module ModerationAPI
                 T::Hash[
                   Symbol,
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video::OrHash,
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio::OrHash
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Text::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Image::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Video::OrHash,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio::OrHash
                   )
                 ],
               type: Symbol
@@ -476,10 +474,10 @@ module ModerationAPI
                   T::Hash[
                     Symbol,
                     T.any(
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
-                      ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+                      ModerationAPI::ContentSubmitParams::Content::Object::Data::Text,
+                      ModerationAPI::ContentSubmitParams::Content::Object::Data::Image,
+                      ModerationAPI::ContentSubmitParams::Content::Object::Data::Video,
+                      ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio
                     )
                   ],
                 type: Symbol
@@ -496,10 +494,10 @@ module ModerationAPI
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Text,
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Image,
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Video,
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio
                 )
               end
 
@@ -507,7 +505,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Text,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -539,7 +537,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Image,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -571,7 +569,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Video,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -603,7 +601,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio,
+                    ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -634,7 +632,7 @@ module ModerationAPI
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Variants
+                  ModerationAPI::ContentSubmitParams::Content::Object::Data::Variants
                 ]
               )
             end

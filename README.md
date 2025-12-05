@@ -1,8 +1,6 @@
-# Moderation API Ruby API library
+# Moderation API Ruby library
 
 The Moderation API Ruby library provides convenient access to the Moderation API REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/moderation-api/sdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
-
-It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
@@ -17,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "moderation_api", "~> 2.0.0"
+gem "moderation_api", "~> 2.0.1"
 ```
 
 <!-- x-release-please-end -->

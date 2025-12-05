@@ -1,0 +1,28 @@
+# Changelog
+
+## 2.0.0 (2025-12-05)
+
+Full Changelog: [v0.0.1...v2.0.0](https://github.com/moderation-api/sdk-ruby/compare/v0.0.1...v2.0.0)
+
+### Features
+
+* **api:** api update ([400d1cc](https://github.com/moderation-api/sdk-ruby/commit/400d1cc55e946cd047ebe6837c64e881f9796120))
+* **api:** api update ([34ddc34](https://github.com/moderation-api/sdk-ruby/commit/34ddc3478338af0c07107d739c570bd0cb688215))
+* **api:** api update ([7b0c383](https://github.com/moderation-api/sdk-ruby/commit/7b0c38363370d29eeacc1a5e6cecb909c0b16353))
+* **api:** manual updates ([aa5e0e6](https://github.com/moderation-api/sdk-ruby/commit/aa5e0e6d3afd7be708d96205d2748a40845b7931))
+* **api:** manual updates ([c38719d](https://github.com/moderation-api/sdk-ruby/commit/c38719de057b770b675e67383cc4e5fac1973a9c))
+* **api:** manual updates ([e304765](https://github.com/moderation-api/sdk-ruby/commit/e304765ec2028a345bcc3e860f1e7f53ffb30a58))
+* **api:** manual updates ([2e5bc4c](https://github.com/moderation-api/sdk-ruby/commit/2e5bc4cfc267ccdfe6d26a9873409856d01ddc5d))
+* **api:** manual updates ([667a0b8](https://github.com/moderation-api/sdk-ruby/commit/667a0b81c42ac2f4fd04035386dedf0cf67380ea))
+* **api:** manual updates ([ed95ed4](https://github.com/moderation-api/sdk-ruby/commit/ed95ed44d04677ce0699a00d9bfedca7b1a1db8f))
+* **api:** manual updates ([495a03b](https://github.com/moderation-api/sdk-ruby/commit/495a03b50318611091d581c0ef3892c44883e391))
+* **api:** manual updates ([a17bf98](https://github.com/moderation-api/sdk-ruby/commit/a17bf98e0d126505db304b1d316812a42ccd2a81))
+* **api:** manual updates ([f20d9aa](https://github.com/moderation-api/sdk-ruby/commit/f20d9aaa79b9d5b043a07bcc133bbdcd930c25c7))
+* **api:** manual updates ([6dc2d9d](https://github.com/moderation-api/sdk-ruby/commit/6dc2d9d4c46a7b4c0fed2a5e2b5821c951e5ccdf))
+* **api:** removed deprecated moderate endpoints ([5b163bc](https://github.com/moderation-api/sdk-ruby/commit/5b163bc4faf3fc881ea176aef9c58cef265943fe))
+
+
+### Chores
+
+* configure new SDK language ([22d6295](https://github.com/moderation-api/sdk-ruby/commit/22d6295c55898708f8e39df213365f37ad17f075))
+* update SDK settings ([492eccb](https://github.com/moderation-api/sdk-ruby/commit/492eccbceb612aef715d3f9c295882c1e5bd5961))

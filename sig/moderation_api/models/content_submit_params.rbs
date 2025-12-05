@@ -87,7 +87,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Content::Image
         | ModerationAPI::ContentSubmitParams::Content::Video
         | ModerationAPI::ContentSubmitParams::Content::Audio
-        | ModerationAPI::ContentSubmitParams::Content::ContentNode
+        | ModerationAPI::ContentSubmitParams::Content::Object
 
       module Content
         extend ModerationAPI::Internal::Type::Union
@@ -140,32 +140,32 @@ module ModerationAPI
           def to_hash: -> { type: :audio, url: String }
         end
 
-        type content_node =
+        type object =
           {
-            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::Object::data],
             type: :object
           }
 
-        class ContentNode < ModerationAPI::Internal::Type::BaseModel
-          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data]
+        class Object < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::Object::data]
 
           attr_accessor type: :object
 
           def initialize: (
-            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::Object::data],
             ?type: :object
           ) -> void
 
           def to_hash: -> {
-            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data],
+            data: ::Hash[Symbol, ModerationAPI::Models::ContentSubmitParams::Content::Object::data],
             type: :object
           }
 
           type data =
-            ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text
-            | ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image
-            | ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video
-            | ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio
+            ModerationAPI::ContentSubmitParams::Content::Object::Data::Text
+            | ModerationAPI::ContentSubmitParams::Content::Object::Data::Image
+            | ModerationAPI::ContentSubmitParams::Content::Object::Data::Video
+            | ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio
 
           module Data
             extend ModerationAPI::Internal::Type::Union
@@ -218,7 +218,7 @@ module ModerationAPI
               def to_hash: -> { type: :audio, url: String }
             end
 
-            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::data]
+            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Content::Object::data]
           end
         end
 

@@ -10,7 +10,7 @@ module ModerationAPI
       # @!attribute content
       #   The content sent for moderation
       #
-      #   @return [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode]
+      #   @return [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::Object]
       required :content, union: -> { ModerationAPI::ContentSubmitParams::Content }
 
       # @!attribute author_id
@@ -57,8 +57,7 @@ module ModerationAPI
       optional :meta_type, enum: -> { ModerationAPI::ContentSubmitParams::MetaType }, api_name: :metaType
 
       # @!attribute policies
-      #   Optionally override the channel policies for this moderation request only
-      #   (enterprise).
+      #   (Enterprise) override the channel policies for this moderation request only.
       #
       #   @return [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>, nil]
       optional :policies,
@@ -68,7 +67,7 @@ module ModerationAPI
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
-      #   @param content [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode] The content sent for moderation
+      #   @param content [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::Object] The content sent for moderation
       #
       #   @param author_id [String] The author of the content.
       #
@@ -84,7 +83,7 @@ module ModerationAPI
       #
       #   @param meta_type [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType] The meta type of content being moderated
       #
-      #   @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>] Optionally override the channel policies for this moderation request only (enter
+      #   @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>] (Enterprise) override the channel policies for this moderation request only.
       #
       #   @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}]
 
@@ -105,7 +104,7 @@ module ModerationAPI
         variant -> { ModerationAPI::ContentSubmitParams::Content::Audio }
 
         # Object
-        variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode }
+        variant -> { ModerationAPI::ContentSubmitParams::Content::Object }
 
         class Text < ModerationAPI::Internal::Type::BaseModel
           # @!attribute text
@@ -187,13 +186,13 @@ module ModerationAPI
           #   @param type [Symbol, :audio]
         end
 
-        class ContentNode < ModerationAPI::Internal::Type::BaseModel
+        class Object < ModerationAPI::Internal::Type::BaseModel
           # @!attribute data
           #   Values in the object. Can be mixed content types.
           #
-          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Audio}]
+          #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Audio}]
           required :data,
-                   -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::ContentSubmitParams::Content::ContentNode::Data] }
+                   -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::ContentSubmitParams::Content::Object::Data] }
 
           # @!attribute type
           #
@@ -203,7 +202,7 @@ module ModerationAPI
           # @!method initialize(data:, type: :object)
           #   Object
           #
-          #   @param data [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Audio}] Values in the object. Can be mixed content types.
+          #   @param data [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Audio}] Values in the object. Can be mixed content types.
           #
           #   @param type [Symbol, :object]
 
@@ -212,16 +211,16 @@ module ModerationAPI
             extend ModerationAPI::Internal::Type::Union
 
             # Text
-            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Text }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::Object::Data::Text }
 
             # Image
-            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Image }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::Object::Data::Image }
 
             # Video
-            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Video }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::Object::Data::Video }
 
             # Audio
-            variant -> { ModerationAPI::ContentSubmitParams::Content::ContentNode::Data::Audio }
+            variant -> { ModerationAPI::ContentSubmitParams::Content::Object::Data::Audio }
 
             class Text < ModerationAPI::Internal::Type::BaseModel
               # @!attribute text
@@ -304,12 +303,12 @@ module ModerationAPI
             end
 
             # @!method self.variants
-            #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode::Data::Audio)]
+            #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Text, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Image, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Video, ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Audio)]
           end
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::ContentNode)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::Object)]
       end
 
       # The meta type of content being moderated

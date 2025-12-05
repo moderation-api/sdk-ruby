@@ -11,7 +11,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Content::Image::OrHash,
               ModerationAPI::ContentSubmitParams::Content::Video::OrHash,
               ModerationAPI::ContentSubmitParams::Content::Audio::OrHash,
-              ModerationAPI::ContentSubmitParams::Content::ContentNode::OrHash
+              ModerationAPI::ContentSubmitParams::Content::Object::OrHash
             ),
           author_id: String,
           channel: String,
@@ -69,8 +69,7 @@ module ModerationAPI
         metadata: nil,
         # The meta type of content being moderated
         meta_type: nil,
-        # Optionally override the channel policies for this moderation request only
-        # (enterprise).
+        # (Enterprise) override the channel policies for this moderation request only.
         policies: nil,
         request_options: {}
       )

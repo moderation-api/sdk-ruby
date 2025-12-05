@@ -3,12 +3,12 @@
 require_relative "lib/moderation_api/version"
 
 Gem::Specification.new do |s|
-  s.name = "moderation-api"
+  s.name = "moderation_api"
   s.version = ModerationAPI::VERSION
   s.summary = "Ruby library to access the Moderation API API"
   s.authors = ["Moderation API"]
   s.email = "support@moderationapi.com"
-  s.homepage = "https://gemdocs.org/gems/moderation-api"
+  s.homepage = "https://gemdocs.org/gems/moderation_api"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/moderation-api/sdk-ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s

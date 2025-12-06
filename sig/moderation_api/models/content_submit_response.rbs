@@ -156,18 +156,19 @@ module ModerationAPI
 
         type modified =
           String
-          | ::Hash[Symbol, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::union_member1]
+          | ::Hash[Symbol, top]
+          | ::Hash[Symbol, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::modified_nested_object_content]
 
         module Modified
           extend ModerationAPI::Internal::Type::Union
 
-          type union_member1 =
-            ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text
-            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image
-            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video
-            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio
+          type modified_nested_object_content =
+            ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video
+            | ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio
 
-          module UnionMember1
+          module ModifiedNestedObjectContent
             extend ModerationAPI::Internal::Type::Union
 
             type text = { text: String, type: :text }
@@ -218,12 +219,14 @@ module ModerationAPI
               def to_hash: -> { type: :audio, url: String }
             end
 
-            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Content::Modified::union_member1]
+            def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Content::Modified::modified_nested_object_content]
           end
 
           def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Content::modified]
 
-          UnionMember1Map: ModerationAPI::Internal::Type::Converter
+          ModifiedObjectContentMap: ModerationAPI::Internal::Type::Converter
+
+          ModifiedNestedObjectContentMap: ModerationAPI::Internal::Type::Converter
         end
       end
 

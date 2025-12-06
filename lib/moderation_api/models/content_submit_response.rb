@@ -196,7 +196,7 @@ module ModerationAPI
         # @!attribute modified
         #   The modified content, if any.
         #
-        #   @return [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio}, nil]
+        #   @return [String, Hash{Symbol=>Object}, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio}, nil]
         required :modified,
                  union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified },
                  nil?: true
@@ -211,7 +211,7 @@ module ModerationAPI
         #
         #   @param masked [Boolean] Whether any values have been masked.
         #
-        #   @param modified [String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio}, nil] The modified content, if any.
+        #   @param modified [String, Hash{Symbol=>Object}, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio}, nil] The modified content, if any.
 
         # The modified content, if any.
         #
@@ -221,23 +221,25 @@ module ModerationAPI
 
           variant String
 
-          variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1Map }
+          variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedObjectContentMap }
+
+          variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContentMap }
 
           # Text
-          module UnionMember1
+          module ModifiedNestedObjectContent
             extend ModerationAPI::Internal::Type::Union
 
             # Text
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text }
 
             # Image
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image }
 
             # Video
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video }
 
             # Audio
-            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio }
+            variant -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio }
 
             class Text < ModerationAPI::Internal::Type::BaseModel
               # @!attribute text
@@ -320,15 +322,18 @@ module ModerationAPI
             end
 
             # @!method self.variants
-            #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio)]
+            #   @return [Array(ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio)]
           end
 
           # @!method self.variants
-          #   @return [Array(String, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio})]
+          #   @return [Array(String, Hash{Symbol=>Object}, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio})]
 
           # @type [ModerationAPI::Internal::Type::Converter]
-          UnionMember1Map =
-            ModerationAPI::Internal::Type::HashOf[union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1 }]
+          ModifiedObjectContentMap = ModerationAPI::Internal::Type::HashOf[ModerationAPI::Internal::Type::Unknown]
+
+          # @type [ModerationAPI::Internal::Type::Converter]
+          ModifiedNestedObjectContentMap =
+            ModerationAPI::Internal::Type::HashOf[union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent }]
         end
       end
 

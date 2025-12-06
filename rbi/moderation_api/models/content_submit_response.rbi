@@ -492,24 +492,25 @@ module ModerationAPI
             T.type_alias do
               T.any(
                 String,
+                T::Hash[Symbol, T.anything],
                 T::Hash[
                   Symbol,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Variants
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Variants
                 ]
               )
             end
 
           # Text
-          module UnionMember1
+          module ModifiedNestedObjectContent
             extend ModerationAPI::Internal::Type::Union
 
             Variants =
               T.type_alias do
                 T.any(
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video,
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video,
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio
                 )
               end
 
@@ -517,7 +518,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Text,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -549,7 +550,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Image,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -581,7 +582,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Video,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -613,7 +614,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Audio,
+                    ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -644,7 +645,7 @@ module ModerationAPI
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1::Variants
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Variants
                 ]
               )
             end
@@ -662,11 +663,19 @@ module ModerationAPI
           def self.variants
           end
 
-          UnionMember1Map =
+          ModifiedObjectContentMap =
+            T.let(
+              ModerationAPI::Internal::Type::HashOf[
+                ModerationAPI::Internal::Type::Unknown
+              ],
+              ModerationAPI::Internal::Type::Converter
+            )
+
+          ModifiedNestedObjectContentMap =
             T.let(
               ModerationAPI::Internal::Type::HashOf[
                 union:
-                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::UnionMember1
+                  ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent
               ],
               ModerationAPI::Internal::Type::Converter
             )

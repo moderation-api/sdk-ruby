@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.1 (2025-12-17)
+
+Full Changelog: [v2.1.0...v2.1.1](https://github.com/moderation-api/sdk-ruby/compare/v2.1.0...v2.1.1)
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([eda0e72](https://github.com/moderation-api/sdk-ruby/commit/eda0e7289053ab2cd25c0c065c5df69d30d0831f))
+
 ## 2.1.0 (2025-12-06)
 
 Full Changelog: [v2.0.1...v2.1.0](https://github.com/moderation-api/sdk-ruby/compare/v2.0.1...v2.1.0)

@@ -278,244 +278,408 @@ module ModerationAPI
       module Policy
         extend ModerationAPI::Internal::Type::Union
 
-        type toxicity = { id: :toxicity, flag: bool }
+        type toxicity = { id: :toxicity, flag: bool, threshold: Float }
 
         class Toxicity < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :toxicity
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :toxicity) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :toxicity, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :toxicity
+          ) -> void
+
+          def to_hash: -> { id: :toxicity, flag: bool, threshold: Float }
         end
 
-        type personal_information = { id: :personal_information, flag: bool }
+        type personal_information =
+          { id: :personal_information, flag: bool, threshold: Float }
 
         class PersonalInformation < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :personal_information
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :personal_information) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :personal_information, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :personal_information
+          ) -> void
+
+          def to_hash: -> {
+            id: :personal_information,
+            flag: bool,
+            threshold: Float
+          }
         end
 
-        type toxicity_severe = { id: :toxicity_severe, flag: bool }
+        type toxicity_severe =
+          { id: :toxicity_severe, flag: bool, threshold: Float }
 
         class ToxicitySevere < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :toxicity_severe
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :toxicity_severe) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :toxicity_severe, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :toxicity_severe
+          ) -> void
+
+          def to_hash: -> { id: :toxicity_severe, flag: bool, threshold: Float }
         end
 
-        type hate = { id: :hate, flag: bool }
+        type hate = { id: :hate, flag: bool, threshold: Float }
 
         class Hate < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :hate
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :hate) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :hate, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (flag: bool, ?threshold: Float, ?id: :hate) -> void
+
+          def to_hash: -> { id: :hate, flag: bool, threshold: Float }
         end
 
-        type illicit = { id: :illicit, flag: bool }
+        type illicit = { id: :illicit, flag: bool, threshold: Float }
 
         class Illicit < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :illicit) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :illicit, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (flag: bool, ?threshold: Float, ?id: :illicit) -> void
+
+          def to_hash: -> { id: :illicit, flag: bool, threshold: Float }
         end
 
-        type illicit_drugs = { id: :illicit_drugs, flag: bool }
+        type illicit_drugs =
+          { id: :illicit_drugs, flag: bool, threshold: Float }
 
         class IllicitDrugs < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_drugs
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :illicit_drugs) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :illicit_drugs, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :illicit_drugs
+          ) -> void
+
+          def to_hash: -> { id: :illicit_drugs, flag: bool, threshold: Float }
         end
 
-        type illicit_alcohol = { id: :illicit_alcohol, flag: bool }
+        type illicit_alcohol =
+          { id: :illicit_alcohol, flag: bool, threshold: Float }
 
         class IllicitAlcohol < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_alcohol
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :illicit_alcohol) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :illicit_alcohol, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :illicit_alcohol
+          ) -> void
+
+          def to_hash: -> { id: :illicit_alcohol, flag: bool, threshold: Float }
         end
 
-        type illicit_firearms = { id: :illicit_firearms, flag: bool }
+        type illicit_firearms =
+          { id: :illicit_firearms, flag: bool, threshold: Float }
 
         class IllicitFirearms < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_firearms
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :illicit_firearms) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :illicit_firearms, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :illicit_firearms
+          ) -> void
+
+          def to_hash: -> {
+            id: :illicit_firearms,
+            flag: bool,
+            threshold: Float
+          }
         end
 
-        type illicit_tobacco = { id: :illicit_tobacco, flag: bool }
+        type illicit_tobacco =
+          { id: :illicit_tobacco, flag: bool, threshold: Float }
 
         class IllicitTobacco < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_tobacco
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :illicit_tobacco) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :illicit_tobacco, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :illicit_tobacco
+          ) -> void
+
+          def to_hash: -> { id: :illicit_tobacco, flag: bool, threshold: Float }
         end
 
-        type illicit_gambling = { id: :illicit_gambling, flag: bool }
+        type illicit_gambling =
+          { id: :illicit_gambling, flag: bool, threshold: Float }
 
         class IllicitGambling < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :illicit_gambling
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :illicit_gambling) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :illicit_gambling, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :illicit_gambling
+          ) -> void
+
+          def to_hash: -> {
+            id: :illicit_gambling,
+            flag: bool,
+            threshold: Float
+          }
         end
 
-        type sexual = { id: :sexual, flag: bool }
+        type sexual = { id: :sexual, flag: bool, threshold: Float }
 
         class Sexual < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :sexual
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :sexual) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :sexual, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (flag: bool, ?threshold: Float, ?id: :sexual) -> void
+
+          def to_hash: -> { id: :sexual, flag: bool, threshold: Float }
         end
 
-        type flirtation = { id: :flirtation, flag: bool }
+        type flirtation = { id: :flirtation, flag: bool, threshold: Float }
 
         class Flirtation < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :flirtation
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :flirtation) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :flirtation, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :flirtation
+          ) -> void
+
+          def to_hash: -> { id: :flirtation, flag: bool, threshold: Float }
         end
 
-        type profanity = { id: :profanity, flag: bool }
+        type profanity = { id: :profanity, flag: bool, threshold: Float }
 
         class Profanity < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :profanity
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :profanity) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :profanity, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :profanity
+          ) -> void
+
+          def to_hash: -> { id: :profanity, flag: bool, threshold: Float }
         end
 
-        type violence = { id: :violence, flag: bool }
+        type violence = { id: :violence, flag: bool, threshold: Float }
 
         class Violence < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :violence
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :violence) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :violence, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :violence
+          ) -> void
+
+          def to_hash: -> { id: :violence, flag: bool, threshold: Float }
         end
 
-        type self_harm = { id: :self_harm, flag: bool }
+        type self_harm = { id: :self_harm, flag: bool, threshold: Float }
 
         class SelfHarm < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :self_harm
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :self_harm) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :self_harm, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :self_harm
+          ) -> void
+
+          def to_hash: -> { id: :self_harm, flag: bool, threshold: Float }
         end
 
-        type spam = { id: :spam, flag: bool }
+        type spam = { id: :spam, flag: bool, threshold: Float }
 
         class Spam < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :spam
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :spam) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :spam, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (flag: bool, ?threshold: Float, ?id: :spam) -> void
+
+          def to_hash: -> { id: :spam, flag: bool, threshold: Float }
         end
 
-        type self_promotion = { id: :self_promotion, flag: bool }
+        type self_promotion =
+          { id: :self_promotion, flag: bool, threshold: Float }
 
         class SelfPromotion < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :self_promotion
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :self_promotion) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :self_promotion, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :self_promotion
+          ) -> void
+
+          def to_hash: -> { id: :self_promotion, flag: bool, threshold: Float }
         end
 
-        type political = { id: :political, flag: bool }
+        type political = { id: :political, flag: bool, threshold: Float }
 
         class Political < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :political
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :political) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :political, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :political
+          ) -> void
+
+          def to_hash: -> { id: :political, flag: bool, threshold: Float }
         end
 
-        type religion = { id: :religion, flag: bool }
+        type religion = { id: :religion, flag: bool, threshold: Float }
 
         class Religion < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :religion
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :religion) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :religion, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :religion
+          ) -> void
+
+          def to_hash: -> { id: :religion, flag: bool, threshold: Float }
         end
 
-        type code_abuse = { id: :code_abuse, flag: bool }
+        type code_abuse = { id: :code_abuse, flag: bool, threshold: Float }
 
         class CodeAbuse < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :code_abuse
 
           attr_accessor flag: bool
 
-          def initialize: (flag: bool, ?id: :code_abuse) -> void
+          attr_reader threshold: Float?
 
-          def to_hash: -> { id: :code_abuse, flag: bool }
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :code_abuse
+          ) -> void
+
+          def to_hash: -> { id: :code_abuse, flag: bool, threshold: Float }
         end
 
         type pii_masking =
@@ -699,7 +863,8 @@ module ModerationAPI
             id: :guideline,
             flag: bool,
             guideline_key: String,
-            instructions: String
+            instructions: String,
+            threshold: Float
           }
 
         class Guideline < ModerationAPI::Internal::Type::BaseModel
@@ -711,10 +876,15 @@ module ModerationAPI
 
           attr_accessor instructions: String
 
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
           def initialize: (
             flag: bool,
             guideline_key: String,
             instructions: String,
+            ?threshold: Float,
             ?id: :guideline
           ) -> void
 
@@ -722,7 +892,8 @@ module ModerationAPI
             id: :guideline,
             flag: bool,
             guideline_key: String,
-            instructions: String
+            instructions: String,
+            threshold: Float
           }
         end
 

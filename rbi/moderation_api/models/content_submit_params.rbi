@@ -757,11 +757,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :toxicity)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :toxicity)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -781,11 +793,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :personal_information)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :personal_information)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -805,11 +829,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :toxicity_severe)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :toxicity_severe)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -829,11 +865,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :hate)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :hate)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -853,11 +901,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :illicit)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :illicit)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -877,11 +937,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :illicit_drugs)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :illicit_drugs)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -901,11 +973,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :illicit_alcohol)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :illicit_alcohol)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -925,11 +1009,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :illicit_firearms)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :illicit_firearms)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -949,11 +1045,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :illicit_tobacco)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :illicit_tobacco)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -973,11 +1081,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :illicit_gambling)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :illicit_gambling)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -997,11 +1117,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :sexual)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :sexual)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1021,11 +1153,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :flirtation)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :flirtation)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1045,11 +1189,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :profanity)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :profanity)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1069,11 +1225,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :violence)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :violence)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1093,11 +1261,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :self_harm)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :self_harm)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1117,11 +1297,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :spam)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :spam)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1141,11 +1333,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :self_promotion)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :self_promotion)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1165,11 +1369,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :political)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :political)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1189,11 +1405,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :religion)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :religion)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1213,11 +1441,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          sig { params(flag: T::Boolean, id: Symbol).returns(T.attached_class) }
-          def self.new(flag:, id: :code_abuse)
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :code_abuse)
           end
 
-          sig { override.returns({ id: Symbol, flag: T::Boolean }) }
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
           def to_hash
           end
         end
@@ -1603,15 +1843,28 @@ module ModerationAPI
           sig { returns(String) }
           attr_accessor :instructions
 
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
           sig do
             params(
               flag: T::Boolean,
               guideline_key: String,
               instructions: String,
+              threshold: Float,
               id: Symbol
             ).returns(T.attached_class)
           end
-          def self.new(flag:, guideline_key:, instructions:, id: :guideline)
+          def self.new(
+            flag:,
+            guideline_key:,
+            instructions:,
+            threshold: nil,
+            id: :guideline
+          )
           end
 
           sig do
@@ -1620,7 +1873,8 @@ module ModerationAPI
                 id: Symbol,
                 flag: T::Boolean,
                 guideline_key: String,
-                instructions: String
+                instructions: String,
+                threshold: Float
               }
             )
           end

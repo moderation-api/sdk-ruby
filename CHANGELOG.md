@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0 (2025-12-18)
+
+Full Changelog: [v2.1.1...v2.2.0](https://github.com/moderation-api/sdk-ruby/compare/v2.1.1...v2.2.0)
+
+### Features
+
+* **api:** api update ([37d5a3d](https://github.com/moderation-api/sdk-ruby/commit/37d5a3d6185eaddfce7a79d9b4799568d694782a))
+
 ## 2.1.1 (2025-12-17)
 
 Full Changelog: [v2.1.0...v2.1.1](https://github.com/moderation-api/sdk-ruby/compare/v2.1.0...v2.1.1)

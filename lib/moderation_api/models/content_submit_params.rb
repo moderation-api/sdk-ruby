@@ -388,8 +388,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :toxicity)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :toxicity)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :toxicity]
         end
 
@@ -404,8 +410,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :personal_information)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :personal_information)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :personal_information]
         end
 
@@ -420,8 +432,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :toxicity_severe)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :toxicity_severe)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :toxicity_severe]
         end
 
@@ -436,8 +454,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :hate)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :hate)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :hate]
         end
 
@@ -452,8 +476,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :illicit)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :illicit)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :illicit]
         end
 
@@ -468,8 +498,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :illicit_drugs)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :illicit_drugs)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :illicit_drugs]
         end
 
@@ -484,8 +520,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :illicit_alcohol)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :illicit_alcohol)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :illicit_alcohol]
         end
 
@@ -500,8 +542,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :illicit_firearms)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :illicit_firearms)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :illicit_firearms]
         end
 
@@ -516,8 +564,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :illicit_tobacco)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :illicit_tobacco)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :illicit_tobacco]
         end
 
@@ -532,8 +586,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :illicit_gambling)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :illicit_gambling)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :illicit_gambling]
         end
 
@@ -548,8 +608,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :sexual)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :sexual)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :sexual]
         end
 
@@ -564,8 +630,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :flirtation)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :flirtation)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :flirtation]
         end
 
@@ -580,8 +652,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :profanity)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :profanity)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :profanity]
         end
 
@@ -596,8 +674,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :violence)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :violence)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :violence]
         end
 
@@ -612,8 +696,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :self_harm)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :self_harm)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :self_harm]
         end
 
@@ -628,8 +718,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :spam)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :spam)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :spam]
         end
 
@@ -644,8 +740,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :self_promotion)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :self_promotion)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :self_promotion]
         end
 
@@ -660,8 +762,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :political)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :political)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :political]
         end
 
@@ -676,8 +784,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :religion)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :religion)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :religion]
         end
 
@@ -692,8 +806,14 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
-          # @!method initialize(flag:, id: :code_abuse)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, threshold: nil, id: :code_abuse)
           #   @param flag [Boolean]
+          #   @param threshold [Float]
           #   @param id [Symbol, :code_abuse]
         end
 
@@ -856,10 +976,16 @@ module ModerationAPI
           #   @return [String]
           required :instructions, String
 
-          # @!method initialize(flag:, guideline_key:, instructions:, id: :guideline)
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, guideline_key:, instructions:, threshold: nil, id: :guideline)
           #   @param flag [Boolean]
           #   @param guideline_key [String]
           #   @param instructions [String]
+          #   @param threshold [Float]
           #   @param id [Symbol, :guideline]
         end
 

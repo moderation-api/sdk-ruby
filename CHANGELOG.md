@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.1 (2025-12-19)
+
+Full Changelog: [v2.2.0...v2.2.1](https://github.com/moderation-api/sdk-ruby/compare/v2.2.0...v2.2.1)
+
+### Bug Fixes
+
+* issue where json.parse errors when receiving HTTP 204 with nobody ([fb1960a](https://github.com/moderation-api/sdk-ruby/commit/fb1960aab2de9c04cdb3985f7d75f503eca0b3b8))
+
 ## 2.2.0 (2025-12-18)
 
 Full Changelog: [v2.1.1...v2.2.0](https://github.com/moderation-api/sdk-ruby/compare/v2.1.1...v2.2.0)

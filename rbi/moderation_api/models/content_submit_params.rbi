@@ -1521,21 +1521,17 @@ module ModerationAPI
                 )
               end
 
-            sig do
-              returns(
-                ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::OrSymbol
-              )
-            end
-            attr_accessor :id
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :enable
 
-            sig { returns(T::Boolean) }
-            attr_accessor :enable
+            sig { params(enable: T::Boolean).void }
+            attr_writer :enable
 
-            sig { returns(T::Boolean) }
-            attr_accessor :flag
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :flag
 
-            sig { returns(T::Boolean) }
-            attr_accessor :should_mask
+            sig { params(flag: T::Boolean).void }
+            attr_writer :flag
 
             sig { returns(T.nilable(String)) }
             attr_reader :mask
@@ -1543,101 +1539,34 @@ module ModerationAPI
             sig { params(mask: String).void }
             attr_writer :mask
 
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :should_mask
+
+            sig { params(should_mask: T::Boolean).void }
+            attr_writer :should_mask
+
             sig do
               params(
-                id:
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::OrSymbol,
                 enable: T::Boolean,
                 flag: T::Boolean,
-                should_mask: T::Boolean,
-                mask: String
+                mask: String,
+                should_mask: T::Boolean
               ).returns(T.attached_class)
             end
-            def self.new(id:, enable:, flag:, should_mask:, mask: nil)
+            def self.new(enable: nil, flag: nil, mask: nil, should_mask: nil)
             end
 
             sig do
               override.returns(
                 {
-                  id:
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::OrSymbol,
                   enable: T::Boolean,
                   flag: T::Boolean,
-                  should_mask: T::Boolean,
-                  mask: String
+                  mask: String,
+                  should_mask: T::Boolean
                 }
               )
             end
             def to_hash
-            end
-
-            module ID
-              extend ModerationAPI::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              EMAIL =
-                T.let(
-                  :email,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              PHONE =
-                T.let(
-                  :phone,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              URL =
-                T.let(
-                  :url,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              ADDRESS =
-                T.let(
-                  :address,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              NAME =
-                T.let(
-                  :name,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              USERNAME =
-                T.let(
-                  :username,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              IP_ADDRESS =
-                T.let(
-                  :ip_address,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              CREDIT_CARD =
-                T.let(
-                  :credit_card,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-              SENSITIVE_OTHER =
-                T.let(
-                  :sensitive_other,
-                  ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
         end
@@ -1701,21 +1630,17 @@ module ModerationAPI
                 )
               end
 
-            sig do
-              returns(
-                ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::OrSymbol
-              )
-            end
-            attr_accessor :id
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :enable
 
-            sig { returns(T::Boolean) }
-            attr_accessor :enable
+            sig { params(enable: T::Boolean).void }
+            attr_writer :enable
 
-            sig { returns(T::Boolean) }
-            attr_accessor :flag
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :flag
 
-            sig { returns(T::Boolean) }
-            attr_accessor :should_mask
+            sig { params(flag: T::Boolean).void }
+            attr_writer :flag
 
             sig { returns(T.nilable(String)) }
             attr_reader :mask
@@ -1723,101 +1648,34 @@ module ModerationAPI
             sig { params(mask: String).void }
             attr_writer :mask
 
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :should_mask
+
+            sig { params(should_mask: T::Boolean).void }
+            attr_writer :should_mask
+
             sig do
               params(
-                id:
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::OrSymbol,
                 enable: T::Boolean,
                 flag: T::Boolean,
-                should_mask: T::Boolean,
-                mask: String
+                mask: String,
+                should_mask: T::Boolean
               ).returns(T.attached_class)
             end
-            def self.new(id:, enable:, flag:, should_mask:, mask: nil)
+            def self.new(enable: nil, flag: nil, mask: nil, should_mask: nil)
             end
 
             sig do
               override.returns(
                 {
-                  id:
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::OrSymbol,
                   enable: T::Boolean,
                   flag: T::Boolean,
-                  should_mask: T::Boolean,
-                  mask: String
+                  mask: String,
+                  should_mask: T::Boolean
                 }
               )
             end
             def to_hash
-            end
-
-            module ID
-              extend ModerationAPI::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              EMAIL =
-                T.let(
-                  :email,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              PHONE =
-                T.let(
-                  :phone,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              URL =
-                T.let(
-                  :url,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              ADDRESS =
-                T.let(
-                  :address,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              NAME =
-                T.let(
-                  :name,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              USERNAME =
-                T.let(
-                  :username,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              IP_ADDRESS =
-                T.let(
-                  :ip_address,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              CREDIT_CARD =
-                T.let(
-                  :credit_card,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-              SENSITIVE_OTHER =
-                T.let(
-                  :sensitive_other,
-                  ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
         end

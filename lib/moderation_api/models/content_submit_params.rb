@@ -834,55 +834,31 @@ module ModerationAPI
           #   @param id [Symbol, :pii]
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
-            # @!attribute id
-            #
-            #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::ID]
-            required :id, enum: -> { ModerationAPI::ContentSubmitParams::Policy::PiiMasking::Entity::ID }
-
             # @!attribute enable
             #
-            #   @return [Boolean]
-            required :enable, ModerationAPI::Internal::Type::Boolean
+            #   @return [Boolean, nil]
+            optional :enable, ModerationAPI::Internal::Type::Boolean
 
             # @!attribute flag
             #
-            #   @return [Boolean]
-            required :flag, ModerationAPI::Internal::Type::Boolean
-
-            # @!attribute should_mask
-            #
-            #   @return [Boolean]
-            required :should_mask, ModerationAPI::Internal::Type::Boolean, api_name: :shouldMask
+            #   @return [Boolean, nil]
+            optional :flag, ModerationAPI::Internal::Type::Boolean
 
             # @!attribute mask
             #
             #   @return [String, nil]
             optional :mask, String
 
-            # @!method initialize(id:, enable:, flag:, should_mask:, mask: nil)
-            #   @param id [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::ID]
+            # @!attribute should_mask
+            #
+            #   @return [Boolean, nil]
+            optional :should_mask, ModerationAPI::Internal::Type::Boolean, api_name: :shouldMask
+
+            # @!method initialize(enable: nil, flag: nil, mask: nil, should_mask: nil)
             #   @param enable [Boolean]
             #   @param flag [Boolean]
-            #   @param should_mask [Boolean]
             #   @param mask [String]
-
-            # @see ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity#id
-            module ID
-              extend ModerationAPI::Internal::Type::Enum
-
-              EMAIL = :email
-              PHONE = :phone
-              URL = :url
-              ADDRESS = :address
-              NAME = :name
-              USERNAME = :username
-              IP_ADDRESS = :ip_address
-              CREDIT_CARD = :credit_card
-              SENSITIVE_OTHER = :sensitive_other
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #   @param should_mask [Boolean]
           end
         end
 
@@ -903,55 +879,31 @@ module ModerationAPI
           #   @param id [Symbol, :url]
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
-            # @!attribute id
-            #
-            #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::ID]
-            required :id, enum: -> { ModerationAPI::ContentSubmitParams::Policy::URLMasking::Entity::ID }
-
             # @!attribute enable
             #
-            #   @return [Boolean]
-            required :enable, ModerationAPI::Internal::Type::Boolean
+            #   @return [Boolean, nil]
+            optional :enable, ModerationAPI::Internal::Type::Boolean
 
             # @!attribute flag
             #
-            #   @return [Boolean]
-            required :flag, ModerationAPI::Internal::Type::Boolean
-
-            # @!attribute should_mask
-            #
-            #   @return [Boolean]
-            required :should_mask, ModerationAPI::Internal::Type::Boolean, api_name: :shouldMask
+            #   @return [Boolean, nil]
+            optional :flag, ModerationAPI::Internal::Type::Boolean
 
             # @!attribute mask
             #
             #   @return [String, nil]
             optional :mask, String
 
-            # @!method initialize(id:, enable:, flag:, should_mask:, mask: nil)
-            #   @param id [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::ID]
+            # @!attribute should_mask
+            #
+            #   @return [Boolean, nil]
+            optional :should_mask, ModerationAPI::Internal::Type::Boolean, api_name: :shouldMask
+
+            # @!method initialize(enable: nil, flag: nil, mask: nil, should_mask: nil)
             #   @param enable [Boolean]
             #   @param flag [Boolean]
-            #   @param should_mask [Boolean]
             #   @param mask [String]
-
-            # @see ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity#id
-            module ID
-              extend ModerationAPI::Internal::Type::Enum
-
-              EMAIL = :email
-              PHONE = :phone
-              URL = :url
-              ADDRESS = :address
-              NAME = :name
-              USERNAME = :username
-              IP_ADDRESS = :ip_address
-              CREDIT_CARD = :credit_card
-              SENSITIVE_OTHER = :sensitive_other
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            #   @param should_mask [Boolean]
           end
         end
 

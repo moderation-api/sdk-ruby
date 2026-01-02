@@ -704,69 +704,38 @@ module ModerationAPI
           }
 
           type entity =
-            {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id,
-              enable: bool,
-              flag: bool,
-              should_mask: bool,
-              mask: String
-            }
+            { enable: bool, flag: bool, mask: String, should_mask: bool }
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
-            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id
+            attr_reader enable: bool?
 
-            attr_accessor enable: bool
+            def enable=: (bool) -> bool
 
-            attr_accessor flag: bool
+            attr_reader flag: bool?
 
-            attr_accessor should_mask: bool
+            def flag=: (bool) -> bool
 
             attr_reader mask: String?
 
             def mask=: (String) -> String
 
+            attr_reader should_mask: bool?
+
+            def should_mask=: (bool) -> bool
+
             def initialize: (
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id,
-              enable: bool,
-              flag: bool,
-              should_mask: bool,
-              ?mask: String
+              ?enable: bool,
+              ?flag: bool,
+              ?mask: String,
+              ?should_mask: bool
             ) -> void
 
             def to_hash: -> {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id,
               enable: bool,
               flag: bool,
-              should_mask: bool,
-              mask: String
+              mask: String,
+              should_mask: bool
             }
-
-            type id =
-              :email
-              | :phone
-              | :url
-              | :address
-              | :name
-              | :username
-              | :ip_address
-              | :credit_card
-              | :sensitive_other
-
-            module ID
-              extend ModerationAPI::Internal::Type::Enum
-
-              EMAIL: :email
-              PHONE: :phone
-              URL: :url
-              ADDRESS: :address
-              NAME: :name
-              USERNAME: :username
-              IP_ADDRESS: :ip_address
-              CREDIT_CARD: :credit_card
-              SENSITIVE_OTHER: :sensitive_other
-
-              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking::Entity::id]
-            end
           end
         end
 
@@ -792,69 +761,38 @@ module ModerationAPI
           }
 
           type entity =
-            {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id,
-              enable: bool,
-              flag: bool,
-              should_mask: bool,
-              mask: String
-            }
+            { enable: bool, flag: bool, mask: String, should_mask: bool }
 
           class Entity < ModerationAPI::Internal::Type::BaseModel
-            attr_accessor id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id
+            attr_reader enable: bool?
 
-            attr_accessor enable: bool
+            def enable=: (bool) -> bool
 
-            attr_accessor flag: bool
+            attr_reader flag: bool?
 
-            attr_accessor should_mask: bool
+            def flag=: (bool) -> bool
 
             attr_reader mask: String?
 
             def mask=: (String) -> String
 
+            attr_reader should_mask: bool?
+
+            def should_mask=: (bool) -> bool
+
             def initialize: (
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id,
-              enable: bool,
-              flag: bool,
-              should_mask: bool,
-              ?mask: String
+              ?enable: bool,
+              ?flag: bool,
+              ?mask: String,
+              ?should_mask: bool
             ) -> void
 
             def to_hash: -> {
-              id: ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id,
               enable: bool,
               flag: bool,
-              should_mask: bool,
-              mask: String
+              mask: String,
+              should_mask: bool
             }
-
-            type id =
-              :email
-              | :phone
-              | :url
-              | :address
-              | :name
-              | :username
-              | :ip_address
-              | :credit_card
-              | :sensitive_other
-
-            module ID
-              extend ModerationAPI::Internal::Type::Enum
-
-              EMAIL: :email
-              PHONE: :phone
-              URL: :url
-              ADDRESS: :address
-              NAME: :name
-              USERNAME: :username
-              IP_ADDRESS: :ip_address
-              CREDIT_CARD: :credit_card
-              SENSITIVE_OTHER: :sensitive_other
-
-              def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking::Entity::id]
-            end
           end
         end
 

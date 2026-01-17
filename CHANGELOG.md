@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.3.1 (2026-01-17)
+
+Full Changelog: [v2.3.0...v2.3.1](https://github.com/moderation-api/sdk-ruby/compare/v2.3.0...v2.3.1)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([6debb55](https://github.com/moderation-api/sdk-ruby/commit/6debb5528f54ceaefc72ffa445a69aa4f30bc4e7))
+* move `cgi` into dependencies for ruby 4 ([6aab585](https://github.com/moderation-api/sdk-ruby/commit/6aab585a91f2ac47f2bae66f1e21d03eb6b5b475))
+
 ## 2.3.0 (2026-01-02)
 
 Full Changelog: [v2.2.1...v2.3.0](https://github.com/moderation-api/sdk-ruby/compare/v2.2.1...v2.3.0)

@@ -103,6 +103,8 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
                 ModerationAPI::ContentSubmitParams::Policy::Cannabis,
+                ModerationAPI::ContentSubmitParams::Policy::Adult,
+                ModerationAPI::ContentSubmitParams::Policy::Crypto,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity,
@@ -139,6 +141,8 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Cannabis::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Adult::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Crypto::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
@@ -197,6 +201,8 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Cannabis::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Adult::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Crypto::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
@@ -275,6 +281,8 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
                   ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
                   ModerationAPI::ContentSubmitParams::Policy::Cannabis,
+                  ModerationAPI::ContentSubmitParams::Policy::Adult,
+                  ModerationAPI::ContentSubmitParams::Policy::Crypto,
                   ModerationAPI::ContentSubmitParams::Policy::Sexual,
                   ModerationAPI::ContentSubmitParams::Policy::Flirtation,
                   ModerationAPI::ContentSubmitParams::Policy::Profanity,
@@ -744,6 +752,8 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
               ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
               ModerationAPI::ContentSubmitParams::Policy::Cannabis,
+              ModerationAPI::ContentSubmitParams::Policy::Adult,
+              ModerationAPI::ContentSubmitParams::Policy::Crypto,
               ModerationAPI::ContentSubmitParams::Policy::Sexual,
               ModerationAPI::ContentSubmitParams::Policy::Flirtation,
               ModerationAPI::ContentSubmitParams::Policy::Profanity,
@@ -1147,6 +1157,78 @@ module ModerationAPI
             )
           end
           def self.new(flag:, threshold: nil, id: :cannabis)
+          end
+
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
+          def to_hash
+          end
+        end
+
+        class Adult < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::Adult,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :adult)
+          end
+
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
+          def to_hash
+          end
+        end
+
+        class Crypto < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::Crypto,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :crypto)
           end
 
           sig do

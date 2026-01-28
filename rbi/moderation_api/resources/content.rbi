@@ -34,6 +34,8 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Cannabis::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Adult::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Crypto::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,

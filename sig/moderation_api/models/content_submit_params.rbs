@@ -269,6 +269,8 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco
         | ModerationAPI::ContentSubmitParams::Policy::IllicitGambling
         | ModerationAPI::ContentSubmitParams::Policy::Cannabis
+        | ModerationAPI::ContentSubmitParams::Policy::Adult
+        | ModerationAPI::ContentSubmitParams::Policy::Crypto
         | ModerationAPI::ContentSubmitParams::Policy::Sexual
         | ModerationAPI::ContentSubmitParams::Policy::Flirtation
         | ModerationAPI::ContentSubmitParams::Policy::Profanity
@@ -515,6 +517,38 @@ module ModerationAPI
           ) -> void
 
           def to_hash: -> { id: :cannabis, flag: bool, threshold: Float }
+        end
+
+        type adult = { id: :adult, flag: bool, threshold: Float }
+
+        class Adult < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :adult
+
+          attr_accessor flag: bool
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (flag: bool, ?threshold: Float, ?id: :adult) -> void
+
+          def to_hash: -> { id: :adult, flag: bool, threshold: Float }
+        end
+
+        type crypto = { id: :crypto, flag: bool, threshold: Float }
+
+        class Crypto < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :crypto
+
+          attr_accessor flag: bool
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (flag: bool, ?threshold: Float, ?id: :crypto) -> void
+
+          def to_hash: -> { id: :crypto, flag: bool, threshold: Float }
         end
 
         type sexual = { id: :sexual, flag: bool, threshold: Float }

@@ -10,7 +10,8 @@ module ModerationAPI
         do_not_store: bool,
         metadata: ::Hash[Symbol, top],
         meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
-        policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
+        policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy],
+        timestamp: Float
       }
       & ModerationAPI::Internal::Type::request_parameters
 
@@ -56,6 +57,10 @@ module ModerationAPI
         ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
       ) -> ::Array[ModerationAPI::Models::ContentSubmitParams::policy]
 
+      attr_reader timestamp: Float?
+
+      def timestamp=: (Float) -> Float
+
       def initialize: (
         content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,
@@ -66,6 +71,7 @@ module ModerationAPI
         ?metadata: ::Hash[Symbol, top],
         ?meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
         ?policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy],
+        ?timestamp: Float,
         ?request_options: ModerationAPI::request_opts
       ) -> void
 
@@ -79,6 +85,7 @@ module ModerationAPI
         metadata: ::Hash[Symbol, top],
         meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
         policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy],
+        timestamp: Float,
         request_options: ModerationAPI::RequestOptions
       }
 
@@ -261,6 +268,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms
         | ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco
         | ModerationAPI::ContentSubmitParams::Policy::IllicitGambling
+        | ModerationAPI::ContentSubmitParams::Policy::Cannabis
         | ModerationAPI::ContentSubmitParams::Policy::Sexual
         | ModerationAPI::ContentSubmitParams::Policy::Flirtation
         | ModerationAPI::ContentSubmitParams::Policy::Profanity
@@ -487,6 +495,26 @@ module ModerationAPI
             flag: bool,
             threshold: Float
           }
+        end
+
+        type cannabis = { id: :cannabis, flag: bool, threshold: Float }
+
+        class Cannabis < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :cannabis
+
+          attr_accessor flag: bool
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :cannabis
+          ) -> void
+
+          def to_hash: -> { id: :cannabis, flag: bool, threshold: Float }
         end
 
         type sexual = { id: :sexual, flag: bool, threshold: Float }

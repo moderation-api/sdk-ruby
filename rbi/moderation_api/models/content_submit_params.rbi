@@ -102,6 +102,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
+                ModerationAPI::ContentSubmitParams::Policy::Cannabis,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity,
@@ -137,6 +138,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Cannabis::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
@@ -155,6 +157,14 @@ module ModerationAPI
         ).void
       end
       attr_writer :policies
+
+      # Unix timestamp (in milliseconds) of when the content was created. Use if content
+      # is not submitted in real-time.
+      sig { returns(T.nilable(Float)) }
+      attr_reader :timestamp
+
+      sig { params(timestamp: Float).void }
+      attr_writer :timestamp
 
       sig do
         params(
@@ -186,6 +196,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Cannabis::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
@@ -201,6 +212,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
               )
             ],
+          timestamp: Float,
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -224,6 +236,9 @@ module ModerationAPI
         meta_type: nil,
         # (Enterprise) override the channel policies for this moderation request only.
         policies: nil,
+        # Unix timestamp (in milliseconds) of when the content was created. Use if content
+        # is not submitted in real-time.
+        timestamp: nil,
         request_options: {}
       )
       end
@@ -259,6 +274,7 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
                   ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
                   ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
+                  ModerationAPI::ContentSubmitParams::Policy::Cannabis,
                   ModerationAPI::ContentSubmitParams::Policy::Sexual,
                   ModerationAPI::ContentSubmitParams::Policy::Flirtation,
                   ModerationAPI::ContentSubmitParams::Policy::Profanity,
@@ -274,6 +290,7 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::Guideline
                 )
               ],
+            timestamp: Float,
             request_options: ModerationAPI::RequestOptions
           }
         )
@@ -726,6 +743,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms,
               ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco,
               ModerationAPI::ContentSubmitParams::Policy::IllicitGambling,
+              ModerationAPI::ContentSubmitParams::Policy::Cannabis,
               ModerationAPI::ContentSubmitParams::Policy::Sexual,
               ModerationAPI::ContentSubmitParams::Policy::Flirtation,
               ModerationAPI::ContentSubmitParams::Policy::Profanity,
@@ -1093,6 +1111,42 @@ module ModerationAPI
             )
           end
           def self.new(flag:, threshold: nil, id: :illicit_gambling)
+          end
+
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
+          def to_hash
+          end
+        end
+
+        class Cannabis < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::Cannabis,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :cannabis)
           end
 
           sig do

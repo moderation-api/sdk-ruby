@@ -11,6 +11,7 @@ module ModerationAPI
         ?metadata: ::Hash[Symbol, top],
         ?meta_type: ModerationAPI::Models::ContentSubmitParams::meta_type,
         ?policies: ::Array[ModerationAPI::Models::ContentSubmitParams::policy],
+        ?timestamp: Float,
         ?request_options: ModerationAPI::request_opts
       ) -> ModerationAPI::Models::ContentSubmitResponse
 

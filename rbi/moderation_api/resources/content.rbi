@@ -33,6 +33,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::IllicitFirearms::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitTobacco::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::IllicitGambling::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::Cannabis::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
@@ -48,6 +49,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
               )
             ],
+          timestamp: Float,
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(ModerationAPI::Models::ContentSubmitResponse)
       end
@@ -71,6 +73,9 @@ module ModerationAPI
         meta_type: nil,
         # (Enterprise) override the channel policies for this moderation request only.
         policies: nil,
+        # Unix timestamp (in milliseconds) of when the content was created. Use if content
+        # is not submitted in real-time.
+        timestamp: nil,
         request_options: {}
       )
       end

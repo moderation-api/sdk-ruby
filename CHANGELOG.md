@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.5.1 (2026-02-03)
+
+Full Changelog: [v2.5.0...v2.5.1](https://github.com/moderation-api/sdk-ruby/compare/v2.5.0...v2.5.1)
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([22201f0](https://github.com/moderation-api/sdk-ruby/commit/22201f0900c1c285c0900dec155b5e0718ccc035))
+
 ## 2.5.0 (2026-01-28)
 
 Full Changelog: [v2.4.0...v2.5.0](https://github.com/moderation-api/sdk-ruby/compare/v2.4.0...v2.5.0)

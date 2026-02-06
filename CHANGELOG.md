@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.6.0 (2026-02-06)
+
+Full Changelog: [v2.5.1...v2.6.0](https://github.com/moderation-api/sdk-ruby/compare/v2.5.1...v2.6.0)
+
+### Features
+
+* **api:** api update ([3f29a05](https://github.com/moderation-api/sdk-ruby/commit/3f29a05c2dcf23a3640f6ec76ca450cd44fcd66c))
+
+
+### Chores
+
+* **docs:** remove www prefix ([f5b51e1](https://github.com/moderation-api/sdk-ruby/commit/f5b51e17d19b441376cedfeca7fbf7858bbf8fe9))
+
 ## 2.5.1 (2026-02-03)
 
 Full Changelog: [v2.5.0...v2.5.1](https://github.com/moderation-api/sdk-ruby/compare/v2.5.0...v2.5.1)

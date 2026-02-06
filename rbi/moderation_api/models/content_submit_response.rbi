@@ -1424,6 +1424,16 @@ module ModerationAPI
               :dry_run,
               ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
+          TRUSTED_ALLOW =
+            T.let(
+              :trusted_allow,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
+          UNTRUSTED_SEVERITY =
+            T.let(
+              :untrusted_severity,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
 
           sig do
             override.returns(

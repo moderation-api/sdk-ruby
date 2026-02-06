@@ -721,6 +721,8 @@ module ModerationAPI
           SEVERITY_REVIEW = :severity_review
           AUTHOR_BLOCK = :author_block
           DRY_RUN = :dry_run
+          TRUSTED_ALLOW = :trusted_allow
+          UNTRUSTED_SEVERITY = :untrusted_severity
 
           # @!method self.values
           #   @return [Array<Symbol>]

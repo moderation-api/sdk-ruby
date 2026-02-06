@@ -572,7 +572,12 @@ module ModerationAPI
         end
 
         type reason_code =
-          :severity_reject | :severity_review | :author_block | :dry_run
+          :severity_reject
+          | :severity_review
+          | :author_block
+          | :dry_run
+          | :trusted_allow
+          | :untrusted_severity
 
         module ReasonCode
           extend ModerationAPI::Internal::Type::Enum
@@ -581,6 +586,8 @@ module ModerationAPI
           SEVERITY_REVIEW: :severity_review
           AUTHOR_BLOCK: :author_block
           DRY_RUN: :dry_run
+          TRUSTED_ALLOW: :trusted_allow
+          UNTRUSTED_SEVERITY: :untrusted_severity
 
           def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         end

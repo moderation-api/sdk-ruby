@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.6.1 (2026-02-07)
+
+Full Changelog: [v2.6.0...v2.6.1](https://github.com/moderation-api/sdk-ruby/compare/v2.6.0...v2.6.1)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([58cc470](https://github.com/moderation-api/sdk-ruby/commit/58cc470e748a3b3ff04775cf68ef46e27df719a0))
+
 ## 2.6.0 (2026-02-06)
 
 Full Changelog: [v2.5.1...v2.6.0](https://github.com/moderation-api/sdk-ruby/compare/v2.5.1...v2.6.0)

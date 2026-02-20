@@ -141,14 +141,22 @@ module ModerationAPI
           #   @return [Symbol, :image]
           required :type, const: :image
 
+          # @!attribute data
+          #   Base64-encoded image data
+          #
+          #   @return [String, nil]
+          optional :data, String
+
           # @!attribute url
           #   A public URL of the image content
           #
-          #   @return [String]
-          required :url, String
+          #   @return [String, nil]
+          optional :url, String
 
-          # @!method initialize(url:, type: :image)
+          # @!method initialize(data: nil, url: nil, type: :image)
           #   Image
+          #
+          #   @param data [String] Base64-encoded image data
           #
           #   @param url [String] A public URL of the image content
           #
@@ -257,14 +265,22 @@ module ModerationAPI
               #   @return [Symbol, :image]
               required :type, const: :image
 
+              # @!attribute data
+              #   Base64-encoded image data
+              #
+              #   @return [String, nil]
+              optional :data, String
+
               # @!attribute url
               #   A public URL of the image content
               #
-              #   @return [String]
-              required :url, String
+              #   @return [String, nil]
+              optional :url, String
 
-              # @!method initialize(url:, type: :image)
+              # @!method initialize(data: nil, url: nil, type: :image)
               #   Image
+              #
+              #   @param data [String] Base64-encoded image data
               #
               #   @param url [String] A public URL of the image content
               #

@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class ModerationAPI::Test::Resources::Wordlist::WordsTest < ModerationAPI::Test::ResourceTest
   def test_add_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.wordlist.words.add("id", words: ["string"])
 
@@ -22,7 +22,7 @@ class ModerationAPI::Test::Resources::Wordlist::WordsTest < ModerationAPI::Test:
   end
 
   def test_remove_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.wordlist.words.remove("id", words: ["string"])
 

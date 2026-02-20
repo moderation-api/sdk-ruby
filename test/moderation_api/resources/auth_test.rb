@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::AuthTest < ModerationAPI::Test::ResourceTest
   def test_create
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.auth.create
 
@@ -22,7 +22,7 @@ class ModerationAPI::Test::Resources::AuthTest < ModerationAPI::Test::ResourceTe
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.auth.retrieve
 

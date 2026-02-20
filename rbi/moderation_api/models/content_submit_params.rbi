@@ -363,20 +363,36 @@ module ModerationAPI
           sig { returns(Symbol) }
           attr_accessor :type
 
+          # Base64-encoded image data
+          sig { returns(T.nilable(String)) }
+          attr_reader :data
+
+          sig { params(data: String).void }
+          attr_writer :data
+
           # A public URL of the image content
-          sig { returns(String) }
-          attr_accessor :url
+          sig { returns(T.nilable(String)) }
+          attr_reader :url
+
+          sig { params(url: String).void }
+          attr_writer :url
 
           # Image
-          sig { params(url: String, type: Symbol).returns(T.attached_class) }
+          sig do
+            params(data: String, url: String, type: Symbol).returns(
+              T.attached_class
+            )
+          end
           def self.new(
+            # Base64-encoded image data
+            data: nil,
             # A public URL of the image content
-            url:,
+            url: nil,
             type: :image
           )
           end
 
-          sig { override.returns({ type: Symbol, url: String }) }
+          sig { override.returns({ type: Symbol, data: String, url: String }) }
           def to_hash
           end
         end
@@ -570,22 +586,38 @@ module ModerationAPI
               sig { returns(Symbol) }
               attr_accessor :type
 
+              # Base64-encoded image data
+              sig { returns(T.nilable(String)) }
+              attr_reader :data
+
+              sig { params(data: String).void }
+              attr_writer :data
+
               # A public URL of the image content
-              sig { returns(String) }
-              attr_accessor :url
+              sig { returns(T.nilable(String)) }
+              attr_reader :url
+
+              sig { params(url: String).void }
+              attr_writer :url
 
               # Image
               sig do
-                params(url: String, type: Symbol).returns(T.attached_class)
+                params(data: String, url: String, type: Symbol).returns(
+                  T.attached_class
+                )
               end
               def self.new(
+                # Base64-encoded image data
+                data: nil,
                 # A public URL of the image content
-                url:,
+                url: nil,
                 type: :image
               )
               end
 
-              sig { override.returns({ type: Symbol, url: String }) }
+              sig do
+                override.returns({ type: Symbol, data: String, url: String })
+              end
               def to_hash
               end
             end

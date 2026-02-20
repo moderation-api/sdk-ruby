@@ -183,16 +183,26 @@ module ModerationAPI
               def to_hash: -> { text: String, type: :text }
             end
 
-            type image = { type: :image, url: String }
+            type image = { type: :image, data: String, url: String }
 
             class Image < ModerationAPI::Internal::Type::BaseModel
               attr_accessor type: :image
 
-              attr_accessor url: String
+              attr_reader data: String?
 
-              def initialize: (url: String, ?type: :image) -> void
+              def data=: (String) -> String
 
-              def to_hash: -> { type: :image, url: String }
+              attr_reader url: String?
+
+              def url=: (String) -> String
+
+              def initialize: (
+                ?data: String,
+                ?url: String,
+                ?type: :image
+              ) -> void
+
+              def to_hash: -> { type: :image, data: String, url: String }
             end
 
             type video = { type: :video, url: String }

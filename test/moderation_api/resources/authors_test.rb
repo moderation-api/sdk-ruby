@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::AuthorsTest < ModerationAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.authors.create(external_id: "external_id")
 
@@ -34,7 +34,7 @@ class ModerationAPI::Test::Resources::AuthorsTest < ModerationAPI::Test::Resourc
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.authors.retrieve("id")
 
@@ -64,7 +64,7 @@ class ModerationAPI::Test::Resources::AuthorsTest < ModerationAPI::Test::Resourc
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.authors.update("id")
 
@@ -94,7 +94,7 @@ class ModerationAPI::Test::Resources::AuthorsTest < ModerationAPI::Test::Resourc
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.authors.list
 
@@ -111,7 +111,7 @@ class ModerationAPI::Test::Resources::AuthorsTest < ModerationAPI::Test::Resourc
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.authors.delete("id")
 

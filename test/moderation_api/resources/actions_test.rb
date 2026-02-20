@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::ActionsTest < ModerationAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.create(name: "name")
 
@@ -32,7 +32,7 @@ class ModerationAPI::Test::Resources::ActionsTest < ModerationAPI::Test::Resourc
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.retrieve("id")
 
@@ -61,7 +61,7 @@ class ModerationAPI::Test::Resources::ActionsTest < ModerationAPI::Test::Resourc
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.update("id")
 
@@ -89,7 +89,7 @@ class ModerationAPI::Test::Resources::ActionsTest < ModerationAPI::Test::Resourc
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.list
 
@@ -99,7 +99,7 @@ class ModerationAPI::Test::Resources::ActionsTest < ModerationAPI::Test::Resourc
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.delete("id")
 

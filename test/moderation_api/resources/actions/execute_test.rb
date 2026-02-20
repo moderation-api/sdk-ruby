@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class ModerationAPI::Test::Resources::Actions::ExecuteTest < ModerationAPI::Test::ResourceTest
   def test_execute_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.execute.execute(action_key: "actionKey")
 
@@ -20,7 +20,7 @@ class ModerationAPI::Test::Resources::Actions::ExecuteTest < ModerationAPI::Test
   end
 
   def test_execute_by_id
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.actions.execute.execute_by_id("actionId")
 

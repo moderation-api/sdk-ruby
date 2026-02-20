@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::WordlistTest < ModerationAPI::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.wordlist.retrieve("id")
 
@@ -26,7 +26,7 @@ class ModerationAPI::Test::Resources::WordlistTest < ModerationAPI::Test::Resour
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.wordlist.update("id")
 
@@ -48,7 +48,7 @@ class ModerationAPI::Test::Resources::WordlistTest < ModerationAPI::Test::Resour
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.wordlist.list
 
@@ -58,7 +58,7 @@ class ModerationAPI::Test::Resources::WordlistTest < ModerationAPI::Test::Resour
   end
 
   def test_get_embedding_status
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.wordlist.get_embedding_status("id")
 

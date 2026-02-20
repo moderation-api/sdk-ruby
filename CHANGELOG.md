@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.7.0 (2026-02-20)
+
+Full Changelog: [v2.6.1...v2.7.0](https://github.com/moderation-api/sdk-ruby/compare/v2.6.1...v2.7.0)
+
+### Features
+
+* **api:** api update ([4779766](https://github.com/moderation-api/sdk-ruby/commit/477976687b0d43cf7cfc3fd1c69d2327d9ddd1e4))
+
+
+### Chores
+
+* **internal:** remove mock server code ([6fff870](https://github.com/moderation-api/sdk-ruby/commit/6fff870033a043b5d08560715a1a4bd9c7b3d9ce))
+
 ## 2.6.1 (2026-02-07)
 
 Full Changelog: [v2.6.0...v2.6.1](https://github.com/moderation-api/sdk-ruby/compare/v2.6.0...v2.6.1)

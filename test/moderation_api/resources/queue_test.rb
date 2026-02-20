@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::QueueTest < ModerationAPI::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.queue.retrieve("id")
 
@@ -20,7 +20,7 @@ class ModerationAPI::Test::Resources::QueueTest < ModerationAPI::Test::ResourceT
   end
 
   def test_get_stats
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.queue.get_stats("id")
 

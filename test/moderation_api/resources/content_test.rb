@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::ContentTest < ModerationAPI::Test::ResourceTest
   def test_submit_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.content.submit(content: {text: "x", type: :text})
 

@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class ModerationAPI::Test::Resources::Queue::ItemsTest < ModerationAPI::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.queue.items.list("id")
 
@@ -21,7 +21,7 @@ class ModerationAPI::Test::Resources::Queue::ItemsTest < ModerationAPI::Test::Re
   end
 
   def test_resolve_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.queue.items.resolve("itemId", id: "id")
 
@@ -39,7 +39,7 @@ class ModerationAPI::Test::Resources::Queue::ItemsTest < ModerationAPI::Test::Re
   end
 
   def test_unresolve_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @moderation_api.queue.items.unresolve("itemId", id: "id")
 

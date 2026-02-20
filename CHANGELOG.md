@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.1 (2026-02-20)
+
+Full Changelog: [v2.7.0...v2.7.1](https://github.com/moderation-api/sdk-ruby/compare/v2.7.0...v2.7.1)
+
+### Chores
+
+* update mock server docs ([735878b](https://github.com/moderation-api/sdk-ruby/commit/735878be6d703627bc6b6d8c9e5bac9380340139))
+
 ## 2.7.0 (2026-02-20)
 
 Full Changelog: [v2.6.1...v2.7.0](https://github.com/moderation-api/sdk-ruby/compare/v2.6.1...v2.7.0)

@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "moderation_api", "~> 2.6.1"
+gem "moderation_api", "~> 2.7.0"
 ```
 
 <!-- x-release-please-end -->

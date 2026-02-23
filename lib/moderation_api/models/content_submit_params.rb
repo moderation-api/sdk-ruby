@@ -142,23 +142,27 @@ module ModerationAPI
           required :type, const: :image
 
           # @!attribute data
-          #   Base64-encoded image data
+          #   Base64-encoded image data. Either url or data must be provided. Note: base64
+          #   images are not stored and will not appear in the review queue.
           #
           #   @return [String, nil]
           optional :data, String
 
           # @!attribute url
-          #   A public URL of the image content
+          #   A public URL of the image content. Either url or data must be provided.
           #
           #   @return [String, nil]
           optional :url, String
 
           # @!method initialize(data: nil, url: nil, type: :image)
+          #   Some parameter documentations has been truncated, see
+          #   {ModerationAPI::Models::ContentSubmitParams::Content::Image} for more details.
+          #
           #   Image
           #
-          #   @param data [String] Base64-encoded image data
+          #   @param data [String] Base64-encoded image data. Either url or data must be provided. Note: base64 ima
           #
-          #   @param url [String] A public URL of the image content
+          #   @param url [String] A public URL of the image content. Either url or data must be provided.
           #
           #   @param type [Symbol, :image]
         end
@@ -266,23 +270,28 @@ module ModerationAPI
               required :type, const: :image
 
               # @!attribute data
-              #   Base64-encoded image data
+              #   Base64-encoded image data. Either url or data must be provided. Note: base64
+              #   images are not stored and will not appear in the review queue.
               #
               #   @return [String, nil]
               optional :data, String
 
               # @!attribute url
-              #   A public URL of the image content
+              #   A public URL of the image content. Either url or data must be provided.
               #
               #   @return [String, nil]
               optional :url, String
 
               # @!method initialize(data: nil, url: nil, type: :image)
+              #   Some parameter documentations has been truncated, see
+              #   {ModerationAPI::Models::ContentSubmitParams::Content::Object::Data::Image} for
+              #   more details.
+              #
               #   Image
               #
-              #   @param data [String] Base64-encoded image data
+              #   @param data [String] Base64-encoded image data. Either url or data must be provided. Note: base64 ima
               #
-              #   @param url [String] A public URL of the image content
+              #   @param url [String] A public URL of the image content. Either url or data must be provided.
               #
               #   @param type [Symbol, :image]
             end

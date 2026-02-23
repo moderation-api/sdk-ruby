@@ -558,14 +558,15 @@ module ModerationAPI
               sig { returns(Symbol) }
               attr_accessor :type
 
-              # Base64-encoded image data
+              # Base64-encoded image data. Either url or data must be provided. Note: base64
+              # images are not stored and will not appear in the review queue.
               sig { returns(T.nilable(String)) }
               attr_reader :data
 
               sig { params(data: String).void }
               attr_writer :data
 
-              # A public URL of the image content
+              # A public URL of the image content. Either url or data must be provided.
               sig { returns(T.nilable(String)) }
               attr_reader :url
 
@@ -579,9 +580,10 @@ module ModerationAPI
                 )
               end
               def self.new(
-                # Base64-encoded image data
+                # Base64-encoded image data. Either url or data must be provided. Note: base64
+                # images are not stored and will not appear in the review queue.
                 data: nil,
-                # A public URL of the image content
+                # A public URL of the image content. Either url or data must be provided.
                 url: nil,
                 type: :image
               )

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.8.1 (2026-02-27)
+
+Full Changelog: [v2.8.0...v2.8.1](https://github.com/moderation-api/sdk-ruby/compare/v2.8.0...v2.8.1)
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([9ca660b](https://github.com/moderation-api/sdk-ruby/commit/9ca660b7a3fece7435218a33d2ede5bdc7eeb865))
+
 ## 2.8.0 (2026-02-23)
 
 Full Changelog: [v2.7.1...v2.8.0](https://github.com/moderation-api/sdk-ruby/compare/v2.7.1...v2.8.0)

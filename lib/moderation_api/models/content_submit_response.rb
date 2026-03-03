@@ -370,13 +370,20 @@ module ModerationAPI
         #   @return [Float]
         required :severity_score, Float
 
+        # @!attribute shadow_flagged
+        #   Whether the content would have been flagged by analyze-only policies (flag:
+        #   false).
+        #
+        #   @return [Boolean, nil]
+        optional :shadow_flagged, ModerationAPI::Internal::Type::Boolean
+
         # @!attribute unicode_spoofed
         #   Whether the content was flagged for Unicode spoofing.
         #
         #   @return [Boolean, nil]
         optional :unicode_spoofed, ModerationAPI::Internal::Type::Boolean
 
-        # @!method initialize(flag_probability:, flagged:, severity_score:, unicode_spoofed: nil)
+        # @!method initialize(flag_probability:, flagged:, severity_score:, shadow_flagged: nil, unicode_spoofed: nil)
         #   Some parameter documentations has been truncated, see
         #   {ModerationAPI::Models::ContentSubmitResponse::Evaluation} for more details.
         #
@@ -387,6 +394,8 @@ module ModerationAPI
         #   @param flagged [Boolean] Whether the content was flagged by any policy.
         #
         #   @param severity_score [Float] The severity score of the content. A higher score indicates more severe content.
+        #
+        #   @param shadow_flagged [Boolean] Whether the content would have been flagged by analyze-only policies (flag: fals
         #
         #   @param unicode_spoofed [Boolean] Whether the content was flagged for Unicode spoofing.
       end

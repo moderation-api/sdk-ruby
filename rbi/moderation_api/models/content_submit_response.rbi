@@ -721,6 +721,14 @@ module ModerationAPI
         sig { returns(Float) }
         attr_accessor :severity_score
 
+        # Whether the content would have been flagged by analyze-only policies (flag:
+        # false).
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :shadow_flagged
+
+        sig { params(shadow_flagged: T::Boolean).void }
+        attr_writer :shadow_flagged
+
         # Whether the content was flagged for Unicode spoofing.
         sig { returns(T.nilable(T::Boolean)) }
         attr_reader :unicode_spoofed
@@ -734,6 +742,7 @@ module ModerationAPI
             flag_probability: Float,
             flagged: T::Boolean,
             severity_score: Float,
+            shadow_flagged: T::Boolean,
             unicode_spoofed: T::Boolean
           ).returns(T.attached_class)
         end
@@ -744,6 +753,9 @@ module ModerationAPI
           flagged:,
           # The severity score of the content. A higher score indicates more severe content.
           severity_score:,
+          # Whether the content would have been flagged by analyze-only policies (flag:
+          # false).
+          shadow_flagged: nil,
           # Whether the content was flagged for Unicode spoofing.
           unicode_spoofed: nil
         )
@@ -755,6 +767,7 @@ module ModerationAPI
               flag_probability: Float,
               flagged: T::Boolean,
               severity_score: Float,
+              shadow_flagged: T::Boolean,
               unicode_spoofed: T::Boolean
             }
           )

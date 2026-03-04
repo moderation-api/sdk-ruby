@@ -132,10 +132,11 @@ module ModerationAPI
       # @see ModerationAPI::Models::AuthorListParams
       def list(params = {})
         parsed, options = ModerationAPI::AuthorListParams.dump_request(params)
+        query = ModerationAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "authors",
-          query: parsed.transform_keys(
+          query: query.transform_keys(
             content_types: "contentTypes",
             last_active_date: "lastActiveDate",
             member_since_date: "memberSinceDate",

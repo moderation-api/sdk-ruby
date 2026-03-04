@@ -43,10 +43,11 @@ module ModerationAPI
         # @see ModerationAPI::Models::Wordlist::WordRemoveParams
         def remove(id, params)
           parsed, options = ModerationAPI::Wordlist::WordRemoveParams.dump_request(params)
+          query = ModerationAPI::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :delete,
             path: ["wordlist/%1$s/words", id],
-            query: parsed,
+            query: query,
             model: ModerationAPI::Models::Wordlist::WordRemoveResponse,
             options: options
           )

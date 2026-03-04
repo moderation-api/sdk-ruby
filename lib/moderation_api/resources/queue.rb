@@ -42,10 +42,11 @@ module ModerationAPI
       # @see ModerationAPI::Models::QueueGetStatsParams
       def get_stats(id, params = {})
         parsed, options = ModerationAPI::QueueGetStatsParams.dump_request(params)
+        query = ModerationAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["queue/%1$s/stats", id],
-          query: parsed.transform_keys(within_days: "withinDays"),
+          query: query.transform_keys(within_days: "withinDays"),
           model: ModerationAPI::Models::QueueGetStatsResponse,
           options: options
         )

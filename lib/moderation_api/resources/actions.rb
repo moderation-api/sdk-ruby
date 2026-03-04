@@ -134,10 +134,11 @@ module ModerationAPI
       # @see ModerationAPI::Models::ActionListParams
       def list(params = {})
         parsed, options = ModerationAPI::ActionListParams.dump_request(params)
+        query = ModerationAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "actions",
-          query: parsed.transform_keys(queue_id: "queueId"),
+          query: query.transform_keys(queue_id: "queueId"),
           model: ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ActionListResponseItem],
           options: options
         )

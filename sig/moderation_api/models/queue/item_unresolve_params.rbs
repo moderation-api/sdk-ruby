@@ -2,7 +2,7 @@ module ModerationAPI
   module Models
     module Queue
       type item_unresolve_params =
-        { id: String, comment: String }
+        { id: String, item_id: String, comment: String }
         & ModerationAPI::Internal::Type::request_parameters
 
       class ItemUnresolveParams < ModerationAPI::Internal::Type::BaseModel
@@ -11,18 +11,22 @@ module ModerationAPI
 
         attr_accessor id: String
 
+        attr_accessor item_id: String
+
         attr_reader comment: String?
 
         def comment=: (String) -> String
 
         def initialize: (
           id: String,
+          item_id: String,
           ?comment: String,
           ?request_options: ModerationAPI::request_opts
         ) -> void
 
         def to_hash: -> {
           id: String,
+          item_id: String,
           comment: String,
           request_options: ModerationAPI::RequestOptions
         }

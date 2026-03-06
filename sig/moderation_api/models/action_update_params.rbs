@@ -2,6 +2,7 @@ module ModerationAPI
   module Models
     type action_update_params =
       {
+        id: String,
         built_in: bool?,
         description: String?,
         filter_in_queue_ids: ::Array[String],
@@ -20,6 +21,8 @@ module ModerationAPI
     class ActionUpdateParams < ModerationAPI::Internal::Type::BaseModel
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor built_in: bool?
 
@@ -70,6 +73,7 @@ module ModerationAPI
       ) -> ::Array[ModerationAPI::ActionUpdateParams::Webhook]
 
       def initialize: (
+        id: String,
         ?built_in: bool?,
         ?description: String?,
         ?filter_in_queue_ids: ::Array[String],
@@ -86,6 +90,7 @@ module ModerationAPI
       ) -> void
 
       def to_hash: -> {
+        id: String,
         built_in: bool?,
         description: String?,
         filter_in_queue_ids: ::Array[String],

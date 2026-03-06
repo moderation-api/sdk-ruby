@@ -15,17 +15,24 @@ module ModerationAPI
             )
           end
 
+        # ID of the wordlist to remove words from
+        sig { returns(String) }
+        attr_accessor :id
+
         # Array of words to remove from the wordlist
         sig { returns(T::Array[String]) }
         attr_accessor :words
 
         sig do
           params(
+            id: String,
             words: T::Array[String],
             request_options: ModerationAPI::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # ID of the wordlist to remove words from
+          id:,
           # Array of words to remove from the wordlist
           words:,
           request_options: {}
@@ -35,6 +42,7 @@ module ModerationAPI
         sig do
           override.returns(
             {
+              id: String,
               words: T::Array[String],
               request_options: ModerationAPI::RequestOptions
             }

@@ -7,7 +7,15 @@ module ModerationAPI
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute id
+      #   The ID of the action to delete.
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!method initialize(id:, request_options: {})
+      #   @param id [String] The ID of the action to delete.
+      #
       #   @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}]
     end
   end

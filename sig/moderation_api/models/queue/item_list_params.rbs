@@ -3,6 +3,7 @@ module ModerationAPI
     module Queue
       type item_list_params =
         {
+          id: String,
           after_date: String,
           author_id: String,
           before_date: String,
@@ -20,6 +21,8 @@ module ModerationAPI
       class ItemListParams < ModerationAPI::Internal::Type::BaseModel
         extend ModerationAPI::Internal::Type::RequestParameters::Converter
         include ModerationAPI::Internal::Type::RequestParameters
+
+        attr_accessor id: String
 
         attr_reader after_date: String?
 
@@ -70,6 +73,7 @@ module ModerationAPI
         ) -> ModerationAPI::Models::Queue::ItemListParams::sort_field
 
         def initialize: (
+          id: String,
           ?after_date: String,
           ?author_id: String,
           ?before_date: String,
@@ -85,6 +89,7 @@ module ModerationAPI
         ) -> void
 
         def to_hash: -> {
+          id: String,
           after_date: String,
           author_id: String,
           before_date: String,

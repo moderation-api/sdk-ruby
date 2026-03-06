@@ -14,6 +14,10 @@ module ModerationAPI
           )
         end
 
+      # Either external ID or the ID assigned by moderation API.
+      sig { returns(String) }
+      attr_accessor :id
+
       # Author email address
       sig { returns(T.nilable(String)) }
       attr_accessor :email
@@ -61,6 +65,7 @@ module ModerationAPI
 
       sig do
         params(
+          id: String,
           email: T.nilable(String),
           external_link: T.nilable(String),
           first_seen: Float,
@@ -73,6 +78,8 @@ module ModerationAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # Either external ID or the ID assigned by moderation API.
+        id:,
         # Author email address
         email: nil,
         # URL of the author's external profile
@@ -96,6 +103,7 @@ module ModerationAPI
       sig do
         override.returns(
           {
+            id: String,
             email: T.nilable(String),
             external_link: T.nilable(String),
             first_seen: Float,

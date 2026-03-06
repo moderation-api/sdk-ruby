@@ -14,6 +14,10 @@ module ModerationAPI
           )
         end
 
+      # The queue ID
+      sig { returns(String) }
+      attr_accessor :id
+
       # Number of days to analyze statistics for
       sig { returns(T.nilable(String)) }
       attr_reader :within_days
@@ -23,11 +27,14 @@ module ModerationAPI
 
       sig do
         params(
+          id: String,
           within_days: String,
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The queue ID
+        id:,
         # Number of days to analyze statistics for
         within_days: nil,
         request_options: {}
@@ -37,6 +44,7 @@ module ModerationAPI
       sig do
         override.returns(
           {
+            id: String,
             within_days: String,
             request_options: ModerationAPI::RequestOptions
           }

@@ -7,6 +7,12 @@ module ModerationAPI
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #   The ID of the action to update.
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute built_in
       #   Whether the action is a built-in action or a custom one.
       #
@@ -92,9 +98,11 @@ module ModerationAPI
       optional :webhooks,
                -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::ActionUpdateParams::Webhook] }
 
-      # @!method initialize(built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, name: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, webhooks: nil, request_options: {})
+      # @!method initialize(id:, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, name: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, webhooks: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ActionUpdateParams} for more details.
+      #
+      #   @param id [String] The ID of the action to update.
       #
       #   @param built_in [Boolean, nil] Whether the action is a built-in action or a custom one.
       #

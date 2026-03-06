@@ -19,6 +19,10 @@ module ModerationAPI
         sig { returns(String) }
         attr_accessor :id
 
+        # The item ID to unresolve
+        sig { returns(String) }
+        attr_accessor :item_id
+
         # Optional reason for unresolving the item
         sig { returns(T.nilable(String)) }
         attr_reader :comment
@@ -29,6 +33,7 @@ module ModerationAPI
         sig do
           params(
             id: String,
+            item_id: String,
             comment: String,
             request_options: ModerationAPI::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -36,6 +41,8 @@ module ModerationAPI
         def self.new(
           # The queue ID
           id:,
+          # The item ID to unresolve
+          item_id:,
           # Optional reason for unresolving the item
           comment: nil,
           request_options: {}
@@ -46,6 +53,7 @@ module ModerationAPI
           override.returns(
             {
               id: String,
+              item_id: String,
               comment: String,
               request_options: ModerationAPI::RequestOptions
             }

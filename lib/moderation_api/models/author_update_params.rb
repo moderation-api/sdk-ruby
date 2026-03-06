@@ -7,6 +7,12 @@ module ModerationAPI
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #   Either external ID or the ID assigned by moderation API.
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute email
       #   Author email address
       #
@@ -55,9 +61,11 @@ module ModerationAPI
       #   @return [String, nil]
       optional :profile_picture, String, nil?: true
 
-      # @!method initialize(email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
+      # @!method initialize(id:, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::AuthorUpdateParams} for more details.
+      #
+      #   @param id [String] Either external ID or the ID assigned by moderation API.
       #
       #   @param email [String, nil] Author email address
       #

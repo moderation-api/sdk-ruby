@@ -8,6 +8,12 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::RequestParameters::Converter
         include ModerationAPI::Internal::Type::RequestParameters
 
+        # @!attribute action_id
+        #   The ID or key of the action to execute.
+        #
+        #   @return [String]
+        required :action_id, String
+
         # @!attribute author_ids
         #   IDs of the authors to apply the action to
         #
@@ -32,7 +38,9 @@ module ModerationAPI
         #   @return [String, nil]
         optional :value, String
 
-        # @!method initialize(author_ids: nil, content_ids: nil, queue_id: nil, value: nil, request_options: {})
+        # @!method initialize(action_id:, author_ids: nil, content_ids: nil, queue_id: nil, value: nil, request_options: {})
+        #   @param action_id [String] The ID or key of the action to execute.
+        #
         #   @param author_ids [Array<String>] IDs of the authors to apply the action to
         #
         #   @param content_ids [Array<String>] The IDs of the content items to perform the action on.

@@ -7,6 +7,12 @@ module ModerationAPI
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #   ID of the wordlist to update
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute description
       #   New description for the wordlist
       #
@@ -38,9 +44,11 @@ module ModerationAPI
       #   @return [Array<String>, nil]
       optional :words, ModerationAPI::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(description: nil, key: nil, name: nil, strict: nil, words: nil, request_options: {})
+      # @!method initialize(id:, description: nil, key: nil, name: nil, strict: nil, words: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::WordlistUpdateParams} for more details.
+      #
+      #   @param id [String] ID of the wordlist to update
       #
       #   @param description [String] New description for the wordlist
       #

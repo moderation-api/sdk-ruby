@@ -8,6 +8,12 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::RequestParameters::Converter
         include ModerationAPI::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #   The queue ID
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute after_date
         #
         #   @return [String, nil]
@@ -66,7 +72,9 @@ module ModerationAPI
         #   @return [Symbol, ModerationAPI::Models::Queue::ItemListParams::SortField, nil]
         optional :sort_field, enum: -> { ModerationAPI::Queue::ItemListParams::SortField }
 
-        # @!method initialize(after_date: nil, author_id: nil, before_date: nil, conversation_ids: nil, filtered_action_ids: nil, include_resolved: nil, labels: nil, page_number: nil, page_size: nil, sort_direction: nil, sort_field: nil, request_options: {})
+        # @!method initialize(id:, after_date: nil, author_id: nil, before_date: nil, conversation_ids: nil, filtered_action_ids: nil, include_resolved: nil, labels: nil, page_number: nil, page_size: nil, sort_direction: nil, sort_field: nil, request_options: {})
+        #   @param id [String] The queue ID
+        #
         #   @param after_date [String]
         #
         #   @param author_id [String]

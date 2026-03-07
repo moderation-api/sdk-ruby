@@ -14,6 +14,10 @@ module ModerationAPI
           )
         end
 
+      # ID of the wordlist to update
+      sig { returns(String) }
+      attr_accessor :id
+
       # New description for the wordlist
       sig { returns(T.nilable(String)) }
       attr_reader :description
@@ -52,6 +56,7 @@ module ModerationAPI
 
       sig do
         params(
+          id: String,
           description: String,
           key: String,
           name: String,
@@ -61,6 +66,8 @@ module ModerationAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # ID of the wordlist to update
+        id:,
         # New description for the wordlist
         description: nil,
         # New key for the wordlist
@@ -79,6 +86,7 @@ module ModerationAPI
       sig do
         override.returns(
           {
+            id: String,
             description: String,
             key: String,
             name: String,

@@ -1,23 +1,27 @@
 module ModerationAPI
   module Models
     type queue_get_stats_params =
-      { within_days: String }
+      { id: String, within_days: String }
       & ModerationAPI::Internal::Type::request_parameters
 
     class QueueGetStatsParams < ModerationAPI::Internal::Type::BaseModel
       extend ModerationAPI::Internal::Type::RequestParameters::Converter
       include ModerationAPI::Internal::Type::RequestParameters
 
+      attr_accessor id: String
+
       attr_reader within_days: String?
 
       def within_days=: (String) -> String
 
       def initialize: (
+        id: String,
         ?within_days: String,
         ?request_options: ModerationAPI::request_opts
       ) -> void
 
       def to_hash: -> {
+        id: String,
         within_days: String,
         request_options: ModerationAPI::RequestOptions
       }

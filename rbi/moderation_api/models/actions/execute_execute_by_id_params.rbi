@@ -15,6 +15,10 @@ module ModerationAPI
             )
           end
 
+        # The ID or key of the action to execute.
+        sig { returns(String) }
+        attr_accessor :action_id
+
         # IDs of the authors to apply the action to
         sig { returns(T.nilable(T::Array[String])) }
         attr_reader :author_ids
@@ -45,6 +49,7 @@ module ModerationAPI
 
         sig do
           params(
+            action_id: String,
             author_ids: T::Array[String],
             content_ids: T::Array[String],
             queue_id: String,
@@ -53,6 +58,8 @@ module ModerationAPI
           ).returns(T.attached_class)
         end
         def self.new(
+          # The ID or key of the action to execute.
+          action_id:,
           # IDs of the authors to apply the action to
           author_ids: nil,
           # The IDs of the content items to perform the action on.
@@ -68,6 +75,7 @@ module ModerationAPI
         sig do
           override.returns(
             {
+              action_id: String,
               author_ids: T::Array[String],
               content_ids: T::Array[String],
               queue_id: String,

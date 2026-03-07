@@ -15,6 +15,10 @@ module ModerationAPI
             )
           end
 
+        # The queue ID
+        sig { returns(String) }
+        attr_accessor :id
+
         sig { returns(T.nilable(String)) }
         attr_reader :after_date
 
@@ -106,6 +110,7 @@ module ModerationAPI
 
         sig do
           params(
+            id: String,
             after_date: String,
             author_id: String,
             before_date: String,
@@ -123,6 +128,8 @@ module ModerationAPI
           ).returns(T.attached_class)
         end
         def self.new(
+          # The queue ID
+          id:,
           after_date: nil,
           author_id: nil,
           before_date: nil,
@@ -144,6 +151,7 @@ module ModerationAPI
         sig do
           override.returns(
             {
+              id: String,
               after_date: String,
               author_id: String,
               before_date: String,

@@ -14,6 +14,10 @@ module ModerationAPI
           )
         end
 
+      # The ID of the action to update.
+      sig { returns(String) }
+      attr_accessor :id
+
       # Whether the action is a built-in action or a custom one.
       sig { returns(T.nilable(T::Boolean)) }
       attr_accessor :built_in
@@ -126,6 +130,7 @@ module ModerationAPI
 
       sig do
         params(
+          id: String,
           built_in: T.nilable(T::Boolean),
           description: T.nilable(String),
           filter_in_queue_ids: T::Array[String],
@@ -145,6 +150,8 @@ module ModerationAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The ID of the action to update.
+        id:,
         # Whether the action is a built-in action or a custom one.
         built_in: nil,
         # The description of the action.
@@ -180,6 +187,7 @@ module ModerationAPI
       sig do
         override.returns(
           {
+            id: String,
             built_in: T.nilable(T::Boolean),
             description: T.nilable(String),
             filter_in_queue_ids: T::Array[String],

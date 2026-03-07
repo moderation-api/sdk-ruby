@@ -3,6 +3,7 @@ module ModerationAPI
     module Actions
       type execute_execute_by_id_params =
         {
+          action_id: String,
           author_ids: ::Array[String],
           content_ids: ::Array[String],
           queue_id: String,
@@ -13,6 +14,8 @@ module ModerationAPI
       class ExecuteExecuteByIDParams < ModerationAPI::Internal::Type::BaseModel
         extend ModerationAPI::Internal::Type::RequestParameters::Converter
         include ModerationAPI::Internal::Type::RequestParameters
+
+        attr_accessor action_id: String
 
         attr_reader author_ids: ::Array[String]?
 
@@ -31,6 +34,7 @@ module ModerationAPI
         def value=: (String) -> String
 
         def initialize: (
+          action_id: String,
           ?author_ids: ::Array[String],
           ?content_ids: ::Array[String],
           ?queue_id: String,
@@ -39,6 +43,7 @@ module ModerationAPI
         ) -> void
 
         def to_hash: -> {
+          action_id: String,
           author_ids: ::Array[String],
           content_ids: ::Array[String],
           queue_id: String,

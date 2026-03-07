@@ -8,13 +8,21 @@ module ModerationAPI
         extend ModerationAPI::Internal::Type::RequestParameters::Converter
         include ModerationAPI::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #   ID of the wordlist to add words to
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute words
         #   Array of words to add to the wordlist. Duplicate words will be ignored.
         #
         #   @return [Array<String>]
         required :words, ModerationAPI::Internal::Type::ArrayOf[String]
 
-        # @!method initialize(words:, request_options: {})
+        # @!method initialize(id:, words:, request_options: {})
+        #   @param id [String] ID of the wordlist to add words to
+        #
         #   @param words [Array<String>] Array of words to add to the wordlist. Duplicate words will be ignored.
         #
         #   @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}]

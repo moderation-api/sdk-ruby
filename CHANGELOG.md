@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.9.1 (2026-03-07)
+
+Full Changelog: [v2.9.0...v2.9.1](https://github.com/moderation-api/sdk-ruby/compare/v2.9.0...v2.9.1)
+
+### Chores
+
+* **ci:** add build step ([5c55bf8](https://github.com/moderation-api/sdk-ruby/commit/5c55bf8514f2c832772d10e7b55ba72eae983de2))
+* **ci:** skip uploading artifacts on stainless-internal branches ([3228178](https://github.com/moderation-api/sdk-ruby/commit/3228178bf38e7382080b702b25be5b9007b522ea))
+* **internal:** codegen related update ([1ba0c9c](https://github.com/moderation-api/sdk-ruby/commit/1ba0c9c906772f0ea6e7e06d88ceaf30f0677f84))
+* **internal:** codegen related update ([9f1e242](https://github.com/moderation-api/sdk-ruby/commit/9f1e24274f62d4fb313ca30e267a5496c97a9339))
+
 ## 2.9.0 (2026-03-03)
 
 Full Changelog: [v2.8.1...v2.9.0](https://github.com/moderation-api/sdk-ruby/compare/v2.8.1...v2.9.0)

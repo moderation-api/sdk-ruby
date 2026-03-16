@@ -117,6 +117,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking,
+                ModerationAPI::ContentSubmitParams::Policy::URLRisk,
                 ModerationAPI::ContentSubmitParams::Policy::Guideline
               )
             ]
@@ -155,6 +156,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::URLRisk::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
               )
             ]
@@ -215,6 +217,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::URLRisk::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
               )
             ],
@@ -295,6 +298,7 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
                   ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
                   ModerationAPI::ContentSubmitParams::Policy::URLMasking,
+                  ModerationAPI::ContentSubmitParams::Policy::URLRisk,
                   ModerationAPI::ContentSubmitParams::Policy::Guideline
                 )
               ],
@@ -802,6 +806,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
               ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
               ModerationAPI::ContentSubmitParams::Policy::URLMasking,
+              ModerationAPI::ContentSubmitParams::Policy::URLRisk,
               ModerationAPI::ContentSubmitParams::Policy::Guideline
             )
           end
@@ -1849,6 +1854,42 @@ module ModerationAPI
             end
             def to_hash
             end
+          end
+        end
+
+        class URLRisk < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::URLRisk,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
+              T.attached_class
+            )
+          end
+          def self.new(flag:, threshold: nil, id: :url_risk)
+          end
+
+          sig do
+            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
+          def to_hash
           end
         end
 

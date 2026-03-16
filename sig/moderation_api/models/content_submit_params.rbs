@@ -299,6 +299,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::CodeAbuse
         | ModerationAPI::ContentSubmitParams::Policy::PiiMasking
         | ModerationAPI::ContentSubmitParams::Policy::URLMasking
+        | ModerationAPI::ContentSubmitParams::Policy::URLRisk
         | ModerationAPI::ContentSubmitParams::Policy::Guideline
 
       module Policy
@@ -872,6 +873,26 @@ module ModerationAPI
               should_mask: bool
             }
           end
+        end
+
+        type url_risk = { id: :url_risk, flag: bool, threshold: Float }
+
+        class URLRisk < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :url_risk
+
+          attr_accessor flag: bool
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :url_risk
+          ) -> void
+
+          def to_hash: -> { id: :url_risk, flag: bool, threshold: Float }
         end
 
         type guideline =

@@ -48,6 +48,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::URLRisk::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Guideline::OrHash
               )
             ],

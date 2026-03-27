@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.10.1 (2026-03-27)
+
+Full Changelog: [v2.10.0...v2.10.1](https://github.com/moderation-api/sdk-ruby/compare/v2.10.0...v2.10.1)
+
+### Bug Fixes
+
+* **internal:** correct multipart form field name encoding ([f710332](https://github.com/moderation-api/sdk-ruby/commit/f710332a0f8927edd71caa91c855a1cca2710a8d))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([083b65b](https://github.com/moderation-api/sdk-ruby/commit/083b65b9c992229d3fe0b881c79e0fc73b0a36ec))
+* **internal:** tweak CI branches ([0861769](https://github.com/moderation-api/sdk-ruby/commit/0861769d4f2bb8c7ba7834f93c32bbd860a15f86))
+* **internal:** update gitignore ([af42c22](https://github.com/moderation-api/sdk-ruby/commit/af42c22c331deba0b668e4c79835aeeec6107555))
+
 ## 2.10.0 (2026-03-16)
 
 Full Changelog: [v2.9.0...v2.10.0](https://github.com/moderation-api/sdk-ruby/compare/v2.9.0...v2.10.0)

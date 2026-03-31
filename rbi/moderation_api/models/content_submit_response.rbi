@@ -447,6 +447,11 @@ module ModerationAPI
         end
         attr_accessor :modified
 
+        # The transcribed text from audio content. Only present when audio moderation is
+        # used and transcript inclusion is enabled on the channel.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :transcript
+
         # Potentially modified content.
         sig do
           params(
@@ -455,7 +460,8 @@ module ModerationAPI
             modified:
               T.nilable(
                 ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
-              )
+              ),
+            transcript: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -465,7 +471,10 @@ module ModerationAPI
           # Whether any values have been masked.
           masked:,
           # The modified content, if any.
-          modified:
+          modified:,
+          # The transcribed text from audio content. Only present when audio moderation is
+          # used and transcript inclusion is enabled on the channel.
+          transcript: nil
         )
         end
 
@@ -477,7 +486,8 @@ module ModerationAPI
               modified:
                 T.nilable(
                   ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
-                )
+                ),
+              transcript: T.nilable(String)
             }
           )
         end

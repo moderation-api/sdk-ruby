@@ -132,7 +132,8 @@ module ModerationAPI
         {
           id: String,
           masked: bool,
-          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
+          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?,
+          transcript: String?
         }
 
       class Content < ModerationAPI::Internal::Type::BaseModel
@@ -142,16 +143,20 @@ module ModerationAPI
 
         attr_accessor modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
 
+        attr_accessor transcript: String?
+
         def initialize: (
           id: String,
           masked: bool,
-          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
+          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?,
+          ?transcript: String?
         ) -> void
 
         def to_hash: -> {
           id: String,
           masked: bool,
-          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?
+          modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?,
+          transcript: String?
         }
 
         type modified =

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.11.0 (2026-03-31)
+
+Full Changelog: [v2.10.1...v2.11.0](https://github.com/moderation-api/sdk-ruby/compare/v2.10.1...v2.11.0)
+
+### Features
+
+* **api:** api update ([7003628](https://github.com/moderation-api/sdk-ruby/commit/70036284e49ac86dd1de5f1e9b10f908c35571cc))
+
+
+### Chores
+
+* **ci:** support opting out of skipping builds on metadata-only commits ([8cbba6f](https://github.com/moderation-api/sdk-ruby/commit/8cbba6fe84670b175bb6283c543ecff4bad13006))
+
 ## 2.10.1 (2026-03-27)
 
 Full Changelog: [v2.10.0...v2.10.1](https://github.com/moderation-api/sdk-ruby/compare/v2.10.0...v2.10.1)

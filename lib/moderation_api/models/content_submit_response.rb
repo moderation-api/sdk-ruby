@@ -201,7 +201,14 @@ module ModerationAPI
                  union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified },
                  nil?: true
 
-        # @!method initialize(id:, masked:, modified:)
+        # @!attribute transcript
+        #   The transcribed text from audio content. Only present when audio moderation is
+        #   used and transcript inclusion is enabled on the channel.
+        #
+        #   @return [String, nil]
+        optional :transcript, String, nil?: true
+
+        # @!method initialize(id:, masked:, modified:, transcript: nil)
         #   Some parameter documentations has been truncated, see
         #   {ModerationAPI::Models::ContentSubmitResponse::Content} for more details.
         #
@@ -212,6 +219,8 @@ module ModerationAPI
         #   @param masked [Boolean] Whether any values have been masked.
         #
         #   @param modified [String, Hash{Symbol=>Object}, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio}, nil] The modified content, if any.
+        #
+        #   @param transcript [String, nil] The transcribed text from audio content. Only present when audio moderation is u
 
         # The modified content, if any.
         #

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.11.1 (2026-04-01)
+
+Full Changelog: [v2.11.0...v2.11.1](https://github.com/moderation-api/sdk-ruby/compare/v2.11.0...v2.11.1)
+
+### Bug Fixes
+
+* variable name typo ([65896b4](https://github.com/moderation-api/sdk-ruby/commit/65896b432a1ca9a1c720ec4fea8764081b7b9cae))
+
 ## 2.11.0 (2026-03-31)
 
 Full Changelog: [v2.10.1...v2.11.0](https://github.com/moderation-api/sdk-ruby/compare/v2.10.1...v2.11.0)

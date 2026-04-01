@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.11.2 (2026-04-01)
+
+Full Changelog: [v2.11.1...v2.11.2](https://github.com/moderation-api/sdk-ruby/compare/v2.11.1...v2.11.2)
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([8562b22](https://github.com/moderation-api/sdk-ruby/commit/8562b22361b7f7c6db74a58f8d78f25e435bed3d))
+
 ## 2.11.1 (2026-04-01)
 
 Full Changelog: [v2.11.0...v2.11.1](https://github.com/moderation-api/sdk-ruby/compare/v2.11.0...v2.11.1)

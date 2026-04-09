@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.11.3 (2026-04-09)
+
+Full Changelog: [v2.11.2...v2.11.3](https://github.com/moderation-api/sdk-ruby/compare/v2.11.2...v2.11.3)
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([7480479](https://github.com/moderation-api/sdk-ruby/commit/748047916ff78fc154b75fb4415fe6b06856bfde))
+
 ## 2.11.2 (2026-04-01)
 
 Full Changelog: [v2.11.1...v2.11.2](https://github.com/moderation-api/sdk-ruby/compare/v2.11.1...v2.11.2)

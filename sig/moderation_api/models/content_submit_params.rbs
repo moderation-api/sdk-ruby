@@ -875,12 +875,27 @@ module ModerationAPI
           end
         end
 
-        type url_risk = { id: :url_risk, flag: bool, threshold: Float }
+        type url_risk =
+          {
+            id: :url_risk,
+            flag: bool,
+            allowlist_wordlist_ids: ::Array[String],
+            blocklist_wordlist_ids: ::Array[String],
+            threshold: Float
+          }
 
         class URLRisk < ModerationAPI::Internal::Type::BaseModel
           attr_accessor id: :url_risk
 
           attr_accessor flag: bool
+
+          attr_reader allowlist_wordlist_ids: ::Array[String]?
+
+          def allowlist_wordlist_ids=: (::Array[String]) -> ::Array[String]
+
+          attr_reader blocklist_wordlist_ids: ::Array[String]?
+
+          def blocklist_wordlist_ids=: (::Array[String]) -> ::Array[String]
 
           attr_reader threshold: Float?
 
@@ -888,11 +903,19 @@ module ModerationAPI
 
           def initialize: (
             flag: bool,
+            ?allowlist_wordlist_ids: ::Array[String],
+            ?blocklist_wordlist_ids: ::Array[String],
             ?threshold: Float,
             ?id: :url_risk
           ) -> void
 
-          def to_hash: -> { id: :url_risk, flag: bool, threshold: Float }
+          def to_hash: -> {
+            id: :url_risk,
+            flag: bool,
+            allowlist_wordlist_ids: ::Array[String],
+            blocklist_wordlist_ids: ::Array[String],
+            threshold: Float
+          }
         end
 
         type guideline =

@@ -1299,22 +1299,263 @@ module ModerationAPI
             sig { returns(T::Array[Integer]) }
             attr_accessor :span
 
+            # Sub-type of the entity match — e.g. the NER key (email, phone, name, …) for PII
+            # matches. Absent for URL Risk and wordlist matches where the type is already
+            # encoded in the parent label.
+            sig { returns(T.nilable(String)) }
+            attr_reader :entity_type
+
+            sig { params(entity_type: String).void }
+            attr_writer :entity_type
+
+            # Stable codes explaining why a URL was flagged (URL Risk only).
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_reader :reasons
+
+            sig { params(reasons: T::Array[String]).void }
+            attr_writer :reasons
+
+            # Observable properties of a URL (URL Risk only). Absent for allow/block list
+            # matches.
+            sig do
+              returns(
+                T.nilable(
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
+                )
+              )
+            end
+            attr_reader :signals
+
+            sig do
+              params(
+                signals:
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::OrHash
+              ).void
+            end
+            attr_writer :signals
+
             sig do
               params(
                 match: String,
                 probability: Float,
-                span: T::Array[Integer]
+                span: T::Array[Integer],
+                entity_type: String,
+                reasons: T::Array[String],
+                signals:
+                  ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::OrHash
               ).returns(T.attached_class)
             end
-            def self.new(match:, probability:, span:)
+            def self.new(
+              match:,
+              probability:,
+              span:,
+              # Sub-type of the entity match — e.g. the NER key (email, phone, name, …) for PII
+              # matches. Absent for URL Risk and wordlist matches where the type is already
+              # encoded in the parent label.
+              entity_type: nil,
+              # Stable codes explaining why a URL was flagged (URL Risk only).
+              reasons: nil,
+              # Observable properties of a URL (URL Risk only). Absent for allow/block list
+              # matches.
+              signals: nil
+            )
             end
 
             sig do
               override.returns(
-                { match: String, probability: Float, span: T::Array[Integer] }
+                {
+                  match: String,
+                  probability: Float,
+                  span: T::Array[Integer],
+                  entity_type: String,
+                  reasons: T::Array[String],
+                  signals:
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
+                }
               )
             end
             def to_hash
+            end
+
+            class Signals < ModerationAPI::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals,
+                    ModerationAPI::Internal::AnyHash
+                  )
+                end
+
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :bot_protection
+
+              sig do
+                returns(
+                  T.nilable(
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation
+                  )
+                )
+              end
+              attr_reader :brand_impersonation
+
+              sig do
+                params(
+                  brand_impersonation:
+                    T.nilable(
+                      ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::OrHash
+                    )
+                ).void
+              end
+              attr_writer :brand_impersonation
+
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :domain_age_days
+
+              sig { returns(T.nilable(String)) }
+              attr_accessor :final_url
+
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :has_email_setup
+
+              sig { returns(T::Boolean) }
+              attr_accessor :has_suspicious_characters
+
+              sig { returns(T::Boolean) }
+              attr_accessor :is_link_shortener
+
+              sig { returns(T::Boolean) }
+              attr_accessor :is_reported
+
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :redirect_count
+
+              # Observable properties of a URL (URL Risk only). Absent for allow/block list
+              # matches.
+              sig do
+                params(
+                  bot_protection: T.nilable(T::Boolean),
+                  brand_impersonation:
+                    T.nilable(
+                      ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::OrHash
+                    ),
+                  domain_age_days: T.nilable(Integer),
+                  final_url: T.nilable(String),
+                  has_email_setup: T.nilable(T::Boolean),
+                  has_suspicious_characters: T::Boolean,
+                  is_link_shortener: T::Boolean,
+                  is_reported: T::Boolean,
+                  redirect_count: T.nilable(Integer)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                bot_protection:,
+                brand_impersonation:,
+                domain_age_days:,
+                final_url:,
+                has_email_setup:,
+                has_suspicious_characters:,
+                is_link_shortener:,
+                is_reported:,
+                redirect_count:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    bot_protection: T.nilable(T::Boolean),
+                    brand_impersonation:
+                      T.nilable(
+                        ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation
+                      ),
+                    domain_age_days: T.nilable(Integer),
+                    final_url: T.nilable(String),
+                    has_email_setup: T.nilable(T::Boolean),
+                    has_suspicious_characters: T::Boolean,
+                    is_link_shortener: T::Boolean,
+                    is_reported: T::Boolean,
+                    redirect_count: T.nilable(Integer)
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation,
+                      ModerationAPI::Internal::AnyHash
+                    )
+                  end
+
+                sig { returns(String) }
+                attr_accessor :brand
+
+                sig do
+                  returns(
+                    ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method::TaggedSymbol
+                  )
+                end
+                attr_accessor :method_
+
+                sig do
+                  params(
+                    brand: String,
+                    method_:
+                      ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method::OrSymbol
+                  ).returns(T.attached_class)
+                end
+                def self.new(brand:, method_:)
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      brand: String,
+                      method_:
+                        ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method::TaggedSymbol
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                module Method
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  REGISTERED_DOMAIN_TOKEN =
+                    T.let(
+                      :registered_domain_token,
+                      ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method::TaggedSymbol
+                    )
+                  SUBDOMAIN_TOKEN =
+                    T.let(
+                      :subdomain_token,
+                      ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+              end
             end
           end
         end

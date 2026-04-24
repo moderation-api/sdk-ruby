@@ -694,10 +694,138 @@ module ModerationAPI
             #   @return [Array<Integer>]
             required :span, ModerationAPI::Internal::Type::ArrayOf[Integer]
 
-            # @!method initialize(match:, probability:, span:)
+            # @!attribute entity_type
+            #   Sub-type of the entity match — e.g. the NER key (email, phone, name, …) for PII
+            #   matches. Absent for URL Risk and wordlist matches where the type is already
+            #   encoded in the parent label.
+            #
+            #   @return [String, nil]
+            optional :entity_type, String
+
+            # @!attribute reasons
+            #   Stable codes explaining why a URL was flagged (URL Risk only).
+            #
+            #   @return [Array<String>, nil]
+            optional :reasons, ModerationAPI::Internal::Type::ArrayOf[String]
+
+            # @!attribute signals
+            #   Observable properties of a URL (URL Risk only). Absent for allow/block list
+            #   matches.
+            #
+            #   @return [ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals, nil]
+            optional :signals,
+                     -> { ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals }
+
+            # @!method initialize(match:, probability:, span:, entity_type: nil, reasons: nil, signals: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match}
+            #   for more details.
+            #
             #   @param match [String]
+            #
             #   @param probability [Float]
+            #
             #   @param span [Array<Integer>]
+            #
+            #   @param entity_type [String] Sub-type of the entity match — e.g. the NER key (email, phone, name, …) for PII
+            #
+            #   @param reasons [Array<String>] Stable codes explaining why a URL was flagged (URL Risk only).
+            #
+            #   @param signals [ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals] Observable properties of a URL (URL Risk only). Absent for allow/block list matc
+
+            # @see ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match#signals
+            class Signals < ModerationAPI::Internal::Type::BaseModel
+              # @!attribute bot_protection
+              #
+              #   @return [Boolean, nil]
+              required :bot_protection, ModerationAPI::Internal::Type::Boolean, nil?: true
+
+              # @!attribute brand_impersonation
+              #
+              #   @return [ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation, nil]
+              required :brand_impersonation,
+                       -> { ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation },
+                       nil?: true
+
+              # @!attribute domain_age_days
+              #
+              #   @return [Integer, nil]
+              required :domain_age_days, Integer, nil?: true
+
+              # @!attribute final_url
+              #
+              #   @return [String, nil]
+              required :final_url, String, nil?: true
+
+              # @!attribute has_email_setup
+              #
+              #   @return [Boolean, nil]
+              required :has_email_setup, ModerationAPI::Internal::Type::Boolean, nil?: true
+
+              # @!attribute has_suspicious_characters
+              #
+              #   @return [Boolean]
+              required :has_suspicious_characters, ModerationAPI::Internal::Type::Boolean
+
+              # @!attribute is_link_shortener
+              #
+              #   @return [Boolean]
+              required :is_link_shortener, ModerationAPI::Internal::Type::Boolean
+
+              # @!attribute is_reported
+              #
+              #   @return [Boolean]
+              required :is_reported, ModerationAPI::Internal::Type::Boolean
+
+              # @!attribute redirect_count
+              #
+              #   @return [Integer, nil]
+              required :redirect_count, Integer, nil?: true
+
+              # @!method initialize(bot_protection:, brand_impersonation:, domain_age_days:, final_url:, has_email_setup:, has_suspicious_characters:, is_link_shortener:, is_reported:, redirect_count:)
+              #   Observable properties of a URL (URL Risk only). Absent for allow/block list
+              #   matches.
+              #
+              #   @param bot_protection [Boolean, nil]
+              #   @param brand_impersonation [ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation, nil]
+              #   @param domain_age_days [Integer, nil]
+              #   @param final_url [String, nil]
+              #   @param has_email_setup [Boolean, nil]
+              #   @param has_suspicious_characters [Boolean]
+              #   @param is_link_shortener [Boolean]
+              #   @param is_reported [Boolean]
+              #   @param redirect_count [Integer, nil]
+
+              # @see ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals#brand_impersonation
+              class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                # @!attribute brand
+                #
+                #   @return [String]
+                required :brand, String
+
+                # @!attribute method_
+                #
+                #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method]
+                required :method_,
+                         enum: -> { ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method },
+                         api_name: :method
+
+                # @!method initialize(brand:, method_:)
+                #   @param brand [String]
+                #   @param method_ [Symbol, ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::Method]
+
+                # @see ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation#method_
+                module Method
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REGISTERED_DOMAIN_TOKEN = :registered_domain_token
+                  SUBDOMAIN_TOKEN = :subdomain_token
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
+            end
           end
         end
 

@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    moderation_api (2.11.3)
+    moderation_api (2.12.0)
       cgi
       connection_pool
 

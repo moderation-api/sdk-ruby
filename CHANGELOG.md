@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.12.0 (2026-04-24)
+
+Full Changelog: [v2.11.3...v2.12.0](https://github.com/moderation-api/sdk-ruby/compare/v2.11.3...v2.12.0)
+
+### Features
+
+* **api:** api update ([18b3b6d](https://github.com/moderation-api/sdk-ruby/commit/18b3b6dce2befe3c2b0051d0dc33b737d99308a9))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([2217d9c](https://github.com/moderation-api/sdk-ruby/commit/2217d9c080e5fbc4276ec3fed81e91b51f9d653e))
+
 ## 2.11.3 (2026-04-09)
 
 Full Changelog: [v2.11.2...v2.11.3](https://github.com/moderation-api/sdk-ruby/compare/v2.11.2...v2.11.3)

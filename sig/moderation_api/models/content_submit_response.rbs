@@ -534,7 +534,14 @@ module ModerationAPI
           }
 
           type match =
-            { match: String, probability: Float, span: ::Array[Integer] }
+            {
+              match: String,
+              probability: Float,
+              span: ::Array[Integer],
+              entity_type: String,
+              reasons: ::Array[String],
+              signals: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
+            }
 
           class Match < ModerationAPI::Internal::Type::BaseModel
             attr_accessor match: String
@@ -543,17 +550,127 @@ module ModerationAPI
 
             attr_accessor span: ::Array[Integer]
 
+            attr_reader entity_type: String?
+
+            def entity_type=: (String) -> String
+
+            attr_reader reasons: ::Array[String]?
+
+            def reasons=: (::Array[String]) -> ::Array[String]
+
+            attr_reader signals: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals?
+
+            def signals=: (
+              ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
+            ) -> ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
+
             def initialize: (
               match: String,
               probability: Float,
-              span: ::Array[Integer]
+              span: ::Array[Integer],
+              ?entity_type: String,
+              ?reasons: ::Array[String],
+              ?signals: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
             ) -> void
 
             def to_hash: -> {
               match: String,
               probability: Float,
-              span: ::Array[Integer]
+              span: ::Array[Integer],
+              entity_type: String,
+              reasons: ::Array[String],
+              signals: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals
             }
+
+            type signals =
+              {
+                bot_protection: bool?,
+                brand_impersonation: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation?,
+                domain_age_days: Integer?,
+                final_url: String?,
+                has_email_setup: bool?,
+                has_suspicious_characters: bool,
+                is_link_shortener: bool,
+                is_reported: bool,
+                redirect_count: Integer?
+              }
+
+            class Signals < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor bot_protection: bool?
+
+              attr_accessor brand_impersonation: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation?
+
+              attr_accessor domain_age_days: Integer?
+
+              attr_accessor final_url: String?
+
+              attr_accessor has_email_setup: bool?
+
+              attr_accessor has_suspicious_characters: bool
+
+              attr_accessor is_link_shortener: bool
+
+              attr_accessor is_reported: bool
+
+              attr_accessor redirect_count: Integer?
+
+              def initialize: (
+                bot_protection: bool?,
+                brand_impersonation: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation?,
+                domain_age_days: Integer?,
+                final_url: String?,
+                has_email_setup: bool?,
+                has_suspicious_characters: bool,
+                is_link_shortener: bool,
+                is_reported: bool,
+                redirect_count: Integer?
+              ) -> void
+
+              def to_hash: -> {
+                bot_protection: bool?,
+                brand_impersonation: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation?,
+                domain_age_days: Integer?,
+                final_url: String?,
+                has_email_setup: bool?,
+                has_suspicious_characters: bool,
+                is_link_shortener: bool,
+                is_reported: bool,
+                redirect_count: Integer?
+              }
+
+              type brand_impersonation =
+                {
+                  brand: String,
+                  method_: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::method_
+                }
+
+              class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor brand: String
+
+                attr_accessor method_: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::method_
+
+                def initialize: (
+                  brand: String,
+                  method_: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::method_
+                ) -> void
+
+                def to_hash: -> {
+                  brand: String,
+                  method_: ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::method_
+                }
+
+                type method_ = :registered_domain_token | :subdomain_token
+
+                module Method
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REGISTERED_DOMAIN_TOKEN: :registered_domain_token
+                  SUBDOMAIN_TOKEN: :subdomain_token
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::EntityMatcherOutput::Match::Signals::BrandImpersonation::method_]
+                end
+              end
+            end
           end
         end
 

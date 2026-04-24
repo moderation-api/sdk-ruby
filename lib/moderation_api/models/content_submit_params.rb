@@ -1026,14 +1026,42 @@ module ModerationAPI
           #   @return [Boolean]
           required :flag, ModerationAPI::Internal::Type::Boolean
 
+          # @!attribute allowlist_wordlist_ids
+          #   IDs of wordlists whose entries are treated as allowed URL domains. Matches
+          #   short-circuit the risk model and are never flagged.
+          #
+          #   @return [Array<String>, nil]
+          optional :allowlist_wordlist_ids,
+                   ModerationAPI::Internal::Type::ArrayOf[String],
+                   api_name: :allowlistWordlistIds
+
+          # @!attribute blocklist_wordlist_ids
+          #   IDs of wordlists whose entries are treated as blocked URL domains. Matches
+          #   short-circuit the risk model and are always flagged. Blocklists take precedence
+          #   over allowlists.
+          #
+          #   @return [Array<String>, nil]
+          optional :blocklist_wordlist_ids,
+                   ModerationAPI::Internal::Type::ArrayOf[String],
+                   api_name: :blocklistWordlistIds
+
           # @!attribute threshold
           #
           #   @return [Float, nil]
           optional :threshold, Float
 
-          # @!method initialize(flag:, threshold: nil, id: :url_risk)
+          # @!method initialize(flag:, allowlist_wordlist_ids: nil, blocklist_wordlist_ids: nil, threshold: nil, id: :url_risk)
+          #   Some parameter documentations has been truncated, see
+          #   {ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk} for more details.
+          #
           #   @param flag [Boolean]
+          #
+          #   @param allowlist_wordlist_ids [Array<String>] IDs of wordlists whose entries are treated as allowed URL domains. Matches short
+          #
+          #   @param blocklist_wordlist_ids [Array<String>] IDs of wordlists whose entries are treated as blocked URL domains. Matches short
+          #
           #   @param threshold [Float]
+          #
           #   @param id [Symbol, :url_risk]
         end
 

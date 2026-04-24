@@ -1872,6 +1872,23 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
+          # IDs of wordlists whose entries are treated as allowed URL domains. Matches
+          # short-circuit the risk model and are never flagged.
+          sig { returns(T.nilable(T::Array[String])) }
+          attr_reader :allowlist_wordlist_ids
+
+          sig { params(allowlist_wordlist_ids: T::Array[String]).void }
+          attr_writer :allowlist_wordlist_ids
+
+          # IDs of wordlists whose entries are treated as blocked URL domains. Matches
+          # short-circuit the risk model and are always flagged. Blocklists take precedence
+          # over allowlists.
+          sig { returns(T.nilable(T::Array[String])) }
+          attr_reader :blocklist_wordlist_ids
+
+          sig { params(blocklist_wordlist_ids: T::Array[String]).void }
+          attr_writer :blocklist_wordlist_ids
+
           sig { returns(T.nilable(Float)) }
           attr_reader :threshold
 
@@ -1879,15 +1896,38 @@ module ModerationAPI
           attr_writer :threshold
 
           sig do
-            params(flag: T::Boolean, threshold: Float, id: Symbol).returns(
-              T.attached_class
-            )
+            params(
+              flag: T::Boolean,
+              allowlist_wordlist_ids: T::Array[String],
+              blocklist_wordlist_ids: T::Array[String],
+              threshold: Float,
+              id: Symbol
+            ).returns(T.attached_class)
           end
-          def self.new(flag:, threshold: nil, id: :url_risk)
+          def self.new(
+            flag:,
+            # IDs of wordlists whose entries are treated as allowed URL domains. Matches
+            # short-circuit the risk model and are never flagged.
+            allowlist_wordlist_ids: nil,
+            # IDs of wordlists whose entries are treated as blocked URL domains. Matches
+            # short-circuit the risk model and are always flagged. Blocklists take precedence
+            # over allowlists.
+            blocklist_wordlist_ids: nil,
+            threshold: nil,
+            id: :url_risk
+          )
           end
 
           sig do
-            override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+            override.returns(
+              {
+                id: Symbol,
+                flag: T::Boolean,
+                allowlist_wordlist_ids: T::Array[String],
+                blocklist_wordlist_ids: T::Array[String],
+                threshold: Float
+              }
+            )
           end
           def to_hash
           end

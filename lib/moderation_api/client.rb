@@ -76,6 +76,19 @@ module ModerationAPI
         raise ArgumentError.new("secret_key is required, and can be set via environ: \"MODAPI_SECRET_KEY\"")
       end
 
+      headers = {}
+      custom_headers_env = ENV["MODERATION_API_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
+
       @secret_key = secret_key.to_s
 
       super(
@@ -83,7 +96,8 @@ module ModerationAPI
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @authors = ModerationAPI::Resources::Authors.new(client: self)

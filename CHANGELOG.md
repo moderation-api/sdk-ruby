@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.13.0 (2026-04-28)
+
+Full Changelog: [v2.12.0...v2.13.0](https://github.com/moderation-api/sdk-ruby/compare/v2.12.0...v2.13.0)
+
+### Features
+
+* support setting headers via env ([2988175](https://github.com/moderation-api/sdk-ruby/commit/298817593f2f217bd57565a76b38345097799ebf))
+
 ## 2.12.0 (2026-04-24)
 
 Full Changelog: [v2.11.3...v2.12.0](https://github.com/moderation-api/sdk-ruby/compare/v2.11.3...v2.12.0)

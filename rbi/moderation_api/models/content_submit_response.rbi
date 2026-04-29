@@ -1599,6 +1599,28 @@ module ModerationAPI
         end
         attr_accessor :reason_codes
 
+        # Rules that matched during evaluation, if rules engine is active.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule
+              ]
+            )
+          )
+        end
+        attr_reader :matched_rules
+
+        sig do
+          params(
+            matched_rules:
+              T::Array[
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule::OrHash
+              ]
+          ).void
+        end
+        attr_writer :matched_rules
+
         # The recommendation for the content based on the evaluation.
         sig do
           params(
@@ -1607,6 +1629,10 @@ module ModerationAPI
             reason_codes:
               T::Array[
                 ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::OrSymbol
+              ],
+            matched_rules:
+              T::Array[
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule::OrHash
               ]
           ).returns(T.attached_class)
         end
@@ -1615,7 +1641,9 @@ module ModerationAPI
           action:,
           # The reason code for the recommendation. Can be used to display a reason to the
           # user.
-          reason_codes:
+          reason_codes:,
+          # Rules that matched during evaluation, if rules engine is active.
+          matched_rules: nil
         )
         end
 
@@ -1627,6 +1655,10 @@ module ModerationAPI
               reason_codes:
                 T::Array[
                   ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+                ],
+              matched_rules:
+                T::Array[
+                  ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule
                 ]
             }
           )
@@ -1716,6 +1748,21 @@ module ModerationAPI
               :untrusted_severity,
               ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
+          RULE_MATCH =
+            T.let(
+              :rule_match,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
+          RULE_DEFAULT =
+            T.let(
+              :rule_default,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
+          RULE_FALLBACK =
+            T.let(
+              :rule_fallback,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
 
           sig do
             override.returns(
@@ -1725,6 +1772,30 @@ module ModerationAPI
             )
           end
           def self.values
+          end
+        end
+
+        class MatchedRule < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(String) }
+          attr_accessor :key
+
+          sig { returns(String) }
+          attr_accessor :name
+
+          sig { params(key: String, name: String).returns(T.attached_class) }
+          def self.new(key:, name:)
+          end
+
+          sig { override.returns({ key: String, name: String }) }
+          def to_hash
           end
         end
       end

@@ -680,7 +680,8 @@ module ModerationAPI
       type recommendation =
         {
           action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action,
-          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
+          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code],
+          matched_rules: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule]
         }
 
       class Recommendation < ModerationAPI::Internal::Type::BaseModel
@@ -688,14 +689,22 @@ module ModerationAPI
 
         attr_accessor reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
 
+        attr_reader matched_rules: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule]?
+
+        def matched_rules=: (
+          ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule]
+        ) -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule]
+
         def initialize: (
           action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action,
-          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
+          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code],
+          ?matched_rules: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule]
         ) -> void
 
         def to_hash: -> {
           action: ModerationAPI::Models::ContentSubmitResponse::Recommendation::action,
-          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
+          reason_codes: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code],
+          matched_rules: ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule]
         }
 
         type action = :review | :allow | :reject
@@ -717,6 +726,9 @@ module ModerationAPI
           | :dry_run
           | :trusted_allow
           | :untrusted_severity
+          | :rule_match
+          | :rule_default
+          | :rule_fallback
 
         module ReasonCode
           extend ModerationAPI::Internal::Type::Enum
@@ -727,8 +739,23 @@ module ModerationAPI
           DRY_RUN: :dry_run
           TRUSTED_ALLOW: :trusted_allow
           UNTRUSTED_SEVERITY: :untrusted_severity
+          RULE_MATCH: :rule_match
+          RULE_DEFAULT: :rule_default
+          RULE_FALLBACK: :rule_fallback
 
           def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
+        end
+
+        type matched_rule = { key: String, name: String }
+
+        class MatchedRule < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor key: String
+
+          attr_accessor name: String
+
+          def initialize: (key: String, name: String) -> void
+
+          def to_hash: -> { key: String, name: String }
         end
       end
 

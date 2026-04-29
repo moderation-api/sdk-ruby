@@ -849,7 +849,14 @@ module ModerationAPI
         required :reason_codes,
                  -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode] }
 
-        # @!method initialize(action:, reason_codes:)
+        # @!attribute matched_rules
+        #   Rules that matched during evaluation, if rules engine is active.
+        #
+        #   @return [Array<ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule>, nil]
+        optional :matched_rules,
+                 -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule] }
+
+        # @!method initialize(action:, reason_codes:, matched_rules: nil)
         #   Some parameter documentations has been truncated, see
         #   {ModerationAPI::Models::ContentSubmitResponse::Recommendation} for more details.
         #
@@ -858,6 +865,8 @@ module ModerationAPI
         #   @param action [Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action] The action to take based on the recommendation
         #
         #   @param reason_codes [Array<Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>] The reason code for the recommendation. Can be used to display a reason to the u
+        #
+        #   @param matched_rules [Array<ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule>] Rules that matched during evaluation, if rules engine is active.
 
         # The action to take based on the recommendation
         #
@@ -882,9 +891,28 @@ module ModerationAPI
           DRY_RUN = :dry_run
           TRUSTED_ALLOW = :trusted_allow
           UNTRUSTED_SEVERITY = :untrusted_severity
+          RULE_MATCH = :rule_match
+          RULE_DEFAULT = :rule_default
+          RULE_FALLBACK = :rule_fallback
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        class MatchedRule < ModerationAPI::Internal::Type::BaseModel
+          # @!attribute key
+          #
+          #   @return [String]
+          required :key, String
+
+          # @!attribute name
+          #
+          #   @return [String]
+          required :name, String
+
+          # @!method initialize(key:, name:)
+          #   @param key [String]
+          #   @param name [String]
         end
       end
 

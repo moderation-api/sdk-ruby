@@ -1045,12 +1045,21 @@ module ModerationAPI
                    ModerationAPI::Internal::Type::ArrayOf[String],
                    api_name: :blocklistWordlistIds
 
+          # @!attribute flag_link_shorteners
+          #   When true, any URL detected as a free link shortener (bit.ly, t.co, tinyurl,
+          #   etc.) is always flagged regardless of risk score. Allowlist matches still win.
+          #
+          #   @return [Boolean, nil]
+          optional :flag_link_shorteners,
+                   ModerationAPI::Internal::Type::Boolean,
+                   api_name: :flagLinkShorteners
+
           # @!attribute threshold
           #
           #   @return [Float, nil]
           optional :threshold, Float
 
-          # @!method initialize(flag:, allowlist_wordlist_ids: nil, blocklist_wordlist_ids: nil, threshold: nil, id: :url_risk)
+          # @!method initialize(flag:, allowlist_wordlist_ids: nil, blocklist_wordlist_ids: nil, flag_link_shorteners: nil, threshold: nil, id: :url_risk)
           #   Some parameter documentations has been truncated, see
           #   {ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk} for more details.
           #
@@ -1059,6 +1068,8 @@ module ModerationAPI
           #   @param allowlist_wordlist_ids [Array<String>] IDs of wordlists whose entries are treated as allowed URL domains. Matches short
           #
           #   @param blocklist_wordlist_ids [Array<String>] IDs of wordlists whose entries are treated as blocked URL domains. Matches short
+          #
+          #   @param flag_link_shorteners [Boolean] When true, any URL detected as a free link shortener (bit.ly, t.co, tinyurl, etc
           #
           #   @param threshold [Float]
           #

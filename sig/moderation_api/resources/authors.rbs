@@ -3,6 +3,7 @@ module ModerationAPI
     class Authors
       def create: (
         external_id: String,
+        ?company: String?,
         ?email: String?,
         ?external_link: String?,
         ?first_seen: Float,
@@ -21,6 +22,7 @@ module ModerationAPI
 
       def update: (
         String id,
+        ?company: String?,
         ?email: String?,
         ?external_link: String?,
         ?first_seen: Float,

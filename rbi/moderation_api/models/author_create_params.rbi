@@ -18,6 +18,10 @@ module ModerationAPI
       sig { returns(String) }
       attr_accessor :external_id
 
+      # The author's company or organization
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company
+
       # Author email address
       sig { returns(T.nilable(String)) }
       attr_accessor :email
@@ -66,6 +70,7 @@ module ModerationAPI
       sig do
         params(
           external_id: String,
+          company: T.nilable(String),
           email: T.nilable(String),
           external_link: T.nilable(String),
           first_seen: Float,
@@ -80,6 +85,8 @@ module ModerationAPI
       def self.new(
         # External ID of the user, typically the ID of the author in your database.
         external_id:,
+        # The author's company or organization
+        company: nil,
         # Author email address
         email: nil,
         # URL of the author's external profile
@@ -104,6 +111,7 @@ module ModerationAPI
         override.returns(
           {
             external_id: String,
+            company: T.nilable(String),
             email: T.nilable(String),
             external_link: T.nilable(String),
             first_seen: Float,

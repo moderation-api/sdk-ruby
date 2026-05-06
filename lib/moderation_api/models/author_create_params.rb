@@ -13,6 +13,12 @@ module ModerationAPI
       #   @return [String]
       required :external_id, String
 
+      # @!attribute company
+      #   The author's company or organization
+      #
+      #   @return [String, nil]
+      optional :company, String, nil?: true
+
       # @!attribute email
       #   Author email address
       #
@@ -61,11 +67,13 @@ module ModerationAPI
       #   @return [String, nil]
       optional :profile_picture, String, nil?: true
 
-      # @!method initialize(external_id:, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
+      # @!method initialize(external_id:, company: nil, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::AuthorCreateParams} for more details.
       #
       #   @param external_id [String] External ID of the user, typically the ID of the author in your database.
+      #
+      #   @param company [String, nil] The author's company or organization
       #
       #   @param email [String, nil] Author email address
       #

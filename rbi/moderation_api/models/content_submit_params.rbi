@@ -1889,6 +1889,14 @@ module ModerationAPI
           sig { params(blocklist_wordlist_ids: T::Array[String]).void }
           attr_writer :blocklist_wordlist_ids
 
+          # When true, any URL detected as a free link shortener (bit.ly, t.co, tinyurl,
+          # etc.) is always flagged regardless of risk score. Allowlist matches still win.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :flag_link_shorteners
+
+          sig { params(flag_link_shorteners: T::Boolean).void }
+          attr_writer :flag_link_shorteners
+
           sig { returns(T.nilable(Float)) }
           attr_reader :threshold
 
@@ -1900,6 +1908,7 @@ module ModerationAPI
               flag: T::Boolean,
               allowlist_wordlist_ids: T::Array[String],
               blocklist_wordlist_ids: T::Array[String],
+              flag_link_shorteners: T::Boolean,
               threshold: Float,
               id: Symbol
             ).returns(T.attached_class)
@@ -1913,6 +1922,9 @@ module ModerationAPI
             # short-circuit the risk model and are always flagged. Blocklists take precedence
             # over allowlists.
             blocklist_wordlist_ids: nil,
+            # When true, any URL detected as a free link shortener (bit.ly, t.co, tinyurl,
+            # etc.) is always flagged regardless of risk score. Allowlist matches still win.
+            flag_link_shorteners: nil,
             threshold: nil,
             id: :url_risk
           )
@@ -1925,6 +1937,7 @@ module ModerationAPI
                 flag: T::Boolean,
                 allowlist_wordlist_ids: T::Array[String],
                 blocklist_wordlist_ids: T::Array[String],
+                flag_link_shorteners: T::Boolean,
                 threshold: Float
               }
             )

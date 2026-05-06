@@ -99,6 +99,10 @@ module ModerationAPI
       end
       attr_writer :trust_level
 
+      # The author's company or organization
+      sig { returns(T.nilable(String)) }
+      attr_accessor :company
+
       # Author email address
       sig { returns(T.nilable(String)) }
       attr_accessor :email
@@ -142,6 +146,7 @@ module ModerationAPI
           status: ModerationAPI::Models::AuthorCreateResponse::Status::OrSymbol,
           trust_level:
             ModerationAPI::Models::AuthorCreateResponse::TrustLevel::OrHash,
+          company: T.nilable(String),
           email: T.nilable(String),
           external_id: T.nilable(String),
           external_link: T.nilable(String),
@@ -168,6 +173,8 @@ module ModerationAPI
         # Current author status
         status:,
         trust_level:,
+        # The author's company or organization
+        company: nil,
         # Author email address
         email: nil,
         # The author's ID from your system
@@ -201,6 +208,7 @@ module ModerationAPI
               ModerationAPI::Models::AuthorCreateResponse::Status::TaggedSymbol,
             trust_level:
               ModerationAPI::Models::AuthorCreateResponse::TrustLevel,
+            company: T.nilable(String),
             email: T.nilable(String),
             external_id: T.nilable(String),
             external_link: T.nilable(String),

@@ -881,6 +881,7 @@ module ModerationAPI
             flag: bool,
             allowlist_wordlist_ids: ::Array[String],
             blocklist_wordlist_ids: ::Array[String],
+            flag_link_shorteners: bool,
             threshold: Float
           }
 
@@ -897,6 +898,10 @@ module ModerationAPI
 
           def blocklist_wordlist_ids=: (::Array[String]) -> ::Array[String]
 
+          attr_reader flag_link_shorteners: bool?
+
+          def flag_link_shorteners=: (bool) -> bool
+
           attr_reader threshold: Float?
 
           def threshold=: (Float) -> Float
@@ -905,6 +910,7 @@ module ModerationAPI
             flag: bool,
             ?allowlist_wordlist_ids: ::Array[String],
             ?blocklist_wordlist_ids: ::Array[String],
+            ?flag_link_shorteners: bool,
             ?threshold: Float,
             ?id: :url_risk
           ) -> void
@@ -914,6 +920,7 @@ module ModerationAPI
             flag: bool,
             allowlist_wordlist_ids: ::Array[String],
             blocklist_wordlist_ids: ::Array[String],
+            flag_link_shorteners: bool,
             threshold: Float
           }
         end

@@ -9,9 +9,11 @@ module ModerationAPI
       # Create a new author. Typically not needed as authors are created automatically
       # when content is moderated.
       #
-      # @overload create(external_id:, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
+      # @overload create(external_id:, company: nil, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
       #
       # @param external_id [String] External ID of the user, typically the ID of the author in your database.
+      #
+      # @param company [String, nil] The author's company or organization
       #
       # @param email [String, nil] Author email address
       #
@@ -71,9 +73,11 @@ module ModerationAPI
       #
       # Update the details of a specific author
       #
-      # @overload update(id, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
+      # @overload update(id, company: nil, email: nil, external_link: nil, first_seen: nil, last_seen: nil, manual_trust_level: nil, metadata: nil, name: nil, profile_picture: nil, request_options: {})
       #
       # @param id [String] Either external ID or the ID assigned by moderation API.
+      #
+      # @param company [String, nil] The author's company or organization
       #
       # @param email [String, nil] Author email address
       #

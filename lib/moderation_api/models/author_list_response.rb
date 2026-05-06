@@ -75,6 +75,12 @@ module ModerationAPI
         #   @return [ModerationAPI::Models::AuthorListResponse::Author::TrustLevel]
         required :trust_level, -> { ModerationAPI::Models::AuthorListResponse::Author::TrustLevel }
 
+        # @!attribute company
+        #   The author's company or organization
+        #
+        #   @return [String, nil]
+        optional :company, String, nil?: true
+
         # @!attribute email
         #   Author email address
         #
@@ -111,7 +117,7 @@ module ModerationAPI
         #   @return [String, nil]
         optional :profile_picture, String, nil?: true
 
-        # @!method initialize(id:, block:, first_seen:, last_seen:, metadata:, metrics:, risk_evaluation:, status:, trust_level:, email: nil, external_id: nil, external_link: nil, last_incident: nil, name: nil, profile_picture: nil)
+        # @!method initialize(id:, block:, first_seen:, last_seen:, metadata:, metrics:, risk_evaluation:, status:, trust_level:, company: nil, email: nil, external_id: nil, external_link: nil, last_incident: nil, name: nil, profile_picture: nil)
         #   Some parameter documentations has been truncated, see
         #   {ModerationAPI::Models::AuthorListResponse::Author} for more details.
         #
@@ -132,6 +138,8 @@ module ModerationAPI
         #   @param status [Symbol, ModerationAPI::Models::AuthorListResponse::Author::Status] Current author status
         #
         #   @param trust_level [ModerationAPI::Models::AuthorListResponse::Author::TrustLevel]
+        #
+        #   @param company [String, nil] The author's company or organization
         #
         #   @param email [String, nil] Author email address
         #

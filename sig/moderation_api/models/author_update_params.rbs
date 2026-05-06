@@ -3,6 +3,7 @@ module ModerationAPI
     type author_update_params =
       {
         id: String,
+        company: String?,
         email: String?,
         external_link: String?,
         first_seen: Float,
@@ -19,6 +20,8 @@ module ModerationAPI
       include ModerationAPI::Internal::Type::RequestParameters
 
       attr_accessor id: String
+
+      attr_accessor company: String?
 
       attr_accessor email: String?
 
@@ -46,6 +49,7 @@ module ModerationAPI
 
       def initialize: (
         id: String,
+        ?company: String?,
         ?email: String?,
         ?external_link: String?,
         ?first_seen: Float,
@@ -59,6 +63,7 @@ module ModerationAPI
 
       def to_hash: -> {
         id: String,
+        company: String?,
         email: String?,
         external_link: String?,
         first_seen: Float,

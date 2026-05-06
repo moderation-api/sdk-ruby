@@ -11,6 +11,7 @@ module ModerationAPI
         risk_evaluation: ModerationAPI::Models::AuthorUpdateResponse::RiskEvaluation?,
         status: ModerationAPI::Models::AuthorUpdateResponse::status,
         trust_level: ModerationAPI::Models::AuthorUpdateResponse::TrustLevel,
+        company: String?,
         email: String?,
         external_id: String?,
         external_link: String?,
@@ -38,6 +39,8 @@ module ModerationAPI
 
       attr_accessor trust_level: ModerationAPI::Models::AuthorUpdateResponse::TrustLevel
 
+      attr_accessor company: String?
+
       attr_accessor email: String?
 
       attr_accessor external_id: String?
@@ -60,6 +63,7 @@ module ModerationAPI
         risk_evaluation: ModerationAPI::Models::AuthorUpdateResponse::RiskEvaluation?,
         status: ModerationAPI::Models::AuthorUpdateResponse::status,
         trust_level: ModerationAPI::Models::AuthorUpdateResponse::TrustLevel,
+        ?company: String?,
         ?email: String?,
         ?external_id: String?,
         ?external_link: String?,
@@ -78,6 +82,7 @@ module ModerationAPI
         risk_evaluation: ModerationAPI::Models::AuthorUpdateResponse::RiskEvaluation?,
         status: ModerationAPI::Models::AuthorUpdateResponse::status,
         trust_level: ModerationAPI::Models::AuthorUpdateResponse::TrustLevel,
+        company: String?,
         email: String?,
         external_id: String?,
         external_link: String?,

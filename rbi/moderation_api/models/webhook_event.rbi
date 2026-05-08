@@ -16,7 +16,7 @@ module ModerationAPI
             ModerationAPI::WebhookEvent::AuthorUpdated,
             ModerationAPI::WebhookEvent::AuthorTrustLevelChanged,
             ModerationAPI::WebhookEvent::AuthorAction,
-            ModerationAPI::WebhookEvent::QueueItemCompleted,
+            ModerationAPI::WebhookEvent::QueueItemResolved,
             ModerationAPI::WebhookEvent::QueueItemAction,
             ModerationAPI::WebhookEvent::QueueItemRejected,
             ModerationAPI::WebhookEvent::QueueItemAllowed
@@ -4266,11 +4266,11 @@ module ModerationAPI
         end
       end
 
-      class QueueItemCompleted < ModerationAPI::Internal::Type::BaseModel
+      class QueueItemResolved < ModerationAPI::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              ModerationAPI::WebhookEvent::QueueItemCompleted,
+              ModerationAPI::WebhookEvent::QueueItemResolved,
               ModerationAPI::Internal::AnyHash
             )
           end
@@ -4286,12 +4286,12 @@ module ModerationAPI
         sig { returns(Time) }
         attr_accessor :created
 
-        sig { returns(ModerationAPI::WebhookEvent::QueueItemCompleted::Data) }
+        sig { returns(ModerationAPI::WebhookEvent::QueueItemResolved::Data) }
         attr_reader :data
 
         sig do
           params(
-            data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::OrHash
+            data: ModerationAPI::WebhookEvent::QueueItemResolved::Data::OrHash
           ).void
         end
         attr_writer :data
@@ -4304,7 +4304,7 @@ module ModerationAPI
           params(
             id: String,
             created: Time,
-            data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::OrHash,
+            data: ModerationAPI::WebhookEvent::QueueItemResolved::Data::OrHash,
             api_version: Symbol,
             type: Symbol
           ).returns(T.attached_class)
@@ -4317,7 +4317,7 @@ module ModerationAPI
           data:,
           api_version: :v2,
           # The event type.
-          type: :"queue_item.completed"
+          type: :"queue_item.resolved"
         )
         end
 
@@ -4327,7 +4327,7 @@ module ModerationAPI
               id: String,
               api_version: Symbol,
               created: Time,
-              data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data,
+              data: ModerationAPI::WebhookEvent::QueueItemResolved::Data,
               type: Symbol
             }
           )
@@ -4339,14 +4339,14 @@ module ModerationAPI
           OrHash =
             T.type_alias do
               T.any(
-                ModerationAPI::WebhookEvent::QueueItemCompleted::Data,
+                ModerationAPI::WebhookEvent::QueueItemResolved::Data,
                 ModerationAPI::Internal::AnyHash
               )
             end
 
           sig do
             returns(
-              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object
+              ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object
             )
           end
           attr_reader :object
@@ -4354,7 +4354,7 @@ module ModerationAPI
           sig do
             params(
               object:
-                ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::OrHash
+                ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::OrHash
             ).void
           end
           attr_writer :object
@@ -4362,7 +4362,7 @@ module ModerationAPI
           sig do
             params(
               object:
-                ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::OrHash
+                ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::OrHash
             ).returns(T.attached_class)
           end
           def self.new(object:)
@@ -4372,7 +4372,7 @@ module ModerationAPI
             override.returns(
               {
                 object:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object
               }
             )
           end
@@ -4383,14 +4383,14 @@ module ModerationAPI
             OrHash =
               T.type_alias do
                 T.any(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object,
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object,
                   ModerationAPI::Internal::AnyHash
                 )
               end
 
             sig do
               returns(
-                ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item
+                ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item
               )
             end
             attr_reader :item
@@ -4398,7 +4398,7 @@ module ModerationAPI
             sig do
               params(
                 item:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::OrHash
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::OrHash
               ).void
             end
             attr_writer :item
@@ -4406,7 +4406,7 @@ module ModerationAPI
             sig do
               returns(
                 T.nilable(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author
                 )
               )
             end
@@ -4415,7 +4415,7 @@ module ModerationAPI
             sig do
               params(
                 author:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::OrHash
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::OrHash
               ).void
             end
             attr_writer :author
@@ -4423,7 +4423,7 @@ module ModerationAPI
             sig do
               returns(
                 T.nilable(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Queue
                 )
               )
             end
@@ -4432,7 +4432,7 @@ module ModerationAPI
             sig do
               params(
                 queue:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue::OrHash
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Queue::OrHash
               ).void
             end
             attr_writer :queue
@@ -4440,11 +4440,11 @@ module ModerationAPI
             sig do
               params(
                 item:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::OrHash,
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::OrHash,
                 author:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::OrHash,
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::OrHash,
                 queue:
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue::OrHash
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Queue::OrHash
               ).returns(T.attached_class)
             end
             def self.new(item:, author: nil, queue: nil)
@@ -4454,11 +4454,11 @@ module ModerationAPI
               override.returns(
                 {
                   item:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item,
                   author:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author,
                   queue:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Queue
                 }
               )
             end
@@ -4469,7 +4469,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -4491,11 +4491,11 @@ module ModerationAPI
               sig do
                 returns(
                   T.any(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object
                   )
                 )
               end
@@ -4514,7 +4514,7 @@ module ModerationAPI
                 returns(
                   T.nilable(
                     T::Array[
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label
                     ]
                   )
                 )
@@ -4531,7 +4531,7 @@ module ModerationAPI
               sig do
                 returns(
                   T.nilable(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::OrSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::OrSymbol
                   )
                 )
               end
@@ -4552,24 +4552,24 @@ module ModerationAPI
                   channel_key: T.nilable(String),
                   content:
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text::OrHash,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image::OrHash,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video::OrHash,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio::OrHash,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::OrHash
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text::OrHash,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image::OrHash,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video::OrHash,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio::OrHash,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::OrHash
                     ),
                   conversation_id: T.nilable(String),
                   flagged: T.nilable(T::Boolean),
                   labels:
                     T.nilable(
                       T::Array[
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::OrHash
                       ]
                     ),
                   language: T.nilable(String),
                   meta_type:
                     T.nilable(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::OrSymbol
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::OrSymbol
                     ),
                   metadata: T.nilable(T::Hash[Symbol, T.anything]),
                   timestamp: Time
@@ -4612,24 +4612,24 @@ module ModerationAPI
                     channel_key: T.nilable(String),
                     content:
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text,
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image,
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video,
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio,
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object
                       ),
                     conversation_id: T.nilable(String),
                     flagged: T.nilable(T::Boolean),
                     labels:
                       T.nilable(
                         T::Array[
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label
                         ]
                       ),
                     language: T.nilable(String),
                     meta_type:
                       T.nilable(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::OrSymbol
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::OrSymbol
                       ),
                     metadata: T.nilable(T::Hash[Symbol, T.anything]),
                     timestamp: Time
@@ -4646,11 +4646,11 @@ module ModerationAPI
                 Variants =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object
                     )
                   end
 
@@ -4658,7 +4658,7 @@ module ModerationAPI
                   OrHash =
                     T.type_alias do
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text,
                         ModerationAPI::Internal::AnyHash
                       )
                     end
@@ -4690,7 +4690,7 @@ module ModerationAPI
                   OrHash =
                     T.type_alias do
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image,
                         ModerationAPI::Internal::AnyHash
                       )
                     end
@@ -4742,7 +4742,7 @@ module ModerationAPI
                   OrHash =
                     T.type_alias do
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video,
                         ModerationAPI::Internal::AnyHash
                       )
                     end
@@ -4774,7 +4774,7 @@ module ModerationAPI
                   OrHash =
                     T.type_alias do
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio,
                         ModerationAPI::Internal::AnyHash
                       )
                     end
@@ -4806,7 +4806,7 @@ module ModerationAPI
                   OrHash =
                     T.type_alias do
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object,
                         ModerationAPI::Internal::AnyHash
                       )
                     end
@@ -4817,10 +4817,10 @@ module ModerationAPI
                       T::Hash[
                         Symbol,
                         T.any(
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text,
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image,
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video,
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio
                         )
                       ]
                     )
@@ -4837,10 +4837,10 @@ module ModerationAPI
                         T::Hash[
                           Symbol,
                           T.any(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text::OrHash,
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image::OrHash,
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video::OrHash,
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio::OrHash
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text::OrHash,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image::OrHash,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video::OrHash,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio::OrHash
                           )
                         ],
                       type: Symbol
@@ -4860,10 +4860,10 @@ module ModerationAPI
                           T::Hash[
                             Symbol,
                             T.any(
-                              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text,
-                              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image,
-                              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video,
-                              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio
+                              ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text,
+                              ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image,
+                              ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video,
+                              ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio
                             )
                           ],
                         type: Symbol
@@ -4880,10 +4880,10 @@ module ModerationAPI
                     Variants =
                       T.type_alias do
                         T.any(
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text,
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image,
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video,
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio
                         )
                       end
 
@@ -4891,7 +4891,7 @@ module ModerationAPI
                       OrHash =
                         T.type_alias do
                           T.any(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text,
                             ModerationAPI::Internal::AnyHash
                           )
                         end
@@ -4925,7 +4925,7 @@ module ModerationAPI
                       OrHash =
                         T.type_alias do
                           T.any(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image,
                             ModerationAPI::Internal::AnyHash
                           )
                         end
@@ -4977,7 +4977,7 @@ module ModerationAPI
                       OrHash =
                         T.type_alias do
                           T.any(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video,
                             ModerationAPI::Internal::AnyHash
                           )
                         end
@@ -5011,7 +5011,7 @@ module ModerationAPI
                       OrHash =
                         T.type_alias do
                           T.any(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio,
                             ModerationAPI::Internal::AnyHash
                           )
                         end
@@ -5044,7 +5044,7 @@ module ModerationAPI
                     sig do
                       override.returns(
                         T::Array[
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Variants
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Variants
                         ]
                       )
                     end
@@ -5056,7 +5056,7 @@ module ModerationAPI
                 sig do
                   override.returns(
                     T::Array[
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Variants
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Variants
                     ]
                   )
                 end
@@ -5068,7 +5068,7 @@ module ModerationAPI
                 OrHash =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label,
                       ModerationAPI::Internal::AnyHash
                     )
                   end
@@ -5099,7 +5099,7 @@ module ModerationAPI
                   returns(
                     T.nilable(
                       T::Array[
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match
                       ]
                     )
                   )
@@ -5110,7 +5110,7 @@ module ModerationAPI
                   params(
                     matches:
                       T::Array[
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::OrHash
                       ]
                   ).void
                 end
@@ -5124,7 +5124,7 @@ module ModerationAPI
                     manual: T::Boolean,
                     matches:
                       T::Array[
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::OrHash
                       ]
                   ).returns(T.attached_class)
                 end
@@ -5150,7 +5150,7 @@ module ModerationAPI
                       manual: T::Boolean,
                       matches:
                         T::Array[
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match
                         ]
                     }
                   )
@@ -5162,7 +5162,7 @@ module ModerationAPI
                   OrHash =
                     T.type_alias do
                       T.any(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match,
                         ModerationAPI::Internal::AnyHash
                       )
                     end
@@ -5197,7 +5197,7 @@ module ModerationAPI
                   sig do
                     returns(
                       T.nilable(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
                       )
                     )
                   end
@@ -5206,7 +5206,7 @@ module ModerationAPI
                   sig do
                     params(
                       signals:
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::OrHash
                     ).void
                   end
                   attr_writer :signals
@@ -5220,7 +5220,7 @@ module ModerationAPI
                       mask: T.nilable(String),
                       reasons: T::Array[String],
                       signals:
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::OrHash
                     ).returns(T.attached_class)
                   end
                   def self.new(
@@ -5247,7 +5247,7 @@ module ModerationAPI
                         mask: T.nilable(String),
                         reasons: T::Array[String],
                         signals:
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
                       }
                     )
                   end
@@ -5258,7 +5258,7 @@ module ModerationAPI
                     OrHash =
                       T.type_alias do
                         T.any(
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals,
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals,
                           ModerationAPI::Internal::AnyHash
                         )
                       end
@@ -5269,7 +5269,7 @@ module ModerationAPI
                     sig do
                       returns(
                         T.nilable(
-                          ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation
                         )
                       )
                     end
@@ -5279,7 +5279,7 @@ module ModerationAPI
                       params(
                         brand_impersonation:
                           T.nilable(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation::OrHash
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation::OrHash
                           )
                       ).void
                     end
@@ -5311,7 +5311,7 @@ module ModerationAPI
                         bot_protection: T.nilable(T::Boolean),
                         brand_impersonation:
                           T.nilable(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation::OrHash
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation::OrHash
                           ),
                         domain_age_days: T.nilable(Float),
                         final_url: T.nilable(String),
@@ -5341,7 +5341,7 @@ module ModerationAPI
                           bot_protection: T.nilable(T::Boolean),
                           brand_impersonation:
                             T.nilable(
-                              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation
+                              ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation
                             ),
                           domain_age_days: T.nilable(Float),
                           final_url: T.nilable(String),
@@ -5360,7 +5360,7 @@ module ModerationAPI
                       OrHash =
                         T.type_alias do
                           T.any(
-                            ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation,
+                            ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation,
                             ModerationAPI::Internal::AnyHash
                           )
                         end
@@ -5399,7 +5399,7 @@ module ModerationAPI
                   T.type_alias do
                     T.all(
                       Symbol,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5407,48 +5407,48 @@ module ModerationAPI
                 PROFILE =
                   T.let(
                     :profile,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 MESSAGE =
                   T.let(
                     :message,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 POST =
                   T.let(
                     :post,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 COMMENT =
                   T.let(
                     :comment,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 EVENT =
                   T.let(
                     :event,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 PRODUCT =
                   T.let(
                     :product,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 REVIEW =
                   T.let(
                     :review,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 OTHER =
                   T.let(
                     :other,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType::TaggedSymbol
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                     ]
                   )
                 end
@@ -5461,7 +5461,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author,
                     ModerationAPI::Internal::AnyHash
                   )
                 end
@@ -5474,7 +5474,7 @@ module ModerationAPI
               sig do
                 returns(
                   T.nilable(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Block
                   )
                 )
               end
@@ -5484,7 +5484,7 @@ module ModerationAPI
                 params(
                   block:
                     T.nilable(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block::OrHash
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Block::OrHash
                     )
                 ).void
               end
@@ -5502,7 +5502,7 @@ module ModerationAPI
               # information that may assist in the moderation process.
               sig do
                 returns(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata
                 )
               end
               attr_reader :metadata
@@ -5510,14 +5510,14 @@ module ModerationAPI
               sig do
                 params(
                   metadata:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata::OrHash
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata::OrHash
                 ).void
               end
               attr_writer :metadata
 
               sig do
                 returns(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics
                 )
               end
               attr_reader :metrics
@@ -5525,7 +5525,7 @@ module ModerationAPI
               sig do
                 params(
                   metrics:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics::OrHash
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics::OrHash
                 ).void
               end
               attr_writer :metrics
@@ -5534,7 +5534,7 @@ module ModerationAPI
               sig do
                 returns(
                   T.nilable(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation
                   )
                 )
               end
@@ -5544,7 +5544,7 @@ module ModerationAPI
                 params(
                   risk_evaluation:
                     T.nilable(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation::OrHash
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation::OrHash
                     )
                 ).void
               end
@@ -5553,14 +5553,14 @@ module ModerationAPI
               # Current author status
               sig do
                 returns(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::OrSymbol
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::OrSymbol
                 )
               end
               attr_accessor :status
 
               sig do
                 returns(
-                  ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel
+                  ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel
                 )
               end
               attr_reader :trust_level
@@ -5568,7 +5568,7 @@ module ModerationAPI
               sig do
                 params(
                   trust_level:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel::OrHash
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel::OrHash
                 ).void
               end
               attr_writer :trust_level
@@ -5606,22 +5606,22 @@ module ModerationAPI
                   id: String,
                   block:
                     T.nilable(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block::OrHash
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Block::OrHash
                     ),
                   first_seen: Float,
                   last_seen: Float,
                   metadata:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata::OrHash,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata::OrHash,
                   metrics:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics::OrHash,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics::OrHash,
                   risk_evaluation:
                     T.nilable(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation::OrHash
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation::OrHash
                     ),
                   status:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::OrSymbol,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::OrSymbol,
                   trust_level:
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel::OrHash,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel::OrHash,
                   company: T.nilable(String),
                   email: T.nilable(String),
                   external_id: T.nilable(String),
@@ -5672,22 +5672,22 @@ module ModerationAPI
                     id: String,
                     block:
                       T.nilable(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Block
                       ),
                     first_seen: Float,
                     last_seen: Float,
                     metadata:
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata,
                     metrics:
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics,
                     risk_evaluation:
                       T.nilable(
-                        ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation
                       ),
                     status:
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::OrSymbol,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::OrSymbol,
                     trust_level:
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel,
                     company: T.nilable(String),
                     email: T.nilable(String),
                     external_id: T.nilable(String),
@@ -5705,7 +5705,7 @@ module ModerationAPI
                 OrHash =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Block,
                       ModerationAPI::Internal::AnyHash
                     )
                   end
@@ -5746,7 +5746,7 @@ module ModerationAPI
                 OrHash =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata,
                       ModerationAPI::Internal::AnyHash
                     )
                   end
@@ -5807,7 +5807,7 @@ module ModerationAPI
                 OrHash =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics,
                       ModerationAPI::Internal::AnyHash
                     )
                   end
@@ -5860,7 +5860,7 @@ module ModerationAPI
                 OrHash =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation,
                       ModerationAPI::Internal::AnyHash
                     )
                   end
@@ -5892,7 +5892,7 @@ module ModerationAPI
                   T.type_alias do
                     T.all(
                       Symbol,
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -5900,23 +5900,23 @@ module ModerationAPI
                 ENABLED =
                   T.let(
                     :enabled,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::TaggedSymbol
                   )
                 SUSPENDED =
                   T.let(
                     :suspended,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::TaggedSymbol
                   )
                 BLOCKED =
                   T.let(
                     :blocked,
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::TaggedSymbol
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status::TaggedSymbol
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status::TaggedSymbol
                     ]
                   )
                 end
@@ -5928,7 +5928,7 @@ module ModerationAPI
                 OrHash =
                   T.type_alias do
                     T.any(
-                      ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel,
                       ModerationAPI::Internal::AnyHash
                     )
                   end
@@ -5964,7 +5964,7 @@ module ModerationAPI
               OrHash =
                 T.type_alias do
                   T.any(
-                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Queue,
                     ModerationAPI::Internal::AnyHash
                   )
                 end

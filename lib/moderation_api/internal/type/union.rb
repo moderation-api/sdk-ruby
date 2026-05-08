@@ -4,6 +4,31 @@ module ModerationAPI
   module Internal
     module Type
       # @api private
+      #
+      # @example
+      #   # `webhook_event` is a `ModerationAPI::WebhookEvent`
+      #   case webhook_event
+      #   when ModerationAPI::WebhookEvent::AuthorBlocked
+      #     puts(webhook_event.id)
+      #   when ModerationAPI::WebhookEvent::AuthorUnblocked
+      #     puts(webhook_event.api_version)
+      #   when ModerationAPI::WebhookEvent::AuthorSuspended
+      #     puts(webhook_event.created)
+      #   else
+      #     puts(webhook_event)
+      #   end
+      #
+      # @example
+      #   case webhook_event
+      #   in {type: :"author.blocked", id: id, api_version: api_version, created: created}
+      #     puts(id)
+      #   in {type: :"author.unblocked", id: id, api_version: api_version, created: created}
+      #     puts(api_version)
+      #   in {type: :"author.suspended", id: id, api_version: api_version, created: created}
+      #     puts(created)
+      #   else
+      #     puts(webhook_event)
+      #   end
       module Union
         include ModerationAPI::Internal::Type::Converter
         include ModerationAPI::Internal::Util::SorbetRuntimeSupport

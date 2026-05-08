@@ -35,6 +35,8 @@ module ModerationAPI
 
   class QueueRetrieveParams = ModerationAPI::Models::QueueRetrieveParams
 
+  module WebhookEvent = ModerationAPI::Models::WebhookEvent
+
   module Wordlist = ModerationAPI::Models::Wordlist
 
   class WordlistGetEmbeddingStatusParams = ModerationAPI::Models::WordlistGetEmbeddingStatusParams

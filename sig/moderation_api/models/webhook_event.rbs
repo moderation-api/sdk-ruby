@@ -1,0 +1,4746 @@
+module ModerationAPI
+  module Models
+    type webhook_event =
+      ModerationAPI::WebhookEvent::AuthorBlocked
+      | ModerationAPI::WebhookEvent::AuthorUnblocked
+      | ModerationAPI::WebhookEvent::AuthorSuspended
+      | ModerationAPI::WebhookEvent::AuthorUpdated
+      | ModerationAPI::WebhookEvent::AuthorTrustLevelChanged
+      | ModerationAPI::WebhookEvent::AuthorAction
+      | ModerationAPI::WebhookEvent::QueueItemCompleted
+      | ModerationAPI::WebhookEvent::QueueItemAction
+      | ModerationAPI::WebhookEvent::QueueItemRejected
+      | ModerationAPI::WebhookEvent::QueueItemAllowed
+
+    module WebhookEvent
+      extend ModerationAPI::Internal::Type::Union
+
+      type author_blocked =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorBlocked::Data,
+          type: :"author.blocked"
+        }
+
+      class AuthorBlocked < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::AuthorBlocked::Data
+
+        attr_accessor type: :"author.blocked"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorBlocked::Data,
+          ?api_version: :v2,
+          ?type: :"author.blocked"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorBlocked::Data,
+          type: :"author.blocked"
+        }
+
+        type data =
+          { object: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor author: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader queue: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?queue: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorBlocked::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::AuthorBlocked::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorBlocked::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorBlocked::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorBlocked::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::AuthorBlocked::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type author_unblocked =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorUnblocked::Data,
+          type: :"author.unblocked"
+        }
+
+      class AuthorUnblocked < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::AuthorUnblocked::Data
+
+        attr_accessor type: :"author.unblocked"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorUnblocked::Data,
+          ?api_version: :v2,
+          ?type: :"author.unblocked"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorUnblocked::Data,
+          type: :"author.unblocked"
+        }
+
+        type data =
+          { object: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor author: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader queue: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?queue: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorUnblocked::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::AuthorUnblocked::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorUnblocked::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorUnblocked::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorUnblocked::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::AuthorUnblocked::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type author_suspended =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorSuspended::Data,
+          type: :"author.suspended"
+        }
+
+      class AuthorSuspended < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::AuthorSuspended::Data
+
+        attr_accessor type: :"author.suspended"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorSuspended::Data,
+          ?api_version: :v2,
+          ?type: :"author.suspended"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorSuspended::Data,
+          type: :"author.suspended"
+        }
+
+        type data =
+          { object: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor author: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader queue: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?queue: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorSuspended::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::AuthorSuspended::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorSuspended::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorSuspended::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorSuspended::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::AuthorSuspended::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type author_updated =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorUpdated::Data,
+          type: :"author.updated"
+        }
+
+      class AuthorUpdated < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::AuthorUpdated::Data
+
+        attr_accessor type: :"author.updated"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorUpdated::Data,
+          ?api_version: :v2,
+          ?type: :"author.updated"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorUpdated::Data,
+          type: :"author.updated"
+        }
+
+        type data =
+          { object: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              block: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Block?,
+              first_seen: Float,
+              last_seen: Float,
+              metadata: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metadata,
+              metrics: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metrics,
+              risk_evaluation: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::RiskEvaluation?,
+              status: ModerationAPI::Models::WebhookEvent::AuthorUpdated::Data::Object::status,
+              trust_level: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::TrustLevel,
+              company: String?,
+              email: String?,
+              external_id: String?,
+              external_link: String?,
+              last_incident: Float?,
+              name: String?,
+              profile_picture: String?
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor block: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Block?
+
+            attr_accessor first_seen: Float
+
+            attr_accessor last_seen: Float
+
+            attr_accessor metadata: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metadata
+
+            attr_accessor metrics: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metrics
+
+            attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::RiskEvaluation?
+
+            attr_accessor status: ModerationAPI::Models::WebhookEvent::AuthorUpdated::Data::Object::status
+
+            attr_accessor trust_level: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::TrustLevel
+
+            attr_accessor company: String?
+
+            attr_accessor email: String?
+
+            attr_accessor external_id: String?
+
+            attr_accessor external_link: String?
+
+            attr_accessor last_incident: Float?
+
+            attr_accessor name: String?
+
+            attr_accessor profile_picture: String?
+
+            def initialize: (
+              id: String,
+              block: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Block?,
+              first_seen: Float,
+              last_seen: Float,
+              metadata: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metadata,
+              metrics: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metrics,
+              risk_evaluation: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::RiskEvaluation?,
+              status: ModerationAPI::Models::WebhookEvent::AuthorUpdated::Data::Object::status,
+              trust_level: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::TrustLevel,
+              ?company: String?,
+              ?email: String?,
+              ?external_id: String?,
+              ?external_link: String?,
+              ?last_incident: Float?,
+              ?name: String?,
+              ?profile_picture: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              block: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Block?,
+              first_seen: Float,
+              last_seen: Float,
+              metadata: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metadata,
+              metrics: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::Metrics,
+              risk_evaluation: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::RiskEvaluation?,
+              status: ModerationAPI::Models::WebhookEvent::AuthorUpdated::Data::Object::status,
+              trust_level: ModerationAPI::WebhookEvent::AuthorUpdated::Data::Object::TrustLevel,
+              company: String?,
+              email: String?,
+              external_id: String?,
+              external_link: String?,
+              last_incident: Float?,
+              name: String?,
+              profile_picture: String?
+            }
+
+            type block = { reason: String?, until_: Float? }
+
+            class Block < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor reason: String?
+
+              attr_accessor until_: Float?
+
+              def initialize: (?reason: String?, ?until_: Float?) -> void
+
+              def to_hash: -> { reason: String?, until_: Float? }
+            end
+
+            type metadata =
+              {
+                email_verified: bool?,
+                identity_verified: bool?,
+                is_paying_customer: bool?,
+                phone_verified: bool?
+              }
+
+            class Metadata < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor email_verified: bool?
+
+              attr_accessor identity_verified: bool?
+
+              attr_accessor is_paying_customer: bool?
+
+              attr_accessor phone_verified: bool?
+
+              def initialize: (
+                ?email_verified: bool?,
+                ?identity_verified: bool?,
+                ?is_paying_customer: bool?,
+                ?phone_verified: bool?
+              ) -> void
+
+              def to_hash: -> {
+                email_verified: bool?,
+                identity_verified: bool?,
+                is_paying_customer: bool?,
+                phone_verified: bool?
+              }
+            end
+
+            type metrics =
+              {
+                flagged_content: Float,
+                total_content: Float,
+                average_sentiment: Float?
+              }
+
+            class Metrics < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor flagged_content: Float
+
+              attr_accessor total_content: Float
+
+              attr_accessor average_sentiment: Float?
+
+              def initialize: (
+                flagged_content: Float,
+                total_content: Float,
+                ?average_sentiment: Float?
+              ) -> void
+
+              def to_hash: -> {
+                flagged_content: Float,
+                total_content: Float,
+                average_sentiment: Float?
+              }
+            end
+
+            type risk_evaluation = { risk_level: Float? }
+
+            class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor risk_level: Float?
+
+              def initialize: (?risk_level: Float?) -> void
+
+              def to_hash: -> { risk_level: Float? }
+            end
+
+            type status = :enabled | :suspended | :blocked
+
+            module Status
+              extend ModerationAPI::Internal::Type::Enum
+
+              ENABLED: :enabled
+              SUSPENDED: :suspended
+              BLOCKED: :blocked
+
+              def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::AuthorUpdated::Data::Object::status]
+            end
+
+            type trust_level = { level: Float, manual: bool }
+
+            class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor level: Float
+
+              attr_accessor manual: bool
+
+              def initialize: (level: Float, manual: bool) -> void
+
+              def to_hash: -> { level: Float, manual: bool }
+            end
+          end
+        end
+      end
+
+      type author_trust_level_changed =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data,
+          type: :"author.trust_level_changed"
+        }
+
+      class AuthorTrustLevelChanged < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data
+
+        attr_accessor type: :"author.trust_level_changed"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data,
+          ?api_version: :v2,
+          ?type: :"author.trust_level_changed"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data,
+          type: :"author.trust_level_changed"
+        }
+
+        type data =
+          {
+            object: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object
+          }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              block: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Block?,
+              first_seen: Float,
+              last_seen: Float,
+              metadata: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metadata,
+              metrics: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metrics,
+              risk_evaluation: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::RiskEvaluation?,
+              status: ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged::Data::Object::status,
+              trust_level: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::TrustLevel,
+              company: String?,
+              email: String?,
+              external_id: String?,
+              external_link: String?,
+              last_incident: Float?,
+              name: String?,
+              profile_picture: String?
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor block: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Block?
+
+            attr_accessor first_seen: Float
+
+            attr_accessor last_seen: Float
+
+            attr_accessor metadata: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metadata
+
+            attr_accessor metrics: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metrics
+
+            attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::RiskEvaluation?
+
+            attr_accessor status: ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged::Data::Object::status
+
+            attr_accessor trust_level: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::TrustLevel
+
+            attr_accessor company: String?
+
+            attr_accessor email: String?
+
+            attr_accessor external_id: String?
+
+            attr_accessor external_link: String?
+
+            attr_accessor last_incident: Float?
+
+            attr_accessor name: String?
+
+            attr_accessor profile_picture: String?
+
+            def initialize: (
+              id: String,
+              block: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Block?,
+              first_seen: Float,
+              last_seen: Float,
+              metadata: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metadata,
+              metrics: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metrics,
+              risk_evaluation: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::RiskEvaluation?,
+              status: ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged::Data::Object::status,
+              trust_level: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::TrustLevel,
+              ?company: String?,
+              ?email: String?,
+              ?external_id: String?,
+              ?external_link: String?,
+              ?last_incident: Float?,
+              ?name: String?,
+              ?profile_picture: String?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              block: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Block?,
+              first_seen: Float,
+              last_seen: Float,
+              metadata: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metadata,
+              metrics: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::Metrics,
+              risk_evaluation: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::RiskEvaluation?,
+              status: ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged::Data::Object::status,
+              trust_level: ModerationAPI::WebhookEvent::AuthorTrustLevelChanged::Data::Object::TrustLevel,
+              company: String?,
+              email: String?,
+              external_id: String?,
+              external_link: String?,
+              last_incident: Float?,
+              name: String?,
+              profile_picture: String?
+            }
+
+            type block = { reason: String?, until_: Float? }
+
+            class Block < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor reason: String?
+
+              attr_accessor until_: Float?
+
+              def initialize: (?reason: String?, ?until_: Float?) -> void
+
+              def to_hash: -> { reason: String?, until_: Float? }
+            end
+
+            type metadata =
+              {
+                email_verified: bool?,
+                identity_verified: bool?,
+                is_paying_customer: bool?,
+                phone_verified: bool?
+              }
+
+            class Metadata < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor email_verified: bool?
+
+              attr_accessor identity_verified: bool?
+
+              attr_accessor is_paying_customer: bool?
+
+              attr_accessor phone_verified: bool?
+
+              def initialize: (
+                ?email_verified: bool?,
+                ?identity_verified: bool?,
+                ?is_paying_customer: bool?,
+                ?phone_verified: bool?
+              ) -> void
+
+              def to_hash: -> {
+                email_verified: bool?,
+                identity_verified: bool?,
+                is_paying_customer: bool?,
+                phone_verified: bool?
+              }
+            end
+
+            type metrics =
+              {
+                flagged_content: Float,
+                total_content: Float,
+                average_sentiment: Float?
+              }
+
+            class Metrics < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor flagged_content: Float
+
+              attr_accessor total_content: Float
+
+              attr_accessor average_sentiment: Float?
+
+              def initialize: (
+                flagged_content: Float,
+                total_content: Float,
+                ?average_sentiment: Float?
+              ) -> void
+
+              def to_hash: -> {
+                flagged_content: Float,
+                total_content: Float,
+                average_sentiment: Float?
+              }
+            end
+
+            type risk_evaluation = { risk_level: Float? }
+
+            class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor risk_level: Float?
+
+              def initialize: (?risk_level: Float?) -> void
+
+              def to_hash: -> { risk_level: Float? }
+            end
+
+            type status = :enabled | :suspended | :blocked
+
+            module Status
+              extend ModerationAPI::Internal::Type::Enum
+
+              ENABLED: :enabled
+              SUSPENDED: :suspended
+              BLOCKED: :blocked
+
+              def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged::Data::Object::status]
+            end
+
+            type trust_level = { level: Float, manual: bool }
+
+            class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor level: Float
+
+              attr_accessor manual: bool
+
+              def initialize: (level: Float, manual: bool) -> void
+
+              def to_hash: -> { level: Float, manual: bool }
+            end
+          end
+        end
+      end
+
+      type author_action =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorAction::Data,
+          type: :"author.action"
+        }
+
+      class AuthorAction < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::AuthorAction::Data
+
+        attr_accessor type: :"author.action"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorAction::Data,
+          ?api_version: :v2,
+          ?type: :"author.action"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::AuthorAction::Data,
+          type: :"author.action"
+        }
+
+        type data =
+          { object: ModerationAPI::WebhookEvent::AuthorAction::Data::Object }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::AuthorAction::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::AuthorAction::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::AuthorAction::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor author: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader queue: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?queue: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              author: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              queue: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorAction::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::AuthorAction::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorAction::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::AuthorAction::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::AuthorAction::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::AuthorAction::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type queue_item_completed =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data,
+          type: :"queue_item.completed"
+        }
+
+      class QueueItemCompleted < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data
+
+        attr_accessor type: :"queue_item.completed"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data,
+          ?api_version: :v2,
+          ?type: :"queue_item.completed"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemCompleted::Data,
+          type: :"queue_item.completed"
+        }
+
+        type data =
+          {
+            object: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object
+          }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object
+          }
+
+          type object =
+            {
+              item: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item,
+              author: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author,
+              queue: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor item: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item
+
+            attr_reader author: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author?
+
+            def author=: (
+              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author
+            ) -> ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author
+
+            attr_reader queue: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+
+            def initialize: (
+              item: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item,
+              ?author: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author,
+              ?queue: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              item: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item,
+              author: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author,
+              queue: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue
+            }
+
+            type item =
+              {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+            class Item < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor author_id: String?
+
+              attr_accessor channel_key: String?
+
+              attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::content
+
+              attr_accessor conversation_id: String?
+
+              attr_accessor flagged: bool?
+
+              attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label]?
+
+              attr_accessor language: String?
+
+              attr_accessor meta_type: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::meta_type?
+
+              attr_accessor metadata: ::Hash[Symbol, top]?
+
+              attr_accessor timestamp: Time
+
+              def initialize: (
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+              type content =
+                ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text
+                | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image
+                | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video
+                | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio
+                | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object
+
+              module Content
+                extend ModerationAPI::Internal::Type::Union
+
+                type text = { text: String, type: :text }
+
+                class Text < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor text: String
+
+                  attr_accessor type: :text
+
+                  def initialize: (text: String, ?type: :text) -> void
+
+                  def to_hash: -> { text: String, type: :text }
+                end
+
+                type image = { type: :image, data: String, url: String }
+
+                class Image < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :image
+
+                  attr_reader data: String?
+
+                  def data=: (String) -> String
+
+                  attr_reader url: String?
+
+                  def url=: (String) -> String
+
+                  def initialize: (
+                    ?data: String,
+                    ?url: String,
+                    ?type: :image
+                  ) -> void
+
+                  def to_hash: -> { type: :image, data: String, url: String }
+                end
+
+                type video = { type: :video, url: String }
+
+                class Video < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :video
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :video) -> void
+
+                  def to_hash: -> { type: :video, url: String }
+                end
+
+                type audio = { type: :audio, url: String }
+
+                class Audio < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :audio
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :audio) -> void
+
+                  def to_hash: -> { type: :audio, url: String }
+                end
+
+                type object =
+                  {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                class Object < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::data]
+
+                  attr_accessor type: :object
+
+                  def initialize: (
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::data],
+                    ?type: :object
+                  ) -> void
+
+                  def to_hash: -> {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                  type data =
+                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text
+                    | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image
+                    | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video
+                    | ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio
+
+                  module Data
+                    extend ModerationAPI::Internal::Type::Union
+
+                    type text = { text: String, type: :text }
+
+                    class Text < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor text: String
+
+                      attr_accessor type: :text
+
+                      def initialize: (text: String, ?type: :text) -> void
+
+                      def to_hash: -> { text: String, type: :text }
+                    end
+
+                    type image = { type: :image, data: String, url: String }
+
+                    class Image < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :image
+
+                      attr_reader data: String?
+
+                      def data=: (String) -> String
+
+                      attr_reader url: String?
+
+                      def url=: (String) -> String
+
+                      def initialize: (
+                        ?data: String,
+                        ?url: String,
+                        ?type: :image
+                      ) -> void
+
+                      def to_hash: -> {
+                        type: :image,
+                        data: String,
+                        url: String
+                      }
+                    end
+
+                    type video = { type: :video, url: String }
+
+                    class Video < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :video
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :video) -> void
+
+                      def to_hash: -> { type: :video, url: String }
+                    end
+
+                    type audio = { type: :audio, url: String }
+
+                    class Audio < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :audio
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :audio) -> void
+
+                      def to_hash: -> { type: :audio, url: String }
+                    end
+
+                    def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::data]
+                  end
+                end
+
+                def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::content]
+              end
+
+              type label =
+                {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match]
+                }
+
+              class Label < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor label: String
+
+                attr_accessor score: Float
+
+                attr_reader flagged: bool?
+
+                def flagged=: (bool) -> bool
+
+                attr_reader manual: bool?
+
+                def manual=: (bool) -> bool
+
+                attr_reader matches: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match]?
+
+                def matches=: (
+                  ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match]
+                ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match]
+
+                def initialize: (
+                  label: String,
+                  score: Float,
+                  ?flagged: bool,
+                  ?manual: bool,
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match]
+                ) -> void
+
+                def to_hash: -> {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match]
+                }
+
+                type match =
+                  {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+                  }
+
+                class Match < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor match: String
+
+                  attr_accessor probability: Float
+
+                  attr_accessor span: ::Array[top]
+
+                  attr_reader entity_type: String?
+
+                  def entity_type=: (String) -> String
+
+                  attr_accessor mask: String?
+
+                  attr_reader reasons: ::Array[String]?
+
+                  def reasons=: (::Array[String]) -> ::Array[String]
+
+                  attr_reader signals: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals?
+
+                  def signals=: (
+                    ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+                  ) -> ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+
+                  def initialize: (
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    ?entity_type: String,
+                    ?mask: String?,
+                    ?reasons: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+                  ) -> void
+
+                  def to_hash: -> {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals
+                  }
+
+                  type signals =
+                    {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                  class Signals < ModerationAPI::Internal::Type::BaseModel
+                    attr_accessor bot_protection: bool?
+
+                    attr_accessor brand_impersonation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation?
+
+                    attr_accessor domain_age_days: Float?
+
+                    attr_accessor final_url: String?
+
+                    attr_accessor has_email_setup: bool?
+
+                    attr_accessor has_suspicious_characters: bool
+
+                    attr_accessor is_link_shortener: bool
+
+                    attr_accessor is_reported: bool
+
+                    attr_accessor redirect_count: Float?
+
+                    def initialize: (
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    ) -> void
+
+                    def to_hash: -> {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                    type brand_impersonation =
+                      { brand: String, method_: String }
+
+                    class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor brand: String
+
+                      attr_accessor method_: String
+
+                      def initialize: (brand: String, method_: String) -> void
+
+                      def to_hash: -> { brand: String, method_: String }
+                    end
+                  end
+                end
+              end
+
+              type meta_type =
+                :profile
+                | :message
+                | :post
+                | :comment
+                | :event
+                | :product
+                | :review
+                | :other
+
+              module MetaType
+                extend ModerationAPI::Internal::Type::Enum
+
+                PROFILE: :profile
+                MESSAGE: :message
+                POST: :post
+                COMMENT: :comment
+                EVENT: :event
+                PRODUCT: :product
+                REVIEW: :review
+                OTHER: :other
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::meta_type]
+              end
+            end
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type queue_item_action =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemAction::Data,
+          type: :"queue_item.action"
+        }
+
+      class QueueItemAction < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::QueueItemAction::Data
+
+        attr_accessor type: :"queue_item.action"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemAction::Data,
+          ?api_version: :v2,
+          ?type: :"queue_item.action"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemAction::Data,
+          type: :"queue_item.action"
+        }
+
+        type data =
+          { object: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              author: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author,
+              item: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item,
+              queue: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader author: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author?
+
+            def author=: (
+              ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author
+            ) -> ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author
+
+            attr_reader item: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item?
+
+            def item=: (
+              ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item
+            ) -> ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item
+
+            attr_reader queue: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?author: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author,
+              ?item: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item,
+              ?queue: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              author: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author,
+              item: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item,
+              queue: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type item =
+              {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+            class Item < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor author_id: String?
+
+              attr_accessor channel_key: String?
+
+              attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content
+
+              attr_accessor conversation_id: String?
+
+              attr_accessor flagged: bool?
+
+              attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?
+
+              attr_accessor language: String?
+
+              attr_accessor meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?
+
+              attr_accessor metadata: ::Hash[Symbol, top]?
+
+              attr_accessor timestamp: Time
+
+              def initialize: (
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+              type content =
+                ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Text
+                | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Image
+                | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Video
+                | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Audio
+                | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object
+
+              module Content
+                extend ModerationAPI::Internal::Type::Union
+
+                type text = { text: String, type: :text }
+
+                class Text < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor text: String
+
+                  attr_accessor type: :text
+
+                  def initialize: (text: String, ?type: :text) -> void
+
+                  def to_hash: -> { text: String, type: :text }
+                end
+
+                type image = { type: :image, data: String, url: String }
+
+                class Image < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :image
+
+                  attr_reader data: String?
+
+                  def data=: (String) -> String
+
+                  attr_reader url: String?
+
+                  def url=: (String) -> String
+
+                  def initialize: (
+                    ?data: String,
+                    ?url: String,
+                    ?type: :image
+                  ) -> void
+
+                  def to_hash: -> { type: :image, data: String, url: String }
+                end
+
+                type video = { type: :video, url: String }
+
+                class Video < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :video
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :video) -> void
+
+                  def to_hash: -> { type: :video, url: String }
+                end
+
+                type audio = { type: :audio, url: String }
+
+                class Audio < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :audio
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :audio) -> void
+
+                  def to_hash: -> { type: :audio, url: String }
+                end
+
+                type object =
+                  {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                class Object < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::data]
+
+                  attr_accessor type: :object
+
+                  def initialize: (
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::data],
+                    ?type: :object
+                  ) -> void
+
+                  def to_hash: -> {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                  type data =
+                    ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::Data::Text
+                    | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::Data::Image
+                    | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::Data::Video
+                    | ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::Data::Audio
+
+                  module Data
+                    extend ModerationAPI::Internal::Type::Union
+
+                    type text = { text: String, type: :text }
+
+                    class Text < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor text: String
+
+                      attr_accessor type: :text
+
+                      def initialize: (text: String, ?type: :text) -> void
+
+                      def to_hash: -> { text: String, type: :text }
+                    end
+
+                    type image = { type: :image, data: String, url: String }
+
+                    class Image < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :image
+
+                      attr_reader data: String?
+
+                      def data=: (String) -> String
+
+                      attr_reader url: String?
+
+                      def url=: (String) -> String
+
+                      def initialize: (
+                        ?data: String,
+                        ?url: String,
+                        ?type: :image
+                      ) -> void
+
+                      def to_hash: -> {
+                        type: :image,
+                        data: String,
+                        url: String
+                      }
+                    end
+
+                    type video = { type: :video, url: String }
+
+                    class Video < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :video
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :video) -> void
+
+                      def to_hash: -> { type: :video, url: String }
+                    end
+
+                    type audio = { type: :audio, url: String }
+
+                    class Audio < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :audio
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :audio) -> void
+
+                      def to_hash: -> { type: :audio, url: String }
+                    end
+
+                    def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object::data]
+                  end
+                end
+
+                def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content]
+              end
+
+              type label =
+                {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                }
+
+              class Label < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor label: String
+
+                attr_accessor score: Float
+
+                attr_reader flagged: bool?
+
+                def flagged=: (bool) -> bool
+
+                attr_reader manual: bool?
+
+                def manual=: (bool) -> bool
+
+                attr_reader matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]?
+
+                def matches=: (
+                  ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+
+                def initialize: (
+                  label: String,
+                  score: Float,
+                  ?flagged: bool,
+                  ?manual: bool,
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                ) -> void
+
+                def to_hash: -> {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                }
+
+                type match =
+                  {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                  }
+
+                class Match < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor match: String
+
+                  attr_accessor probability: Float
+
+                  attr_accessor span: ::Array[top]
+
+                  attr_reader entity_type: String?
+
+                  def entity_type=: (String) -> String
+
+                  attr_accessor mask: String?
+
+                  attr_reader reasons: ::Array[String]?
+
+                  def reasons=: (::Array[String]) -> ::Array[String]
+
+                  attr_reader signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals?
+
+                  def signals=: (
+                    ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                  ) -> ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+
+                  def initialize: (
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    ?entity_type: String,
+                    ?mask: String?,
+                    ?reasons: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                  ) -> void
+
+                  def to_hash: -> {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                  }
+
+                  type signals =
+                    {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                  class Signals < ModerationAPI::Internal::Type::BaseModel
+                    attr_accessor bot_protection: bool?
+
+                    attr_accessor brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals::BrandImpersonation?
+
+                    attr_accessor domain_age_days: Float?
+
+                    attr_accessor final_url: String?
+
+                    attr_accessor has_email_setup: bool?
+
+                    attr_accessor has_suspicious_characters: bool
+
+                    attr_accessor is_link_shortener: bool
+
+                    attr_accessor is_reported: bool
+
+                    attr_accessor redirect_count: Float?
+
+                    def initialize: (
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    ) -> void
+
+                    def to_hash: -> {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                    type brand_impersonation =
+                      { brand: String, method_: String }
+
+                    class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor brand: String
+
+                      attr_accessor method_: String
+
+                      def initialize: (brand: String, method_: String) -> void
+
+                      def to_hash: -> { brand: String, method_: String }
+                    end
+                  end
+                end
+              end
+
+              type meta_type =
+                :profile
+                | :message
+                | :post
+                | :comment
+                | :event
+                | :product
+                | :review
+                | :other
+
+              module MetaType
+                extend ModerationAPI::Internal::Type::Enum
+
+                PROFILE: :profile
+                MESSAGE: :message
+                POST: :post
+                COMMENT: :comment
+                EVENT: :event
+                PRODUCT: :product
+                REVIEW: :review
+                OTHER: :other
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type]
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type queue_item_rejected =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemRejected::Data,
+          type: :"queue_item.rejected"
+        }
+
+      class QueueItemRejected < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::QueueItemRejected::Data
+
+        attr_accessor type: :"queue_item.rejected"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemRejected::Data,
+          ?api_version: :v2,
+          ?type: :"queue_item.rejected"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemRejected::Data,
+          type: :"queue_item.rejected"
+        }
+
+        type data =
+          {
+            object: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object
+          }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              author: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author,
+              item: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item,
+              queue: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader author: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author?
+
+            def author=: (
+              ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author
+            ) -> ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author
+
+            attr_reader item: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item?
+
+            def item=: (
+              ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item
+            ) -> ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item
+
+            attr_reader queue: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?author: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author,
+              ?item: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item,
+              ?queue: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              author: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author,
+              item: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item,
+              queue: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type item =
+              {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+            class Item < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor author_id: String?
+
+              attr_accessor channel_key: String?
+
+              attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content
+
+              attr_accessor conversation_id: String?
+
+              attr_accessor flagged: bool?
+
+              attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?
+
+              attr_accessor language: String?
+
+              attr_accessor meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?
+
+              attr_accessor metadata: ::Hash[Symbol, top]?
+
+              attr_accessor timestamp: Time
+
+              def initialize: (
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+              type content =
+                ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Text
+                | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Image
+                | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Video
+                | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Audio
+                | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object
+
+              module Content
+                extend ModerationAPI::Internal::Type::Union
+
+                type text = { text: String, type: :text }
+
+                class Text < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor text: String
+
+                  attr_accessor type: :text
+
+                  def initialize: (text: String, ?type: :text) -> void
+
+                  def to_hash: -> { text: String, type: :text }
+                end
+
+                type image = { type: :image, data: String, url: String }
+
+                class Image < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :image
+
+                  attr_reader data: String?
+
+                  def data=: (String) -> String
+
+                  attr_reader url: String?
+
+                  def url=: (String) -> String
+
+                  def initialize: (
+                    ?data: String,
+                    ?url: String,
+                    ?type: :image
+                  ) -> void
+
+                  def to_hash: -> { type: :image, data: String, url: String }
+                end
+
+                type video = { type: :video, url: String }
+
+                class Video < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :video
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :video) -> void
+
+                  def to_hash: -> { type: :video, url: String }
+                end
+
+                type audio = { type: :audio, url: String }
+
+                class Audio < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :audio
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :audio) -> void
+
+                  def to_hash: -> { type: :audio, url: String }
+                end
+
+                type object =
+                  {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                class Object < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::data]
+
+                  attr_accessor type: :object
+
+                  def initialize: (
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::data],
+                    ?type: :object
+                  ) -> void
+
+                  def to_hash: -> {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                  type data =
+                    ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::Data::Text
+                    | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::Data::Image
+                    | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::Data::Video
+                    | ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::Data::Audio
+
+                  module Data
+                    extend ModerationAPI::Internal::Type::Union
+
+                    type text = { text: String, type: :text }
+
+                    class Text < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor text: String
+
+                      attr_accessor type: :text
+
+                      def initialize: (text: String, ?type: :text) -> void
+
+                      def to_hash: -> { text: String, type: :text }
+                    end
+
+                    type image = { type: :image, data: String, url: String }
+
+                    class Image < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :image
+
+                      attr_reader data: String?
+
+                      def data=: (String) -> String
+
+                      attr_reader url: String?
+
+                      def url=: (String) -> String
+
+                      def initialize: (
+                        ?data: String,
+                        ?url: String,
+                        ?type: :image
+                      ) -> void
+
+                      def to_hash: -> {
+                        type: :image,
+                        data: String,
+                        url: String
+                      }
+                    end
+
+                    type video = { type: :video, url: String }
+
+                    class Video < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :video
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :video) -> void
+
+                      def to_hash: -> { type: :video, url: String }
+                    end
+
+                    type audio = { type: :audio, url: String }
+
+                    class Audio < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :audio
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :audio) -> void
+
+                      def to_hash: -> { type: :audio, url: String }
+                    end
+
+                    def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object::data]
+                  end
+                end
+
+                def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content]
+              end
+
+              type label =
+                {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                }
+
+              class Label < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor label: String
+
+                attr_accessor score: Float
+
+                attr_reader flagged: bool?
+
+                def flagged=: (bool) -> bool
+
+                attr_reader manual: bool?
+
+                def manual=: (bool) -> bool
+
+                attr_reader matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]?
+
+                def matches=: (
+                  ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+
+                def initialize: (
+                  label: String,
+                  score: Float,
+                  ?flagged: bool,
+                  ?manual: bool,
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                ) -> void
+
+                def to_hash: -> {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                }
+
+                type match =
+                  {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                  }
+
+                class Match < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor match: String
+
+                  attr_accessor probability: Float
+
+                  attr_accessor span: ::Array[top]
+
+                  attr_reader entity_type: String?
+
+                  def entity_type=: (String) -> String
+
+                  attr_accessor mask: String?
+
+                  attr_reader reasons: ::Array[String]?
+
+                  def reasons=: (::Array[String]) -> ::Array[String]
+
+                  attr_reader signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals?
+
+                  def signals=: (
+                    ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                  ) -> ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+
+                  def initialize: (
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    ?entity_type: String,
+                    ?mask: String?,
+                    ?reasons: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                  ) -> void
+
+                  def to_hash: -> {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                  }
+
+                  type signals =
+                    {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                  class Signals < ModerationAPI::Internal::Type::BaseModel
+                    attr_accessor bot_protection: bool?
+
+                    attr_accessor brand_impersonation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals::BrandImpersonation?
+
+                    attr_accessor domain_age_days: Float?
+
+                    attr_accessor final_url: String?
+
+                    attr_accessor has_email_setup: bool?
+
+                    attr_accessor has_suspicious_characters: bool
+
+                    attr_accessor is_link_shortener: bool
+
+                    attr_accessor is_reported: bool
+
+                    attr_accessor redirect_count: Float?
+
+                    def initialize: (
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    ) -> void
+
+                    def to_hash: -> {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                    type brand_impersonation =
+                      { brand: String, method_: String }
+
+                    class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor brand: String
+
+                      attr_accessor method_: String
+
+                      def initialize: (brand: String, method_: String) -> void
+
+                      def to_hash: -> { brand: String, method_: String }
+                    end
+                  end
+                end
+              end
+
+              type meta_type =
+                :profile
+                | :message
+                | :post
+                | :comment
+                | :event
+                | :product
+                | :review
+                | :other
+
+              module MetaType
+                extend ModerationAPI::Internal::Type::Enum
+
+                PROFILE: :profile
+                MESSAGE: :message
+                POST: :post
+                COMMENT: :comment
+                EVENT: :event
+                PRODUCT: :product
+                REVIEW: :review
+                OTHER: :other
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type]
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      type queue_item_allowed =
+        {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemAllowed::Data,
+          type: :"queue_item.allowed"
+        }
+
+      class QueueItemAllowed < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor api_version: :v2
+
+        attr_accessor created: Time
+
+        attr_accessor data: ModerationAPI::WebhookEvent::QueueItemAllowed::Data
+
+        attr_accessor type: :"queue_item.allowed"
+
+        def initialize: (
+          id: String,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemAllowed::Data,
+          ?api_version: :v2,
+          ?type: :"queue_item.allowed"
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          api_version: :v2,
+          created: Time,
+          data: ModerationAPI::WebhookEvent::QueueItemAllowed::Data,
+          type: :"queue_item.allowed"
+        }
+
+        type data =
+          {
+            object: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object
+          }
+
+        class Data < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor object: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object
+
+          def initialize: (
+            object: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object
+          ) -> void
+
+          def to_hash: -> {
+            object: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object
+          }
+
+          type object =
+            {
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              author: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author,
+              item: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item,
+              queue: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Queue
+            }
+
+          class Object < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor key: String?
+
+            attr_accessor name: String?
+
+            attr_accessor value: String?
+
+            attr_reader author: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author?
+
+            def author=: (
+              ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author
+            ) -> ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author
+
+            attr_reader item: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item?
+
+            def item=: (
+              ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item
+            ) -> ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item
+
+            attr_reader queue: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Queue?
+
+            def queue=: (
+              ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Queue
+            ) -> ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Queue
+
+            def initialize: (
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              ?author: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author,
+              ?item: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item,
+              ?queue: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Queue
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: Time,
+              key: String?,
+              name: String?,
+              value: String?,
+              author: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author,
+              item: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item,
+              queue: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Queue
+            }
+
+            type author =
+              {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+            class Author < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor block: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Block?
+
+              attr_accessor first_seen: Float
+
+              attr_accessor last_seen: Float
+
+              attr_accessor metadata: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metadata
+
+              attr_accessor metrics: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metrics
+
+              attr_accessor risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::RiskEvaluation?
+
+              attr_accessor status: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Author::status
+
+              attr_accessor trust_level: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::TrustLevel
+
+              attr_accessor company: String?
+
+              attr_accessor email: String?
+
+              attr_accessor external_id: String?
+
+              attr_accessor external_link: String?
+
+              attr_accessor last_incident: Float?
+
+              attr_accessor name: String?
+
+              attr_accessor profile_picture: String?
+
+              def initialize: (
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::TrustLevel,
+                ?company: String?,
+                ?email: String?,
+                ?external_id: String?,
+                ?external_link: String?,
+                ?last_incident: Float?,
+                ?name: String?,
+                ?profile_picture: String?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                block: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Block?,
+                first_seen: Float,
+                last_seen: Float,
+                metadata: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metadata,
+                metrics: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::Metrics,
+                risk_evaluation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::RiskEvaluation?,
+                status: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Author::status,
+                trust_level: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Author::TrustLevel,
+                company: String?,
+                email: String?,
+                external_id: String?,
+                external_link: String?,
+                last_incident: Float?,
+                name: String?,
+                profile_picture: String?
+              }
+
+              type block = { reason: String?, until_: Float? }
+
+              class Block < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor reason: String?
+
+                attr_accessor until_: Float?
+
+                def initialize: (?reason: String?, ?until_: Float?) -> void
+
+                def to_hash: -> { reason: String?, until_: Float? }
+              end
+
+              type metadata =
+                {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+
+              class Metadata < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor email_verified: bool?
+
+                attr_accessor identity_verified: bool?
+
+                attr_accessor is_paying_customer: bool?
+
+                attr_accessor phone_verified: bool?
+
+                def initialize: (
+                  ?email_verified: bool?,
+                  ?identity_verified: bool?,
+                  ?is_paying_customer: bool?,
+                  ?phone_verified: bool?
+                ) -> void
+
+                def to_hash: -> {
+                  email_verified: bool?,
+                  identity_verified: bool?,
+                  is_paying_customer: bool?,
+                  phone_verified: bool?
+                }
+              end
+
+              type metrics =
+                {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+
+              class Metrics < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor flagged_content: Float
+
+                attr_accessor total_content: Float
+
+                attr_accessor average_sentiment: Float?
+
+                def initialize: (
+                  flagged_content: Float,
+                  total_content: Float,
+                  ?average_sentiment: Float?
+                ) -> void
+
+                def to_hash: -> {
+                  flagged_content: Float,
+                  total_content: Float,
+                  average_sentiment: Float?
+                }
+              end
+
+              type risk_evaluation = { risk_level: Float? }
+
+              class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor risk_level: Float?
+
+                def initialize: (?risk_level: Float?) -> void
+
+                def to_hash: -> { risk_level: Float? }
+              end
+
+              type status = :enabled | :suspended | :blocked
+
+              module Status
+                extend ModerationAPI::Internal::Type::Enum
+
+                ENABLED: :enabled
+                SUSPENDED: :suspended
+                BLOCKED: :blocked
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Author::status]
+              end
+
+              type trust_level = { level: Float, manual: bool }
+
+              class TrustLevel < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor level: Float
+
+                attr_accessor manual: bool
+
+                def initialize: (level: Float, manual: bool) -> void
+
+                def to_hash: -> { level: Float, manual: bool }
+              end
+            end
+
+            type item =
+              {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+            class Item < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor author_id: String?
+
+              attr_accessor channel_key: String?
+
+              attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content
+
+              attr_accessor conversation_id: String?
+
+              attr_accessor flagged: bool?
+
+              attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?
+
+              attr_accessor language: String?
+
+              attr_accessor meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?
+
+              attr_accessor metadata: ::Hash[Symbol, top]?
+
+              attr_accessor timestamp: Time
+
+              def initialize: (
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                author_id: String?,
+                channel_key: String?,
+                content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
+                conversation_id: String?,
+                flagged: bool?,
+                labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?,
+                language: String?,
+                meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?,
+                metadata: ::Hash[Symbol, top]?,
+                timestamp: Time
+              }
+
+              type content =
+                ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Text
+                | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Image
+                | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Video
+                | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Audio
+                | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object
+
+              module Content
+                extend ModerationAPI::Internal::Type::Union
+
+                type text = { text: String, type: :text }
+
+                class Text < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor text: String
+
+                  attr_accessor type: :text
+
+                  def initialize: (text: String, ?type: :text) -> void
+
+                  def to_hash: -> { text: String, type: :text }
+                end
+
+                type image = { type: :image, data: String, url: String }
+
+                class Image < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :image
+
+                  attr_reader data: String?
+
+                  def data=: (String) -> String
+
+                  attr_reader url: String?
+
+                  def url=: (String) -> String
+
+                  def initialize: (
+                    ?data: String,
+                    ?url: String,
+                    ?type: :image
+                  ) -> void
+
+                  def to_hash: -> { type: :image, data: String, url: String }
+                end
+
+                type video = { type: :video, url: String }
+
+                class Video < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :video
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :video) -> void
+
+                  def to_hash: -> { type: :video, url: String }
+                end
+
+                type audio = { type: :audio, url: String }
+
+                class Audio < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor type: :audio
+
+                  attr_accessor url: String
+
+                  def initialize: (url: String, ?type: :audio) -> void
+
+                  def to_hash: -> { type: :audio, url: String }
+                end
+
+                type object =
+                  {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                class Object < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::data]
+
+                  attr_accessor type: :object
+
+                  def initialize: (
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::data],
+                    ?type: :object
+                  ) -> void
+
+                  def to_hash: -> {
+                    data: ::Hash[Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::data],
+                    type: :object
+                  }
+
+                  type data =
+                    ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::Data::Text
+                    | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::Data::Image
+                    | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::Data::Video
+                    | ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::Data::Audio
+
+                  module Data
+                    extend ModerationAPI::Internal::Type::Union
+
+                    type text = { text: String, type: :text }
+
+                    class Text < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor text: String
+
+                      attr_accessor type: :text
+
+                      def initialize: (text: String, ?type: :text) -> void
+
+                      def to_hash: -> { text: String, type: :text }
+                    end
+
+                    type image = { type: :image, data: String, url: String }
+
+                    class Image < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :image
+
+                      attr_reader data: String?
+
+                      def data=: (String) -> String
+
+                      attr_reader url: String?
+
+                      def url=: (String) -> String
+
+                      def initialize: (
+                        ?data: String,
+                        ?url: String,
+                        ?type: :image
+                      ) -> void
+
+                      def to_hash: -> {
+                        type: :image,
+                        data: String,
+                        url: String
+                      }
+                    end
+
+                    type video = { type: :video, url: String }
+
+                    class Video < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :video
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :video) -> void
+
+                      def to_hash: -> { type: :video, url: String }
+                    end
+
+                    type audio = { type: :audio, url: String }
+
+                    class Audio < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor type: :audio
+
+                      attr_accessor url: String
+
+                      def initialize: (url: String, ?type: :audio) -> void
+
+                      def to_hash: -> { type: :audio, url: String }
+                    end
+
+                    def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object::data]
+                  end
+                end
+
+                def self?.variants: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content]
+              end
+
+              type label =
+                {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                }
+
+              class Label < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor label: String
+
+                attr_accessor score: Float
+
+                attr_reader flagged: bool?
+
+                def flagged=: (bool) -> bool
+
+                attr_reader manual: bool?
+
+                def manual=: (bool) -> bool
+
+                attr_reader matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]?
+
+                def matches=: (
+                  ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+
+                def initialize: (
+                  label: String,
+                  score: Float,
+                  ?flagged: bool,
+                  ?manual: bool,
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                ) -> void
+
+                def to_hash: -> {
+                  label: String,
+                  score: Float,
+                  flagged: bool,
+                  manual: bool,
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                }
+
+                type match =
+                  {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                  }
+
+                class Match < ModerationAPI::Internal::Type::BaseModel
+                  attr_accessor match: String
+
+                  attr_accessor probability: Float
+
+                  attr_accessor span: ::Array[top]
+
+                  attr_reader entity_type: String?
+
+                  def entity_type=: (String) -> String
+
+                  attr_accessor mask: String?
+
+                  attr_reader reasons: ::Array[String]?
+
+                  def reasons=: (::Array[String]) -> ::Array[String]
+
+                  attr_reader signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals?
+
+                  def signals=: (
+                    ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                  ) -> ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+
+                  def initialize: (
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    ?entity_type: String,
+                    ?mask: String?,
+                    ?reasons: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                  ) -> void
+
+                  def to_hash: -> {
+                    match: String,
+                    probability: Float,
+                    span: ::Array[top],
+                    entity_type: String,
+                    mask: String?,
+                    reasons: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                  }
+
+                  type signals =
+                    {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                  class Signals < ModerationAPI::Internal::Type::BaseModel
+                    attr_accessor bot_protection: bool?
+
+                    attr_accessor brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals::BrandImpersonation?
+
+                    attr_accessor domain_age_days: Float?
+
+                    attr_accessor final_url: String?
+
+                    attr_accessor has_email_setup: bool?
+
+                    attr_accessor has_suspicious_characters: bool
+
+                    attr_accessor is_link_shortener: bool
+
+                    attr_accessor is_reported: bool
+
+                    attr_accessor redirect_count: Float?
+
+                    def initialize: (
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    ) -> void
+
+                    def to_hash: -> {
+                      bot_protection: bool?,
+                      brand_impersonation: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals::BrandImpersonation?,
+                      domain_age_days: Float?,
+                      final_url: String?,
+                      has_email_setup: bool?,
+                      has_suspicious_characters: bool,
+                      is_link_shortener: bool,
+                      is_reported: bool,
+                      redirect_count: Float?
+                    }
+
+                    type brand_impersonation =
+                      { brand: String, method_: String }
+
+                    class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
+                      attr_accessor brand: String
+
+                      attr_accessor method_: String
+
+                      def initialize: (brand: String, method_: String) -> void
+
+                      def to_hash: -> { brand: String, method_: String }
+                    end
+                  end
+                end
+              end
+
+              type meta_type =
+                :profile
+                | :message
+                | :post
+                | :comment
+                | :event
+                | :product
+                | :review
+                | :other
+
+              module MetaType
+                extend ModerationAPI::Internal::Type::Enum
+
+                PROFILE: :profile
+                MESSAGE: :message
+                POST: :post
+                COMMENT: :comment
+                EVENT: :event
+                PRODUCT: :product
+                REVIEW: :review
+                OTHER: :other
+
+                def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type]
+              end
+            end
+
+            type queue = { id: String }
+
+            class Queue < ModerationAPI::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              def initialize: (id: String) -> void
+
+              def to_hash: -> { id: String }
+            end
+          end
+        end
+      end
+
+      def self?.variants: -> ::Array[ModerationAPI::Models::webhook_event]
+    end
+  end
+end

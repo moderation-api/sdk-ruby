@@ -12,7 +12,6 @@ module ModerationAPI
         possible_values: ::Array[ModerationAPI::Models::ActionListResponseItem::PossibleValue],
         queue_behaviour: ModerationAPI::Models::ActionListResponseItem::queue_behaviour,
         value_required: bool,
-        webhooks: ::Array[ModerationAPI::Models::ActionListResponseItem::Webhook],
         description: String?,
         key: String?,
         type: ModerationAPI::Models::ActionListResponseItem::type_?
@@ -39,8 +38,6 @@ module ModerationAPI
 
       attr_accessor value_required: bool
 
-      attr_accessor webhooks: ::Array[ModerationAPI::Models::ActionListResponseItem::Webhook]
-
       attr_accessor description: String?
 
       attr_accessor key: String?
@@ -58,7 +55,6 @@ module ModerationAPI
         possible_values: ::Array[ModerationAPI::Models::ActionListResponseItem::PossibleValue],
         queue_behaviour: ModerationAPI::Models::ActionListResponseItem::queue_behaviour,
         value_required: bool,
-        webhooks: ::Array[ModerationAPI::Models::ActionListResponseItem::Webhook],
         ?description: String?,
         ?key: String?,
         ?type: ModerationAPI::Models::ActionListResponseItem::type_?
@@ -75,7 +71,6 @@ module ModerationAPI
         possible_values: ::Array[ModerationAPI::Models::ActionListResponseItem::PossibleValue],
         queue_behaviour: ModerationAPI::Models::ActionListResponseItem::queue_behaviour,
         value_required: bool,
-        webhooks: ::Array[ModerationAPI::Models::ActionListResponseItem::Webhook],
         description: String?,
         key: String?,
         type: ModerationAPI::Models::ActionListResponseItem::type_?
@@ -113,43 +108,6 @@ module ModerationAPI
         NO_CHANGE: :NO_CHANGE
 
         def self?.values: -> ::Array[ModerationAPI::Models::ActionListResponseItem::queue_behaviour]
-      end
-
-      type webhook =
-        {
-          id: String,
-          name: String,
-          url: String,
-          description: String?,
-          moderation_action_id: String?
-        }
-
-      class Webhook < ModerationAPI::Internal::Type::BaseModel
-        attr_accessor id: String
-
-        attr_accessor name: String
-
-        attr_accessor url: String
-
-        attr_accessor description: String?
-
-        attr_accessor moderation_action_id: String?
-
-        def initialize: (
-          id: String,
-          name: String,
-          url: String,
-          ?description: String?,
-          ?moderation_action_id: String?
-        ) -> void
-
-        def to_hash: -> {
-          id: String,
-          name: String,
-          url: String,
-          description: String?,
-          moderation_action_id: String?
-        }
       end
 
       type type_ =

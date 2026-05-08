@@ -73,13 +73,6 @@ module ModerationAPI
       #   @return [Boolean]
       required :value_required, ModerationAPI::Internal::Type::Boolean, api_name: :valueRequired
 
-      # @!attribute webhooks
-      #   The action's webhooks.
-      #
-      #   @return [Array<ModerationAPI::Models::ActionListResponseItem::Webhook>]
-      required :webhooks,
-               -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ActionListResponseItem::Webhook] }
-
       # @!attribute description
       #   The description of the action.
       #
@@ -98,7 +91,7 @@ module ModerationAPI
       #   @return [Symbol, ModerationAPI::Models::ActionListResponseItem::Type, nil]
       optional :type, enum: -> { ModerationAPI::Models::ActionListResponseItem::Type }, nil?: true
 
-      # @!method initialize(id:, built_in:, created_at:, filter_in_queue_ids:, free_text:, name:, position:, possible_values:, queue_behaviour:, value_required:, webhooks:, description: nil, key: nil, type: nil)
+      # @!method initialize(id:, built_in:, created_at:, filter_in_queue_ids:, free_text:, name:, position:, possible_values:, queue_behaviour:, value_required:, description: nil, key: nil, type: nil)
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ActionListResponseItem} for more details.
       #
@@ -121,8 +114,6 @@ module ModerationAPI
       #   @param queue_behaviour [Symbol, ModerationAPI::Models::ActionListResponseItem::QueueBehaviour] Whether the action resolves and removes the item, unresolves and re-add it to th
       #
       #   @param value_required [Boolean] Whether the action requires a value to be executed.
-      #
-      #   @param webhooks [Array<ModerationAPI::Models::ActionListResponseItem::Webhook>] The action's webhooks.
       #
       #   @param description [String, nil] The description of the action.
       #
@@ -169,53 +160,6 @@ module ModerationAPI
 
         # @!method self.values
         #   @return [Array<Symbol>]
-      end
-
-      class Webhook < ModerationAPI::Internal::Type::BaseModel
-        # @!attribute id
-        #   The ID of the webhook.
-        #
-        #   @return [String]
-        required :id, String
-
-        # @!attribute name
-        #   The webhook's name, used to identify it in the dashboard
-        #
-        #   @return [String]
-        required :name, String
-
-        # @!attribute url
-        #   The webhook's URL. We'll call this URL when the event occurs.
-        #
-        #   @return [String]
-        required :url, String
-
-        # @!attribute description
-        #   The webhook's description
-        #
-        #   @return [String, nil]
-        optional :description, String, nil?: true
-
-        # @!attribute moderation_action_id
-        #   The ID of the moderation action to trigger the webhook on. Only used for
-        #   moderation action webhooks.
-        #
-        #   @return [String, nil]
-        optional :moderation_action_id, String, api_name: :moderationActionId, nil?: true
-
-        # @!method initialize(id:, name:, url:, description: nil, moderation_action_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {ModerationAPI::Models::ActionListResponseItem::Webhook} for more details.
-        #
-        #   @param id [String] The ID of the webhook.
-        #
-        #   @param name [String] The webhook's name, used to identify it in the dashboard
-        #
-        #   @param url [String] The webhook's URL. We'll call this URL when the event occurs.
-        #
-        #   @param description [String, nil] The webhook's description
-        #
-        #   @param moderation_action_id [String, nil] The ID of the moderation action to trigger the webhook on. Only used for moderat
       end
 
       # The type of the action.

@@ -11,7 +11,7 @@ module ModerationAPI
       #
       # Create an action.
       #
-      # @overload create(name:, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, webhooks: nil, request_options: {})
+      # @overload create(name:, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, request_options: {})
       #
       # @param name [String] The name of the action.
       #
@@ -34,8 +34,6 @@ module ModerationAPI
       # @param type [Symbol, ModerationAPI::Models::ActionCreateParams::Type, nil] The type of the action.
       #
       # @param value_required [Boolean] Whether the action requires a value to be executed.
-      #
-      # @param webhooks [Array<ModerationAPI::Models::ActionCreateParams::Webhook>] The action's webhooks.
       #
       # @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -78,7 +76,7 @@ module ModerationAPI
       #
       # Update an action.
       #
-      # @overload update(id, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, name: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, webhooks: nil, request_options: {})
+      # @overload update(id, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, name: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, request_options: {})
       #
       # @param id [String] The ID of the action to update.
       #
@@ -103,8 +101,6 @@ module ModerationAPI
       # @param type [Symbol, ModerationAPI::Models::ActionUpdateParams::Type, nil] The type of the action.
       #
       # @param value_required [Boolean] Whether the action requires a value to be executed.
-      #
-      # @param webhooks [Array<ModerationAPI::Models::ActionUpdateParams::Webhook>] The action's webhooks.
       #
       # @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

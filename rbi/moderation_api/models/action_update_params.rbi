@@ -115,19 +115,6 @@ module ModerationAPI
       sig { params(value_required: T::Boolean).void }
       attr_writer :value_required
 
-      # The action's webhooks.
-      sig do
-        returns(T.nilable(T::Array[ModerationAPI::ActionUpdateParams::Webhook]))
-      end
-      attr_reader :webhooks
-
-      sig do
-        params(
-          webhooks: T::Array[ModerationAPI::ActionUpdateParams::Webhook::OrHash]
-        ).void
-      end
-      attr_writer :webhooks
-
       sig do
         params(
           id: String,
@@ -144,8 +131,6 @@ module ModerationAPI
             ModerationAPI::ActionUpdateParams::QueueBehaviour::OrSymbol,
           type: T.nilable(ModerationAPI::ActionUpdateParams::Type::OrSymbol),
           value_required: T::Boolean,
-          webhooks:
-            T::Array[ModerationAPI::ActionUpdateParams::Webhook::OrHash],
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -178,8 +163,6 @@ module ModerationAPI
         type: nil,
         # Whether the action requires a value to be executed.
         value_required: nil,
-        # The action's webhooks.
-        webhooks: nil,
         request_options: {}
       )
       end
@@ -201,7 +184,6 @@ module ModerationAPI
               ModerationAPI::ActionUpdateParams::QueueBehaviour::OrSymbol,
             type: T.nilable(ModerationAPI::ActionUpdateParams::Type::OrSymbol),
             value_required: T::Boolean,
-            webhooks: T::Array[ModerationAPI::ActionUpdateParams::Webhook],
             request_options: ModerationAPI::RequestOptions
           }
         )
@@ -375,68 +357,6 @@ module ModerationAPI
           )
         end
         def self.values
-        end
-      end
-
-      class Webhook < ModerationAPI::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              ModerationAPI::ActionUpdateParams::Webhook,
-              ModerationAPI::Internal::AnyHash
-            )
-          end
-
-        # The webhook's name, used to identify it in the dashboard
-        sig { returns(String) }
-        attr_accessor :name
-
-        # The webhook's URL. We'll call this URL when the event occurs.
-        sig { returns(String) }
-        attr_accessor :url
-
-        # ID of an existing webhook or undefined if this is a new webhook.
-        sig { returns(T.nilable(String)) }
-        attr_reader :id
-
-        sig { params(id: String).void }
-        attr_writer :id
-
-        # The webhook's description
-        sig { returns(T.nilable(String)) }
-        attr_accessor :description
-
-        sig do
-          params(
-            name: String,
-            url: String,
-            id: String,
-            description: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The webhook's name, used to identify it in the dashboard
-          name:,
-          # The webhook's URL. We'll call this URL when the event occurs.
-          url:,
-          # ID of an existing webhook or undefined if this is a new webhook.
-          id: nil,
-          # The webhook's description
-          description: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              name: String,
-              url: String,
-              id: String,
-              description: T.nilable(String)
-            }
-          )
-        end
-        def to_hash
         end
       end
     end

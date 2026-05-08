@@ -91,14 +91,7 @@ module ModerationAPI
       #   @return [Boolean, nil]
       optional :value_required, ModerationAPI::Internal::Type::Boolean, api_name: :valueRequired
 
-      # @!attribute webhooks
-      #   The action's webhooks.
-      #
-      #   @return [Array<ModerationAPI::Models::ActionUpdateParams::Webhook>, nil]
-      optional :webhooks,
-               -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::ActionUpdateParams::Webhook] }
-
-      # @!method initialize(id:, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, name: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, webhooks: nil, request_options: {})
+      # @!method initialize(id:, built_in: nil, description: nil, filter_in_queue_ids: nil, free_text: nil, key: nil, name: nil, position: nil, possible_values: nil, queue_behaviour: nil, type: nil, value_required: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ActionUpdateParams} for more details.
       #
@@ -125,8 +118,6 @@ module ModerationAPI
       #   @param type [Symbol, ModerationAPI::Models::ActionUpdateParams::Type, nil] The type of the action.
       #
       #   @param value_required [Boolean] Whether the action requires a value to be executed.
-      #
-      #   @param webhooks [Array<ModerationAPI::Models::ActionUpdateParams::Webhook>] The action's webhooks.
       #
       #   @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}]
 
@@ -184,41 +175,6 @@ module ModerationAPI
 
         # @!method self.values
         #   @return [Array<Symbol>]
-      end
-
-      class Webhook < ModerationAPI::Internal::Type::BaseModel
-        # @!attribute name
-        #   The webhook's name, used to identify it in the dashboard
-        #
-        #   @return [String]
-        required :name, String
-
-        # @!attribute url
-        #   The webhook's URL. We'll call this URL when the event occurs.
-        #
-        #   @return [String]
-        required :url, String
-
-        # @!attribute id
-        #   ID of an existing webhook or undefined if this is a new webhook.
-        #
-        #   @return [String, nil]
-        optional :id, String
-
-        # @!attribute description
-        #   The webhook's description
-        #
-        #   @return [String, nil]
-        optional :description, String, nil?: true
-
-        # @!method initialize(name:, url:, id: nil, description: nil)
-        #   @param name [String] The webhook's name, used to identify it in the dashboard
-        #
-        #   @param url [String] The webhook's URL. We'll call this URL when the event occurs.
-        #
-        #   @param id [String] ID of an existing webhook or undefined if this is a new webhook.
-        #
-        #   @param description [String, nil] The webhook's description
       end
     end
   end

@@ -21,7 +21,7 @@ module ModerationAPI
 
       variant :"author.action", -> { ModerationAPI::WebhookEvent::AuthorAction }
 
-      variant :"queue_item.completed", -> { ModerationAPI::WebhookEvent::QueueItemCompleted }
+      variant :"queue_item.resolved", -> { ModerationAPI::WebhookEvent::QueueItemResolved }
 
       variant :"queue_item.action", -> { ModerationAPI::WebhookEvent::QueueItemAction }
 
@@ -2342,7 +2342,7 @@ module ModerationAPI
         end
       end
 
-      class QueueItemCompleted < ModerationAPI::Internal::Type::BaseModel
+      class QueueItemResolved < ModerationAPI::Internal::Type::BaseModel
         # @!attribute id
         #   Stable event ID. Use this to dedupe retries.
         #
@@ -2362,59 +2362,59 @@ module ModerationAPI
 
         # @!attribute data
         #
-        #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data]
-        required :data, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data }
+        #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data]
+        required :data, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data }
 
         # @!attribute type
         #   The event type.
         #
-        #   @return [Symbol, :"queue_item.completed"]
-        required :type, const: :"queue_item.completed"
+        #   @return [Symbol, :"queue_item.resolved"]
+        required :type, const: :"queue_item.resolved"
 
-        # @!method initialize(id:, created:, data:, api_version: :v2, type: :"queue_item.completed")
+        # @!method initialize(id:, created:, data:, api_version: :v2, type: :"queue_item.resolved")
         #   @param id [String] Stable event ID. Use this to dedupe retries.
         #
         #   @param created [Time] ISO 8601 timestamp of when the event was emitted.
         #
-        #   @param data [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data]
+        #   @param data [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data]
         #
         #   @param api_version [Symbol, :v2]
         #
-        #   @param type [Symbol, :"queue_item.completed"] The event type.
+        #   @param type [Symbol, :"queue_item.resolved"] The event type.
 
-        # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted#data
+        # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved#data
         class Data < ModerationAPI::Internal::Type::BaseModel
           # @!attribute object
           #
-          #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object]
-          required :object, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object }
+          #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object]
+          required :object, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object }
 
           # @!method initialize(object:)
-          #   @param object [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object]
+          #   @param object [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object]
 
-          # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data#object
+          # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data#object
           class Object < ModerationAPI::Internal::Type::BaseModel
             # @!attribute item
             #
-            #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item]
-            required :item, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item }
+            #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item]
+            required :item, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item }
 
             # @!attribute author
             #
-            #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author, nil]
-            optional :author, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author }
+            #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author, nil]
+            optional :author, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author }
 
             # @!attribute queue
             #
-            #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Queue, nil]
-            optional :queue, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Queue }
+            #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Queue, nil]
+            optional :queue, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Queue }
 
             # @!method initialize(item:, author: nil, queue: nil)
-            #   @param item [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item]
-            #   @param author [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author]
-            #   @param queue [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Queue]
+            #   @param item [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item]
+            #   @param author [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author]
+            #   @param queue [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Queue]
 
-            # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object#item
+            # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object#item
             class Item < ModerationAPI::Internal::Type::BaseModel
               # @!attribute id
               #   Content ID from your system
@@ -2438,9 +2438,9 @@ module ModerationAPI
               # @!attribute content
               #   The original content payload
               #
-              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object]
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object]
               required :content,
-                       union: -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content }
+                       union: -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content }
 
               # @!attribute conversation_id
               #   Conversation grouping ID, if any
@@ -2457,10 +2457,10 @@ module ModerationAPI
               # @!attribute labels
               #   Moderation labels applied to the content
               #
-              #   @return [Array<ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label>, nil]
+              #   @return [Array<ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label>, nil]
               required :labels,
                        -> {
-                         ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label]
+                         ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label]
                        },
                        nil?: true
 
@@ -2475,10 +2475,10 @@ module ModerationAPI
               #   configured content type but can be overridden per request via the moderation API
               #   `type` field.
               #
-              #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType, nil]
+              #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType, nil]
               required :meta_type,
                        enum: -> {
-                         ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType
+                         ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType
                        },
                        nil?: true
 
@@ -2498,8 +2498,8 @@ module ModerationAPI
 
               # @!method initialize(id:, author_id:, channel_key:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
-              #   {ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item}
-              #   for more details.
+              #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item} for
+              #   more details.
               #
               #   @param id [String] Content ID from your system
               #
@@ -2507,17 +2507,17 @@ module ModerationAPI
               #
               #   @param channel_key [String, nil] The channel the content was submitted to, identified by your customer-defined ch
               #
-              #   @param content [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object] The original content payload
+              #   @param content [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object] The original content payload
               #
               #   @param conversation_id [String, nil] Conversation grouping ID, if any
               #
               #   @param flagged [Boolean, nil] Whether the content was flagged by moderation
               #
-              #   @param labels [Array<ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label>, nil] Moderation labels applied to the content
+              #   @param labels [Array<ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label>, nil] Moderation labels applied to the content
               #
               #   @param language [String, nil] Detected ISO language code, if available
               #
-              #   @param meta_type [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::MetaType, nil] High-level content type (e.g. message, post, comment). Defaults to the channel's
+              #   @param meta_type [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType, nil] High-level content type (e.g. message, post, comment). Defaults to the channel's
               #
               #   @param metadata [Hash{Symbol=>Object}, nil] Arbitrary key/value metadata. Top-level keys are strings.
               #
@@ -2525,24 +2525,24 @@ module ModerationAPI
 
               # The original content payload
               #
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item#content
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item#content
               module Content
                 extend ModerationAPI::Internal::Type::Union
 
                 # Text
-                variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text }
+                variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text }
 
                 # Image
-                variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image }
+                variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image }
 
                 # Video
-                variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video }
+                variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video }
 
                 # Audio
-                variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio }
+                variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio }
 
                 # Object
-                variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object }
+                variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object }
 
                 class Text < ModerationAPI::Internal::Type::BaseModel
                   # @!attribute text
@@ -2585,7 +2585,7 @@ module ModerationAPI
 
                   # @!method initialize(data: nil, url: nil, type: :image)
                   #   Some parameter documentations has been truncated, see
-                  #   {ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image}
+                  #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image}
                   #   for more details.
                   #
                   #   Image
@@ -2641,9 +2641,9 @@ module ModerationAPI
                   # @!attribute data
                   #   Values in the object. Can be mixed content types.
                   #
-                  #   @return [Hash{Symbol=>ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio}]
+                  #   @return [Hash{Symbol=>ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio}]
                   required :data,
-                           -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data] }
+                           -> { ModerationAPI::Internal::Type::HashOf[union: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data] }
 
                   # @!attribute type
                   #
@@ -2653,7 +2653,7 @@ module ModerationAPI
                   # @!method initialize(data:, type: :object)
                   #   Object
                   #
-                  #   @param data [Hash{Symbol=>ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio}] Values in the object. Can be mixed content types.
+                  #   @param data [Hash{Symbol=>ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio}] Values in the object. Can be mixed content types.
                   #
                   #   @param type [Symbol, :object]
 
@@ -2662,16 +2662,16 @@ module ModerationAPI
                     extend ModerationAPI::Internal::Type::Union
 
                     # Text
-                    variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text }
+                    variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text }
 
                     # Image
-                    variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image }
+                    variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image }
 
                     # Video
-                    variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video }
+                    variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video }
 
                     # Audio
-                    variant -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio }
+                    variant -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio }
 
                     class Text < ModerationAPI::Internal::Type::BaseModel
                       # @!attribute text
@@ -2714,7 +2714,7 @@ module ModerationAPI
 
                       # @!method initialize(data: nil, url: nil, type: :image)
                       #   Some parameter documentations has been truncated, see
-                      #   {ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image}
+                      #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image}
                       #   for more details.
                       #
                       #   Image
@@ -2767,12 +2767,12 @@ module ModerationAPI
                     end
 
                     # @!method self.variants
-                    #   @return [Array(ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Text, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Image, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Video, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object::Data::Audio)]
+                    #   @return [Array(ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object::Data::Audio)]
                   end
                 end
 
                 # @!method self.variants
-                #   @return [Array(ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Content::Object)]
+                #   @return [Array(ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object)]
               end
 
               class Label < ModerationAPI::Internal::Type::BaseModel
@@ -2802,9 +2802,9 @@ module ModerationAPI
 
                 # @!attribute matches
                 #
-                #   @return [Array<ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match>, nil]
+                #   @return [Array<ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match>, nil]
                 optional :matches,
-                         -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match] }
+                         -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match] }
 
                 # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil)
                 #   @param label [String] The label name
@@ -2815,7 +2815,7 @@ module ModerationAPI
                 #
                 #   @param manual [Boolean] True if the label was applied manually by a moderator
                 #
-                #   @param matches [Array<ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match>]
+                #   @param matches [Array<ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match>]
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
                   # @!attribute match
@@ -2853,9 +2853,9 @@ module ModerationAPI
 
                   # @!attribute signals
                   #
-                  #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals, nil]
+                  #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals, nil]
                   optional :signals,
-                           -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals }
+                           -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals }
 
                   # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, signals: nil)
                   #   @param match [String] The matched substring
@@ -2870,9 +2870,9 @@ module ModerationAPI
                   #
                   #   @param reasons [Array<String>]
                   #
-                  #   @param signals [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals]
+                  #   @param signals [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals]
 
-                  # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match#signals
+                  # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match#signals
                   class Signals < ModerationAPI::Internal::Type::BaseModel
                     # @!attribute bot_protection
                     #
@@ -2881,10 +2881,10 @@ module ModerationAPI
 
                     # @!attribute brand_impersonation
                     #
-                    #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation, nil]
+                    #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation, nil]
                     required :brand_impersonation,
                              -> {
-                               ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation
+                               ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation
                              },
                              nil?: true
 
@@ -2925,7 +2925,7 @@ module ModerationAPI
 
                     # @!method initialize(bot_protection:, brand_impersonation:, domain_age_days:, final_url:, has_email_setup:, has_suspicious_characters:, is_link_shortener:, is_reported:, redirect_count:)
                     #   @param bot_protection [Boolean, nil]
-                    #   @param brand_impersonation [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals::BrandImpersonation, nil]
+                    #   @param brand_impersonation [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::BrandImpersonation, nil]
                     #   @param domain_age_days [Float, nil]
                     #   @param final_url [String, nil]
                     #   @param has_email_setup [Boolean, nil]
@@ -2934,7 +2934,7 @@ module ModerationAPI
                     #   @param is_reported [Boolean]
                     #   @param redirect_count [Float, nil]
 
-                    # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item::Label::Match::Signals#brand_impersonation
+                    # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals#brand_impersonation
                     class BrandImpersonation < ModerationAPI::Internal::Type::BaseModel
                       # @!attribute brand
                       #
@@ -2958,7 +2958,7 @@ module ModerationAPI
               # configured content type but can be overridden per request via the moderation API
               # `type` field.
               #
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Item#meta_type
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item#meta_type
               module MetaType
                 extend ModerationAPI::Internal::Type::Enum
 
@@ -2976,7 +2976,7 @@ module ModerationAPI
               end
             end
 
-            # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object#author
+            # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object#author
             class Author < ModerationAPI::Internal::Type::BaseModel
               # @!attribute id
               #   Author ID in Moderation API
@@ -2987,9 +2987,9 @@ module ModerationAPI
               # @!attribute block
               #   Block or suspension details, if applicable. Null if the author is enabled.
               #
-              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block, nil]
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Block, nil]
               required :block,
-                       -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block },
+                       -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Block },
                        nil?: true
 
               # @!attribute first_seen
@@ -3008,36 +3008,36 @@ module ModerationAPI
               #   Additional metadata provided by your system. We recommend including any relevant
               #   information that may assist in the moderation process.
               #
-              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata]
-              required :metadata, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata }
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata]
+              required :metadata, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata }
 
               # @!attribute metrics
               #
-              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics]
-              required :metrics, -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics }
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics]
+              required :metrics, -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics }
 
               # @!attribute risk_evaluation
               #   Risk assessment details, if available.
               #
-              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation, nil]
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation, nil]
               required :risk_evaluation,
                        -> {
-                         ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation
+                         ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation
                        },
                        nil?: true
 
               # @!attribute status
               #   Current author status
               #
-              #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status]
+              #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Status]
               required :status,
-                       enum: -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status }
+                       enum: -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::Status }
 
               # @!attribute trust_level
               #
-              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel]
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel]
               required :trust_level,
-                       -> { ModerationAPI::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel }
+                       -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel }
 
               # @!attribute company
               #   The author's company or organization
@@ -3083,26 +3083,26 @@ module ModerationAPI
 
               # @!method initialize(id:, block:, first_seen:, last_seen:, metadata:, metrics:, risk_evaluation:, status:, trust_level:, company: nil, email: nil, external_id: nil, external_link: nil, last_incident: nil, name: nil, profile_picture: nil)
               #   Some parameter documentations has been truncated, see
-              #   {ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author}
+              #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author}
               #   for more details.
               #
               #   @param id [String] Author ID in Moderation API
               #
-              #   @param block [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Block, nil] Block or suspension details, if applicable. Null if the author is enabled.
+              #   @param block [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Block, nil] Block or suspension details, if applicable. Null if the author is enabled.
               #
               #   @param first_seen [Float] Timestamp when author first appeared
               #
               #   @param last_seen [Float] Timestamp of last activity
               #
-              #   @param metadata [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metadata] Additional metadata provided by your system. We recommend including any relevant
+              #   @param metadata [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Metadata] Additional metadata provided by your system. We recommend including any relevant
               #
-              #   @param metrics [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics]
+              #   @param metrics [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics]
               #
-              #   @param risk_evaluation [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::RiskEvaluation, nil] Risk assessment details, if available.
+              #   @param risk_evaluation [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::RiskEvaluation, nil] Risk assessment details, if available.
               #
-              #   @param status [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Status] Current author status
+              #   @param status [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Status] Current author status
               #
-              #   @param trust_level [ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::TrustLevel]
+              #   @param trust_level [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::TrustLevel]
               #
               #   @param company [String, nil] The author's company or organization
               #
@@ -3118,7 +3118,7 @@ module ModerationAPI
               #
               #   @param profile_picture [String, nil] URL of the author's profile picture
 
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author#block
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author#block
               class Block < ModerationAPI::Internal::Type::BaseModel
                 # @!attribute reason
                 #   The moderators reason why the author was blocked or suspended.
@@ -3140,7 +3140,7 @@ module ModerationAPI
                 #   @param until_ [Float, nil] The timestamp until which they are blocked if the author is suspended.
               end
 
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author#metadata
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author#metadata
               class Metadata < ModerationAPI::Internal::Type::BaseModel
                 # @!attribute email_verified
                 #   Whether the author's email is verified
@@ -3179,7 +3179,7 @@ module ModerationAPI
                 #   @param phone_verified [Boolean, nil] Whether the author's phone number is verified
               end
 
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author#metrics
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author#metrics
               class Metrics < ModerationAPI::Internal::Type::BaseModel
                 # @!attribute flagged_content
                 #   Number of flagged content pieces
@@ -3202,7 +3202,7 @@ module ModerationAPI
 
                 # @!method initialize(flagged_content:, total_content:, average_sentiment: nil)
                 #   Some parameter documentations has been truncated, see
-                #   {ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author::Metrics}
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author::Metrics}
                 #   for more details.
                 #
                 #   @param flagged_content [Float] Number of flagged content pieces
@@ -3212,7 +3212,7 @@ module ModerationAPI
                 #   @param average_sentiment [Float, nil] Average sentiment score of content (-1 to 1). Requires a sentiment model in your
               end
 
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author#risk_evaluation
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author#risk_evaluation
               class RiskEvaluation < ModerationAPI::Internal::Type::BaseModel
                 # @!attribute risk_level
                 #   Calculated risk level based on more than 10 behavioral signals.
@@ -3228,7 +3228,7 @@ module ModerationAPI
 
               # Current author status
               #
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author#status
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author#status
               module Status
                 extend ModerationAPI::Internal::Type::Enum
 
@@ -3240,7 +3240,7 @@ module ModerationAPI
                 #   @return [Array<Symbol>]
               end
 
-              # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object::Author#trust_level
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Author#trust_level
               class TrustLevel < ModerationAPI::Internal::Type::BaseModel
                 # @!attribute level
                 #   Author trust level (-1, 0, 1, 2, 3, or 4)
@@ -3261,7 +3261,7 @@ module ModerationAPI
               end
             end
 
-            # @see ModerationAPI::Models::WebhookEvent::QueueItemCompleted::Data::Object#queue
+            # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object#queue
             class Queue < ModerationAPI::Internal::Type::BaseModel
               # @!attribute id
               #
@@ -6225,7 +6225,7 @@ module ModerationAPI
       end
 
       # @!method self.variants
-      #   @return [Array(ModerationAPI::Models::WebhookEvent::AuthorBlocked, ModerationAPI::Models::WebhookEvent::AuthorUnblocked, ModerationAPI::Models::WebhookEvent::AuthorSuspended, ModerationAPI::Models::WebhookEvent::AuthorUpdated, ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged, ModerationAPI::Models::WebhookEvent::AuthorAction, ModerationAPI::Models::WebhookEvent::QueueItemCompleted, ModerationAPI::Models::WebhookEvent::QueueItemAction, ModerationAPI::Models::WebhookEvent::QueueItemRejected, ModerationAPI::Models::WebhookEvent::QueueItemAllowed)]
+      #   @return [Array(ModerationAPI::Models::WebhookEvent::AuthorBlocked, ModerationAPI::Models::WebhookEvent::AuthorUnblocked, ModerationAPI::Models::WebhookEvent::AuthorSuspended, ModerationAPI::Models::WebhookEvent::AuthorUpdated, ModerationAPI::Models::WebhookEvent::AuthorTrustLevelChanged, ModerationAPI::Models::WebhookEvent::AuthorAction, ModerationAPI::Models::WebhookEvent::QueueItemResolved, ModerationAPI::Models::WebhookEvent::QueueItemAction, ModerationAPI::Models::WebhookEvent::QueueItemRejected, ModerationAPI::Models::WebhookEvent::QueueItemAllowed)]
     end
   end
 end

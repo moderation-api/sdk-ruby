@@ -22,8 +22,6 @@ module ModerationAPI
             ModerationAPI::ActionCreateParams::QueueBehaviour::OrSymbol,
           type: T.nilable(ModerationAPI::ActionCreateParams::Type::OrSymbol),
           value_required: T::Boolean,
-          webhooks:
-            T::Array[ModerationAPI::ActionCreateParams::Webhook::OrHash],
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(ModerationAPI::Models::ActionCreateResponse)
       end
@@ -54,8 +52,6 @@ module ModerationAPI
         type: nil,
         # Whether the action requires a value to be executed.
         value_required: nil,
-        # The action's webhooks.
-        webhooks: nil,
         request_options: {}
       )
       end
@@ -91,8 +87,6 @@ module ModerationAPI
             ModerationAPI::ActionUpdateParams::QueueBehaviour::OrSymbol,
           type: T.nilable(ModerationAPI::ActionUpdateParams::Type::OrSymbol),
           value_required: T::Boolean,
-          webhooks:
-            T::Array[ModerationAPI::ActionUpdateParams::Webhook::OrHash],
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(ModerationAPI::Models::ActionUpdateResponse)
       end
@@ -125,8 +119,6 @@ module ModerationAPI
         type: nil,
         # Whether the action requires a value to be executed.
         value_required: nil,
-        # The action's webhooks.
-        webhooks: nil,
         request_options: {}
       )
       end

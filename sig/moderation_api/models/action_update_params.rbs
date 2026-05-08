@@ -13,8 +13,7 @@ module ModerationAPI
         possible_values: ::Array[ModerationAPI::ActionUpdateParams::PossibleValue],
         queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
         type: ModerationAPI::Models::ActionUpdateParams::type_?,
-        value_required: bool,
-        webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook]
+        value_required: bool
       }
       & ModerationAPI::Internal::Type::request_parameters
 
@@ -66,12 +65,6 @@ module ModerationAPI
 
       def value_required=: (bool) -> bool
 
-      attr_reader webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook]?
-
-      def webhooks=: (
-        ::Array[ModerationAPI::ActionUpdateParams::Webhook]
-      ) -> ::Array[ModerationAPI::ActionUpdateParams::Webhook]
-
       def initialize: (
         id: String,
         ?built_in: bool?,
@@ -85,7 +78,6 @@ module ModerationAPI
         ?queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
         ?type: ModerationAPI::Models::ActionUpdateParams::type_?,
         ?value_required: bool,
-        ?webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook],
         ?request_options: ModerationAPI::request_opts
       ) -> void
 
@@ -102,7 +94,6 @@ module ModerationAPI
         queue_behaviour: ModerationAPI::Models::ActionUpdateParams::queue_behaviour,
         type: ModerationAPI::Models::ActionUpdateParams::type_?,
         value_required: bool,
-        webhooks: ::Array[ModerationAPI::ActionUpdateParams::Webhook],
         request_options: ModerationAPI::RequestOptions
       }
 
@@ -167,35 +158,6 @@ module ModerationAPI
         ITEM_CUSTOM: :ITEM_CUSTOM
 
         def self?.values: -> ::Array[ModerationAPI::Models::ActionUpdateParams::type_]
-      end
-
-      type webhook =
-        { name: String, url: String, id: String, description: String? }
-
-      class Webhook < ModerationAPI::Internal::Type::BaseModel
-        attr_accessor name: String
-
-        attr_accessor url: String
-
-        attr_reader id: String?
-
-        def id=: (String) -> String
-
-        attr_accessor description: String?
-
-        def initialize: (
-          name: String,
-          url: String,
-          ?id: String,
-          ?description: String?
-        ) -> void
-
-        def to_hash: -> {
-          name: String,
-          url: String,
-          id: String,
-          description: String?
-        }
       end
     end
   end

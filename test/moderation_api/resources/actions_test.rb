@@ -52,7 +52,6 @@ class ModerationAPI::Test::Resources::ActionsTest < ModerationAPI::Test::Resourc
         possible_values: ^(ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ActionRetrieveResponse::PossibleValue]),
         queue_behaviour: ModerationAPI::Models::ActionRetrieveResponse::QueueBehaviour,
         value_required: ModerationAPI::Internal::Type::Boolean,
-        webhooks: ^(ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ActionRetrieveResponse::Webhook]),
         description: String | nil,
         key: String | nil,
         type: ModerationAPI::Models::ActionRetrieveResponse::Type | nil

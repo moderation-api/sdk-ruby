@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.17.1 (2026-05-14)
+
+Full Changelog: [v2.17.0...v2.17.1](https://github.com/moderation-api/sdk-ruby/compare/v2.17.0...v2.17.1)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([c1a43a0](https://github.com/moderation-api/sdk-ruby/commit/c1a43a0212bdaf1c7f81e2c56c961e49e4830e61))
+
 ## 2.17.0 (2026-05-08)
 
 Full Changelog: [v2.16.0...v2.17.0](https://github.com/moderation-api/sdk-ruby/compare/v2.16.0...v2.17.0)

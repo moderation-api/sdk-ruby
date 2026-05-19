@@ -32,7 +32,7 @@ moderation_api = ModerationAPI::Client.new(
   secret_key: ENV["MODAPI_SECRET_KEY"] # This is the default and can be omitted
 )
 
-response = moderation_api.content.submit(content: {text: "x", type: "text"})
+response = moderation_api.content.submit(content: {text: "text", type: "text"})
 
 puts(response.recommendation)
 ```
@@ -43,7 +43,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  content = moderation_api.content.submit(content: {text: "x", type: "text"})
+  content = moderation_api.content.submit(content: {text: "text", type: "text"})
 rescue ModerationAPI::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -86,7 +86,7 @@ moderation_api = ModerationAPI::Client.new(
 )
 
 # Or, configure per-request:
-moderation_api.content.submit(content: {text: "x", type: "text"}, request_options: {max_retries: 5})
+moderation_api.content.submit(content: {text: "text", type: "text"}, request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -100,7 +100,7 @@ moderation_api = ModerationAPI::Client.new(
 )
 
 # Or, configure per-request:
-moderation_api.content.submit(content: {text: "x", type: "text"}, request_options: {timeout: 5})
+moderation_api.content.submit(content: {text: "text", type: "text"}, request_options: {timeout: 5})
 ```
 
 On timeout, `ModerationAPI::Errors::APITimeoutError` is raised.
@@ -132,7 +132,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```ruby
 response =
   moderation_api.content.submit(
-    content: {text: "x", type: "text"},
+    content: {text: "text", type: "text"},
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -178,18 +178,20 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-moderation_api.content.submit(content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "x"))
+moderation_api.content.submit(
+  content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "text")
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-moderation_api.content.submit(content: {text: "x", type: "text"})
+moderation_api.content.submit(content: {text: "text", type: "text"})
 
 # You can also splat a full Params class:
 params = ModerationAPI::ContentSubmitParams.new(
-  content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "x")
+  content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "text")
 )
 moderation_api.content.submit(**params)
 ```

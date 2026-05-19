@@ -40,7 +40,7 @@ class ModerationAPITest < Minitest::Test
     moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text})
+      moderation_api.content.submit(content: {text: "text", type: :text})
     end
 
     assert_requested(:any, /./, times: 3)
@@ -53,7 +53,7 @@ class ModerationAPITest < Minitest::Test
       ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 3)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text})
+      moderation_api.content.submit(content: {text: "text", type: :text})
     end
 
     assert_requested(:any, /./, times: 4)
@@ -65,7 +65,7 @@ class ModerationAPITest < Minitest::Test
     moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text}, request_options: {max_retries: 3})
+      moderation_api.content.submit(content: {text: "text", type: :text}, request_options: {max_retries: 3})
     end
 
     assert_requested(:any, /./, times: 4)
@@ -78,7 +78,7 @@ class ModerationAPITest < Minitest::Test
       ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 3)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text}, request_options: {max_retries: 4})
+      moderation_api.content.submit(content: {text: "text", type: :text}, request_options: {max_retries: 4})
     end
 
     assert_requested(:any, /./, times: 5)
@@ -95,7 +95,7 @@ class ModerationAPITest < Minitest::Test
       ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 1)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text})
+      moderation_api.content.submit(content: {text: "text", type: :text})
     end
 
     assert_requested(:any, /./, times: 2)
@@ -116,7 +116,7 @@ class ModerationAPITest < Minitest::Test
 
     Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text})
+      moderation_api.content.submit(content: {text: "text", type: :text})
     end
     Thread.current.thread_variable_set(:time_now, nil)
 
@@ -135,7 +135,7 @@ class ModerationAPITest < Minitest::Test
       ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key", max_retries: 1)
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text})
+      moderation_api.content.submit(content: {text: "text", type: :text})
     end
 
     assert_requested(:any, /./, times: 2)
@@ -148,7 +148,7 @@ class ModerationAPITest < Minitest::Test
     moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
-      moderation_api.content.submit(content: {text: "x", type: :text})
+      moderation_api.content.submit(content: {text: "text", type: :text})
     end
 
     3.times do
@@ -163,7 +163,7 @@ class ModerationAPITest < Minitest::Test
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.content.submit(
-        content: {text: "x", type: :text},
+        content: {text: "text", type: :text},
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
     end
@@ -180,7 +180,7 @@ class ModerationAPITest < Minitest::Test
 
     assert_raises(ModerationAPI::Errors::InternalServerError) do
       moderation_api.content.submit(
-        content: {text: "x", type: :text},
+        content: {text: "text", type: :text},
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
     end
@@ -202,7 +202,10 @@ class ModerationAPITest < Minitest::Test
     moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
-      moderation_api.content.submit(content: {text: "x", type: :text}, request_options: {extra_headers: {}})
+      moderation_api.content.submit(
+        content: {text: "text", type: :text},
+        request_options: {extra_headers: {}}
+      )
     end
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
@@ -231,7 +234,10 @@ class ModerationAPITest < Minitest::Test
     moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
-      moderation_api.content.submit(content: {text: "x", type: :text}, request_options: {extra_headers: {}})
+      moderation_api.content.submit(
+        content: {text: "text", type: :text},
+        request_options: {extra_headers: {}}
+      )
     end
 
     assert_requested(:get, "http://localhost/redirected", times: ModerationAPI::Client::MAX_REDIRECTS) do
@@ -256,7 +262,7 @@ class ModerationAPITest < Minitest::Test
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
       moderation_api.content.submit(
-        content: {text: "x", type: :text},
+        content: {text: "text", type: :text},
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -286,7 +292,7 @@ class ModerationAPITest < Minitest::Test
 
     assert_raises(ModerationAPI::Errors::APIConnectionError) do
       moderation_api.content.submit(
-        content: {text: "x", type: :text},
+        content: {text: "text", type: :text},
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -302,7 +308,7 @@ class ModerationAPITest < Minitest::Test
 
     moderation_api = ModerationAPI::Client.new(base_url: "http://localhost", secret_key: "My Secret Key")
 
-    moderation_api.content.submit(content: {text: "x", type: :text})
+    moderation_api.content.submit(content: {text: "text", type: :text})
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase)

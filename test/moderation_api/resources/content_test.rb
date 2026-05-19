@@ -6,7 +6,7 @@ class ModerationAPI::Test::Resources::ContentTest < ModerationAPI::Test::Resourc
   def test_submit_required_params
     skip("Mock server tests are disabled")
 
-    response = @moderation_api.content.submit(content: {text: "x", type: :text})
+    response = @moderation_api.content.submit(content: {text: "text", type: :text})
 
     assert_pattern do
       response => ModerationAPI::Models::ContentSubmitResponse

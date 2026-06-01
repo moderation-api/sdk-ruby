@@ -294,6 +294,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::SelfHarm
         | ModerationAPI::ContentSubmitParams::Policy::Spam
         | ModerationAPI::ContentSubmitParams::Policy::LowQualityContent
+        | ModerationAPI::ContentSubmitParams::Policy::FaceDetection
         | ModerationAPI::ContentSubmitParams::Policy::SelfPromotion
         | ModerationAPI::ContentSubmitParams::Policy::Political
         | ModerationAPI::ContentSubmitParams::Policy::Religion
@@ -710,6 +711,62 @@ module ModerationAPI
             min_words: Integer,
             threshold: Float
           }
+        end
+
+        type face_detection =
+          {
+            id: :face_detection,
+            flag: bool,
+            comparator: ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator,
+            count: Integer,
+            threshold: Float
+          }
+
+        class FaceDetection < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :face_detection
+
+          attr_accessor flag: bool
+
+          attr_reader comparator: ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator?
+
+          def comparator=: (
+            ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator
+          ) -> ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator
+
+          attr_reader count: Integer?
+
+          def count=: (Integer) -> Integer
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?comparator: ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator,
+            ?count: Integer,
+            ?threshold: Float,
+            ?id: :face_detection
+          ) -> void
+
+          def to_hash: -> {
+            id: :face_detection,
+            flag: bool,
+            comparator: ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator,
+            count: Integer,
+            threshold: Float
+          }
+
+          type comparator = :at_least | :fewer_than
+
+          module Comparator
+            extend ModerationAPI::Internal::Type::Enum
+
+            AT_LEAST: :at_least
+            FEWER_THAN: :fewer_than
+
+            def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::comparator]
+          end
         end
 
         type self_promotion =

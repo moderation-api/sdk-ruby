@@ -430,6 +430,7 @@ module ModerationAPI
             flagged: bool,
             probability: Float,
             type: :classifier,
+            data: ::Hash[Symbol, top],
             flagged_fields: ::Array[String],
             labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
           }
@@ -442,6 +443,10 @@ module ModerationAPI
           attr_accessor probability: Float
 
           attr_accessor type: :classifier
+
+          attr_reader data: ::Hash[Symbol, top]?
+
+          def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
           attr_reader flagged_fields: ::Array[String]?
 
@@ -457,6 +462,7 @@ module ModerationAPI
             id: String,
             flagged: bool,
             probability: Float,
+            ?data: ::Hash[Symbol, top],
             ?flagged_fields: ::Array[String],
             ?labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label],
             ?type: :classifier
@@ -467,6 +473,7 @@ module ModerationAPI
             flagged: bool,
             probability: Float,
             type: :classifier,
+            data: ::Hash[Symbol, top],
             flagged_fields: ::Array[String],
             labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
           }

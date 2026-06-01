@@ -586,6 +586,13 @@ module ModerationAPI
           #   @return [Symbol, :classifier]
           required :type, const: :classifier
 
+          # @!attribute data
+          #   Optional structured data produced by the policy. For face detection: { count,
+          #   faces: [{ confidence, gender, age }] }.
+          #
+          #   @return [Hash{Symbol=>Object}, nil]
+          optional :data, ModerationAPI::Internal::Type::HashOf[ModerationAPI::Internal::Type::Unknown]
+
           # @!attribute flagged_fields
           #   The keys of the flagged fields if submitting an object.
           #
@@ -598,7 +605,11 @@ module ModerationAPI
           optional :labels,
                    -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label] }
 
-          # @!method initialize(id:, flagged:, probability:, flagged_fields: nil, labels: nil, type: :classifier)
+          # @!method initialize(id:, flagged:, probability:, data: nil, flagged_fields: nil, labels: nil, type: :classifier)
+          #   Some parameter documentations has been truncated, see
+          #   {ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput} for
+          #   more details.
+          #
           #   Classifier policy.
           #
           #   @param id [String] The unique identifier for the classifier output.
@@ -606,6 +617,8 @@ module ModerationAPI
           #   @param flagged [Boolean]
           #
           #   @param probability [Float]
+          #
+          #   @param data [Hash{Symbol=>Object}] Optional structured data produced by the policy. For face detection: { count, fa
           #
           #   @param flagged_fields [Array<String>] The keys of the flagged fields if submitting an object.
           #

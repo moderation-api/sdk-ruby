@@ -59,7 +59,7 @@ module ModerationAPI
       # @!attribute policies
       #   (Enterprise) override the channel policies for this moderation request only.
       #
-      #   @return [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Cannabis, ModerationAPI::Models::ContentSubmitParams::Policy::Adult, ModerationAPI::Models::ContentSubmitParams::Policy::Crypto, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::LowQualityContent, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>, nil]
+      #   @return [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Cannabis, ModerationAPI::Models::ContentSubmitParams::Policy::Adult, ModerationAPI::Models::ContentSubmitParams::Policy::Crypto, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::LowQualityContent, ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>, nil]
       optional :policies,
                -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::ContentSubmitParams::Policy] }
 
@@ -90,7 +90,7 @@ module ModerationAPI
       #
       #   @param meta_type [Symbol, ModerationAPI::Models::ContentSubmitParams::MetaType] The meta type of content being moderated
       #
-      #   @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Cannabis, ModerationAPI::Models::ContentSubmitParams::Policy::Adult, ModerationAPI::Models::ContentSubmitParams::Policy::Crypto, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::LowQualityContent, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>] (Enterprise) override the channel policies for this moderation request only.
+      #   @param policies [Array<ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Cannabis, ModerationAPI::Models::ContentSubmitParams::Policy::Adult, ModerationAPI::Models::ContentSubmitParams::Policy::Crypto, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::LowQualityContent, ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline>] (Enterprise) override the channel policies for this moderation request only.
       #
       #   @param timestamp [Float] Unix timestamp (in milliseconds) of when the content was created. Use if content
       #
@@ -404,6 +404,8 @@ module ModerationAPI
         variant -> { ModerationAPI::ContentSubmitParams::Policy::Spam }
 
         variant -> { ModerationAPI::ContentSubmitParams::Policy::LowQualityContent }
+
+        variant -> { ModerationAPI::ContentSubmitParams::Policy::FaceDetection }
 
         variant -> { ModerationAPI::ContentSubmitParams::Policy::SelfPromotion }
 
@@ -876,6 +878,66 @@ module ModerationAPI
           #   @param id [Symbol, :low_quality]
         end
 
+        class FaceDetection < ModerationAPI::Internal::Type::BaseModel
+          # @!attribute id
+          #
+          #   @return [Symbol, :face_detection]
+          required :id, const: :face_detection
+
+          # @!attribute flag
+          #
+          #   @return [Boolean]
+          required :flag, ModerationAPI::Internal::Type::Boolean
+
+          # @!attribute comparator
+          #   Flag images that contain "at least" or "fewer than" the configured number of
+          #   faces. Defaults to at_least.
+          #
+          #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::Comparator, nil]
+          optional :comparator, enum: -> { ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator }
+
+          # @!attribute count
+          #   Number of faces the comparator applies to. Defaults to 1, so the default rule
+          #   flags any image containing a face.
+          #
+          #   @return [Integer, nil]
+          optional :count, Integer
+
+          # @!attribute threshold
+          #
+          #   @return [Float, nil]
+          optional :threshold, Float
+
+          # @!method initialize(flag:, comparator: nil, count: nil, threshold: nil, id: :face_detection)
+          #   Some parameter documentations has been truncated, see
+          #   {ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection} for more
+          #   details.
+          #
+          #   @param flag [Boolean]
+          #
+          #   @param comparator [Symbol, ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection::Comparator] Flag images that contain "at least" or "fewer than" the configured number of fac
+          #
+          #   @param count [Integer] Number of faces the comparator applies to. Defaults to 1, so the default rule fl
+          #
+          #   @param threshold [Float]
+          #
+          #   @param id [Symbol, :face_detection]
+
+          # Flag images that contain "at least" or "fewer than" the configured number of
+          # faces. Defaults to at_least.
+          #
+          # @see ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection#comparator
+          module Comparator
+            extend ModerationAPI::Internal::Type::Enum
+
+            AT_LEAST = :at_least
+            FEWER_THAN = :fewer_than
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
         class SelfPromotion < ModerationAPI::Internal::Type::BaseModel
           # @!attribute id
           #
@@ -1150,7 +1212,7 @@ module ModerationAPI
         end
 
         # @!method self.variants
-        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Cannabis, ModerationAPI::Models::ContentSubmitParams::Policy::Adult, ModerationAPI::Models::ContentSubmitParams::Policy::Crypto, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::LowQualityContent, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline)]
+        #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Policy::Toxicity, ModerationAPI::Models::ContentSubmitParams::Policy::PersonalInformation, ModerationAPI::Models::ContentSubmitParams::Policy::ToxicitySevere, ModerationAPI::Models::ContentSubmitParams::Policy::Hate, ModerationAPI::Models::ContentSubmitParams::Policy::Illicit, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitDrugs, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitAlcohol, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitFirearms, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitTobacco, ModerationAPI::Models::ContentSubmitParams::Policy::IllicitGambling, ModerationAPI::Models::ContentSubmitParams::Policy::Cannabis, ModerationAPI::Models::ContentSubmitParams::Policy::Adult, ModerationAPI::Models::ContentSubmitParams::Policy::Crypto, ModerationAPI::Models::ContentSubmitParams::Policy::Sexual, ModerationAPI::Models::ContentSubmitParams::Policy::Flirtation, ModerationAPI::Models::ContentSubmitParams::Policy::Profanity, ModerationAPI::Models::ContentSubmitParams::Policy::Violence, ModerationAPI::Models::ContentSubmitParams::Policy::SelfHarm, ModerationAPI::Models::ContentSubmitParams::Policy::Spam, ModerationAPI::Models::ContentSubmitParams::Policy::LowQualityContent, ModerationAPI::Models::ContentSubmitParams::Policy::FaceDetection, ModerationAPI::Models::ContentSubmitParams::Policy::SelfPromotion, ModerationAPI::Models::ContentSubmitParams::Policy::Political, ModerationAPI::Models::ContentSubmitParams::Policy::Religion, ModerationAPI::Models::ContentSubmitParams::Policy::CodeAbuse, ModerationAPI::Models::ContentSubmitParams::Policy::PiiMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLMasking, ModerationAPI::Models::ContentSubmitParams::Policy::URLRisk, ModerationAPI::Models::ContentSubmitParams::Policy::Guideline)]
       end
     end
   end

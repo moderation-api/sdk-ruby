@@ -1093,6 +1093,14 @@ module ModerationAPI
           sig { returns(Symbol) }
           attr_accessor :type
 
+          # Optional structured data produced by the policy. For face detection: { count,
+          # faces: [{ confidence, gender, age }] }.
+          sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+          attr_reader :data
+
+          sig { params(data: T::Hash[Symbol, T.anything]).void }
+          attr_writer :data
+
           # The keys of the flagged fields if submitting an object.
           sig { returns(T.nilable(T::Array[String])) }
           attr_reader :flagged_fields
@@ -1127,6 +1135,7 @@ module ModerationAPI
               id: String,
               flagged: T::Boolean,
               probability: Float,
+              data: T::Hash[Symbol, T.anything],
               flagged_fields: T::Array[String],
               labels:
                 T::Array[
@@ -1140,6 +1149,9 @@ module ModerationAPI
             id:,
             flagged:,
             probability:,
+            # Optional structured data produced by the policy. For face detection: { count,
+            # faces: [{ confidence, gender, age }] }.
+            data: nil,
             # The keys of the flagged fields if submitting an object.
             flagged_fields: nil,
             labels: nil,
@@ -1154,6 +1166,7 @@ module ModerationAPI
                 flagged: T::Boolean,
                 probability: Float,
                 type: Symbol,
+                data: T::Hash[Symbol, T.anything],
                 flagged_fields: T::Array[String],
                 labels:
                   T::Array[

@@ -293,6 +293,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::Violence
         | ModerationAPI::ContentSubmitParams::Policy::SelfHarm
         | ModerationAPI::ContentSubmitParams::Policy::Spam
+        | ModerationAPI::ContentSubmitParams::Policy::LowQualityContent
         | ModerationAPI::ContentSubmitParams::Policy::SelfPromotion
         | ModerationAPI::ContentSubmitParams::Policy::Political
         | ModerationAPI::ContentSubmitParams::Policy::Religion
@@ -678,6 +679,37 @@ module ModerationAPI
           def initialize: (flag: bool, ?threshold: Float, ?id: :spam) -> void
 
           def to_hash: -> { id: :spam, flag: bool, threshold: Float }
+        end
+
+        type low_quality_content =
+          { id: :low_quality, flag: bool, min_words: Integer, threshold: Float }
+
+        class LowQualityContent < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :low_quality
+
+          attr_accessor flag: bool
+
+          attr_reader min_words: Integer?
+
+          def min_words=: (Integer) -> Integer
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?min_words: Integer,
+            ?threshold: Float,
+            ?id: :low_quality
+          ) -> void
+
+          def to_hash: -> {
+            id: :low_quality,
+            flag: bool,
+            min_words: Integer,
+            threshold: Float
+          }
         end
 
         type self_promotion =

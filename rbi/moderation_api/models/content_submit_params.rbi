@@ -111,6 +111,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Violence,
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
                 ModerationAPI::ContentSubmitParams::Policy::Spam,
+                ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
                 ModerationAPI::ContentSubmitParams::Policy::Political,
                 ModerationAPI::ContentSubmitParams::Policy::Religion,
@@ -150,6 +151,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Violence::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::LowQualityContent::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
@@ -211,6 +213,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Violence::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::LowQualityContent::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
@@ -292,6 +295,7 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::Violence,
                   ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
                   ModerationAPI::ContentSubmitParams::Policy::Spam,
+                  ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
                   ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
                   ModerationAPI::ContentSubmitParams::Policy::Political,
                   ModerationAPI::ContentSubmitParams::Policy::Religion,
@@ -800,6 +804,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Policy::Violence,
               ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
               ModerationAPI::ContentSubmitParams::Policy::Spam,
+              ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
               ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
               ModerationAPI::ContentSubmitParams::Policy::Political,
               ModerationAPI::ContentSubmitParams::Policy::Religion,
@@ -1490,6 +1495,67 @@ module ModerationAPI
 
           sig do
             override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
+          end
+          def to_hash
+          end
+        end
+
+        class LowQualityContent < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          # Flag content with fewer than this many words as low-effort. Defaults to 3. Set
+          # to disable by omitting.
+          sig { returns(T.nilable(Integer)) }
+          attr_reader :min_words
+
+          sig { params(min_words: Integer).void }
+          attr_writer :min_words
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(
+              flag: T::Boolean,
+              min_words: Integer,
+              threshold: Float,
+              id: Symbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            flag:,
+            # Flag content with fewer than this many words as low-effort. Defaults to 3. Set
+            # to disable by omitting.
+            min_words: nil,
+            threshold: nil,
+            id: :low_quality
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: Symbol,
+                flag: T::Boolean,
+                min_words: Integer,
+                threshold: Float
+              }
+            )
           end
           def to_hash
           end

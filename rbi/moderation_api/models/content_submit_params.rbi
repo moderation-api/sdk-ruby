@@ -112,6 +112,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
                 ModerationAPI::ContentSubmitParams::Policy::Spam,
                 ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
                 ModerationAPI::ContentSubmitParams::Policy::Political,
                 ModerationAPI::ContentSubmitParams::Policy::Religion,
@@ -152,6 +153,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::LowQualityContent::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
@@ -214,6 +216,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::LowQualityContent::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
@@ -296,6 +299,7 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
                   ModerationAPI::ContentSubmitParams::Policy::Spam,
                   ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
+                  ModerationAPI::ContentSubmitParams::Policy::FaceDetection,
                   ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
                   ModerationAPI::ContentSubmitParams::Policy::Political,
                   ModerationAPI::ContentSubmitParams::Policy::Religion,
@@ -805,6 +809,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Policy::SelfHarm,
               ModerationAPI::ContentSubmitParams::Policy::Spam,
               ModerationAPI::ContentSubmitParams::Policy::LowQualityContent,
+              ModerationAPI::ContentSubmitParams::Policy::FaceDetection,
               ModerationAPI::ContentSubmitParams::Policy::SelfPromotion,
               ModerationAPI::ContentSubmitParams::Policy::Political,
               ModerationAPI::ContentSubmitParams::Policy::Religion,
@@ -1558,6 +1563,129 @@ module ModerationAPI
             )
           end
           def to_hash
+          end
+        end
+
+        class FaceDetection < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          # Flag images that contain "at least" or "fewer than" the configured number of
+          # faces. Defaults to at_least.
+          sig do
+            returns(
+              T.nilable(
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::OrSymbol
+              )
+            )
+          end
+          attr_reader :comparator
+
+          sig do
+            params(
+              comparator:
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::OrSymbol
+            ).void
+          end
+          attr_writer :comparator
+
+          # Number of faces the comparator applies to. Defaults to 1, so the default rule
+          # flags any image containing a face.
+          sig { returns(T.nilable(Integer)) }
+          attr_reader :count
+
+          sig { params(count: Integer).void }
+          attr_writer :count
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(
+              flag: T::Boolean,
+              comparator:
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::OrSymbol,
+              count: Integer,
+              threshold: Float,
+              id: Symbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            flag:,
+            # Flag images that contain "at least" or "fewer than" the configured number of
+            # faces. Defaults to at_least.
+            comparator: nil,
+            # Number of faces the comparator applies to. Defaults to 1, so the default rule
+            # flags any image containing a face.
+            count: nil,
+            threshold: nil,
+            id: :face_detection
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: Symbol,
+                flag: T::Boolean,
+                comparator:
+                  ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::OrSymbol,
+                count: Integer,
+                threshold: Float
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # Flag images that contain "at least" or "fewer than" the configured number of
+          # faces. Defaults to at_least.
+          module Comparator
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            AT_LEAST =
+              T.let(
+                :at_least,
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::TaggedSymbol
+              )
+            FEWER_THAN =
+              T.let(
+                :fewer_than,
+                ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::ContentSubmitParams::Policy::FaceDetection::Comparator::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 

@@ -42,6 +42,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Violence::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfHarm::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Spam::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::LowQualityContent::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::SelfPromotion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,

@@ -26,6 +26,18 @@ module ModerationAPI
       #   @return [String, nil]
       optional :channel, String
 
+      # @!attribute client_action
+      #   A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+      #   third-party tool). Feeds the rules engine and can escalate or override the
+      #   recommended action. Does not change whether our analysis flagged the content.
+      #
+      #   @return [ModerationAPI::Models::ContentSubmitParams::ClientAction, nil]
+      optional :client_action,
+               -> {
+                 ModerationAPI::ContentSubmitParams::ClientAction
+               },
+               api_name: :clientAction
+
       # @!attribute content_id
       #   The unique ID of the content in your database.
       #
@@ -70,7 +82,7 @@ module ModerationAPI
       #   @return [Float, nil]
       optional :timestamp, Float
 
-      # @!method initialize(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, policies: nil, timestamp: nil, request_options: {})
+      # @!method initialize(content:, author_id: nil, channel: nil, client_action: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, policies: nil, timestamp: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
@@ -79,6 +91,8 @@ module ModerationAPI
       #   @param author_id [String] The author of the content.
       #
       #   @param channel [String] Provide a channel ID or key. Will use the project's default channel if not provi
+      #
+      #   @param client_action [ModerationAPI::Models::ContentSubmitParams::ClientAction] A recommendation from your own client-side flagging (e.g. a banned-IP list or a
       #
       #   @param content_id [String] The unique ID of the content in your database.
       #
@@ -343,6 +357,77 @@ module ModerationAPI
 
         # @!method self.variants
         #   @return [Array(ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::Object)]
+      end
+
+      class ClientAction < ModerationAPI::Internal::Type::BaseModel
+        # @!attribute action
+        #   Your recommendation for the content: allow, review, or reject.
+        #
+        #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::ClientAction::Action]
+        required :action, enum: -> { ModerationAPI::ContentSubmitParams::ClientAction::Action }
+
+        # @!attribute behavior
+        #   How your recommendation combines with ours. Defaults to 'escalate', which only
+        #   applies it when stricter than ours; 'override' replaces ours outright.
+        #
+        #   @return [Symbol, ModerationAPI::Models::ContentSubmitParams::ClientAction::Behavior, nil]
+        optional :behavior, enum: -> { ModerationAPI::ContentSubmitParams::ClientAction::Behavior }
+
+        # @!attribute reason
+        #   A human-readable explanation for your recommendation.
+        #
+        #   @return [String, nil]
+        optional :reason, String
+
+        # @!attribute source
+        #   Where your recommendation came from, e.g. "banned-ip".
+        #
+        #   @return [String, nil]
+        optional :source, String
+
+        # @!method initialize(action:, behavior: nil, reason: nil, source: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {ModerationAPI::Models::ContentSubmitParams::ClientAction} for more details.
+        #
+        #   A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+        #   third-party tool). Feeds the rules engine and can escalate or override the
+        #   recommended action. Does not change whether our analysis flagged the content.
+        #
+        #   @param action [Symbol, ModerationAPI::Models::ContentSubmitParams::ClientAction::Action] Your recommendation for the content: allow, review, or reject.
+        #
+        #   @param behavior [Symbol, ModerationAPI::Models::ContentSubmitParams::ClientAction::Behavior] How your recommendation combines with ours. Defaults to 'escalate', which only a
+        #
+        #   @param reason [String] A human-readable explanation for your recommendation.
+        #
+        #   @param source [String] Where your recommendation came from, e.g. "banned-ip".
+
+        # Your recommendation for the content: allow, review, or reject.
+        #
+        # @see ModerationAPI::Models::ContentSubmitParams::ClientAction#action
+        module Action
+          extend ModerationAPI::Internal::Type::Enum
+
+          REVIEW = :review
+          ALLOW = :allow
+          REJECT = :reject
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # How your recommendation combines with ours. Defaults to 'escalate', which only
+        # applies it when stricter than ours; 'override' replaces ours outright.
+        #
+        # @see ModerationAPI::Models::ContentSubmitParams::ClientAction#behavior
+        module Behavior
+          extend ModerationAPI::Internal::Type::Enum
+
+          OVERRIDE = :override
+          ESCALATE = :escalate
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # The meta type of content being moderated

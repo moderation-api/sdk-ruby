@@ -5,6 +5,7 @@ module ModerationAPI
         content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,
         ?channel: String,
+        ?client_action: ModerationAPI::ContentSubmitParams::ClientAction,
         ?content_id: String,
         ?conversation_id: String,
         ?do_not_store: bool,

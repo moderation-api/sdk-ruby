@@ -736,6 +736,7 @@ module ModerationAPI
           | :rule_match
           | :rule_default
           | :rule_fallback
+          | :client_override
 
         module ReasonCode
           extend ModerationAPI::Internal::Type::Enum
@@ -749,6 +750,7 @@ module ModerationAPI
           RULE_MATCH: :rule_match
           RULE_DEFAULT: :rule_default
           RULE_FALLBACK: :rule_fallback
+          CLIENT_OVERRIDE: :client_override
 
           def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         end

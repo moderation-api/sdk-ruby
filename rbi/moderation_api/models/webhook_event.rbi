@@ -4487,6 +4487,26 @@ module ModerationAPI
               sig { returns(T.nilable(String)) }
               attr_accessor :channel_key
 
+              # A recommendation from your own client-side flagging.
+              sig do
+                returns(
+                  T.nilable(
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction
+                  )
+                )
+              end
+              attr_reader :client_action
+
+              sig do
+                params(
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::OrHash
+                    )
+                ).void
+              end
+              attr_writer :client_action
+
               # The original content payload
               sig do
                 returns(
@@ -4550,6 +4570,10 @@ module ModerationAPI
                   id: String,
                   author_id: T.nilable(String),
                   channel_key: T.nilable(String),
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::OrHash
+                    ),
                   content:
                     T.any(
                       ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text::OrHash,
@@ -4583,6 +4607,8 @@ module ModerationAPI
                 # The channel the content was submitted to, identified by your customer-defined
                 # channel key.
                 channel_key:,
+                # A recommendation from your own client-side flagging.
+                client_action:,
                 # The original content payload
                 content:,
                 # Conversation grouping ID, if any
@@ -4610,6 +4636,10 @@ module ModerationAPI
                     id: String,
                     author_id: T.nilable(String),
                     channel_key: T.nilable(String),
+                    client_action:
+                      T.nilable(
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction
+                      ),
                     content:
                       T.any(
                         ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text,
@@ -4637,6 +4667,172 @@ module ModerationAPI
                 )
               end
               def to_hash
+              end
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction,
+                      ModerationAPI::Internal::AnyHash
+                    )
+                  end
+
+                # Your recommendation for the content: allow, review, or reject.
+                sig do
+                  returns(
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::OrSymbol
+                  )
+                end
+                attr_accessor :action
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                sig do
+                  returns(
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                    )
+                  )
+                end
+                attr_reader :behavior
+
+                sig do
+                  params(
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                  ).void
+                end
+                attr_writer :behavior
+
+                # A human-readable explanation for your recommendation.
+                sig { returns(T.nilable(String)) }
+                attr_reader :reason
+
+                sig { params(reason: String).void }
+                attr_writer :reason
+
+                # Where your recommendation came from, e.g. "banned-ip".
+                sig { returns(T.nilable(String)) }
+                attr_reader :source
+
+                sig { params(source: String).void }
+                attr_writer :source
+
+                # A recommendation from your own client-side flagging.
+                sig do
+                  params(
+                    action:
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::OrSymbol,
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                    reason: String,
+                    source: String
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # Your recommendation for the content: allow, review, or reject.
+                  action:,
+                  # How your recommendation combines with ours. Defaults to 'escalate', which only
+                  # applies it when stricter than ours; 'override' replaces ours outright.
+                  behavior: nil,
+                  # A human-readable explanation for your recommendation.
+                  reason: nil,
+                  # Where your recommendation came from, e.g. "banned-ip".
+                  source: nil
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      action:
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::OrSymbol,
+                      behavior:
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                      reason: String,
+                      source: String
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                # Your recommendation for the content: allow, review, or reject.
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  REVIEW =
+                    T.let(
+                      :review,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  ALLOW =
+                    T.let(
+                      :allow,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  REJECT =
+                    T.let(
+                      :reject,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  OVERRIDE =
+                    T.let(
+                      :override,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+                  ESCALATE =
+                    T.let(
+                      :escalate,
+                      ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
               end
 
               # The original content payload
@@ -6759,6 +6955,26 @@ module ModerationAPI
               sig { returns(T.nilable(String)) }
               attr_accessor :channel_key
 
+              # A recommendation from your own client-side flagging.
+              sig do
+                returns(
+                  T.nilable(
+                    ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction
+                  )
+                )
+              end
+              attr_reader :client_action
+
+              sig do
+                params(
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::OrHash
+                    )
+                ).void
+              end
+              attr_writer :client_action
+
               # The original content payload
               sig do
                 returns(
@@ -6823,6 +7039,10 @@ module ModerationAPI
                   id: String,
                   author_id: T.nilable(String),
                   channel_key: T.nilable(String),
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::OrHash
+                    ),
                   content:
                     T.any(
                       ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Text::OrHash,
@@ -6856,6 +7076,8 @@ module ModerationAPI
                 # The channel the content was submitted to, identified by your customer-defined
                 # channel key.
                 channel_key:,
+                # A recommendation from your own client-side flagging.
+                client_action:,
                 # The original content payload
                 content:,
                 # Conversation grouping ID, if any
@@ -6883,6 +7105,10 @@ module ModerationAPI
                     id: String,
                     author_id: T.nilable(String),
                     channel_key: T.nilable(String),
+                    client_action:
+                      T.nilable(
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction
+                      ),
                     content:
                       T.any(
                         ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Text,
@@ -6910,6 +7136,172 @@ module ModerationAPI
                 )
               end
               def to_hash
+              end
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction,
+                      ModerationAPI::Internal::AnyHash
+                    )
+                  end
+
+                # Your recommendation for the content: allow, review, or reject.
+                sig do
+                  returns(
+                    ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::OrSymbol
+                  )
+                end
+                attr_accessor :action
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                sig do
+                  returns(
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                    )
+                  )
+                end
+                attr_reader :behavior
+
+                sig do
+                  params(
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                  ).void
+                end
+                attr_writer :behavior
+
+                # A human-readable explanation for your recommendation.
+                sig { returns(T.nilable(String)) }
+                attr_reader :reason
+
+                sig { params(reason: String).void }
+                attr_writer :reason
+
+                # Where your recommendation came from, e.g. "banned-ip".
+                sig { returns(T.nilable(String)) }
+                attr_reader :source
+
+                sig { params(source: String).void }
+                attr_writer :source
+
+                # A recommendation from your own client-side flagging.
+                sig do
+                  params(
+                    action:
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::OrSymbol,
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                    reason: String,
+                    source: String
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # Your recommendation for the content: allow, review, or reject.
+                  action:,
+                  # How your recommendation combines with ours. Defaults to 'escalate', which only
+                  # applies it when stricter than ours; 'override' replaces ours outright.
+                  behavior: nil,
+                  # A human-readable explanation for your recommendation.
+                  reason: nil,
+                  # Where your recommendation came from, e.g. "banned-ip".
+                  source: nil
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      action:
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::OrSymbol,
+                      behavior:
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                      reason: String,
+                      source: String
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                # Your recommendation for the content: allow, review, or reject.
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  REVIEW =
+                    T.let(
+                      :review,
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  ALLOW =
+                    T.let(
+                      :allow,
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  REJECT =
+                    T.let(
+                      :reject,
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  OVERRIDE =
+                    T.let(
+                      :override,
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+                  ESCALATE =
+                    T.let(
+                      :escalate,
+                      ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
               end
 
               # The original content payload
@@ -8532,6 +8924,26 @@ module ModerationAPI
               sig { returns(T.nilable(String)) }
               attr_accessor :channel_key
 
+              # A recommendation from your own client-side flagging.
+              sig do
+                returns(
+                  T.nilable(
+                    ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction
+                  )
+                )
+              end
+              attr_reader :client_action
+
+              sig do
+                params(
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::OrHash
+                    )
+                ).void
+              end
+              attr_writer :client_action
+
               # The original content payload
               sig do
                 returns(
@@ -8596,6 +9008,10 @@ module ModerationAPI
                   id: String,
                   author_id: T.nilable(String),
                   channel_key: T.nilable(String),
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::OrHash
+                    ),
                   content:
                     T.any(
                       ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Text::OrHash,
@@ -8629,6 +9045,8 @@ module ModerationAPI
                 # The channel the content was submitted to, identified by your customer-defined
                 # channel key.
                 channel_key:,
+                # A recommendation from your own client-side flagging.
+                client_action:,
                 # The original content payload
                 content:,
                 # Conversation grouping ID, if any
@@ -8656,6 +9074,10 @@ module ModerationAPI
                     id: String,
                     author_id: T.nilable(String),
                     channel_key: T.nilable(String),
+                    client_action:
+                      T.nilable(
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction
+                      ),
                     content:
                       T.any(
                         ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Text,
@@ -8683,6 +9105,172 @@ module ModerationAPI
                 )
               end
               def to_hash
+              end
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction,
+                      ModerationAPI::Internal::AnyHash
+                    )
+                  end
+
+                # Your recommendation for the content: allow, review, or reject.
+                sig do
+                  returns(
+                    ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::OrSymbol
+                  )
+                end
+                attr_accessor :action
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                sig do
+                  returns(
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                    )
+                  )
+                end
+                attr_reader :behavior
+
+                sig do
+                  params(
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                  ).void
+                end
+                attr_writer :behavior
+
+                # A human-readable explanation for your recommendation.
+                sig { returns(T.nilable(String)) }
+                attr_reader :reason
+
+                sig { params(reason: String).void }
+                attr_writer :reason
+
+                # Where your recommendation came from, e.g. "banned-ip".
+                sig { returns(T.nilable(String)) }
+                attr_reader :source
+
+                sig { params(source: String).void }
+                attr_writer :source
+
+                # A recommendation from your own client-side flagging.
+                sig do
+                  params(
+                    action:
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::OrSymbol,
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                    reason: String,
+                    source: String
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # Your recommendation for the content: allow, review, or reject.
+                  action:,
+                  # How your recommendation combines with ours. Defaults to 'escalate', which only
+                  # applies it when stricter than ours; 'override' replaces ours outright.
+                  behavior: nil,
+                  # A human-readable explanation for your recommendation.
+                  reason: nil,
+                  # Where your recommendation came from, e.g. "banned-ip".
+                  source: nil
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      action:
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::OrSymbol,
+                      behavior:
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                      reason: String,
+                      source: String
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                # Your recommendation for the content: allow, review, or reject.
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  REVIEW =
+                    T.let(
+                      :review,
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  ALLOW =
+                    T.let(
+                      :allow,
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  REJECT =
+                    T.let(
+                      :reject,
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  OVERRIDE =
+                    T.let(
+                      :override,
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+                  ESCALATE =
+                    T.let(
+                      :escalate,
+                      ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
               end
 
               # The original content payload
@@ -10303,6 +10891,26 @@ module ModerationAPI
               sig { returns(T.nilable(String)) }
               attr_accessor :channel_key
 
+              # A recommendation from your own client-side flagging.
+              sig do
+                returns(
+                  T.nilable(
+                    ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction
+                  )
+                )
+              end
+              attr_reader :client_action
+
+              sig do
+                params(
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::OrHash
+                    )
+                ).void
+              end
+              attr_writer :client_action
+
               # The original content payload
               sig do
                 returns(
@@ -10367,6 +10975,10 @@ module ModerationAPI
                   id: String,
                   author_id: T.nilable(String),
                   channel_key: T.nilable(String),
+                  client_action:
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::OrHash
+                    ),
                   content:
                     T.any(
                       ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Text::OrHash,
@@ -10400,6 +11012,8 @@ module ModerationAPI
                 # The channel the content was submitted to, identified by your customer-defined
                 # channel key.
                 channel_key:,
+                # A recommendation from your own client-side flagging.
+                client_action:,
                 # The original content payload
                 content:,
                 # Conversation grouping ID, if any
@@ -10427,6 +11041,10 @@ module ModerationAPI
                     id: String,
                     author_id: T.nilable(String),
                     channel_key: T.nilable(String),
+                    client_action:
+                      T.nilable(
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction
+                      ),
                     content:
                       T.any(
                         ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Text,
@@ -10454,6 +11072,172 @@ module ModerationAPI
                 )
               end
               def to_hash
+              end
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction,
+                      ModerationAPI::Internal::AnyHash
+                    )
+                  end
+
+                # Your recommendation for the content: allow, review, or reject.
+                sig do
+                  returns(
+                    ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::OrSymbol
+                  )
+                end
+                attr_accessor :action
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                sig do
+                  returns(
+                    T.nilable(
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                    )
+                  )
+                end
+                attr_reader :behavior
+
+                sig do
+                  params(
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::OrSymbol
+                  ).void
+                end
+                attr_writer :behavior
+
+                # A human-readable explanation for your recommendation.
+                sig { returns(T.nilable(String)) }
+                attr_reader :reason
+
+                sig { params(reason: String).void }
+                attr_writer :reason
+
+                # Where your recommendation came from, e.g. "banned-ip".
+                sig { returns(T.nilable(String)) }
+                attr_reader :source
+
+                sig { params(source: String).void }
+                attr_writer :source
+
+                # A recommendation from your own client-side flagging.
+                sig do
+                  params(
+                    action:
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::OrSymbol,
+                    behavior:
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                    reason: String,
+                    source: String
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # Your recommendation for the content: allow, review, or reject.
+                  action:,
+                  # How your recommendation combines with ours. Defaults to 'escalate', which only
+                  # applies it when stricter than ours; 'override' replaces ours outright.
+                  behavior: nil,
+                  # A human-readable explanation for your recommendation.
+                  reason: nil,
+                  # Where your recommendation came from, e.g. "banned-ip".
+                  source: nil
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      action:
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::OrSymbol,
+                      behavior:
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::OrSymbol,
+                      reason: String,
+                      source: String
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                # Your recommendation for the content: allow, review, or reject.
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  REVIEW =
+                    T.let(
+                      :review,
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  ALLOW =
+                    T.let(
+                      :allow,
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+                  REJECT =
+                    T.let(
+                      :reject,
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  OVERRIDE =
+                    T.let(
+                      :override,
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+                  ESCALATE =
+                    T.let(
+                      :escalate,
+                      ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
               end
 
               # The original content payload

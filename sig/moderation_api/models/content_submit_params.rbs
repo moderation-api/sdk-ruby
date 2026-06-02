@@ -5,6 +5,7 @@ module ModerationAPI
         content: ModerationAPI::Models::ContentSubmitParams::content,
         author_id: String,
         channel: String,
+        client_action: ModerationAPI::ContentSubmitParams::ClientAction,
         content_id: String,
         conversation_id: String,
         do_not_store: bool,
@@ -28,6 +29,12 @@ module ModerationAPI
       attr_reader channel: String?
 
       def channel=: (String) -> String
+
+      attr_reader client_action: ModerationAPI::ContentSubmitParams::ClientAction?
+
+      def client_action=: (
+        ModerationAPI::ContentSubmitParams::ClientAction
+      ) -> ModerationAPI::ContentSubmitParams::ClientAction
 
       attr_reader content_id: String?
 
@@ -65,6 +72,7 @@ module ModerationAPI
         content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,
         ?channel: String,
+        ?client_action: ModerationAPI::ContentSubmitParams::ClientAction,
         ?content_id: String,
         ?conversation_id: String,
         ?do_not_store: bool,
@@ -79,6 +87,7 @@ module ModerationAPI
         content: ModerationAPI::Models::ContentSubmitParams::content,
         author_id: String,
         channel: String,
+        client_action: ModerationAPI::ContentSubmitParams::ClientAction,
         content_id: String,
         conversation_id: String,
         do_not_store: bool,
@@ -246,6 +255,69 @@ module ModerationAPI
         end
 
         def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitParams::content]
+      end
+
+      type client_action =
+        {
+          action: ModerationAPI::Models::ContentSubmitParams::ClientAction::action,
+          behavior: ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior,
+          reason: String,
+          source: String
+        }
+
+      class ClientAction < ModerationAPI::Internal::Type::BaseModel
+        attr_accessor action: ModerationAPI::Models::ContentSubmitParams::ClientAction::action
+
+        attr_reader behavior: ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior?
+
+        def behavior=: (
+          ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior
+        ) -> ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior
+
+        attr_reader reason: String?
+
+        def reason=: (String) -> String
+
+        attr_reader source: String?
+
+        def source=: (String) -> String
+
+        def initialize: (
+          action: ModerationAPI::Models::ContentSubmitParams::ClientAction::action,
+          ?behavior: ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior,
+          ?reason: String,
+          ?source: String
+        ) -> void
+
+        def to_hash: -> {
+          action: ModerationAPI::Models::ContentSubmitParams::ClientAction::action,
+          behavior: ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior,
+          reason: String,
+          source: String
+        }
+
+        type action = :review | :allow | :reject
+
+        module Action
+          extend ModerationAPI::Internal::Type::Enum
+
+          REVIEW: :review
+          ALLOW: :allow
+          REJECT: :reject
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::ClientAction::action]
+        end
+
+        type behavior = :override | :escalate
+
+        module Behavior
+          extend ModerationAPI::Internal::Type::Enum
+
+          OVERRIDE: :override
+          ESCALATE: :escalate
+
+          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::ClientAction::behavior]
+        end
       end
 
       type meta_type =

@@ -15,6 +15,8 @@ module ModerationAPI
             ),
           author_id: String,
           channel: String,
+          client_action:
+            ModerationAPI::ContentSubmitParams::ClientAction::OrHash,
           content_id: String,
           conversation_id: String,
           do_not_store: T::Boolean,
@@ -66,6 +68,10 @@ module ModerationAPI
         # Provide a channel ID or key. Will use the project's default channel if not
         # provided.
         channel: nil,
+        # A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+        # third-party tool). Feeds the rules engine and can escalate or override the
+        # recommended action. Does not change whether our analysis flagged the content.
+        client_action: nil,
         # The unique ID of the content in your database.
         content_id: nil,
         # For example the ID of a chat room or a post

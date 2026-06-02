@@ -1846,6 +1846,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -1862,6 +1863,8 @@ module ModerationAPI
               attr_accessor author_id: String?
 
               attr_accessor channel_key: String?
+
+              attr_accessor client_action: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction?
 
               attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content
 
@@ -1883,6 +1886,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -1897,6 +1901,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -1906,6 +1911,69 @@ module ModerationAPI
                 metadata: ::Hash[Symbol, top]?,
                 timestamp: Time
               }
+
+              type client_action =
+                {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor action: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::action
+
+                attr_reader behavior: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior?
+
+                def behavior=: (
+                  ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior
+                ) -> ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior
+
+                attr_reader reason: String?
+
+                def reason=: (String) -> String
+
+                attr_reader source: String?
+
+                def source=: (String) -> String
+
+                def initialize: (
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::action,
+                  ?behavior: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior,
+                  ?reason: String,
+                  ?source: String
+                ) -> void
+
+                def to_hash: -> {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+                type action = :review | :allow | :reject
+
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW: :review
+                  ALLOW: :allow
+                  REJECT: :reject
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::action]
+                end
+
+                type behavior = :override | :escalate
+
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE: :override
+                  ESCALATE: :escalate
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::behavior]
+                end
+              end
 
               type content =
                 ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text
@@ -2795,6 +2863,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -2811,6 +2880,8 @@ module ModerationAPI
               attr_accessor author_id: String?
 
               attr_accessor channel_key: String?
+
+              attr_accessor client_action: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction?
 
               attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content
 
@@ -2832,6 +2903,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -2846,6 +2918,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -2855,6 +2928,69 @@ module ModerationAPI
                 metadata: ::Hash[Symbol, top]?,
                 timestamp: Time
               }
+
+              type client_action =
+                {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor action: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::action
+
+                attr_reader behavior: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior?
+
+                def behavior=: (
+                  ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior
+                ) -> ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior
+
+                attr_reader reason: String?
+
+                def reason=: (String) -> String
+
+                attr_reader source: String?
+
+                def source=: (String) -> String
+
+                def initialize: (
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::action,
+                  ?behavior: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior,
+                  ?reason: String,
+                  ?source: String
+                ) -> void
+
+                def to_hash: -> {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+                type action = :review | :allow | :reject
+
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW: :review
+                  ALLOW: :allow
+                  REJECT: :reject
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::action]
+                end
+
+                type behavior = :override | :escalate
+
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE: :override
+                  ESCALATE: :escalate
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::behavior]
+                end
+              end
 
               type content =
                 ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Text
@@ -3549,6 +3685,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -3565,6 +3702,8 @@ module ModerationAPI
               attr_accessor author_id: String?
 
               attr_accessor channel_key: String?
+
+              attr_accessor client_action: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction?
 
               attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content
 
@@ -3586,6 +3725,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -3600,6 +3740,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -3609,6 +3750,69 @@ module ModerationAPI
                 metadata: ::Hash[Symbol, top]?,
                 timestamp: Time
               }
+
+              type client_action =
+                {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor action: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::action
+
+                attr_reader behavior: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior?
+
+                def behavior=: (
+                  ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior
+                ) -> ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior
+
+                attr_reader reason: String?
+
+                def reason=: (String) -> String
+
+                attr_reader source: String?
+
+                def source=: (String) -> String
+
+                def initialize: (
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::action,
+                  ?behavior: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior,
+                  ?reason: String,
+                  ?source: String
+                ) -> void
+
+                def to_hash: -> {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+                type action = :review | :allow | :reject
+
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW: :review
+                  ALLOW: :allow
+                  REJECT: :reject
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::action]
+                end
+
+                type behavior = :override | :escalate
+
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE: :override
+                  ESCALATE: :escalate
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::behavior]
+                end
+              end
 
               type content =
                 ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Text
@@ -4303,6 +4507,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -4319,6 +4524,8 @@ module ModerationAPI
               attr_accessor author_id: String?
 
               attr_accessor channel_key: String?
+
+              attr_accessor client_action: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction?
 
               attr_accessor content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content
 
@@ -4340,6 +4547,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -4354,6 +4562,7 @@ module ModerationAPI
                 id: String,
                 author_id: String?,
                 channel_key: String?,
+                client_action: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction?,
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
@@ -4363,6 +4572,69 @@ module ModerationAPI
                 metadata: ::Hash[Symbol, top]?,
                 timestamp: Time
               }
+
+              type client_action =
+                {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                attr_accessor action: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::action
+
+                attr_reader behavior: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior?
+
+                def behavior=: (
+                  ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior
+                ) -> ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior
+
+                attr_reader reason: String?
+
+                def reason=: (String) -> String
+
+                attr_reader source: String?
+
+                def source=: (String) -> String
+
+                def initialize: (
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::action,
+                  ?behavior: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior,
+                  ?reason: String,
+                  ?source: String
+                ) -> void
+
+                def to_hash: -> {
+                  action: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::action,
+                  behavior: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior,
+                  reason: String,
+                  source: String
+                }
+
+                type action = :review | :allow | :reject
+
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW: :review
+                  ALLOW: :allow
+                  REJECT: :reject
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::action]
+                end
+
+                type behavior = :override | :escalate
+
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE: :override
+                  ESCALATE: :escalate
+
+                  def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::behavior]
+                end
+              end
 
               type content =
                 ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Text

@@ -43,6 +43,22 @@ module ModerationAPI
       sig { params(channel: String).void }
       attr_writer :channel
 
+      # A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+      # third-party tool). Feeds the rules engine and can escalate or override the
+      # recommended action. Does not change whether our analysis flagged the content.
+      sig do
+        returns(T.nilable(ModerationAPI::ContentSubmitParams::ClientAction))
+      end
+      attr_reader :client_action
+
+      sig do
+        params(
+          client_action:
+            ModerationAPI::ContentSubmitParams::ClientAction::OrHash
+        ).void
+      end
+      attr_writer :client_action
+
       # The unique ID of the content in your database.
       sig { returns(T.nilable(String)) }
       attr_reader :content_id
@@ -188,6 +204,8 @@ module ModerationAPI
             ),
           author_id: String,
           channel: String,
+          client_action:
+            ModerationAPI::ContentSubmitParams::ClientAction::OrHash,
           content_id: String,
           conversation_id: String,
           do_not_store: T::Boolean,
@@ -239,6 +257,10 @@ module ModerationAPI
         # Provide a channel ID or key. Will use the project's default channel if not
         # provided.
         channel: nil,
+        # A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+        # third-party tool). Feeds the rules engine and can escalate or override the
+        # recommended action. Does not change whether our analysis flagged the content.
+        client_action: nil,
         # The unique ID of the content in your database.
         content_id: nil,
         # For example the ID of a chat room or a post
@@ -271,6 +293,7 @@ module ModerationAPI
               ),
             author_id: String,
             channel: String,
+            client_action: ModerationAPI::ContentSubmitParams::ClientAction,
             content_id: String,
             conversation_id: String,
             do_not_store: T::Boolean,
@@ -720,6 +743,174 @@ module ModerationAPI
           )
         end
         def self.variants
+        end
+      end
+
+      class ClientAction < ModerationAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              ModerationAPI::ContentSubmitParams::ClientAction,
+              ModerationAPI::Internal::AnyHash
+            )
+          end
+
+        # Your recommendation for the content: allow, review, or reject.
+        sig do
+          returns(
+            ModerationAPI::ContentSubmitParams::ClientAction::Action::OrSymbol
+          )
+        end
+        attr_accessor :action
+
+        # How your recommendation combines with ours. Defaults to 'escalate', which only
+        # applies it when stricter than ours; 'override' replaces ours outright.
+        sig do
+          returns(
+            T.nilable(
+              ModerationAPI::ContentSubmitParams::ClientAction::Behavior::OrSymbol
+            )
+          )
+        end
+        attr_reader :behavior
+
+        sig do
+          params(
+            behavior:
+              ModerationAPI::ContentSubmitParams::ClientAction::Behavior::OrSymbol
+          ).void
+        end
+        attr_writer :behavior
+
+        # A human-readable explanation for your recommendation.
+        sig { returns(T.nilable(String)) }
+        attr_reader :reason
+
+        sig { params(reason: String).void }
+        attr_writer :reason
+
+        # Where your recommendation came from, e.g. "banned-ip".
+        sig { returns(T.nilable(String)) }
+        attr_reader :source
+
+        sig { params(source: String).void }
+        attr_writer :source
+
+        # A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+        # third-party tool). Feeds the rules engine and can escalate or override the
+        # recommended action. Does not change whether our analysis flagged the content.
+        sig do
+          params(
+            action:
+              ModerationAPI::ContentSubmitParams::ClientAction::Action::OrSymbol,
+            behavior:
+              ModerationAPI::ContentSubmitParams::ClientAction::Behavior::OrSymbol,
+            reason: String,
+            source: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Your recommendation for the content: allow, review, or reject.
+          action:,
+          # How your recommendation combines with ours. Defaults to 'escalate', which only
+          # applies it when stricter than ours; 'override' replaces ours outright.
+          behavior: nil,
+          # A human-readable explanation for your recommendation.
+          reason: nil,
+          # Where your recommendation came from, e.g. "banned-ip".
+          source: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              action:
+                ModerationAPI::ContentSubmitParams::ClientAction::Action::OrSymbol,
+              behavior:
+                ModerationAPI::ContentSubmitParams::ClientAction::Behavior::OrSymbol,
+              reason: String,
+              source: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Your recommendation for the content: allow, review, or reject.
+        module Action
+          extend ModerationAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                ModerationAPI::ContentSubmitParams::ClientAction::Action
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          REVIEW =
+            T.let(
+              :review,
+              ModerationAPI::ContentSubmitParams::ClientAction::Action::TaggedSymbol
+            )
+          ALLOW =
+            T.let(
+              :allow,
+              ModerationAPI::ContentSubmitParams::ClientAction::Action::TaggedSymbol
+            )
+          REJECT =
+            T.let(
+              :reject,
+              ModerationAPI::ContentSubmitParams::ClientAction::Action::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                ModerationAPI::ContentSubmitParams::ClientAction::Action::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # How your recommendation combines with ours. Defaults to 'escalate', which only
+        # applies it when stricter than ours; 'override' replaces ours outright.
+        module Behavior
+          extend ModerationAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                ModerationAPI::ContentSubmitParams::ClientAction::Behavior
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          OVERRIDE =
+            T.let(
+              :override,
+              ModerationAPI::ContentSubmitParams::ClientAction::Behavior::TaggedSymbol
+            )
+          ESCALATE =
+            T.let(
+              :escalate,
+              ModerationAPI::ContentSubmitParams::ClientAction::Behavior::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                ModerationAPI::ContentSubmitParams::ClientAction::Behavior::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 

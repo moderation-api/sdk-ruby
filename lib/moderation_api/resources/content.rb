@@ -6,13 +6,15 @@ module ModerationAPI
       # Some parameter documentations has been truncated, see
       # {ModerationAPI::Models::ContentSubmitParams} for more details.
       #
-      # @overload submit(content:, author_id: nil, channel: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, policies: nil, timestamp: nil, request_options: {})
+      # @overload submit(content:, author_id: nil, channel: nil, client_action: nil, content_id: nil, conversation_id: nil, do_not_store: nil, metadata: nil, meta_type: nil, policies: nil, timestamp: nil, request_options: {})
       #
       # @param content [ModerationAPI::Models::ContentSubmitParams::Content::Text, ModerationAPI::Models::ContentSubmitParams::Content::Image, ModerationAPI::Models::ContentSubmitParams::Content::Video, ModerationAPI::Models::ContentSubmitParams::Content::Audio, ModerationAPI::Models::ContentSubmitParams::Content::Object] The content sent for moderation
       #
       # @param author_id [String] The author of the content.
       #
       # @param channel [String] Provide a channel ID or key. Will use the project's default channel if not provi
+      #
+      # @param client_action [ModerationAPI::Models::ContentSubmitParams::ClientAction] A recommendation from your own client-side flagging (e.g. a banned-IP list or a
       #
       # @param content_id [String] The unique ID of the content in your database.
       #

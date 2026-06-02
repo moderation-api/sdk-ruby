@@ -4529,6 +4529,11 @@ module ModerationAPI
               sig { returns(T.nilable(T::Boolean)) }
               attr_accessor :flagged
 
+              # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              # when no fields were flagged or the content is not an object.
+              sig { returns(T::Array[String]) }
+              attr_accessor :flagged_fields
+
               # Moderation labels applied to the content
               sig do
                 returns(
@@ -4584,6 +4589,7 @@ module ModerationAPI
                     ),
                   conversation_id: T.nilable(String),
                   flagged: T.nilable(T::Boolean),
+                  flagged_fields: T::Array[String],
                   labels:
                     T.nilable(
                       T::Array[
@@ -4615,6 +4621,9 @@ module ModerationAPI
                 conversation_id:,
                 # Whether the content was flagged by moderation
                 flagged:,
+                # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+                # when no fields were flagged or the content is not an object.
+                flagged_fields:,
                 # Moderation labels applied to the content
                 labels:,
                 # Detected ISO language code, if available
@@ -4650,6 +4659,7 @@ module ModerationAPI
                       ),
                     conversation_id: T.nilable(String),
                     flagged: T.nilable(T::Boolean),
+                    flagged_fields: T::Array[String],
                     labels:
                       T.nilable(
                         T::Array[
@@ -6997,6 +7007,11 @@ module ModerationAPI
               sig { returns(T.nilable(T::Boolean)) }
               attr_accessor :flagged
 
+              # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              # when no fields were flagged or the content is not an object.
+              sig { returns(T::Array[String]) }
+              attr_accessor :flagged_fields
+
               # Moderation labels applied to the content
               sig do
                 returns(
@@ -7053,6 +7068,7 @@ module ModerationAPI
                     ),
                   conversation_id: T.nilable(String),
                   flagged: T.nilable(T::Boolean),
+                  flagged_fields: T::Array[String],
                   labels:
                     T.nilable(
                       T::Array[
@@ -7084,6 +7100,9 @@ module ModerationAPI
                 conversation_id:,
                 # Whether the content was flagged by moderation
                 flagged:,
+                # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+                # when no fields were flagged or the content is not an object.
+                flagged_fields:,
                 # Moderation labels applied to the content
                 labels:,
                 # Detected ISO language code, if available
@@ -7119,6 +7138,7 @@ module ModerationAPI
                       ),
                     conversation_id: T.nilable(String),
                     flagged: T.nilable(T::Boolean),
+                    flagged_fields: T::Array[String],
                     labels:
                       T.nilable(
                         T::Array[
@@ -8966,6 +8986,11 @@ module ModerationAPI
               sig { returns(T.nilable(T::Boolean)) }
               attr_accessor :flagged
 
+              # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              # when no fields were flagged or the content is not an object.
+              sig { returns(T::Array[String]) }
+              attr_accessor :flagged_fields
+
               # Moderation labels applied to the content
               sig do
                 returns(
@@ -9022,6 +9047,7 @@ module ModerationAPI
                     ),
                   conversation_id: T.nilable(String),
                   flagged: T.nilable(T::Boolean),
+                  flagged_fields: T::Array[String],
                   labels:
                     T.nilable(
                       T::Array[
@@ -9053,6 +9079,9 @@ module ModerationAPI
                 conversation_id:,
                 # Whether the content was flagged by moderation
                 flagged:,
+                # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+                # when no fields were flagged or the content is not an object.
+                flagged_fields:,
                 # Moderation labels applied to the content
                 labels:,
                 # Detected ISO language code, if available
@@ -9088,6 +9117,7 @@ module ModerationAPI
                       ),
                     conversation_id: T.nilable(String),
                     flagged: T.nilable(T::Boolean),
+                    flagged_fields: T::Array[String],
                     labels:
                       T.nilable(
                         T::Array[
@@ -10933,6 +10963,11 @@ module ModerationAPI
               sig { returns(T.nilable(T::Boolean)) }
               attr_accessor :flagged
 
+              # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              # when no fields were flagged or the content is not an object.
+              sig { returns(T::Array[String]) }
+              attr_accessor :flagged_fields
+
               # Moderation labels applied to the content
               sig do
                 returns(
@@ -10989,6 +11024,7 @@ module ModerationAPI
                     ),
                   conversation_id: T.nilable(String),
                   flagged: T.nilable(T::Boolean),
+                  flagged_fields: T::Array[String],
                   labels:
                     T.nilable(
                       T::Array[
@@ -11020,6 +11056,9 @@ module ModerationAPI
                 conversation_id:,
                 # Whether the content was flagged by moderation
                 flagged:,
+                # For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+                # when no fields were flagged or the content is not an object.
+                flagged_fields:,
                 # Moderation labels applied to the content
                 labels:,
                 # Detected ISO language code, if available
@@ -11055,6 +11094,7 @@ module ModerationAPI
                       ),
                     conversation_id: T.nilable(String),
                     flagged: T.nilable(T::Boolean),
+                    flagged_fields: T::Array[String],
                     labels:
                       T.nilable(
                         T::Array[

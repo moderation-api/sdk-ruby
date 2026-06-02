@@ -2464,6 +2464,13 @@ module ModerationAPI
               #   @return [Boolean, nil]
               required :flagged, ModerationAPI::Internal::Type::Boolean, nil?: true
 
+              # @!attribute flagged_fields
+              #   For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              #   when no fields were flagged or the content is not an object.
+              #
+              #   @return [Array<String>]
+              required :flagged_fields, ModerationAPI::Internal::Type::ArrayOf[String]
+
               # @!attribute labels
               #   Moderation labels applied to the content
               #
@@ -2506,7 +2513,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, flagged_fields:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item} for
               #   more details.
@@ -2524,6 +2531,8 @@ module ModerationAPI
               #   @param conversation_id [String, nil] Conversation grouping ID, if any
               #
               #   @param flagged [Boolean, nil] Whether the content was flagged by moderation
+              #
+              #   @param flagged_fields [Array<String>] For object content, the field keys (e.g. "bio") that triggered a flag. Empty whe
               #
               #   @param labels [Array<ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label>, nil] Moderation labels applied to the content
               #
@@ -3810,6 +3819,13 @@ module ModerationAPI
               #   @return [Boolean, nil]
               required :flagged, ModerationAPI::Internal::Type::Boolean, nil?: true
 
+              # @!attribute flagged_fields
+              #   For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              #   when no fields were flagged or the content is not an object.
+              #
+              #   @return [Array<String>]
+              required :flagged_fields, ModerationAPI::Internal::Type::ArrayOf[String]
+
               # @!attribute labels
               #   Moderation labels applied to the content
               #
@@ -3852,7 +3868,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, flagged_fields:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item} for
               #   more details.
@@ -3872,6 +3888,8 @@ module ModerationAPI
               #   @param conversation_id [String, nil] Conversation grouping ID, if any
               #
               #   @param flagged [Boolean, nil] Whether the content was flagged by moderation
+              #
+              #   @param flagged_fields [Array<String>] For object content, the field keys (e.g. "bio") that triggered a flag. Empty whe
               #
               #   @param labels [Array<ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Label>, nil] Moderation labels applied to the content
               #
@@ -4879,6 +4897,13 @@ module ModerationAPI
               #   @return [Boolean, nil]
               required :flagged, ModerationAPI::Internal::Type::Boolean, nil?: true
 
+              # @!attribute flagged_fields
+              #   For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              #   when no fields were flagged or the content is not an object.
+              #
+              #   @return [Array<String>]
+              required :flagged_fields, ModerationAPI::Internal::Type::ArrayOf[String]
+
               # @!attribute labels
               #   Moderation labels applied to the content
               #
@@ -4921,7 +4946,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, flagged_fields:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item} for
               #   more details.
@@ -4941,6 +4966,8 @@ module ModerationAPI
               #   @param conversation_id [String, nil] Conversation grouping ID, if any
               #
               #   @param flagged [Boolean, nil] Whether the content was flagged by moderation
+              #
+              #   @param flagged_fields [Array<String>] For object content, the field keys (e.g. "bio") that triggered a flag. Empty whe
               #
               #   @param labels [Array<ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Label>, nil] Moderation labels applied to the content
               #
@@ -5945,6 +5972,13 @@ module ModerationAPI
               #   @return [Boolean, nil]
               required :flagged, ModerationAPI::Internal::Type::Boolean, nil?: true
 
+              # @!attribute flagged_fields
+              #   For object content, the field keys (e.g. "bio") that triggered a flag. Empty
+              #   when no fields were flagged or the content is not an object.
+              #
+              #   @return [Array<String>]
+              required :flagged_fields, ModerationAPI::Internal::Type::ArrayOf[String]
+
               # @!attribute labels
               #   Moderation labels applied to the content
               #
@@ -5987,7 +6021,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, flagged_fields:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item} for
               #   more details.
@@ -6007,6 +6041,8 @@ module ModerationAPI
               #   @param conversation_id [String, nil] Conversation grouping ID, if any
               #
               #   @param flagged [Boolean, nil] Whether the content was flagged by moderation
+              #
+              #   @param flagged_fields [Array<String>] For object content, the field keys (e.g. "bio") that triggered a flag. Empty whe
               #
               #   @param labels [Array<ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label>, nil] Moderation labels applied to the content
               #

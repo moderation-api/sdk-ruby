@@ -1850,6 +1850,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::meta_type?,
@@ -1872,6 +1873,8 @@ module ModerationAPI
 
               attr_accessor flagged: bool?
 
+              attr_accessor flagged_fields: ::Array[String]
+
               attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label]?
 
               attr_accessor language: String?
@@ -1890,6 +1893,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::meta_type?,
@@ -1905,6 +1909,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::meta_type?,
@@ -2867,6 +2872,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?,
@@ -2889,6 +2895,8 @@ module ModerationAPI
 
               attr_accessor flagged: bool?
 
+              attr_accessor flagged_fields: ::Array[String]
+
               attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?
 
               attr_accessor language: String?
@@ -2907,6 +2915,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?,
@@ -2922,6 +2931,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type?,
@@ -3689,6 +3699,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?,
@@ -3711,6 +3722,8 @@ module ModerationAPI
 
               attr_accessor flagged: bool?
 
+              attr_accessor flagged_fields: ::Array[String]
+
               attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?
 
               attr_accessor language: String?
@@ -3729,6 +3742,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?,
@@ -3744,6 +3758,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type?,
@@ -4511,6 +4526,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?,
@@ -4533,6 +4549,8 @@ module ModerationAPI
 
               attr_accessor flagged: bool?
 
+              attr_accessor flagged_fields: ::Array[String]
+
               attr_accessor labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?
 
               attr_accessor language: String?
@@ -4551,6 +4569,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?,
@@ -4566,6 +4585,7 @@ module ModerationAPI
                 content: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::content,
                 conversation_id: String?,
                 flagged: bool?,
+                flagged_fields: ::Array[String],
                 labels: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label]?,
                 language: String?,
                 meta_type: ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type?,

@@ -907,6 +907,7 @@ module ModerationAPI
           RULE_MATCH = :rule_match
           RULE_DEFAULT = :rule_default
           RULE_FALLBACK = :rule_fallback
+          CLIENT_OVERRIDE = :client_override
 
           # @!method self.values
           #   @return [Array<Symbol>]

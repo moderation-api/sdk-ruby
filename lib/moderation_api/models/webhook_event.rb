@@ -2435,6 +2435,16 @@ module ModerationAPI
               #   @return [String, nil]
               required :channel_key, String, nil?: true
 
+              # @!attribute client_action
+              #   A recommendation from your own client-side flagging.
+              #
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction, nil]
+              required :client_action,
+                       -> {
+                         ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction
+                       },
+                       nil?: true
+
               # @!attribute content
               #   The original content payload
               #
@@ -2496,7 +2506,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item} for
               #   more details.
@@ -2506,6 +2516,8 @@ module ModerationAPI
               #   @param author_id [String, nil] External author ID (the customer's identifier, not Moderation API's internal id)
               #
               #   @param channel_key [String, nil] The channel the content was submitted to, identified by your customer-defined ch
+              #
+              #   @param client_action [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction, nil] A recommendation from your own client-side flagging.
               #
               #   @param content [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Content::Object] The original content payload
               #
@@ -2522,6 +2534,79 @@ module ModerationAPI
               #   @param metadata [Hash{Symbol=>Object}, nil] Arbitrary key/value metadata. Top-level keys are strings.
               #
               #   @param timestamp [Time] ISO 8601 timestamp of when the content was submitted
+
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item#client_action
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                # @!attribute action
+                #   Your recommendation for the content: allow, review, or reject.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action]
+                required :action,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action }
+
+                # @!attribute behavior
+                #   How your recommendation combines with ours. Defaults to 'escalate', which only
+                #   applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior, nil]
+                optional :behavior,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior }
+
+                # @!attribute reason
+                #   A human-readable explanation for your recommendation.
+                #
+                #   @return [String, nil]
+                optional :reason, String
+
+                # @!attribute source
+                #   Where your recommendation came from, e.g. "banned-ip".
+                #
+                #   @return [String, nil]
+                optional :source, String
+
+                # @!method initialize(action:, behavior: nil, reason: nil, source: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction}
+                #   for more details.
+                #
+                #   A recommendation from your own client-side flagging.
+                #
+                #   @param action [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Action] Your recommendation for the content: allow, review, or reject.
+                #
+                #   @param behavior [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction::Behavior] How your recommendation combines with ours. Defaults to 'escalate', which only a
+                #
+                #   @param reason [String] A human-readable explanation for your recommendation.
+                #
+                #   @param source [String] Where your recommendation came from, e.g. "banned-ip".
+
+                # Your recommendation for the content: allow, review, or reject.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction#action
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW = :review
+                  ALLOW = :allow
+                  REJECT = :reject
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::ClientAction#behavior
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE = :override
+                  ESCALATE = :escalate
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
 
               # The original content payload
               #
@@ -3699,6 +3784,14 @@ module ModerationAPI
               #   @return [String, nil]
               required :channel_key, String, nil?: true
 
+              # @!attribute client_action
+              #   A recommendation from your own client-side flagging.
+              #
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction, nil]
+              required :client_action,
+                       -> { ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction },
+                       nil?: true
+
               # @!attribute content
               #   The original content payload
               #
@@ -3759,7 +3852,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item} for
               #   more details.
@@ -3771,6 +3864,8 @@ module ModerationAPI
               #   @param author_id [String, nil] External author ID (the customer's identifier, not Moderation API's internal id)
               #
               #   @param channel_key [String, nil] The channel the content was submitted to, identified by your customer-defined ch
+              #
+              #   @param client_action [ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction, nil] A recommendation from your own client-side flagging.
               #
               #   @param content [ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Content::Object] The original content payload
               #
@@ -3787,6 +3882,79 @@ module ModerationAPI
               #   @param metadata [Hash{Symbol=>Object}, nil] Arbitrary key/value metadata. Top-level keys are strings.
               #
               #   @param timestamp [Time] ISO 8601 timestamp of when the content was submitted
+
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item#client_action
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                # @!attribute action
+                #   Your recommendation for the content: allow, review, or reject.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action]
+                required :action,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action }
+
+                # @!attribute behavior
+                #   How your recommendation combines with ours. Defaults to 'escalate', which only
+                #   applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior, nil]
+                optional :behavior,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior }
+
+                # @!attribute reason
+                #   A human-readable explanation for your recommendation.
+                #
+                #   @return [String, nil]
+                optional :reason, String
+
+                # @!attribute source
+                #   Where your recommendation came from, e.g. "banned-ip".
+                #
+                #   @return [String, nil]
+                optional :source, String
+
+                # @!method initialize(action:, behavior: nil, reason: nil, source: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction}
+                #   for more details.
+                #
+                #   A recommendation from your own client-side flagging.
+                #
+                #   @param action [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Action] Your recommendation for the content: allow, review, or reject.
+                #
+                #   @param behavior [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction::Behavior] How your recommendation combines with ours. Defaults to 'escalate', which only a
+                #
+                #   @param reason [String] A human-readable explanation for your recommendation.
+                #
+                #   @param source [String] Where your recommendation came from, e.g. "banned-ip".
+
+                # Your recommendation for the content: allow, review, or reject.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction#action
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW = :review
+                  ALLOW = :allow
+                  REJECT = :reject
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::ClientAction#behavior
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE = :override
+                  ESCALATE = :escalate
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
 
               # The original content payload
               #
@@ -4682,6 +4850,16 @@ module ModerationAPI
               #   @return [String, nil]
               required :channel_key, String, nil?: true
 
+              # @!attribute client_action
+              #   A recommendation from your own client-side flagging.
+              #
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction, nil]
+              required :client_action,
+                       -> {
+                         ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction
+                       },
+                       nil?: true
+
               # @!attribute content
               #   The original content payload
               #
@@ -4743,7 +4921,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item} for
               #   more details.
@@ -4755,6 +4933,8 @@ module ModerationAPI
               #   @param author_id [String, nil] External author ID (the customer's identifier, not Moderation API's internal id)
               #
               #   @param channel_key [String, nil] The channel the content was submitted to, identified by your customer-defined ch
+              #
+              #   @param client_action [ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction, nil] A recommendation from your own client-side flagging.
               #
               #   @param content [ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Content::Object] The original content payload
               #
@@ -4771,6 +4951,79 @@ module ModerationAPI
               #   @param metadata [Hash{Symbol=>Object}, nil] Arbitrary key/value metadata. Top-level keys are strings.
               #
               #   @param timestamp [Time] ISO 8601 timestamp of when the content was submitted
+
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item#client_action
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                # @!attribute action
+                #   Your recommendation for the content: allow, review, or reject.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action]
+                required :action,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action }
+
+                # @!attribute behavior
+                #   How your recommendation combines with ours. Defaults to 'escalate', which only
+                #   applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior, nil]
+                optional :behavior,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior }
+
+                # @!attribute reason
+                #   A human-readable explanation for your recommendation.
+                #
+                #   @return [String, nil]
+                optional :reason, String
+
+                # @!attribute source
+                #   Where your recommendation came from, e.g. "banned-ip".
+                #
+                #   @return [String, nil]
+                optional :source, String
+
+                # @!method initialize(action:, behavior: nil, reason: nil, source: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction}
+                #   for more details.
+                #
+                #   A recommendation from your own client-side flagging.
+                #
+                #   @param action [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Action] Your recommendation for the content: allow, review, or reject.
+                #
+                #   @param behavior [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction::Behavior] How your recommendation combines with ours. Defaults to 'escalate', which only a
+                #
+                #   @param reason [String] A human-readable explanation for your recommendation.
+                #
+                #   @param source [String] Where your recommendation came from, e.g. "banned-ip".
+
+                # Your recommendation for the content: allow, review, or reject.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction#action
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW = :review
+                  ALLOW = :allow
+                  REJECT = :reject
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::ClientAction#behavior
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE = :override
+                  ESCALATE = :escalate
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
 
               # The original content payload
               #
@@ -5665,6 +5918,14 @@ module ModerationAPI
               #   @return [String, nil]
               required :channel_key, String, nil?: true
 
+              # @!attribute client_action
+              #   A recommendation from your own client-side flagging.
+              #
+              #   @return [ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction, nil]
+              required :client_action,
+                       -> { ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction },
+                       nil?: true
+
               # @!attribute content
               #   The original content payload
               #
@@ -5726,7 +5987,7 @@ module ModerationAPI
               #   @return [Time]
               required :timestamp, Time
 
-              # @!method initialize(id:, author_id:, channel_key:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
+              # @!method initialize(id:, author_id:, channel_key:, client_action:, content:, conversation_id:, flagged:, labels:, language:, meta_type:, metadata:, timestamp:)
               #   Some parameter documentations has been truncated, see
               #   {ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item} for
               #   more details.
@@ -5738,6 +5999,8 @@ module ModerationAPI
               #   @param author_id [String, nil] External author ID (the customer's identifier, not Moderation API's internal id)
               #
               #   @param channel_key [String, nil] The channel the content was submitted to, identified by your customer-defined ch
+              #
+              #   @param client_action [ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction, nil] A recommendation from your own client-side flagging.
               #
               #   @param content [ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Text, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Image, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Video, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Audio, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Content::Object] The original content payload
               #
@@ -5754,6 +6017,79 @@ module ModerationAPI
               #   @param metadata [Hash{Symbol=>Object}, nil] Arbitrary key/value metadata. Top-level keys are strings.
               #
               #   @param timestamp [Time] ISO 8601 timestamp of when the content was submitted
+
+              # @see ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item#client_action
+              class ClientAction < ModerationAPI::Internal::Type::BaseModel
+                # @!attribute action
+                #   Your recommendation for the content: allow, review, or reject.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action]
+                required :action,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action }
+
+                # @!attribute behavior
+                #   How your recommendation combines with ours. Defaults to 'escalate', which only
+                #   applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                #   @return [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior, nil]
+                optional :behavior,
+                         enum: -> { ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior }
+
+                # @!attribute reason
+                #   A human-readable explanation for your recommendation.
+                #
+                #   @return [String, nil]
+                optional :reason, String
+
+                # @!attribute source
+                #   Where your recommendation came from, e.g. "banned-ip".
+                #
+                #   @return [String, nil]
+                optional :source, String
+
+                # @!method initialize(action:, behavior: nil, reason: nil, source: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction}
+                #   for more details.
+                #
+                #   A recommendation from your own client-side flagging.
+                #
+                #   @param action [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Action] Your recommendation for the content: allow, review, or reject.
+                #
+                #   @param behavior [Symbol, ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction::Behavior] How your recommendation combines with ours. Defaults to 'escalate', which only a
+                #
+                #   @param reason [String] A human-readable explanation for your recommendation.
+                #
+                #   @param source [String] Where your recommendation came from, e.g. "banned-ip".
+
+                # Your recommendation for the content: allow, review, or reject.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction#action
+                module Action
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  REVIEW = :review
+                  ALLOW = :allow
+                  REJECT = :reject
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+
+                # How your recommendation combines with ours. Defaults to 'escalate', which only
+                # applies it when stricter than ours; 'override' replaces ours outright.
+                #
+                # @see ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::ClientAction#behavior
+                module Behavior
+                  extend ModerationAPI::Internal::Type::Enum
+
+                  OVERRIDE = :override
+                  ESCALATE = :escalate
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
 
               # The original content payload
               #

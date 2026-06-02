@@ -1776,6 +1776,11 @@ module ModerationAPI
               :rule_fallback,
               ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
+          CLIENT_OVERRIDE =
+            T.let(
+              :client_override,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
 
           sig do
             override.returns(

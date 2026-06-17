@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.22.1 (2026-06-17)
+
+Full Changelog: [v2.22.0...v2.22.1](https://github.com/moderation-api/sdk-ruby/compare/v2.22.0...v2.22.1)
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([57f5fbd](https://github.com/moderation-api/sdk-ruby/commit/57f5fbd2d7f24ca09f81519c2aaca5500423622b))
+
 ## 2.22.0 (2026-06-02)
 
 Full Changelog: [v2.21.0...v2.22.0](https://github.com/moderation-api/sdk-ruby/compare/v2.21.0...v2.22.0)

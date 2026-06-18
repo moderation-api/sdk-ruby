@@ -441,6 +441,7 @@ module ModerationAPI
         EVENT = :event
         PRODUCT = :product
         REVIEW = :review
+        VOICE = :voice
         OTHER = :other
 
         # @!method self.values

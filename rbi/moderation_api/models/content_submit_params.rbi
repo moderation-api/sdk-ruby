@@ -959,6 +959,11 @@ module ModerationAPI
             :review,
             ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
           )
+        VOICE =
+          T.let(
+            :voice,
+            ModerationAPI::ContentSubmitParams::MetaType::TaggedSymbol
+          )
         OTHER =
           T.let(
             :other,

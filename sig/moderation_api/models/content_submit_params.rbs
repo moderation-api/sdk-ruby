@@ -328,6 +328,7 @@ module ModerationAPI
         | :event
         | :product
         | :review
+        | :voice
         | :other
 
       module MetaType
@@ -340,6 +341,7 @@ module ModerationAPI
         EVENT: :event
         PRODUCT: :product
         REVIEW: :review
+        VOICE: :voice
         OTHER: :other
 
         def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitParams::meta_type]

@@ -2325,6 +2325,7 @@ module ModerationAPI
                 | :event
                 | :product
                 | :review
+                | :voice
                 | :other
 
               module MetaType
@@ -2337,6 +2338,7 @@ module ModerationAPI
                 EVENT: :event
                 PRODUCT: :product
                 REVIEW: :review
+                VOICE: :voice
                 OTHER: :other
 
                 def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::meta_type]
@@ -3347,6 +3349,7 @@ module ModerationAPI
                 | :event
                 | :product
                 | :review
+                | :voice
                 | :other
 
               module MetaType
@@ -3359,6 +3362,7 @@ module ModerationAPI
                 EVENT: :event
                 PRODUCT: :product
                 REVIEW: :review
+                VOICE: :voice
                 OTHER: :other
 
                 def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::meta_type]
@@ -4174,6 +4178,7 @@ module ModerationAPI
                 | :event
                 | :product
                 | :review
+                | :voice
                 | :other
 
               module MetaType
@@ -4186,6 +4191,7 @@ module ModerationAPI
                 EVENT: :event
                 PRODUCT: :product
                 REVIEW: :review
+                VOICE: :voice
                 OTHER: :other
 
                 def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::meta_type]
@@ -5001,6 +5007,7 @@ module ModerationAPI
                 | :event
                 | :product
                 | :review
+                | :voice
                 | :other
 
               module MetaType
@@ -5013,6 +5020,7 @@ module ModerationAPI
                 EVENT: :event
                 PRODUCT: :product
                 REVIEW: :review
+                VOICE: :voice
                 OTHER: :other
 
                 def self?.values: -> ::Array[ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::meta_type]

@@ -5645,6 +5645,11 @@ module ModerationAPI
                     :review,
                     ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
                   )
+                VOICE =
+                  T.let(
+                    :voice,
+                    ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::MetaType::TaggedSymbol
+                  )
                 OTHER =
                   T.let(
                     :other,
@@ -8124,6 +8129,11 @@ module ModerationAPI
                     :review,
                     ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::MetaType::TaggedSymbol
                   )
+                VOICE =
+                  T.let(
+                    :voice,
+                    ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::MetaType::TaggedSymbol
+                  )
                 OTHER =
                   T.let(
                     :other,
@@ -10103,6 +10113,11 @@ module ModerationAPI
                     :review,
                     ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::MetaType::TaggedSymbol
                   )
+                VOICE =
+                  T.let(
+                    :voice,
+                    ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::MetaType::TaggedSymbol
+                  )
                 OTHER =
                   T.let(
                     :other,
@@ -12078,6 +12093,11 @@ module ModerationAPI
                 REVIEW =
                   T.let(
                     :review,
+                    ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::MetaType::TaggedSymbol
+                  )
+                VOICE =
+                  T.let(
+                    :voice,
                     ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::MetaType::TaggedSymbol
                   )
                 OTHER =

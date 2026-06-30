@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.23.1 (2026-06-30)
+
+Full Changelog: [v2.23.0...v2.23.1](https://github.com/moderation-api/sdk-ruby/compare/v2.23.0...v2.23.1)
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([3980040](https://github.com/moderation-api/sdk-ruby/commit/398004079843e4072b9d33c1ba61740a0cdc7e10))
+
 ## 2.23.0 (2026-06-18)
 
 Full Changelog: [v2.22.1...v2.23.0](https://github.com/moderation-api/sdk-ruby/compare/v2.22.1...v2.23.0)

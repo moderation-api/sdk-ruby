@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.24.0 (2026-07-18)
+
+Full Changelog: [v2.23.0...v2.24.0](https://github.com/moderation-api/sdk-ruby/compare/v2.23.0...v2.24.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([f3ec520](https://github.com/moderation-api/sdk-ruby/commit/f3ec5200eb8f5e8fbbec4143f1e0eda1563677cb))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([3980040](https://github.com/moderation-api/sdk-ruby/commit/398004079843e4072b9d33c1ba61740a0cdc7e10))
+
 ## 2.23.0 (2026-06-18)
 
 Full Changelog: [v2.22.1...v2.23.0](https://github.com/moderation-api/sdk-ruby/compare/v2.22.1...v2.23.0)

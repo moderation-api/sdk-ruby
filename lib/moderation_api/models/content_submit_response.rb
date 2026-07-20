@@ -201,6 +201,14 @@ module ModerationAPI
                  union: -> { ModerationAPI::Models::ContentSubmitResponse::Content::Modified },
                  nil?: true
 
+        # @!attribute unicode_cleaned
+        #   Whether Unicode spoofing normalization rewrote the content — confusables folded
+        #   to their Latin lookalikes, invisible characters and combining-mark abuse
+        #   stripped.
+        #
+        #   @return [Boolean]
+        required :unicode_cleaned, ModerationAPI::Internal::Type::Boolean
+
         # @!attribute transcript
         #   The transcribed text from audio content. Only present when audio moderation is
         #   used and transcript inclusion is enabled on the channel.
@@ -208,15 +216,7 @@ module ModerationAPI
         #   @return [String, nil]
         optional :transcript, String, nil?: true
 
-        # @!attribute unicode_cleaned
-        #   Whether Unicode spoofing normalization rewrote the content — confusables folded
-        #   to their Latin lookalikes, invisible characters and combining-mark abuse
-        #   stripped.
-        #
-        #   @return [Boolean, nil]
-        optional :unicode_cleaned, ModerationAPI::Internal::Type::Boolean
-
-        # @!method initialize(id:, masked:, modified:, transcript: nil, unicode_cleaned: nil)
+        # @!method initialize(id:, masked:, modified:, unicode_cleaned:, transcript: nil)
         #   Some parameter documentations has been truncated, see
         #   {ModerationAPI::Models::ContentSubmitResponse::Content} for more details.
         #
@@ -228,9 +228,9 @@ module ModerationAPI
         #
         #   @param modified [String, Hash{Symbol=>Object}, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio}, nil] The modified content, if any.
         #
-        #   @param transcript [String, nil] The transcribed text from audio content. Only present when audio moderation is u
-        #
         #   @param unicode_cleaned [Boolean] Whether Unicode spoofing normalization rewrote the content — confusables folded
+        #
+        #   @param transcript [String, nil] The transcribed text from audio content. Only present when audio moderation is u
 
         # The modified content, if any.
         #

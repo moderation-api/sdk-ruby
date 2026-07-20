@@ -2049,9 +2049,10 @@ module ModerationAPI
           sig { returns(T::Boolean) }
           attr_accessor :flag
 
-          # Per-signal flag toggles. Omitted signals are enabled. A signal set to { flag:
-          # false } is still detected and reported as a label, but does not by itself flag
-          # the policy.
+          # Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage
+          # defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an
+          # attack. A disabled signal is still detected and reported as a label, but does
+          # not by itself flag the policy.
           sig do
             returns(
               T.nilable(
@@ -2095,9 +2096,10 @@ module ModerationAPI
           end
           def self.new(
             flag:,
-            # Per-signal flag toggles. Omitted signals are enabled. A signal set to { flag:
-            # false } is still detected and reported as a label, but does not by itself flag
-            # the policy.
+            # Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage
+            # defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an
+            # attack. A disabled signal is still detected and reported as a label, but does
+            # not by itself flag the policy.
             signals: nil,
             threshold: nil,
             id: :unicode_spoofing

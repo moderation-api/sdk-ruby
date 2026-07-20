@@ -373,6 +373,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::Political
         | ModerationAPI::ContentSubmitParams::Policy::Religion
         | ModerationAPI::ContentSubmitParams::Policy::CodeAbuse
+        | ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing
         | ModerationAPI::ContentSubmitParams::Policy::PiiMasking
         | ModerationAPI::ContentSubmitParams::Policy::URLMasking
         | ModerationAPI::ContentSubmitParams::Policy::URLRisk
@@ -922,6 +923,56 @@ module ModerationAPI
           ) -> void
 
           def to_hash: -> { id: :code_abuse, flag: bool, threshold: Float }
+        end
+
+        type unicode_spoofing =
+          {
+            id: :unicode_spoofing,
+            flag: bool,
+            signals: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal],
+            threshold: Float
+          }
+
+        class UnicodeSpoofing < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :unicode_spoofing
+
+          attr_accessor flag: bool
+
+          attr_reader signals: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal]?
+
+          def signals=: (
+            ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal]
+          ) -> ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal]
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?signals: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal],
+            ?threshold: Float,
+            ?id: :unicode_spoofing
+          ) -> void
+
+          def to_hash: -> {
+            id: :unicode_spoofing,
+            flag: bool,
+            signals: ::Hash[Symbol, ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal],
+            threshold: Float
+          }
+
+          type signal = { flag: bool }
+
+          class Signal < ModerationAPI::Internal::Type::BaseModel
+            attr_reader flag: bool?
+
+            def flag=: (bool) -> bool
+
+            def initialize: (?flag: bool) -> void
+
+            def to_hash: -> { flag: bool }
+          end
         end
 
         type pii_masking =

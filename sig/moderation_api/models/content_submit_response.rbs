@@ -133,7 +133,8 @@ module ModerationAPI
           id: String,
           masked: bool,
           modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?,
-          transcript: String?
+          transcript: String?,
+          unicode_cleaned: bool
         }
 
       class Content < ModerationAPI::Internal::Type::BaseModel
@@ -145,18 +146,24 @@ module ModerationAPI
 
         attr_accessor transcript: String?
 
+        attr_reader unicode_cleaned: bool?
+
+        def unicode_cleaned=: (bool) -> bool
+
         def initialize: (
           id: String,
           masked: bool,
           modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?,
-          ?transcript: String?
+          ?transcript: String?,
+          ?unicode_cleaned: bool
         ) -> void
 
         def to_hash: -> {
           id: String,
           masked: bool,
           modified: ModerationAPI::Models::ContentSubmitResponse::Content::modified?,
-          transcript: String?
+          transcript: String?,
+          unicode_cleaned: bool
         }
 
         type modified =

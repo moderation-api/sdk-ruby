@@ -133,6 +133,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Political,
                 ModerationAPI::ContentSubmitParams::Policy::Religion,
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
+                ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking,
                 ModerationAPI::ContentSubmitParams::Policy::URLRisk,
@@ -174,6 +175,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLRisk::OrHash,
@@ -239,6 +241,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLRisk::OrHash,
@@ -327,6 +330,7 @@ module ModerationAPI
                   ModerationAPI::ContentSubmitParams::Policy::Political,
                   ModerationAPI::ContentSubmitParams::Policy::Religion,
                   ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
+                  ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing,
                   ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
                   ModerationAPI::ContentSubmitParams::Policy::URLMasking,
                   ModerationAPI::ContentSubmitParams::Policy::URLRisk,
@@ -1010,6 +1014,7 @@ module ModerationAPI
               ModerationAPI::ContentSubmitParams::Policy::Political,
               ModerationAPI::ContentSubmitParams::Policy::Religion,
               ModerationAPI::ContentSubmitParams::Policy::CodeAbuse,
+              ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing,
               ModerationAPI::ContentSubmitParams::Policy::PiiMasking,
               ModerationAPI::ContentSubmitParams::Policy::URLMasking,
               ModerationAPI::ContentSubmitParams::Policy::URLRisk,
@@ -2026,6 +2031,118 @@ module ModerationAPI
             override.returns({ id: Symbol, flag: T::Boolean, threshold: Float })
           end
           def to_hash
+          end
+        end
+
+        class UnicodeSpoofing < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :id
+
+          sig { returns(T::Boolean) }
+          attr_accessor :flag
+
+          # Per-signal flag toggles. Omitted signals are enabled. A signal set to { flag:
+          # false } is still detected and reported as a label, but does not by itself flag
+          # the policy.
+          sig do
+            returns(
+              T.nilable(
+                T::Hash[
+                  Symbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal
+                ]
+              )
+            )
+          end
+          attr_reader :signals
+
+          sig do
+            params(
+              signals:
+                T::Hash[
+                  Symbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal::OrHash
+                ]
+            ).void
+          end
+          attr_writer :signals
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :threshold
+
+          sig { params(threshold: Float).void }
+          attr_writer :threshold
+
+          sig do
+            params(
+              flag: T::Boolean,
+              signals:
+                T::Hash[
+                  Symbol,
+                  ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal::OrHash
+                ],
+              threshold: Float,
+              id: Symbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            flag:,
+            # Per-signal flag toggles. Omitted signals are enabled. A signal set to { flag:
+            # false } is still detected and reported as a label, but does not by itself flag
+            # the policy.
+            signals: nil,
+            threshold: nil,
+            id: :unicode_spoofing
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: Symbol,
+                flag: T::Boolean,
+                signals:
+                  T::Hash[
+                    Symbol,
+                    ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal
+                  ],
+                threshold: Float
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Signal < ModerationAPI::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::Signal,
+                  ModerationAPI::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :flag
+
+            sig { params(flag: T::Boolean).void }
+            attr_writer :flag
+
+            sig { params(flag: T::Boolean).returns(T.attached_class) }
+            def self.new(flag: nil)
+            end
+
+            sig { override.returns({ flag: T::Boolean }) }
+            def to_hash
+            end
           end
         end
 

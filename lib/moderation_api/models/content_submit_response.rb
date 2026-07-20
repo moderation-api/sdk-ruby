@@ -208,7 +208,15 @@ module ModerationAPI
         #   @return [String, nil]
         optional :transcript, String, nil?: true
 
-        # @!method initialize(id:, masked:, modified:, transcript: nil)
+        # @!attribute unicode_cleaned
+        #   Whether Unicode spoofing normalization rewrote the content — confusables folded
+        #   to their Latin lookalikes, invisible characters and combining-mark abuse
+        #   stripped.
+        #
+        #   @return [Boolean, nil]
+        optional :unicode_cleaned, ModerationAPI::Internal::Type::Boolean
+
+        # @!method initialize(id:, masked:, modified:, transcript: nil, unicode_cleaned: nil)
         #   Some parameter documentations has been truncated, see
         #   {ModerationAPI::Models::ContentSubmitResponse::Content} for more details.
         #
@@ -221,6 +229,8 @@ module ModerationAPI
         #   @param modified [String, Hash{Symbol=>Object}, Hash{Symbol=>ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Text, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Image, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Video, ModerationAPI::Models::ContentSubmitResponse::Content::Modified::ModifiedNestedObjectContent::Audio}, nil] The modified content, if any.
         #
         #   @param transcript [String, nil] The transcribed text from audio content. Only present when audio moderation is u
+        #
+        #   @param unicode_cleaned [Boolean] Whether Unicode spoofing normalization rewrote the content — confusables folded
 
         # The modified content, if any.
         #

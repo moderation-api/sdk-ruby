@@ -447,19 +447,16 @@ module ModerationAPI
         end
         attr_accessor :modified
 
+        # Whether Unicode spoofing normalization rewrote the content — confusables folded
+        # to their Latin lookalikes, invisible characters and combining-mark abuse
+        # stripped.
+        sig { returns(T::Boolean) }
+        attr_accessor :unicode_cleaned
+
         # The transcribed text from audio content. Only present when audio moderation is
         # used and transcript inclusion is enabled on the channel.
         sig { returns(T.nilable(String)) }
         attr_accessor :transcript
-
-        # Whether Unicode spoofing normalization rewrote the content — confusables folded
-        # to their Latin lookalikes, invisible characters and combining-mark abuse
-        # stripped.
-        sig { returns(T.nilable(T::Boolean)) }
-        attr_reader :unicode_cleaned
-
-        sig { params(unicode_cleaned: T::Boolean).void }
-        attr_writer :unicode_cleaned
 
         # Potentially modified content.
         sig do
@@ -470,8 +467,8 @@ module ModerationAPI
               T.nilable(
                 ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
               ),
-            transcript: T.nilable(String),
-            unicode_cleaned: T::Boolean
+            unicode_cleaned: T::Boolean,
+            transcript: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -482,13 +479,13 @@ module ModerationAPI
           masked:,
           # The modified content, if any.
           modified:,
-          # The transcribed text from audio content. Only present when audio moderation is
-          # used and transcript inclusion is enabled on the channel.
-          transcript: nil,
           # Whether Unicode spoofing normalization rewrote the content — confusables folded
           # to their Latin lookalikes, invisible characters and combining-mark abuse
           # stripped.
-          unicode_cleaned: nil
+          unicode_cleaned:,
+          # The transcribed text from audio content. Only present when audio moderation is
+          # used and transcript inclusion is enabled on the channel.
+          transcript: nil
         )
         end
 
@@ -501,8 +498,8 @@ module ModerationAPI
                 T.nilable(
                   ModerationAPI::Models::ContentSubmitResponse::Content::Modified::Variants
                 ),
-              transcript: T.nilable(String),
-              unicode_cleaned: T::Boolean
+              unicode_cleaned: T::Boolean,
+              transcript: T.nilable(String)
             }
           )
         end

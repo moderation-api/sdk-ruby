@@ -50,6 +50,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Political::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Religion::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::CodeAbuse::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::UnicodeSpoofing::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::PiiMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLMasking::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::URLRisk::OrHash,

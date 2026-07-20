@@ -1126,9 +1126,10 @@ module ModerationAPI
           required :flag, ModerationAPI::Internal::Type::Boolean
 
           # @!attribute signals
-          #   Per-signal flag toggles. Omitted signals are enabled. A signal set to { flag:
-          #   false } is still detected and reported as a label, but does not by itself flag
-          #   the policy.
+          #   Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage
+          #   defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an
+          #   attack. A disabled signal is still detected and reported as a label, but does
+          #   not by itself flag the policy.
           #
           #   @return [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnicodeSpoofing::Signal}, nil]
           optional :signals,
@@ -1146,7 +1147,7 @@ module ModerationAPI
           #
           #   @param flag [Boolean]
           #
-          #   @param signals [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnicodeSpoofing::Signal}] Per-signal flag toggles. Omitted signals are enabled. A signal set to { flag: fa
+          #   @param signals [Hash{Symbol=>ModerationAPI::Models::ContentSubmitParams::Policy::UnicodeSpoofing::Signal}] Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage d
           #
           #   @param threshold [Float]
           #

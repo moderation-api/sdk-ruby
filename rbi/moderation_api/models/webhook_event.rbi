@@ -5413,6 +5413,12 @@ module ModerationAPI
                   sig { params(reasons: T::Array[String]).void }
                   attr_writer :reasons
 
+                  sig { returns(T.nilable(T::Array[String])) }
+                  attr_reader :scripts
+
+                  sig { params(scripts: T::Array[String]).void }
+                  attr_writer :scripts
+
                   sig do
                     returns(
                       T.nilable(
@@ -5430,6 +5436,12 @@ module ModerationAPI
                   end
                   attr_writer :signals
 
+                  sig { returns(T.nilable(String)) }
+                  attr_reader :skeleton
+
+                  sig { params(skeleton: String).void }
+                  attr_writer :skeleton
+
                   sig do
                     params(
                       match: String,
@@ -5438,8 +5450,10 @@ module ModerationAPI
                       entity_type: String,
                       mask: T.nilable(String),
                       reasons: T::Array[String],
+                      scripts: T::Array[String],
                       signals:
-                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals::OrHash,
+                      skeleton: String
                     ).returns(T.attached_class)
                   end
                   def self.new(
@@ -5452,7 +5466,9 @@ module ModerationAPI
                     entity_type: nil,
                     mask: nil,
                     reasons: nil,
-                    signals: nil
+                    scripts: nil,
+                    signals: nil,
+                    skeleton: nil
                   )
                   end
 
@@ -5465,8 +5481,10 @@ module ModerationAPI
                         entity_type: String,
                         mask: T.nilable(String),
                         reasons: T::Array[String],
+                        scripts: T::Array[String],
                         signals:
-                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
+                          ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals,
+                        skeleton: String
                       }
                     )
                   end
@@ -7910,6 +7928,12 @@ module ModerationAPI
                   sig { params(reasons: T::Array[String]).void }
                   attr_writer :reasons
 
+                  sig { returns(T.nilable(T::Array[String])) }
+                  attr_reader :scripts
+
+                  sig { params(scripts: T::Array[String]).void }
+                  attr_writer :scripts
+
                   sig do
                     returns(
                       T.nilable(
@@ -7927,6 +7951,12 @@ module ModerationAPI
                   end
                   attr_writer :signals
 
+                  sig { returns(T.nilable(String)) }
+                  attr_reader :skeleton
+
+                  sig { params(skeleton: String).void }
+                  attr_writer :skeleton
+
                   sig do
                     params(
                       match: String,
@@ -7935,8 +7965,10 @@ module ModerationAPI
                       entity_type: String,
                       mask: T.nilable(String),
                       reasons: T::Array[String],
+                      scripts: T::Array[String],
                       signals:
-                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals::OrHash,
+                      skeleton: String
                     ).returns(T.attached_class)
                   end
                   def self.new(
@@ -7949,7 +7981,9 @@ module ModerationAPI
                     entity_type: nil,
                     mask: nil,
                     reasons: nil,
-                    signals: nil
+                    scripts: nil,
+                    signals: nil,
+                    skeleton: nil
                   )
                   end
 
@@ -7962,8 +7996,10 @@ module ModerationAPI
                         entity_type: String,
                         mask: T.nilable(String),
                         reasons: T::Array[String],
+                        scripts: T::Array[String],
                         signals:
-                          ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                          ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals,
+                        skeleton: String
                       }
                     )
                   end
@@ -9907,6 +9943,12 @@ module ModerationAPI
                   sig { params(reasons: T::Array[String]).void }
                   attr_writer :reasons
 
+                  sig { returns(T.nilable(T::Array[String])) }
+                  attr_reader :scripts
+
+                  sig { params(scripts: T::Array[String]).void }
+                  attr_writer :scripts
+
                   sig do
                     returns(
                       T.nilable(
@@ -9924,6 +9966,12 @@ module ModerationAPI
                   end
                   attr_writer :signals
 
+                  sig { returns(T.nilable(String)) }
+                  attr_reader :skeleton
+
+                  sig { params(skeleton: String).void }
+                  attr_writer :skeleton
+
                   sig do
                     params(
                       match: String,
@@ -9932,8 +9980,10 @@ module ModerationAPI
                       entity_type: String,
                       mask: T.nilable(String),
                       reasons: T::Array[String],
+                      scripts: T::Array[String],
                       signals:
-                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals::OrHash,
+                      skeleton: String
                     ).returns(T.attached_class)
                   end
                   def self.new(
@@ -9946,7 +9996,9 @@ module ModerationAPI
                     entity_type: nil,
                     mask: nil,
                     reasons: nil,
-                    signals: nil
+                    scripts: nil,
+                    signals: nil,
+                    skeleton: nil
                   )
                   end
 
@@ -9959,8 +10011,10 @@ module ModerationAPI
                         entity_type: String,
                         mask: T.nilable(String),
                         reasons: T::Array[String],
+                        scripts: T::Array[String],
                         signals:
-                          ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                          ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals,
+                        skeleton: String
                       }
                     )
                   end
@@ -11902,6 +11956,12 @@ module ModerationAPI
                   sig { params(reasons: T::Array[String]).void }
                   attr_writer :reasons
 
+                  sig { returns(T.nilable(T::Array[String])) }
+                  attr_reader :scripts
+
+                  sig { params(scripts: T::Array[String]).void }
+                  attr_writer :scripts
+
                   sig do
                     returns(
                       T.nilable(
@@ -11919,6 +11979,12 @@ module ModerationAPI
                   end
                   attr_writer :signals
 
+                  sig { returns(T.nilable(String)) }
+                  attr_reader :skeleton
+
+                  sig { params(skeleton: String).void }
+                  attr_writer :skeleton
+
                   sig do
                     params(
                       match: String,
@@ -11927,8 +11993,10 @@ module ModerationAPI
                       entity_type: String,
                       mask: T.nilable(String),
                       reasons: T::Array[String],
+                      scripts: T::Array[String],
                       signals:
-                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals::OrHash
+                        ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals::OrHash,
+                      skeleton: String
                     ).returns(T.attached_class)
                   end
                   def self.new(
@@ -11941,7 +12009,9 @@ module ModerationAPI
                     entity_type: nil,
                     mask: nil,
                     reasons: nil,
-                    signals: nil
+                    scripts: nil,
+                    signals: nil,
+                    skeleton: nil
                   )
                   end
 
@@ -11954,8 +12024,10 @@ module ModerationAPI
                         entity_type: String,
                         mask: T.nilable(String),
                         reasons: T::Array[String],
+                        scripts: T::Array[String],
                         signals:
-                          ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                          ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals,
+                        skeleton: String
                       }
                     )
                   end

@@ -2958,13 +2958,23 @@ module ModerationAPI
                   #   @return [Array<String>, nil]
                   optional :reasons, ModerationAPI::Internal::Type::ArrayOf[String]
 
+                  # @!attribute scripts
+                  #
+                  #   @return [Array<String>, nil]
+                  optional :scripts, ModerationAPI::Internal::Type::ArrayOf[String]
+
                   # @!attribute signals
                   #
                   #   @return [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals, nil]
                   optional :signals,
                            -> { ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals }
 
-                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, signals: nil)
+                  # @!attribute skeleton
+                  #
+                  #   @return [String, nil]
+                  optional :skeleton, String
+
+                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, scripts: nil, signals: nil, skeleton: nil)
                   #   @param match [String] The matched substring
                   #
                   #   @param probability [Float] Match confidence between 0 and 1
@@ -2977,7 +2987,11 @@ module ModerationAPI
                   #
                   #   @param reasons [Array<String>]
                   #
+                  #   @param scripts [Array<String>]
+                  #
                   #   @param signals [ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals]
+                  #
+                  #   @param skeleton [String]
 
                   # @see ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match#signals
                   class Signals < ModerationAPI::Internal::Type::BaseModel
@@ -4329,13 +4343,23 @@ module ModerationAPI
                   #   @return [Array<String>, nil]
                   optional :reasons, ModerationAPI::Internal::Type::ArrayOf[String]
 
+                  # @!attribute scripts
+                  #
+                  #   @return [Array<String>, nil]
+                  optional :scripts, ModerationAPI::Internal::Type::ArrayOf[String]
+
                   # @!attribute signals
                   #
                   #   @return [ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals, nil]
                   optional :signals,
                            -> { ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals }
 
-                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, signals: nil)
+                  # @!attribute skeleton
+                  #
+                  #   @return [String, nil]
+                  optional :skeleton, String
+
+                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, scripts: nil, signals: nil, skeleton: nil)
                   #   @param match [String] The matched substring
                   #
                   #   @param probability [Float] Match confidence between 0 and 1
@@ -4348,7 +4372,11 @@ module ModerationAPI
                   #
                   #   @param reasons [Array<String>]
                   #
+                  #   @param scripts [Array<String>]
+                  #
                   #   @param signals [ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals]
+                  #
+                  #   @param skeleton [String]
 
                   # @see ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match#signals
                   class Signals < ModerationAPI::Internal::Type::BaseModel
@@ -5421,13 +5449,23 @@ module ModerationAPI
                   #   @return [Array<String>, nil]
                   optional :reasons, ModerationAPI::Internal::Type::ArrayOf[String]
 
+                  # @!attribute scripts
+                  #
+                  #   @return [Array<String>, nil]
+                  optional :scripts, ModerationAPI::Internal::Type::ArrayOf[String]
+
                   # @!attribute signals
                   #
                   #   @return [ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals, nil]
                   optional :signals,
                            -> { ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals }
 
-                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, signals: nil)
+                  # @!attribute skeleton
+                  #
+                  #   @return [String, nil]
+                  optional :skeleton, String
+
+                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, scripts: nil, signals: nil, skeleton: nil)
                   #   @param match [String] The matched substring
                   #
                   #   @param probability [Float] Match confidence between 0 and 1
@@ -5440,7 +5478,11 @@ module ModerationAPI
                   #
                   #   @param reasons [Array<String>]
                   #
+                  #   @param scripts [Array<String>]
+                  #
                   #   @param signals [ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals]
+                  #
+                  #   @param skeleton [String]
 
                   # @see ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match#signals
                   class Signals < ModerationAPI::Internal::Type::BaseModel
@@ -6510,13 +6552,23 @@ module ModerationAPI
                   #   @return [Array<String>, nil]
                   optional :reasons, ModerationAPI::Internal::Type::ArrayOf[String]
 
+                  # @!attribute scripts
+                  #
+                  #   @return [Array<String>, nil]
+                  optional :scripts, ModerationAPI::Internal::Type::ArrayOf[String]
+
                   # @!attribute signals
                   #
                   #   @return [ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals, nil]
                   optional :signals,
                            -> { ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals }
 
-                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, signals: nil)
+                  # @!attribute skeleton
+                  #
+                  #   @return [String, nil]
+                  optional :skeleton, String
+
+                  # @!method initialize(match:, probability:, span:, entity_type: nil, mask: nil, reasons: nil, scripts: nil, signals: nil, skeleton: nil)
                   #   @param match [String] The matched substring
                   #
                   #   @param probability [Float] Match confidence between 0 and 1
@@ -6529,7 +6581,11 @@ module ModerationAPI
                   #
                   #   @param reasons [Array<String>]
                   #
+                  #   @param scripts [Array<String>]
+                  #
                   #   @param signals [ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals]
+                  #
+                  #   @param skeleton [String]
 
                   # @see ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match#signals
                   class Signals < ModerationAPI::Internal::Type::BaseModel

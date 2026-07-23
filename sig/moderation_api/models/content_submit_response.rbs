@@ -483,7 +483,13 @@ module ModerationAPI
             labels: ::Array[ModerationAPI::Models::ContentSubmitResponse::Policy::ClassifierOutput::Label]
           }
 
-          type label = { id: String, flagged: bool, probability: Float }
+          type label =
+            {
+              id: String,
+              flagged: bool,
+              probability: Float,
+              shadow_flagged: bool
+            }
 
           class Label < ModerationAPI::Internal::Type::BaseModel
             attr_accessor id: String
@@ -492,13 +498,23 @@ module ModerationAPI
 
             attr_accessor probability: Float
 
+            attr_reader shadow_flagged: bool?
+
+            def shadow_flagged=: (bool) -> bool
+
             def initialize: (
               id: String,
               flagged: bool,
-              probability: Float
+              probability: Float,
+              ?shadow_flagged: bool
             ) -> void
 
-            def to_hash: -> { id: String, flagged: bool, probability: Float }
+            def to_hash: -> {
+              id: String,
+              flagged: bool,
+              probability: Float,
+              shadow_flagged: bool
+            }
           end
         end
 

@@ -2900,7 +2900,18 @@ module ModerationAPI
                 optional :matches,
                          -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match] }
 
-                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil)
+                # @!attribute shadow_flagged
+                #   Whether this label crossed its threshold under a shadowed policy — reported for
+                #   visibility, never counted toward a flagging decision
+                #
+                #   @return [Boolean, nil]
+                optional :shadow_flagged, ModerationAPI::Internal::Type::Boolean
+
+                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil, shadow_flagged: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label}
+                #   for more details.
+                #
                 #   @param label [String] The label name
                 #
                 #   @param score [Float] Confidence score between 0 and 1
@@ -2910,6 +2921,8 @@ module ModerationAPI
                 #   @param manual [Boolean] True if the label was applied manually by a moderator
                 #
                 #   @param matches [Array<ModerationAPI::Models::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match>]
+                #
+                #   @param shadow_flagged [Boolean] Whether this label crossed its threshold under a shadowed policy — reported for
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
                   # @!attribute match
@@ -4258,7 +4271,18 @@ module ModerationAPI
                 optional :matches,
                          -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match] }
 
-                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil)
+                # @!attribute shadow_flagged
+                #   Whether this label crossed its threshold under a shadowed policy — reported for
+                #   visibility, never counted toward a flagging decision
+                #
+                #   @return [Boolean, nil]
+                optional :shadow_flagged, ModerationAPI::Internal::Type::Boolean
+
+                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil, shadow_flagged: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Label}
+                #   for more details.
+                #
                 #   @param label [String] The label name
                 #
                 #   @param score [Float] Confidence score between 0 and 1
@@ -4268,6 +4292,8 @@ module ModerationAPI
                 #   @param manual [Boolean] True if the label was applied manually by a moderator
                 #
                 #   @param matches [Array<ModerationAPI::Models::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match>]
+                #
+                #   @param shadow_flagged [Boolean] Whether this label crossed its threshold under a shadowed policy — reported for
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
                   # @!attribute match
@@ -5337,7 +5363,18 @@ module ModerationAPI
                 optional :matches,
                          -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match] }
 
-                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil)
+                # @!attribute shadow_flagged
+                #   Whether this label crossed its threshold under a shadowed policy — reported for
+                #   visibility, never counted toward a flagging decision
+                #
+                #   @return [Boolean, nil]
+                optional :shadow_flagged, ModerationAPI::Internal::Type::Boolean
+
+                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil, shadow_flagged: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Label}
+                #   for more details.
+                #
                 #   @param label [String] The label name
                 #
                 #   @param score [Float] Confidence score between 0 and 1
@@ -5347,6 +5384,8 @@ module ModerationAPI
                 #   @param manual [Boolean] True if the label was applied manually by a moderator
                 #
                 #   @param matches [Array<ModerationAPI::Models::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match>]
+                #
+                #   @param shadow_flagged [Boolean] Whether this label crossed its threshold under a shadowed policy — reported for
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
                   # @!attribute match
@@ -6413,7 +6452,18 @@ module ModerationAPI
                 optional :matches,
                          -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match] }
 
-                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil)
+                # @!attribute shadow_flagged
+                #   Whether this label crossed its threshold under a shadowed policy — reported for
+                #   visibility, never counted toward a flagging decision
+                #
+                #   @return [Boolean, nil]
+                optional :shadow_flagged, ModerationAPI::Internal::Type::Boolean
+
+                # @!method initialize(label:, score:, flagged: nil, manual: nil, matches: nil, shadow_flagged: nil)
+                #   Some parameter documentations has been truncated, see
+                #   {ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label}
+                #   for more details.
+                #
                 #   @param label [String] The label name
                 #
                 #   @param score [Float] Confidence score between 0 and 1
@@ -6423,6 +6473,8 @@ module ModerationAPI
                 #   @param manual [Boolean] True if the label was applied manually by a moderator
                 #
                 #   @param matches [Array<ModerationAPI::Models::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match>]
+                #
+                #   @param shadow_flagged [Boolean] Whether this label crossed its threshold under a shadowed policy — reported for
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
                   # @!attribute match

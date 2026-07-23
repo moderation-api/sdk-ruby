@@ -2153,7 +2153,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
               class Label < ModerationAPI::Internal::Type::BaseModel
@@ -2175,12 +2176,17 @@ module ModerationAPI
                   ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match]
                 ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match]
 
+                attr_reader shadow_flagged: bool?
+
+                def shadow_flagged=: (bool) -> bool
+
                 def initialize: (
                   label: String,
                   score: Float,
                   ?flagged: bool,
                   ?manual: bool,
-                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match]
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match],
+                  ?shadow_flagged: bool
                 ) -> void
 
                 def to_hash: -> {
@@ -2188,7 +2194,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
                 type match =
@@ -3177,7 +3184,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
               class Label < ModerationAPI::Internal::Type::BaseModel
@@ -3199,12 +3207,17 @@ module ModerationAPI
                   ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
                 ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
 
+                attr_reader shadow_flagged: bool?
+
+                def shadow_flagged=: (bool) -> bool
+
                 def initialize: (
                   label: String,
                   score: Float,
                   ?flagged: bool,
                   ?manual: bool,
-                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match],
+                  ?shadow_flagged: bool
                 ) -> void
 
                 def to_hash: -> {
@@ -3212,7 +3225,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
                 type match =
@@ -4006,7 +4020,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
               class Label < ModerationAPI::Internal::Type::BaseModel
@@ -4028,12 +4043,17 @@ module ModerationAPI
                   ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
                 ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
 
+                attr_reader shadow_flagged: bool?
+
+                def shadow_flagged=: (bool) -> bool
+
                 def initialize: (
                   label: String,
                   score: Float,
                   ?flagged: bool,
                   ?manual: bool,
-                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match],
+                  ?shadow_flagged: bool
                 ) -> void
 
                 def to_hash: -> {
@@ -4041,7 +4061,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
                 type match =
@@ -4835,7 +4856,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
               class Label < ModerationAPI::Internal::Type::BaseModel
@@ -4857,12 +4879,17 @@ module ModerationAPI
                   ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
                 ) -> ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
 
+                attr_reader shadow_flagged: bool?
+
+                def shadow_flagged=: (bool) -> bool
+
                 def initialize: (
                   label: String,
                   score: Float,
                   ?flagged: bool,
                   ?manual: bool,
-                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                  ?matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match],
+                  ?shadow_flagged: bool
                 ) -> void
 
                 def to_hash: -> {
@@ -4870,7 +4897,8 @@ module ModerationAPI
                   score: Float,
                   flagged: bool,
                   manual: bool,
-                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match]
+                  matches: ::Array[ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match],
+                  shadow_flagged: bool
                 }
 
                 type match =

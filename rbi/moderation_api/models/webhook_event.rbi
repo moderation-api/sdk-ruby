@@ -5322,6 +5322,14 @@ module ModerationAPI
                 end
                 attr_writer :matches
 
+                # Whether this label crossed its threshold under a shadowed policy — reported for
+                # visibility, never counted toward a flagging decision
+                sig { returns(T.nilable(T::Boolean)) }
+                attr_reader :shadow_flagged
+
+                sig { params(shadow_flagged: T::Boolean).void }
+                attr_writer :shadow_flagged
+
                 sig do
                   params(
                     label: String,
@@ -5331,7 +5339,8 @@ module ModerationAPI
                     matches:
                       T::Array[
                         ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::OrHash
-                      ]
+                      ],
+                    shadow_flagged: T::Boolean
                   ).returns(T.attached_class)
                 end
                 def self.new(
@@ -5343,7 +5352,10 @@ module ModerationAPI
                   flagged: nil,
                   # True if the label was applied manually by a moderator
                   manual: nil,
-                  matches: nil
+                  matches: nil,
+                  # Whether this label crossed its threshold under a shadowed policy — reported for
+                  # visibility, never counted toward a flagging decision
+                  shadow_flagged: nil
                 )
                 end
 
@@ -5357,7 +5369,8 @@ module ModerationAPI
                       matches:
                         T::Array[
                           ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match
-                        ]
+                        ],
+                      shadow_flagged: T::Boolean
                     }
                   )
                 end
@@ -7806,6 +7819,14 @@ module ModerationAPI
                 end
                 attr_writer :matches
 
+                # Whether this label crossed its threshold under a shadowed policy — reported for
+                # visibility, never counted toward a flagging decision
+                sig { returns(T.nilable(T::Boolean)) }
+                attr_reader :shadow_flagged
+
+                sig { params(shadow_flagged: T::Boolean).void }
+                attr_writer :shadow_flagged
+
                 sig do
                   params(
                     label: String,
@@ -7815,7 +7836,8 @@ module ModerationAPI
                     matches:
                       T::Array[
                         ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::OrHash
-                      ]
+                      ],
+                    shadow_flagged: T::Boolean
                   ).returns(T.attached_class)
                 end
                 def self.new(
@@ -7827,7 +7849,10 @@ module ModerationAPI
                   flagged: nil,
                   # True if the label was applied manually by a moderator
                   manual: nil,
-                  matches: nil
+                  matches: nil,
+                  # Whether this label crossed its threshold under a shadowed policy — reported for
+                  # visibility, never counted toward a flagging decision
+                  shadow_flagged: nil
                 )
                 end
 
@@ -7841,7 +7866,8 @@ module ModerationAPI
                       matches:
                         T::Array[
                           ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match
-                        ]
+                        ],
+                      shadow_flagged: T::Boolean
                     }
                   )
                 end
@@ -9790,6 +9816,14 @@ module ModerationAPI
                 end
                 attr_writer :matches
 
+                # Whether this label crossed its threshold under a shadowed policy — reported for
+                # visibility, never counted toward a flagging decision
+                sig { returns(T.nilable(T::Boolean)) }
+                attr_reader :shadow_flagged
+
+                sig { params(shadow_flagged: T::Boolean).void }
+                attr_writer :shadow_flagged
+
                 sig do
                   params(
                     label: String,
@@ -9799,7 +9833,8 @@ module ModerationAPI
                     matches:
                       T::Array[
                         ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::OrHash
-                      ]
+                      ],
+                    shadow_flagged: T::Boolean
                   ).returns(T.attached_class)
                 end
                 def self.new(
@@ -9811,7 +9846,10 @@ module ModerationAPI
                   flagged: nil,
                   # True if the label was applied manually by a moderator
                   manual: nil,
-                  matches: nil
+                  matches: nil,
+                  # Whether this label crossed its threshold under a shadowed policy — reported for
+                  # visibility, never counted toward a flagging decision
+                  shadow_flagged: nil
                 )
                 end
 
@@ -9825,7 +9863,8 @@ module ModerationAPI
                       matches:
                         T::Array[
                           ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match
-                        ]
+                        ],
+                      shadow_flagged: T::Boolean
                     }
                   )
                 end
@@ -11772,6 +11811,14 @@ module ModerationAPI
                 end
                 attr_writer :matches
 
+                # Whether this label crossed its threshold under a shadowed policy — reported for
+                # visibility, never counted toward a flagging decision
+                sig { returns(T.nilable(T::Boolean)) }
+                attr_reader :shadow_flagged
+
+                sig { params(shadow_flagged: T::Boolean).void }
+                attr_writer :shadow_flagged
+
                 sig do
                   params(
                     label: String,
@@ -11781,7 +11828,8 @@ module ModerationAPI
                     matches:
                       T::Array[
                         ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::OrHash
-                      ]
+                      ],
+                    shadow_flagged: T::Boolean
                   ).returns(T.attached_class)
                 end
                 def self.new(
@@ -11793,7 +11841,10 @@ module ModerationAPI
                   flagged: nil,
                   # True if the label was applied manually by a moderator
                   manual: nil,
-                  matches: nil
+                  matches: nil,
+                  # Whether this label crossed its threshold under a shadowed policy — reported for
+                  # visibility, never counted toward a flagging decision
+                  shadow_flagged: nil
                 )
                 end
 
@@ -11807,7 +11858,8 @@ module ModerationAPI
                       matches:
                         T::Array[
                           ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match
-                        ]
+                        ],
+                      shadow_flagged: T::Boolean
                     }
                   )
                 end

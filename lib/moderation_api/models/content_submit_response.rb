@@ -652,10 +652,16 @@ module ModerationAPI
             #   @return [Float]
             required :probability, Float
 
-            # @!method initialize(id:, flagged:, probability:)
+            # @!attribute shadow_flagged
+            #
+            #   @return [Boolean, nil]
+            optional :shadow_flagged, ModerationAPI::Internal::Type::Boolean, api_name: :shadowFlagged
+
+            # @!method initialize(id:, flagged:, probability:, shadow_flagged: nil)
             #   @param id [String]
             #   @param flagged [Boolean]
             #   @param probability [Float]
+            #   @param shadow_flagged [Boolean]
           end
         end
 

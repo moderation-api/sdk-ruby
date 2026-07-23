@@ -1208,19 +1208,31 @@ module ModerationAPI
             sig { returns(Float) }
             attr_accessor :probability
 
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :shadow_flagged
+
+            sig { params(shadow_flagged: T::Boolean).void }
+            attr_writer :shadow_flagged
+
             sig do
               params(
                 id: String,
                 flagged: T::Boolean,
-                probability: Float
+                probability: Float,
+                shadow_flagged: T::Boolean
               ).returns(T.attached_class)
             end
-            def self.new(id:, flagged:, probability:)
+            def self.new(id:, flagged:, probability:, shadow_flagged: nil)
             end
 
             sig do
               override.returns(
-                { id: String, flagged: T::Boolean, probability: Float }
+                {
+                  id: String,
+                  flagged: T::Boolean,
+                  probability: Float,
+                  shadow_flagged: T::Boolean
+                }
               )
             end
             def to_hash

@@ -2206,7 +2206,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
@@ -2226,11 +2228,19 @@ module ModerationAPI
 
                   def reasons=: (::Array[String]) -> ::Array[String]
 
+                  attr_reader scripts: ::Array[String]?
+
+                  def scripts=: (::Array[String]) -> ::Array[String]
+
                   attr_reader signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals?
 
                   def signals=: (
                     ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
                   ) -> ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
+
+                  attr_reader skeleton: String?
+
+                  def skeleton=: (String) -> String
 
                   def initialize: (
                     match: String,
@@ -2239,7 +2249,9 @@ module ModerationAPI
                     ?entity_type: String,
                     ?mask: String?,
                     ?reasons: ::Array[String],
-                    ?signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
+                    ?scripts: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals,
+                    ?skeleton: String
                   ) -> void
 
                   def to_hash: -> {
@@ -2249,7 +2261,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemResolved::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                   type signals =
@@ -3237,7 +3251,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
@@ -3257,11 +3273,19 @@ module ModerationAPI
 
                   def reasons=: (::Array[String]) -> ::Array[String]
 
+                  attr_reader scripts: ::Array[String]?
+
+                  def scripts=: (::Array[String]) -> ::Array[String]
+
                   attr_reader signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals?
 
                   def signals=: (
                     ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
                   ) -> ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+
+                  attr_reader skeleton: String?
+
+                  def skeleton=: (String) -> String
 
                   def initialize: (
                     match: String,
@@ -3270,7 +3294,9 @@ module ModerationAPI
                     ?entity_type: String,
                     ?mask: String?,
                     ?reasons: ::Array[String],
-                    ?signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                    ?scripts: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals,
+                    ?skeleton: String
                   ) -> void
 
                   def to_hash: -> {
@@ -3280,7 +3306,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAction::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                   type signals =
@@ -4073,7 +4101,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
@@ -4093,11 +4123,19 @@ module ModerationAPI
 
                   def reasons=: (::Array[String]) -> ::Array[String]
 
+                  attr_reader scripts: ::Array[String]?
+
+                  def scripts=: (::Array[String]) -> ::Array[String]
+
                   attr_reader signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals?
 
                   def signals=: (
                     ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
                   ) -> ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+
+                  attr_reader skeleton: String?
+
+                  def skeleton=: (String) -> String
 
                   def initialize: (
                     match: String,
@@ -4106,7 +4144,9 @@ module ModerationAPI
                     ?entity_type: String,
                     ?mask: String?,
                     ?reasons: ::Array[String],
-                    ?signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                    ?scripts: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals,
+                    ?skeleton: String
                   ) -> void
 
                   def to_hash: -> {
@@ -4116,7 +4156,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemRejected::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                   type signals =
@@ -4909,7 +4951,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                 class Match < ModerationAPI::Internal::Type::BaseModel
@@ -4929,11 +4973,19 @@ module ModerationAPI
 
                   def reasons=: (::Array[String]) -> ::Array[String]
 
+                  attr_reader scripts: ::Array[String]?
+
+                  def scripts=: (::Array[String]) -> ::Array[String]
+
                   attr_reader signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals?
 
                   def signals=: (
                     ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
                   ) -> ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+
+                  attr_reader skeleton: String?
+
+                  def skeleton=: (String) -> String
 
                   def initialize: (
                     match: String,
@@ -4942,7 +4994,9 @@ module ModerationAPI
                     ?entity_type: String,
                     ?mask: String?,
                     ?reasons: ::Array[String],
-                    ?signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                    ?scripts: ::Array[String],
+                    ?signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals,
+                    ?skeleton: String
                   ) -> void
 
                   def to_hash: -> {
@@ -4952,7 +5006,9 @@ module ModerationAPI
                     entity_type: String,
                     mask: String?,
                     reasons: ::Array[String],
-                    signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals
+                    scripts: ::Array[String],
+                    signals: ModerationAPI::WebhookEvent::QueueItemAllowed::Data::Object::Item::Label::Match::Signals,
+                    skeleton: String
                   }
 
                   type signals =

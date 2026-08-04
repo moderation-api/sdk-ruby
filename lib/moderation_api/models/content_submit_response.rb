@@ -871,12 +871,13 @@ module ModerationAPI
         required :action, enum: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action }
 
         # @!attribute reason_codes
-        #   The reason code for the recommendation. Can be used to display a reason to the
-        #   user.
+        #   Reason codes for the recommendation. Standard codes plus a `rule:<key>` code
+        #   identifying the rule that produced the action. Can be used to display a reason
+        #   to the user.
         #
-        #   @return [Array<Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>]
+        #   @return [Array<Symbol, String, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>]
         required :reason_codes,
-                 -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode] }
+                 -> { ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode] }
 
         # @!attribute matched_rules
         #   Rules that matched during evaluation, if rules engine is active.
@@ -893,7 +894,7 @@ module ModerationAPI
         #
         #   @param action [Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action] The action to take based on the recommendation
         #
-        #   @param reason_codes [Array<Symbol, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>] The reason code for the recommendation. Can be used to display a reason to the u
+        #   @param reason_codes [Array<Symbol, String, ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode>] Reason codes for the recommendation. Standard codes plus a `rule:<key>` code ide
         #
         #   @param matched_rules [Array<ModerationAPI::Models::ContentSubmitResponse::Recommendation::MatchedRule>] Rules that matched during evaluation, if rules engine is active.
 
@@ -912,7 +913,38 @@ module ModerationAPI
         end
 
         module ReasonCode
-          extend ModerationAPI::Internal::Type::Enum
+          extend ModerationAPI::Internal::Type::Union
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::SEVERITY_REJECT }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::SEVERITY_REVIEW }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::AUTHOR_BLOCK }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::DRY_RUN }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TRUSTED_ALLOW }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::UNTRUSTED_SEVERITY }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::RULE_MATCH }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::RULE_DEFAULT }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::RULE_FALLBACK }
+
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::CLIENT_OVERRIDE }
+
+          variant String
+
+          # @!method self.variants
+          #   @return [Array(Symbol, String)]
+
+          define_sorbet_constant!(:Variants) do
+            T.type_alias { T.any(ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol, String) }
+          end
+
+          # @!group
 
           SEVERITY_REJECT = :severity_reject
           SEVERITY_REVIEW = :severity_review
@@ -925,8 +957,7 @@ module ModerationAPI
           RULE_FALLBACK = :rule_fallback
           CLIENT_OVERRIDE = :client_override
 
-          # @!method self.values
-          #   @return [Array<Symbol>]
+          # @!endgroup
         end
 
         class MatchedRule < ModerationAPI::Internal::Type::BaseModel

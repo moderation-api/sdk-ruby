@@ -1625,12 +1625,13 @@ module ModerationAPI
         end
         attr_accessor :action
 
-        # The reason code for the recommendation. Can be used to display a reason to the
-        # user.
+        # Reason codes for the recommendation. Standard codes plus a `rule:<key>` code
+        # identifying the rule that produced the action. Can be used to display a reason
+        # to the user.
         sig do
           returns(
             T::Array[
-              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::Variants
             ]
           )
         end
@@ -1665,7 +1666,10 @@ module ModerationAPI
               ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::OrSymbol,
             reason_codes:
               T::Array[
-                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::OrSymbol
+                T.any(
+                  ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::OrSymbol,
+                  String
+                )
               ],
             matched_rules:
               T::Array[
@@ -1676,8 +1680,9 @@ module ModerationAPI
         def self.new(
           # The action to take based on the recommendation
           action:,
-          # The reason code for the recommendation. Can be used to display a reason to the
-          # user.
+          # Reason codes for the recommendation. Standard codes plus a `rule:<key>` code
+          # identifying the rule that produced the action. Can be used to display a reason
+          # to the user.
           reason_codes:,
           # Rules that matched during evaluation, if rules engine is active.
           matched_rules: nil
@@ -1691,7 +1696,7 @@ module ModerationAPI
                 ModerationAPI::Models::ContentSubmitResponse::Recommendation::Action::TaggedSymbol,
               reason_codes:
                 T::Array[
-                  ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+                  ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::Variants
                 ],
               matched_rules:
                 T::Array[
@@ -1744,7 +1749,25 @@ module ModerationAPI
         end
 
         module ReasonCode
-          extend ModerationAPI::Internal::Type::Enum
+          extend ModerationAPI::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol,
+                String
+              )
+            end
+
+          sig do
+            override.returns(
+              T::Array[
+                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
 
           TaggedSymbol =
             T.type_alias do
@@ -1805,16 +1828,6 @@ module ModerationAPI
               :client_override,
               ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
-
-          sig do
-            override.returns(
-              T::Array[
-                ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         class MatchedRule < ModerationAPI::Internal::Type::BaseModel

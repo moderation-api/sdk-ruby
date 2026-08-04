@@ -758,9 +758,12 @@ module ModerationAPI
           | :rule_default
           | :rule_fallback
           | :client_override
+          | String
 
         module ReasonCode
-          extend ModerationAPI::Internal::Type::Enum
+          extend ModerationAPI::Internal::Type::Union
+
+          def self?.variants: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
 
           SEVERITY_REJECT: :severity_reject
           SEVERITY_REVIEW: :severity_review
@@ -772,8 +775,6 @@ module ModerationAPI
           RULE_DEFAULT: :rule_default
           RULE_FALLBACK: :rule_fallback
           CLIENT_OVERRIDE: :client_override
-
-          def self?.values: -> ::Array[ModerationAPI::Models::ContentSubmitResponse::Recommendation::reason_code]
         end
 
         type matched_rule = { key: String, name: String }

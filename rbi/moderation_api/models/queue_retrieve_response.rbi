@@ -138,11 +138,59 @@ module ModerationAPI
           sig { params(author_id: String).void }
           attr_writer :author_id
 
+          sig { returns(T.nilable(T::Array[Integer])) }
+          attr_reader :author_trust_levels
+
+          sig { params(author_trust_levels: T::Array[Integer]).void }
+          attr_writer :author_trust_levels
+
           sig { returns(T.nilable(String)) }
           attr_reader :before_date
 
           sig { params(before_date: String).void }
           attr_writer :before_date
+
+          sig do
+            returns(
+              T.nilable(
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :check_status
+
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :clear_date_window
+
+          sig { params(clear_date_window: T::Boolean).void }
+          attr_writer :clear_date_window
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :content_id
+
+          sig { params(content_id: String).void }
+          attr_writer :content_id
+
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+                ]
+              )
+            )
+          end
+          attr_reader :content_types
+
+          sig do
+            params(
+              content_types:
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::OrSymbol
+                ]
+            ).void
+          end
+          attr_writer :content_types
 
           sig { returns(T.nilable(T::Array[T.nilable(String)])) }
           attr_reader :conversation_ids
@@ -183,11 +231,55 @@ module ModerationAPI
           end
           attr_writer :filter_labels
 
+          sig do
+            returns(
+              T.nilable(
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :is_flagged
+
+          sig do
+            params(
+              is_flagged:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::OrSymbol
+            ).void
+          end
+          attr_writer :is_flagged
+
           sig { returns(T.nilable(T::Array[String])) }
           attr_reader :labels
 
           sig { params(labels: T::Array[String]).void }
           attr_writer :labels
+
+          sig { returns(T.nilable(T::Array[String])) }
+          attr_reader :languages
+
+          sig { params(languages: T::Array[String]).void }
+          attr_writer :languages
+
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+                ]
+              )
+            )
+          end
+          attr_reader :media_types
+
+          sig do
+            params(
+              media_types:
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::OrSymbol
+                ]
+            ).void
+          end
+          attr_writer :media_types
 
           sig do
             returns(
@@ -210,17 +302,51 @@ module ModerationAPI
           end
           attr_writer :recommendation_actions
 
-          sig { returns(T.nilable(T::Boolean)) }
-          attr_reader :show_checked
+          sig { returns(T.nilable(T::Array[String])) }
+          attr_reader :search
 
-          sig { params(show_checked: T::Boolean).void }
-          attr_writer :show_checked
+          sig { params(search: T::Array[String]).void }
+          attr_writer :search
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :within
+
+          sig { params(within: Float).void }
+          attr_writer :within
+
+          sig do
+            returns(
+              T.nilable(
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :within_unit
+
+          sig do
+            params(
+              within_unit:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::OrSymbol
+            ).void
+          end
+          attr_writer :within_unit
 
           sig do
             params(
               after_date: String,
               author_id: String,
+              author_trust_levels: T::Array[Integer],
               before_date: String,
+              check_status:
+                T.nilable(
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::OrSymbol
+                ),
+              clear_date_window: T::Boolean,
+              content_id: String,
+              content_types:
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::OrSymbol
+                ],
               conversation_ids: T::Array[T.nilable(String)],
               filtered_action_ids: T::Array[String],
               filtered_channel_ids: T::Array[String],
@@ -228,25 +354,45 @@ module ModerationAPI
                 T::Array[
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::OrHash
                 ],
+              is_flagged:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::OrSymbol,
               labels: T::Array[String],
+              languages: T::Array[String],
+              media_types:
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::OrSymbol
+                ],
               recommendation_actions:
                 T::Array[
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction::OrSymbol
                 ],
-              show_checked: T::Boolean
+              search: T::Array[String],
+              within: Float,
+              within_unit:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
             after_date: nil,
             author_id: nil,
+            author_trust_levels: nil,
             before_date: nil,
+            check_status: nil,
+            clear_date_window: nil,
+            content_id: nil,
+            content_types: nil,
             conversation_ids: nil,
             filtered_action_ids: nil,
             filtered_channel_ids: nil,
             filter_labels: nil,
+            is_flagged: nil,
             labels: nil,
+            languages: nil,
+            media_types: nil,
             recommendation_actions: nil,
-            show_checked: nil
+            search: nil,
+            within: nil,
+            within_unit: nil
           )
           end
 
@@ -255,7 +401,18 @@ module ModerationAPI
               {
                 after_date: String,
                 author_id: String,
+                author_trust_levels: T::Array[Integer],
                 before_date: String,
+                check_status:
+                  T.nilable(
+                    ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
+                  ),
+                clear_date_window: T::Boolean,
+                content_id: String,
+                content_types:
+                  T::Array[
+                    ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+                  ],
                 conversation_ids: T::Array[T.nilable(String)],
                 filtered_action_ids: T::Array[String],
                 filtered_channel_ids: T::Array[String],
@@ -263,16 +420,134 @@ module ModerationAPI
                   T::Array[
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel
                   ],
+                is_flagged:
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol,
                 labels: T::Array[String],
+                languages: T::Array[String],
+                media_types:
+                  T::Array[
+                    ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+                  ],
                 recommendation_actions:
                   T::Array[
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction::TaggedSymbol
                   ],
-                show_checked: T::Boolean
+                search: T::Array[String],
+                within: Float,
+                within_unit:
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
               }
             )
           end
           def to_hash
+          end
+
+          module CheckStatus
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ALL =
+              T.let(
+                :all,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
+              )
+            CHECKED =
+              T.let(
+                :checked,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
+              )
+            UNCHECKED =
+              T.let(
+                :unchecked,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          module ContentType
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            PROFILE =
+              T.let(
+                :profile,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            MESSAGE =
+              T.let(
+                :message,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            POST =
+              T.let(
+                :post,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            COMMENT =
+              T.let(
+                :comment,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            EVENT =
+              T.let(
+                :event,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            PRODUCT =
+              T.let(
+                :product,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            REVIEW =
+              T.let(
+                :review,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            VOICE =
+              T.let(
+                :voice,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+            OTHER =
+              T.let(
+                :other,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
 
           class FilterLabel < ModerationAPI::Internal::Type::BaseModel
@@ -366,6 +641,99 @@ module ModerationAPI
             end
           end
 
+          module IsFlagged
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ALL =
+              T.let(
+                :ALL,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol
+              )
+            FLAGGED =
+              T.let(
+                :FLAGGED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol
+              )
+            NOT_FLAGGED =
+              T.let(
+                :NOT_FLAGGED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol
+              )
+            SHADOW_FLAGGED =
+              T.let(
+                :SHADOW_FLAGGED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          module MediaType
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            TEXT =
+              T.let(
+                :text,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+              )
+            IMAGE =
+              T.let(
+                :image,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+              )
+            VIDEO =
+              T.let(
+                :video,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+              )
+            OBJECT =
+              T.let(
+                :object,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+              )
+            AUDIO =
+              T.let(
+                :audio,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
           module RecommendationAction
             extend ModerationAPI::Internal::Type::Enum
 
@@ -398,6 +766,60 @@ module ModerationAPI
               override.returns(
                 T::Array[
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          module WithinUnit
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            MINUTES =
+              T.let(
+                :MINUTES,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+            HOURS =
+              T.let(
+                :HOURS,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+            DAYS =
+              T.let(
+                :DAYS,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+            WEEKS =
+              T.let(
+                :WEEKS,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+            MONTHS =
+              T.let(
+                :MONTHS,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+            YEARS =
+              T.let(
+                :YEARS,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit::TaggedSymbol
                 ]
               )
             end

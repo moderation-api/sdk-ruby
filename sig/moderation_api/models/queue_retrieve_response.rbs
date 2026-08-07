@@ -64,14 +64,24 @@ module ModerationAPI
           {
             after_date: String,
             author_id: String,
+            author_trust_levels: ::Array[Integer],
             before_date: String,
+            check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
+            clear_date_window: bool,
+            content_id: String,
+            content_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type],
             conversation_ids: ::Array[String?],
             filtered_action_ids: ::Array[String],
             filtered_channel_ids: ::Array[String],
             filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel],
+            is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged,
             labels: ::Array[String],
+            languages: ::Array[String],
+            media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
             recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
-            show_checked: bool
+            search: ::Array[String],
+            within: Float,
+            within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
           }
 
         class Filter < ModerationAPI::Internal::Type::BaseModel
@@ -83,9 +93,29 @@ module ModerationAPI
 
           def author_id=: (String) -> String
 
+          attr_reader author_trust_levels: ::Array[Integer]?
+
+          def author_trust_levels=: (::Array[Integer]) -> ::Array[Integer]
+
           attr_reader before_date: String?
 
           def before_date=: (String) -> String
+
+          attr_accessor check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?
+
+          attr_reader clear_date_window: bool?
+
+          def clear_date_window=: (bool) -> bool
+
+          attr_reader content_id: String?
+
+          def content_id=: (String) -> String
+
+          attr_reader content_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type]?
+
+          def content_types=: (
+            ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type]
+          ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type]
 
           attr_reader conversation_ids: ::Array[String?]?
 
@@ -105,9 +135,25 @@ module ModerationAPI
             ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel]
           ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel]
 
+          attr_reader is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged?
+
+          def is_flagged=: (
+            ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged
+          ) -> ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged
+
           attr_reader labels: ::Array[String]?
 
           def labels=: (::Array[String]) -> ::Array[String]
+
+          attr_reader languages: ::Array[String]?
+
+          def languages=: (::Array[String]) -> ::Array[String]
+
+          attr_reader media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]?
+
+          def media_types=: (
+            ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
+          ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
 
           attr_reader recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]?
 
@@ -115,35 +161,104 @@ module ModerationAPI
             ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]
           ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]
 
-          attr_reader show_checked: bool?
+          attr_reader search: ::Array[String]?
 
-          def show_checked=: (bool) -> bool
+          def search=: (::Array[String]) -> ::Array[String]
+
+          attr_reader within: Float?
+
+          def within=: (Float) -> Float
+
+          attr_reader within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit?
+
+          def within_unit=: (
+            ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
+          ) -> ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
 
           def initialize: (
             ?after_date: String,
             ?author_id: String,
+            ?author_trust_levels: ::Array[Integer],
             ?before_date: String,
+            ?check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
+            ?clear_date_window: bool,
+            ?content_id: String,
+            ?content_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type],
             ?conversation_ids: ::Array[String?],
             ?filtered_action_ids: ::Array[String],
             ?filtered_channel_ids: ::Array[String],
             ?filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel],
+            ?is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged,
             ?labels: ::Array[String],
+            ?languages: ::Array[String],
+            ?media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
             ?recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
-            ?show_checked: bool
+            ?search: ::Array[String],
+            ?within: Float,
+            ?within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
           ) -> void
 
           def to_hash: -> {
             after_date: String,
             author_id: String,
+            author_trust_levels: ::Array[Integer],
             before_date: String,
+            check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
+            clear_date_window: bool,
+            content_id: String,
+            content_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type],
             conversation_ids: ::Array[String?],
             filtered_action_ids: ::Array[String],
             filtered_channel_ids: ::Array[String],
             filter_labels: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel],
+            is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged,
             labels: ::Array[String],
+            languages: ::Array[String],
+            media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
             recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
-            show_checked: bool
+            search: ::Array[String],
+            within: Float,
+            within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
           }
+
+          type check_status = :all | :checked | :unchecked
+
+          module CheckStatus
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL: :all
+            CHECKED: :checked
+            UNCHECKED: :unchecked
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status]
+          end
+
+          type content_type =
+            :profile
+            | :message
+            | :post
+            | :comment
+            | :event
+            | :product
+            | :review
+            | :voice
+            | :other
+
+          module ContentType
+            extend ModerationAPI::Internal::Type::Enum
+
+            PROFILE: :profile
+            MESSAGE: :message
+            POST: :post
+            COMMENT: :comment
+            EVENT: :event
+            PRODUCT: :product
+            REVIEW: :review
+            VOICE: :voice
+            OTHER: :other
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::content_type]
+          end
 
           type filter_label =
             {
@@ -189,6 +304,33 @@ module ModerationAPI
             end
           end
 
+          type is_flagged = :ALL | :FLAGGED | :NOT_FLAGGED | :SHADOW_FLAGGED
+
+          module IsFlagged
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL: :ALL
+            FLAGGED: :FLAGGED
+            NOT_FLAGGED: :NOT_FLAGGED
+            SHADOW_FLAGGED: :SHADOW_FLAGGED
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged]
+          end
+
+          type media_type = :text | :image | :video | :object | :audio
+
+          module MediaType
+            extend ModerationAPI::Internal::Type::Enum
+
+            TEXT: :text
+            IMAGE: :image
+            VIDEO: :video
+            OBJECT: :object
+            AUDIO: :audio
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
+          end
+
           type recommendation_action = :review | :allow | :reject
 
           module RecommendationAction
@@ -199,6 +341,22 @@ module ModerationAPI
             REJECT: :reject
 
             def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]
+          end
+
+          type within_unit =
+            :MINUTES | :HOURS | :DAYS | :WEEKS | :MONTHS | :YEARS
+
+          module WithinUnit
+            extend ModerationAPI::Internal::Type::Enum
+
+            MINUTES: :MINUTES
+            HOURS: :HOURS
+            DAYS: :DAYS
+            WEEKS: :WEEKS
+            MONTHS: :MONTHS
+            YEARS: :YEARS
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit]
           end
         end
       end

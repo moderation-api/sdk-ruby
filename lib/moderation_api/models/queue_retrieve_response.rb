@@ -70,10 +70,42 @@ module ModerationAPI
           #   @return [String, nil]
           optional :author_id, String, api_name: :authorID
 
+          # @!attribute author_trust_levels
+          #
+          #   @return [Array<Integer>, nil]
+          optional :author_trust_levels,
+                   ModerationAPI::Internal::Type::ArrayOf[Integer],
+                   api_name: :authorTrustLevels
+
           # @!attribute before_date
           #
           #   @return [String, nil]
           optional :before_date, String, api_name: :beforeDate
+
+          # @!attribute check_status
+          #
+          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus, nil]
+          optional :check_status,
+                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus },
+                   api_name: :checkStatus,
+                   nil?: true
+
+          # @!attribute clear_date_window
+          #
+          #   @return [Boolean, nil]
+          optional :clear_date_window, ModerationAPI::Internal::Type::Boolean, api_name: :clearDateWindow
+
+          # @!attribute content_id
+          #
+          #   @return [String, nil]
+          optional :content_id, String, api_name: :contentID
+
+          # @!attribute content_types
+          #
+          #   @return [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType>, nil]
+          optional :content_types,
+                   -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType] },
+                   api_name: :contentTypes
 
           # @!attribute conversation_ids
           #
@@ -103,10 +135,29 @@ module ModerationAPI
                    -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel] },
                    api_name: :filterLabels
 
+          # @!attribute is_flagged
+          #
+          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged, nil]
+          optional :is_flagged,
+                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged },
+                   api_name: :isFlagged
+
           # @!attribute labels
           #
           #   @return [Array<String>, nil]
           optional :labels, ModerationAPI::Internal::Type::ArrayOf[String]
+
+          # @!attribute languages
+          #
+          #   @return [Array<String>, nil]
+          optional :languages, ModerationAPI::Internal::Type::ArrayOf[String]
+
+          # @!attribute media_types
+          #
+          #   @return [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType>, nil]
+          optional :media_types,
+                   -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType] },
+                   api_name: :mediaTypes
 
           # @!attribute recommendation_actions
           #
@@ -115,22 +166,73 @@ module ModerationAPI
                    -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction] },
                    api_name: :recommendationActions
 
-          # @!attribute show_checked
+          # @!attribute search
           #
-          #   @return [Boolean, nil]
-          optional :show_checked, ModerationAPI::Internal::Type::Boolean, api_name: :showChecked
+          #   @return [Array<String>, nil]
+          optional :search, ModerationAPI::Internal::Type::ArrayOf[String]
 
-          # @!method initialize(after_date: nil, author_id: nil, before_date: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, labels: nil, recommendation_actions: nil, show_checked: nil)
+          # @!attribute within
+          #
+          #   @return [Float, nil]
+          optional :within, Float
+
+          # @!attribute within_unit
+          #
+          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit, nil]
+          optional :within_unit,
+                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit },
+                   api_name: :withinUnit
+
+          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, media_types: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
           #   @param after_date [String]
           #   @param author_id [String]
+          #   @param author_trust_levels [Array<Integer>]
           #   @param before_date [String]
+          #   @param check_status [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus, nil]
+          #   @param clear_date_window [Boolean]
+          #   @param content_id [String]
+          #   @param content_types [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::ContentType>]
           #   @param conversation_ids [Array<String, nil>]
           #   @param filtered_action_ids [Array<String>]
           #   @param filtered_channel_ids [Array<String>]
           #   @param filter_labels [Array<ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel>]
+          #   @param is_flagged [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged]
           #   @param labels [Array<String>]
+          #   @param languages [Array<String>]
+          #   @param media_types [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType>]
           #   @param recommendation_actions [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction>]
-          #   @param show_checked [Boolean]
+          #   @param search [Array<String>]
+          #   @param within [Float]
+          #   @param within_unit [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit]
+
+          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#check_status
+          module CheckStatus
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL = :all
+            CHECKED = :checked
+            UNCHECKED = :unchecked
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          module ContentType
+            extend ModerationAPI::Internal::Type::Enum
+
+            PROFILE = :profile
+            MESSAGE = :message
+            POST = :post
+            COMMENT = :comment
+            EVENT = :event
+            PRODUCT = :product
+            REVIEW = :review
+            VOICE = :voice
+            OTHER = :other
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
 
           class FilterLabel < ModerationAPI::Internal::Type::BaseModel
             # @!attribute label
@@ -173,12 +275,53 @@ module ModerationAPI
             end
           end
 
+          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#is_flagged
+          module IsFlagged
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL = :ALL
+            FLAGGED = :FLAGGED
+            NOT_FLAGGED = :NOT_FLAGGED
+            SHADOW_FLAGGED = :SHADOW_FLAGGED
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          module MediaType
+            extend ModerationAPI::Internal::Type::Enum
+
+            TEXT = :text
+            IMAGE = :image
+            VIDEO = :video
+            OBJECT = :object
+            AUDIO = :audio
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
           module RecommendationAction
             extend ModerationAPI::Internal::Type::Enum
 
             REVIEW = :review
             ALLOW = :allow
             REJECT = :reject
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#within_unit
+          module WithinUnit
+            extend ModerationAPI::Internal::Type::Enum
+
+            MINUTES = :MINUTES
+            HOURS = :HOURS
+            DAYS = :DAYS
+            WEEKS = :WEEKS
+            MONTHS = :MONTHS
+            YEARS = :YEARS
 
             # @!method self.values
             #   @return [Array<Symbol>]

@@ -628,6 +628,11 @@ module ModerationAPI
                   :THRESHOLDS,
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::Type::TaggedSymbol
                 )
+              MATCHED =
+                T.let(
+                  :MATCHED,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::Type::TaggedSymbol
+                )
 
               sig do
                 override.returns(

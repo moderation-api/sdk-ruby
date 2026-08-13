@@ -291,7 +291,7 @@ module ModerationAPI
               min_threshold: Float?
             }
 
-            type type_ = :FLAGGED | :NOT_FLAGGED | :THRESHOLDS
+            type type_ = :FLAGGED | :NOT_FLAGGED | :THRESHOLDS | :MATCHED
 
             module Type
               extend ModerationAPI::Internal::Type::Enum
@@ -299,6 +299,7 @@ module ModerationAPI
               FLAGGED: :FLAGGED
               NOT_FLAGGED: :NOT_FLAGGED
               THRESHOLDS: :THRESHOLDS
+              MATCHED: :MATCHED
 
               def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::FilterLabel::type_]
             end

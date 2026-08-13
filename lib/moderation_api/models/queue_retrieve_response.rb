@@ -269,6 +269,7 @@ module ModerationAPI
               FLAGGED = :FLAGGED
               NOT_FLAGGED = :NOT_FLAGGED
               THRESHOLDS = :THRESHOLDS
+              MATCHED = :MATCHED
 
               # @!method self.values
               #   @return [Array<Symbol>]

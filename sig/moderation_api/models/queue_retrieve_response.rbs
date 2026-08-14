@@ -77,7 +77,9 @@ module ModerationAPI
             is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged,
             labels: ::Array[String],
             languages: ::Array[String],
+            max_severity: Integer,
             media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
+            min_severity: Integer,
             recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
             search: ::Array[String],
             within: Float,
@@ -149,11 +151,19 @@ module ModerationAPI
 
           def languages=: (::Array[String]) -> ::Array[String]
 
+          attr_reader max_severity: Integer?
+
+          def max_severity=: (Integer) -> Integer
+
           attr_reader media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]?
 
           def media_types=: (
             ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
           ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
+
+          attr_reader min_severity: Integer?
+
+          def min_severity=: (Integer) -> Integer
 
           attr_reader recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action]?
 
@@ -191,7 +201,9 @@ module ModerationAPI
             ?is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged,
             ?labels: ::Array[String],
             ?languages: ::Array[String],
+            ?max_severity: Integer,
             ?media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
+            ?min_severity: Integer,
             ?recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
             ?search: ::Array[String],
             ?within: Float,
@@ -214,7 +226,9 @@ module ModerationAPI
             is_flagged: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::is_flagged,
             labels: ::Array[String],
             languages: ::Array[String],
+            max_severity: Integer,
             media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
+            min_severity: Integer,
             recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
             search: ::Array[String],
             within: Float,

@@ -260,6 +260,12 @@ module ModerationAPI
           sig { params(languages: T::Array[String]).void }
           attr_writer :languages
 
+          sig { returns(T.nilable(Integer)) }
+          attr_reader :max_severity
+
+          sig { params(max_severity: Integer).void }
+          attr_writer :max_severity
+
           sig do
             returns(
               T.nilable(
@@ -280,6 +286,12 @@ module ModerationAPI
             ).void
           end
           attr_writer :media_types
+
+          sig { returns(T.nilable(Integer)) }
+          attr_reader :min_severity
+
+          sig { params(min_severity: Integer).void }
+          attr_writer :min_severity
 
           sig do
             returns(
@@ -358,10 +370,12 @@ module ModerationAPI
                 ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::OrSymbol,
               labels: T::Array[String],
               languages: T::Array[String],
+              max_severity: Integer,
               media_types:
                 T::Array[
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::OrSymbol
                 ],
+              min_severity: Integer,
               recommendation_actions:
                 T::Array[
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction::OrSymbol
@@ -388,7 +402,9 @@ module ModerationAPI
             is_flagged: nil,
             labels: nil,
             languages: nil,
+            max_severity: nil,
             media_types: nil,
+            min_severity: nil,
             recommendation_actions: nil,
             search: nil,
             within: nil,
@@ -424,10 +440,12 @@ module ModerationAPI
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged::TaggedSymbol,
                 labels: T::Array[String],
                 languages: T::Array[String],
+                max_severity: Integer,
                 media_types:
                   T::Array[
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
                   ],
+                min_severity: Integer,
                 recommendation_actions:
                   T::Array[
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction::TaggedSymbol

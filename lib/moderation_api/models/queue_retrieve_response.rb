@@ -152,12 +152,22 @@ module ModerationAPI
           #   @return [Array<String>, nil]
           optional :languages, ModerationAPI::Internal::Type::ArrayOf[String]
 
+          # @!attribute max_severity
+          #
+          #   @return [Integer, nil]
+          optional :max_severity, Integer, api_name: :maxSeverity
+
           # @!attribute media_types
           #
           #   @return [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType>, nil]
           optional :media_types,
                    -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType] },
                    api_name: :mediaTypes
+
+          # @!attribute min_severity
+          #
+          #   @return [Integer, nil]
+          optional :min_severity, Integer, api_name: :minSeverity
 
           # @!attribute recommendation_actions
           #
@@ -183,7 +193,7 @@ module ModerationAPI
                    enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit },
                    api_name: :withinUnit
 
-          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, media_types: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
+          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
           #   @param after_date [String]
           #   @param author_id [String]
           #   @param author_trust_levels [Array<Integer>]
@@ -199,7 +209,9 @@ module ModerationAPI
           #   @param is_flagged [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::IsFlagged]
           #   @param labels [Array<String>]
           #   @param languages [Array<String>]
+          #   @param max_severity [Integer]
           #   @param media_types [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType>]
+          #   @param min_severity [Integer]
           #   @param recommendation_actions [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction>]
           #   @param search [Array<String>]
           #   @param within [Float]

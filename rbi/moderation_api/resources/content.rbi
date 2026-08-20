@@ -3,6 +3,40 @@
 module ModerationAPI
   module Resources
     class Content
+      # Open a WebSocket to moderate live voice/call audio in real time. Speech is
+      # transcribed and each finalized utterance is moderated by your enabled text
+      # policies; you receive a verdict per utterance as it's spoken.
+      #
+      # **This is a WebSocket upgrade, not a regular HTTP call.** The request body below
+      # documents the frames you _send_ over the socket; the `101` response documents
+      # the events you _receive_.
+      #
+      # - **Auth:** `Authorization: Bearer <api_key>` on the upgrade. A missing/invalid
+      #   key closes `4401`; voice not enabled on the plan/channel closes `4403`.
+      # - **Subprotocol:** request `moderationapi.v1`.
+      # - **Flow:** send one `start` frame, then `media` frames as audio arrives, then
+      #   `stop` (or disconnect). You receive `session.started`, `utterance.final` per
+      #   utterance, optional `utterance.partial`/`warning`, and `session.ended`.
+      # - **Close codes:** `1000` normal · `1011` server error · `4400` bad request ·
+      #   `4401` auth failed · `4403` voice not enabled · `4429` concurrency limit.
+      #
+      # See the
+      # [Real-time voice guide](https://docs.moderationapi.com/content-moderation/real-time-voice)
+      # for the full walkthrough and code examples.
+      sig do
+        params(
+          sec_web_socket_protocol:
+            ModerationAPI::ContentStreamParams::SecWebSocketProtocol::OrSymbol,
+          request_options: ModerationAPI::RequestOptions::OrHash
+        ).void
+      end
+      def stream(
+        # Requested subprotocol.
+        sec_web_socket_protocol:,
+        request_options: {}
+      )
+      end
+
       sig do
         params(
           content:

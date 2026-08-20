@@ -1,0 +1,85 @@
+module ModerationAPI
+  module Models
+    type webhook_update_params =
+      {
+        id: String,
+        description: String?,
+        event_types: ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type],
+        name: String,
+        url: String
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class WebhookUpdateParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_accessor description: String?
+
+      attr_reader event_types: ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type]?
+
+      def event_types=: (
+        ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type]
+      ) -> ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type]
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader url: String?
+
+      def url=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?description: String?,
+        ?event_types: ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type],
+        ?name: String,
+        ?url: String,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        description: String?,
+        event_types: ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type],
+        name: String,
+        url: String,
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type event_type =
+        :QUEUE_ITEM_NEW
+        | :QUEUE_ITEM_COMPLETED
+        | :QUEUE_ITEM_ACTION
+        | :QUEUE_ITEM_REJECTED
+        | :QUEUE_ITEM_ALLOWED
+        | :AUTHOR_BLOCKED
+        | :AUTHOR_UNBLOCKED
+        | :AUTHOR_SUSPENDED
+        | :AUTHOR_UPDATED
+        | :AUTHOR_TRUST_LEVEL_CHANGED
+        | :AUTHOR_ACTION
+
+      module EventType
+        extend ModerationAPI::Internal::Type::Enum
+
+        QUEUE_ITEM_NEW: :QUEUE_ITEM_NEW
+        QUEUE_ITEM_COMPLETED: :QUEUE_ITEM_COMPLETED
+        QUEUE_ITEM_ACTION: :QUEUE_ITEM_ACTION
+        QUEUE_ITEM_REJECTED: :QUEUE_ITEM_REJECTED
+        QUEUE_ITEM_ALLOWED: :QUEUE_ITEM_ALLOWED
+        AUTHOR_BLOCKED: :AUTHOR_BLOCKED
+        AUTHOR_UNBLOCKED: :AUTHOR_UNBLOCKED
+        AUTHOR_SUSPENDED: :AUTHOR_SUSPENDED
+        AUTHOR_UPDATED: :AUTHOR_UPDATED
+        AUTHOR_TRUST_LEVEL_CHANGED: :AUTHOR_TRUST_LEVEL_CHANGED
+        AUTHOR_ACTION: :AUTHOR_ACTION
+
+        def self?.values: -> ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type]
+      end
+    end
+  end
+end

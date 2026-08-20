@@ -3,6 +3,16 @@
 require_relative "../test_helper"
 
 class ModerationAPI::Test::Resources::ContentTest < ModerationAPI::Test::ResourceTest
+  def test_stream_required_params
+    skip("Mock server tests are disabled")
+
+    response = @moderation_api.content.stream(sec_web_socket_protocol: :"moderationapi.v1")
+
+    assert_pattern do
+      response => nil
+    end
+  end
+
   def test_submit_required_params
     skip("Mock server tests are disabled")
 

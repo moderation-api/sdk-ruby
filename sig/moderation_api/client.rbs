@@ -24,7 +24,13 @@ module ModerationAPI
 
     attr_reader wordlist: ModerationAPI::Resources::Wordlist
 
+    attr_reader webhooks: ModerationAPI::Resources::Webhooks
+
+    attr_reader webhook_secret: ModerationAPI::Resources::WebhookSecret
+
     private def auth_headers: -> ::Hash[String, String]
+
+    def base_url_overridden?: -> bool
 
     def initialize: (
       ?secret_key: String?,

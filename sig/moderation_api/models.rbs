@@ -27,6 +27,8 @@ module ModerationAPI
 
   class AuthRetrieveParams = ModerationAPI::Models::AuthRetrieveParams
 
+  class ContentStreamParams = ModerationAPI::Models::ContentStreamParams
+
   class ContentSubmitParams = ModerationAPI::Models::ContentSubmitParams
 
   module Queue = ModerationAPI::Models::Queue
@@ -35,7 +37,19 @@ module ModerationAPI
 
   class QueueRetrieveParams = ModerationAPI::Models::QueueRetrieveParams
 
+  class WebhookCreateParams = ModerationAPI::Models::WebhookCreateParams
+
+  class WebhookDeleteParams = ModerationAPI::Models::WebhookDeleteParams
+
   module WebhookEvent = ModerationAPI::Models::WebhookEvent
+
+  class WebhookListParams = ModerationAPI::Models::WebhookListParams
+
+  class WebhookRetrieveParams = ModerationAPI::Models::WebhookRetrieveParams
+
+  class WebhookSecretRetrieveParams = ModerationAPI::Models::WebhookSecretRetrieveParams
+
+  class WebhookUpdateParams = ModerationAPI::Models::WebhookUpdateParams
 
   module Wordlist = ModerationAPI::Models::Wordlist
 

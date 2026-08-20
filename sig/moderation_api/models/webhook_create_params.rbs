@@ -1,0 +1,72 @@
+module ModerationAPI
+  module Models
+    type webhook_create_params =
+      {
+        event_types: ::Array[ModerationAPI::Models::WebhookCreateParams::event_type],
+        name: String,
+        url: String,
+        description: String?
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class WebhookCreateParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor event_types: ::Array[ModerationAPI::Models::WebhookCreateParams::event_type]
+
+      attr_accessor name: String
+
+      attr_accessor url: String
+
+      attr_accessor description: String?
+
+      def initialize: (
+        event_types: ::Array[ModerationAPI::Models::WebhookCreateParams::event_type],
+        name: String,
+        url: String,
+        ?description: String?,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        event_types: ::Array[ModerationAPI::Models::WebhookCreateParams::event_type],
+        name: String,
+        url: String,
+        description: String?,
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type event_type =
+        :QUEUE_ITEM_NEW
+        | :QUEUE_ITEM_COMPLETED
+        | :QUEUE_ITEM_ACTION
+        | :QUEUE_ITEM_REJECTED
+        | :QUEUE_ITEM_ALLOWED
+        | :AUTHOR_BLOCKED
+        | :AUTHOR_UNBLOCKED
+        | :AUTHOR_SUSPENDED
+        | :AUTHOR_UPDATED
+        | :AUTHOR_TRUST_LEVEL_CHANGED
+        | :AUTHOR_ACTION
+
+      module EventType
+        extend ModerationAPI::Internal::Type::Enum
+
+        QUEUE_ITEM_NEW: :QUEUE_ITEM_NEW
+        QUEUE_ITEM_COMPLETED: :QUEUE_ITEM_COMPLETED
+        QUEUE_ITEM_ACTION: :QUEUE_ITEM_ACTION
+        QUEUE_ITEM_REJECTED: :QUEUE_ITEM_REJECTED
+        QUEUE_ITEM_ALLOWED: :QUEUE_ITEM_ALLOWED
+        AUTHOR_BLOCKED: :AUTHOR_BLOCKED
+        AUTHOR_UNBLOCKED: :AUTHOR_UNBLOCKED
+        AUTHOR_SUSPENDED: :AUTHOR_SUSPENDED
+        AUTHOR_UPDATED: :AUTHOR_UPDATED
+        AUTHOR_TRUST_LEVEL_CHANGED: :AUTHOR_TRUST_LEVEL_CHANGED
+        AUTHOR_ACTION: :AUTHOR_ACTION
+
+        def self?.values: -> ::Array[ModerationAPI::Models::WebhookCreateParams::event_type]
+      end
+    end
+  end
+end

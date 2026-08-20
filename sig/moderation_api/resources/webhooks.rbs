@@ -1,0 +1,38 @@
+module ModerationAPI
+  module Resources
+    class Webhooks
+      def create: (
+        event_types: ::Array[ModerationAPI::Models::WebhookCreateParams::event_type],
+        name: String,
+        url: String,
+        ?description: String?,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WebhookCreateResponse
+
+      def retrieve: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WebhookRetrieveResponse
+
+      def update: (
+        String id,
+        ?description: String?,
+        ?event_types: ::Array[ModerationAPI::Models::WebhookUpdateParams::event_type],
+        ?name: String,
+        ?url: String,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WebhookUpdateResponse
+
+      def list: (
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::webhook_list_response
+
+      def delete: (
+        String id,
+        ?request_options: ModerationAPI::request_opts
+      ) -> ModerationAPI::Models::WebhookDeleteResponse
+
+      def initialize: (client: ModerationAPI::Client) -> void
+    end
+  end
+end

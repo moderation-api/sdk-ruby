@@ -34,9 +34,20 @@ module ModerationAPI
     sig { returns(ModerationAPI::Resources::Wordlist) }
     attr_reader :wordlist
 
+    sig { returns(ModerationAPI::Resources::Webhooks) }
+    attr_reader :webhooks
+
+    sig { returns(ModerationAPI::Resources::WebhookSecret) }
+    attr_reader :webhook_secret
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
+    end
+
+    # @api private
+    sig { returns(T::Boolean) }
+    def base_url_overridden?
     end
 
     # Creates and returns a new client for interacting with the API.

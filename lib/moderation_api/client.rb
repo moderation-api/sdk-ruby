@@ -39,6 +39,12 @@ module ModerationAPI
     # @return [ModerationAPI::Resources::Wordlist]
     attr_reader :wordlist
 
+    # @return [ModerationAPI::Resources::Webhooks]
+    attr_reader :webhooks
+
+    # @return [ModerationAPI::Resources::WebhookSecret]
+    attr_reader :webhook_secret
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -47,6 +53,11 @@ module ModerationAPI
 
       {"authorization" => "Bearer #{@secret_key}"}
     end
+
+    # @api private
+    #
+    # @return [Boolean]
+    def base_url_overridden? = @base_url_overridden
 
     # Creates and returns a new client for interacting with the API.
     #
@@ -70,6 +81,8 @@ module ModerationAPI
       initial_retry_delay: self.class::DEFAULT_INITIAL_RETRY_DELAY,
       max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY
     )
+      @base_url_overridden = !base_url.nil?
+
       base_url ||= "https://api.moderationapi.com/v1"
 
       if secret_key.nil?
@@ -107,6 +120,8 @@ module ModerationAPI
       @account = ModerationAPI::Resources::Account.new(client: self)
       @auth = ModerationAPI::Resources::Auth.new(client: self)
       @wordlist = ModerationAPI::Resources::Wordlist.new(client: self)
+      @webhooks = ModerationAPI::Resources::Webhooks.new(client: self)
+      @webhook_secret = ModerationAPI::Resources::WebhookSecret.new(client: self)
     end
   end
 end

@@ -1,6 +1,11 @@
 module ModerationAPI
   module Resources
     class Content
+      def stream: (
+        sec_web_socket_protocol: ModerationAPI::Models::ContentStreamParams::sec_web_socket_protocol,
+        ?request_options: ModerationAPI::request_opts
+      ) -> nil
+
       def submit: (
         content: ModerationAPI::Models::ContentSubmitParams::content,
         ?author_id: String,

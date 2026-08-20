@@ -3,6 +3,48 @@
 module ModerationAPI
   module Resources
     class Content
+      # Open a WebSocket to moderate live voice/call audio in real time. Speech is
+      # transcribed and each finalized utterance is moderated by your enabled text
+      # policies; you receive a verdict per utterance as it's spoken.
+      #
+      # **This is a WebSocket upgrade, not a regular HTTP call.** The request body below
+      # documents the frames you _send_ over the socket; the `101` response documents
+      # the events you _receive_.
+      #
+      # - **Auth:** `Authorization: Bearer <api_key>` on the upgrade. A missing/invalid
+      #   key closes `4401`; voice not enabled on the plan/channel closes `4403`.
+      # - **Subprotocol:** request `moderationapi.v1`.
+      # - **Flow:** send one `start` frame, then `media` frames as audio arrives, then
+      #   `stop` (or disconnect). You receive `session.started`, `utterance.final` per
+      #   utterance, optional `utterance.partial`/`warning`, and `session.ended`.
+      # - **Close codes:** `1000` normal · `1011` server error · `4400` bad request ·
+      #   `4401` auth failed · `4403` voice not enabled · `4429` concurrency limit.
+      #
+      # See the
+      # [Real-time voice guide](https://docs.moderationapi.com/content-moderation/real-time-voice)
+      # for the full walkthrough and code examples.
+      #
+      # @overload stream(sec_web_socket_protocol:, request_options: {})
+      #
+      # @param sec_web_socket_protocol [Symbol, ModerationAPI::Models::ContentStreamParams::SecWebSocketProtocol] Requested subprotocol.
+      #
+      # @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [nil]
+      #
+      # @see ModerationAPI::Models::ContentStreamParams
+      def stream(params)
+        parsed, options = ModerationAPI::ContentStreamParams.dump_request(params)
+        path = @client.base_url_overridden? ? "stream" : "wss://voice.moderationapi.com/v1/stream"
+        @client.request(
+          method: :get,
+          path: path,
+          headers: parsed.transform_keys(sec_web_socket_protocol: "sec-websocket-protocol"),
+          model: NilClass,
+          options: options
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {ModerationAPI::Models::ContentSubmitParams} for more details.
       #

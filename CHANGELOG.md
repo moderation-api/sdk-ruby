@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.34.0 (2026-08-20)
+
+Full Changelog: [v2.33.0...v2.34.0](https://github.com/moderation-api/sdk-ruby/compare/v2.33.0...v2.34.0)
+
+### Features
+
+* **api:** webhooks and stream ([ff603e8](https://github.com/moderation-api/sdk-ruby/commit/ff603e825cf163e821282148124e784545618518))
+
 ## 2.33.0 (2026-08-14)
 
 Full Changelog: [v2.32.0...v2.33.0](https://github.com/moderation-api/sdk-ruby/compare/v2.32.0...v2.33.0)

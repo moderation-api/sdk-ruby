@@ -1,0 +1,36 @@
+module ModerationAPI
+  module Models
+    type content_stream_params =
+      {
+        sec_web_socket_protocol: ModerationAPI::Models::ContentStreamParams::sec_web_socket_protocol
+      }
+      & ModerationAPI::Internal::Type::request_parameters
+
+    class ContentStreamParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor sec_web_socket_protocol: ModerationAPI::Models::ContentStreamParams::sec_web_socket_protocol
+
+      def initialize: (
+        sec_web_socket_protocol: ModerationAPI::Models::ContentStreamParams::sec_web_socket_protocol,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        sec_web_socket_protocol: ModerationAPI::Models::ContentStreamParams::sec_web_socket_protocol,
+        request_options: ModerationAPI::RequestOptions
+      }
+
+      type sec_web_socket_protocol = :"moderationapi.v1"
+
+      module SecWebSocketProtocol
+        extend ModerationAPI::Internal::Type::Enum
+
+        MODERATIONAPI_V1: :"moderationapi.v1"
+
+        def self?.values: -> ::Array[ModerationAPI::Models::ContentStreamParams::sec_web_socket_protocol]
+      end
+    end
+  end
+end

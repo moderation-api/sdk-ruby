@@ -1,0 +1,23 @@
+module ModerationAPI
+  module Models
+    type webhook_delete_params =
+      { id: String } & ModerationAPI::Internal::Type::request_parameters
+
+    class WebhookDeleteParams < ModerationAPI::Internal::Type::BaseModel
+      extend ModerationAPI::Internal::Type::RequestParameters::Converter
+      include ModerationAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      def initialize: (
+        id: String,
+        ?request_options: ModerationAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        request_options: ModerationAPI::RequestOptions
+      }
+    end
+  end
+end

@@ -28,6 +28,28 @@ module ModerationAPI
       end
       attr_writer :author
 
+      # What your casebook — the record of your past moderation decisions — found for
+      # this content, or null when it had nothing close enough to say, when the matching
+      # cases disagreed, or when casebook lookups are not switched on for this channel.
+      # Reports what the casebook found; whether it decided the outcome is shown in
+      # `recommendation`, where a higher-priority rule may have settled the item first.
+      sig do
+        returns(
+          T.nilable(ModerationAPI::Models::ContentSubmitResponse::Casebook)
+        )
+      end
+      attr_reader :casebook
+
+      sig do
+        params(
+          casebook:
+            T.nilable(
+              ModerationAPI::Models::ContentSubmitResponse::Casebook::OrHash
+            )
+        ).void
+      end
+      attr_writer :casebook
+
       # Potentially modified content.
       sig { returns(ModerationAPI::Models::ContentSubmitResponse::Content) }
       attr_reader :content
@@ -122,6 +144,10 @@ module ModerationAPI
             T.nilable(
               ModerationAPI::Models::ContentSubmitResponse::Author::OrHash
             ),
+          casebook:
+            T.nilable(
+              ModerationAPI::Models::ContentSubmitResponse::Casebook::OrHash
+            ),
           content:
             ModerationAPI::Models::ContentSubmitResponse::Content::OrHash,
           evaluation:
@@ -153,6 +179,12 @@ module ModerationAPI
         # The author of the content if your account has authors enabled. Requires you to
         # send authorId when submitting content.
         author:,
+        # What your casebook — the record of your past moderation decisions — found for
+        # this content, or null when it had nothing close enough to say, when the matching
+        # cases disagreed, or when casebook lookups are not switched on for this channel.
+        # Reports what the casebook found; whether it decided the outcome is shown in
+        # `recommendation`, where a higher-priority rule may have settled the item first.
+        casebook:,
         # Potentially modified content.
         content:,
         # The evaluation of the content after running the channel policies.
@@ -175,6 +207,8 @@ module ModerationAPI
           {
             author:
               T.nilable(ModerationAPI::Models::ContentSubmitResponse::Author),
+            casebook:
+              T.nilable(ModerationAPI::Models::ContentSubmitResponse::Casebook),
             content: ModerationAPI::Models::ContentSubmitResponse::Content,
             evaluation:
               ModerationAPI::Models::ContentSubmitResponse::Evaluation,
@@ -415,6 +449,193 @@ module ModerationAPI
 
           sig { override.returns({ level: Float, manual: T::Boolean }) }
           def to_hash
+          end
+        end
+      end
+
+      class Casebook < ModerationAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              ModerationAPI::Models::ContentSubmitResponse::Casebook,
+              ModerationAPI::Internal::AnyHash
+            )
+          end
+
+        # How unanimous the matching cases are, from 0 to 1: the share of them that
+        # decided this way, ignoring how many there are. Always at least 0.8 when a ruling
+        # is returned — below that the casebook reports a disagreement instead of picking
+        # a side — so it tells you how clean the consensus was, and is not a threshold to
+        # re-apply yourself.
+        sig { returns(Float) }
+        attr_accessor :agreement
+
+        # How many of your past cases backed this ruling.
+        sig { returns(Float) }
+        attr_accessor :case_count
+
+        # How strongly the casebook holds this ruling, from 0 to 1: the agreement scaled
+        # by how much evidence backs it, so a handful of close, recent cases outweighs one
+        # distant one. Older cases count for less, halving in weight roughly every 180
+        # days. This is the number to use in rules when you want a strength condition.
+        sig { returns(Float) }
+        attr_accessor :confidence
+
+        # How close the nearest matching case is, from 0 to 1. 1 means the content is
+        # identical to something you have already decided.
+        sig { returns(Float) }
+        attr_accessor :similarity
+
+        # The topic the closest matching case is filed under, or null when it has not been
+        # grouped into one yet.
+        sig do
+          returns(
+            T.nilable(
+              ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic
+            )
+          )
+        end
+        attr_reader :topic
+
+        sig do
+          params(
+            topic:
+              T.nilable(
+                ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic::OrHash
+              )
+          ).void
+        end
+        attr_writer :topic
+
+        # The ruling your past decisions point to for this content.
+        sig do
+          returns(
+            ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict::TaggedSymbol
+          )
+        end
+        attr_accessor :verdict
+
+        # What your casebook — the record of your past moderation decisions — found for
+        # this content, or null when it had nothing close enough to say, when the matching
+        # cases disagreed, or when casebook lookups are not switched on for this channel.
+        # Reports what the casebook found; whether it decided the outcome is shown in
+        # `recommendation`, where a higher-priority rule may have settled the item first.
+        sig do
+          params(
+            agreement: Float,
+            case_count: Float,
+            confidence: Float,
+            similarity: Float,
+            topic:
+              T.nilable(
+                ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic::OrHash
+              ),
+            verdict:
+              ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # How unanimous the matching cases are, from 0 to 1: the share of them that
+          # decided this way, ignoring how many there are. Always at least 0.8 when a ruling
+          # is returned — below that the casebook reports a disagreement instead of picking
+          # a side — so it tells you how clean the consensus was, and is not a threshold to
+          # re-apply yourself.
+          agreement:,
+          # How many of your past cases backed this ruling.
+          case_count:,
+          # How strongly the casebook holds this ruling, from 0 to 1: the agreement scaled
+          # by how much evidence backs it, so a handful of close, recent cases outweighs one
+          # distant one. Older cases count for less, halving in weight roughly every 180
+          # days. This is the number to use in rules when you want a strength condition.
+          confidence:,
+          # How close the nearest matching case is, from 0 to 1. 1 means the content is
+          # identical to something you have already decided.
+          similarity:,
+          # The topic the closest matching case is filed under, or null when it has not been
+          # grouped into one yet.
+          topic:,
+          # The ruling your past decisions point to for this content.
+          verdict:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              agreement: Float,
+              case_count: Float,
+              confidence: Float,
+              similarity: Float,
+              topic:
+                T.nilable(
+                  ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic
+                ),
+              verdict:
+                ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Topic < ModerationAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic,
+                ModerationAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(String) }
+          attr_accessor :id
+
+          sig { returns(String) }
+          attr_accessor :label
+
+          # The topic the closest matching case is filed under, or null when it has not been
+          # grouped into one yet.
+          sig { params(id: String, label: String).returns(T.attached_class) }
+          def self.new(id:, label:)
+          end
+
+          sig { override.returns({ id: String, label: String }) }
+          def to_hash
+          end
+        end
+
+        # The ruling your past decisions point to for this content.
+        module Verdict
+          extend ModerationAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ALLOW =
+            T.let(
+              :allow,
+              ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict::TaggedSymbol
+            )
+          REJECT =
+            T.let(
+              :reject,
+              ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end
@@ -1826,6 +2047,11 @@ module ModerationAPI
           CLIENT_OVERRIDE =
             T.let(
               :client_override,
+              ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
+            )
+          CASEBOOK_MATCH =
+            T.let(
+              :casebook_match,
               ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::TaggedSymbol
             )
         end

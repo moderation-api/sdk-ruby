@@ -11,6 +11,16 @@ module ModerationAPI
       #   @return [ModerationAPI::Models::ContentSubmitResponse::Author, nil]
       required :author, -> { ModerationAPI::Models::ContentSubmitResponse::Author }, nil?: true
 
+      # @!attribute casebook
+      #   What your casebook — the record of your past moderation decisions — found for
+      #   this content, or null when it had nothing close enough to say, when the matching
+      #   cases disagreed, or when casebook lookups are not switched on for this channel.
+      #   Reports what the casebook found; whether it decided the outcome is shown in
+      #   `recommendation`, where a higher-priority rule may have settled the item first.
+      #
+      #   @return [ModerationAPI::Models::ContentSubmitResponse::Casebook, nil]
+      required :casebook, -> { ModerationAPI::Models::ContentSubmitResponse::Casebook }, nil?: true
+
       # @!attribute content
       #   Potentially modified content.
       #
@@ -56,11 +66,13 @@ module ModerationAPI
       optional :errors,
                -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::ContentSubmitResponse::Error] }
 
-      # @!method initialize(author:, content:, evaluation:, insights:, meta:, policies:, recommendation:, errors: nil)
+      # @!method initialize(author:, casebook:, content:, evaluation:, insights:, meta:, policies:, recommendation:, errors: nil)
       #   Some parameter documentations has been truncated, see
       #   {ModerationAPI::Models::ContentSubmitResponse} for more details.
       #
       #   @param author [ModerationAPI::Models::ContentSubmitResponse::Author, nil] The author of the content if your account has authors enabled. Requires you to s
+      #
+      #   @param casebook [ModerationAPI::Models::ContentSubmitResponse::Casebook, nil] What your casebook — the record of your past moderation decisions — found for th
       #
       #   @param content [ModerationAPI::Models::ContentSubmitResponse::Content] Potentially modified content.
       #
@@ -175,6 +187,109 @@ module ModerationAPI
           #   @param level [Float] Author trust level (-1, 0, 1, 2, 3, or 4)
           #
           #   @param manual [Boolean] True if the trust level was set manually by a moderator
+        end
+      end
+
+      # @see ModerationAPI::Models::ContentSubmitResponse#casebook
+      class Casebook < ModerationAPI::Internal::Type::BaseModel
+        # @!attribute agreement
+        #   How unanimous the matching cases are, from 0 to 1: the share of them that
+        #   decided this way, ignoring how many there are. Always at least 0.8 when a ruling
+        #   is returned — below that the casebook reports a disagreement instead of picking
+        #   a side — so it tells you how clean the consensus was, and is not a threshold to
+        #   re-apply yourself.
+        #
+        #   @return [Float]
+        required :agreement, Float
+
+        # @!attribute case_count
+        #   How many of your past cases backed this ruling.
+        #
+        #   @return [Float]
+        required :case_count, Float
+
+        # @!attribute confidence
+        #   How strongly the casebook holds this ruling, from 0 to 1: the agreement scaled
+        #   by how much evidence backs it, so a handful of close, recent cases outweighs one
+        #   distant one. Older cases count for less, halving in weight roughly every 180
+        #   days. This is the number to use in rules when you want a strength condition.
+        #
+        #   @return [Float]
+        required :confidence, Float
+
+        # @!attribute similarity
+        #   How close the nearest matching case is, from 0 to 1. 1 means the content is
+        #   identical to something you have already decided.
+        #
+        #   @return [Float]
+        required :similarity, Float
+
+        # @!attribute topic
+        #   The topic the closest matching case is filed under, or null when it has not been
+        #   grouped into one yet.
+        #
+        #   @return [ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic, nil]
+        required :topic, -> { ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic }, nil?: true
+
+        # @!attribute verdict
+        #   The ruling your past decisions point to for this content.
+        #
+        #   @return [Symbol, ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict]
+        required :verdict, enum: -> { ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict }
+
+        # @!method initialize(agreement:, case_count:, confidence:, similarity:, topic:, verdict:)
+        #   Some parameter documentations has been truncated, see
+        #   {ModerationAPI::Models::ContentSubmitResponse::Casebook} for more details.
+        #
+        #   What your casebook — the record of your past moderation decisions — found for
+        #   this content, or null when it had nothing close enough to say, when the matching
+        #   cases disagreed, or when casebook lookups are not switched on for this channel.
+        #   Reports what the casebook found; whether it decided the outcome is shown in
+        #   `recommendation`, where a higher-priority rule may have settled the item first.
+        #
+        #   @param agreement [Float] How unanimous the matching cases are, from 0 to 1: the share of them that decide
+        #
+        #   @param case_count [Float] How many of your past cases backed this ruling.
+        #
+        #   @param confidence [Float] How strongly the casebook holds this ruling, from 0 to 1: the agreement scaled b
+        #
+        #   @param similarity [Float] How close the nearest matching case is, from 0 to 1. 1 means the content is iden
+        #
+        #   @param topic [ModerationAPI::Models::ContentSubmitResponse::Casebook::Topic, nil] The topic the closest matching case is filed under, or null when it has not been
+        #
+        #   @param verdict [Symbol, ModerationAPI::Models::ContentSubmitResponse::Casebook::Verdict] The ruling your past decisions point to for this content.
+
+        # @see ModerationAPI::Models::ContentSubmitResponse::Casebook#topic
+        class Topic < ModerationAPI::Internal::Type::BaseModel
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute label
+          #
+          #   @return [String]
+          required :label, String
+
+          # @!method initialize(id:, label:)
+          #   The topic the closest matching case is filed under, or null when it has not been
+          #   grouped into one yet.
+          #
+          #   @param id [String]
+          #   @param label [String]
+        end
+
+        # The ruling your past decisions point to for this content.
+        #
+        # @see ModerationAPI::Models::ContentSubmitResponse::Casebook#verdict
+        module Verdict
+          extend ModerationAPI::Internal::Type::Enum
+
+          ALLOW = :allow
+          REJECT = :reject
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
@@ -935,6 +1050,8 @@ module ModerationAPI
 
           variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::CLIENT_OVERRIDE }
 
+          variant const: -> { ModerationAPI::Models::ContentSubmitResponse::Recommendation::ReasonCode::CASEBOOK_MATCH }
+
           variant String
 
           # @!method self.variants
@@ -956,6 +1073,7 @@ module ModerationAPI
           RULE_DEFAULT = :rule_default
           RULE_FALLBACK = :rule_fallback
           CLIENT_OVERRIDE = :client_override
+          CASEBOOK_MATCH = :casebook_match
 
           # @!endgroup
         end

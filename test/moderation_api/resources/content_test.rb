@@ -25,6 +25,7 @@ class ModerationAPI::Test::Resources::ContentTest < ModerationAPI::Test::Resourc
     assert_pattern do
       response => {
         author: ModerationAPI::Models::ContentSubmitResponse::Author | nil,
+        casebook: ModerationAPI::Models::ContentSubmitResponse::Casebook | nil,
         content: ModerationAPI::Models::ContentSubmitResponse::Content,
         evaluation: ModerationAPI::Models::ContentSubmitResponse::Evaluation,
         insights: ^(ModerationAPI::Internal::Type::ArrayOf[union: ModerationAPI::Models::ContentSubmitResponse::Insight]),

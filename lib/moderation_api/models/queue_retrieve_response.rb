@@ -82,6 +82,13 @@ module ModerationAPI
           #   @return [String, nil]
           optional :before_date, String, api_name: :beforeDate
 
+          # @!attribute casebook_handled
+          #
+          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled, nil]
+          optional :casebook_handled,
+                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled },
+                   api_name: :casebookHandled
+
           # @!attribute check_status
           #
           #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus, nil]
@@ -193,11 +200,12 @@ module ModerationAPI
                    enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit },
                    api_name: :withinUnit
 
-          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
+          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, casebook_handled: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
           #   @param after_date [String]
           #   @param author_id [String]
           #   @param author_trust_levels [Array<Integer>]
           #   @param before_date [String]
+          #   @param casebook_handled [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled]
           #   @param check_status [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus, nil]
           #   @param clear_date_window [Boolean]
           #   @param content_id [String]
@@ -216,6 +224,18 @@ module ModerationAPI
           #   @param search [Array<String>]
           #   @param within [Float]
           #   @param within_unit [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit]
+
+          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#casebook_handled
+          module CasebookHandled
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL = :ALL
+            HANDLED = :HANDLED
+            WOULD_HAVE_HANDLED = :WOULD_HAVE_HANDLED
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
 
           # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#check_status
           module CheckStatus

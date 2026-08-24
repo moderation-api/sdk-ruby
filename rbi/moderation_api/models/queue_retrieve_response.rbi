@@ -153,6 +153,23 @@ module ModerationAPI
           sig do
             returns(
               T.nilable(
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :casebook_handled
+
+          sig do
+            params(
+              casebook_handled:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::OrSymbol
+            ).void
+          end
+          attr_writer :casebook_handled
+
+          sig do
+            returns(
+              T.nilable(
                 ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
               )
             )
@@ -349,6 +366,8 @@ module ModerationAPI
               author_id: String,
               author_trust_levels: T::Array[Integer],
               before_date: String,
+              casebook_handled:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::OrSymbol,
               check_status:
                 T.nilable(
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::OrSymbol
@@ -391,6 +410,7 @@ module ModerationAPI
             author_id: nil,
             author_trust_levels: nil,
             before_date: nil,
+            casebook_handled: nil,
             check_status: nil,
             clear_date_window: nil,
             content_id: nil,
@@ -419,6 +439,8 @@ module ModerationAPI
                 author_id: String,
                 author_trust_levels: T::Array[Integer],
                 before_date: String,
+                casebook_handled:
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol,
                 check_status:
                   T.nilable(
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
@@ -458,6 +480,45 @@ module ModerationAPI
             )
           end
           def to_hash
+          end
+
+          module CasebookHandled
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ALL =
+              T.let(
+                :ALL,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+              )
+            HANDLED =
+              T.let(
+                :HANDLED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+              )
+            WOULD_HAVE_HANDLED =
+              T.let(
+                :WOULD_HAVE_HANDLED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
 
           module CheckStatus

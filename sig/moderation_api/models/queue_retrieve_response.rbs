@@ -66,6 +66,7 @@ module ModerationAPI
             author_id: String,
             author_trust_levels: ::Array[Integer],
             before_date: String,
+            casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled,
             check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
             clear_date_window: bool,
             content_id: String,
@@ -102,6 +103,12 @@ module ModerationAPI
           attr_reader before_date: String?
 
           def before_date=: (String) -> String
+
+          attr_reader casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled?
+
+          def casebook_handled=: (
+            ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled
+          ) -> ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled
 
           attr_accessor check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?
 
@@ -190,6 +197,7 @@ module ModerationAPI
             ?author_id: String,
             ?author_trust_levels: ::Array[Integer],
             ?before_date: String,
+            ?casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled,
             ?check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
             ?clear_date_window: bool,
             ?content_id: String,
@@ -215,6 +223,7 @@ module ModerationAPI
             author_id: String,
             author_trust_levels: ::Array[Integer],
             before_date: String,
+            casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled,
             check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
             clear_date_window: bool,
             content_id: String,
@@ -234,6 +243,18 @@ module ModerationAPI
             within: Float,
             within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
           }
+
+          type casebook_handled = :ALL | :HANDLED | :WOULD_HAVE_HANDLED
+
+          module CasebookHandled
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL: :ALL
+            HANDLED: :HANDLED
+            WOULD_HAVE_HANDLED: :WOULD_HAVE_HANDLED
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled]
+          end
 
           type check_status = :all | :checked | :unchecked
 

@@ -80,6 +80,7 @@ module ModerationAPI
             languages: ::Array[String],
             max_severity: Integer,
             media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
+            metadata_filters: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter],
             min_severity: Integer,
             recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
             search: ::Array[String],
@@ -168,6 +169,12 @@ module ModerationAPI
             ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
           ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
 
+          attr_reader metadata_filters: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter]?
+
+          def metadata_filters=: (
+            ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter]
+          ) -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter]
+
           attr_reader min_severity: Integer?
 
           def min_severity=: (Integer) -> Integer
@@ -211,6 +218,7 @@ module ModerationAPI
             ?languages: ::Array[String],
             ?max_severity: Integer,
             ?media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
+            ?metadata_filters: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter],
             ?min_severity: Integer,
             ?recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
             ?search: ::Array[String],
@@ -237,6 +245,7 @@ module ModerationAPI
             languages: ::Array[String],
             max_severity: Integer,
             media_types: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type],
+            metadata_filters: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter],
             min_severity: Integer,
             recommendation_actions: ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::recommendation_action],
             search: ::Array[String],
@@ -365,6 +374,18 @@ module ModerationAPI
             AUDIO: :audio
 
             def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::media_type]
+          end
+
+          type metadata_filter = { key: String, value: String }
+
+          class MetadataFilter < ModerationAPI::Internal::Type::BaseModel
+            attr_accessor key: String
+
+            attr_accessor value: String
+
+            def initialize: (key: String, value: String) -> void
+
+            def to_hash: -> { key: String, value: String }
           end
 
           type recommendation_action = :review | :allow | :reject

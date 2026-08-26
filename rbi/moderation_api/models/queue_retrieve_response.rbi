@@ -304,6 +304,27 @@ module ModerationAPI
           end
           attr_writer :media_types
 
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter
+                ]
+              )
+            )
+          end
+          attr_reader :metadata_filters
+
+          sig do
+            params(
+              metadata_filters:
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter::OrHash
+                ]
+            ).void
+          end
+          attr_writer :metadata_filters
+
           sig { returns(T.nilable(Integer)) }
           attr_reader :min_severity
 
@@ -394,6 +415,10 @@ module ModerationAPI
                 T::Array[
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::OrSymbol
                 ],
+              metadata_filters:
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter::OrHash
+                ],
               min_severity: Integer,
               recommendation_actions:
                 T::Array[
@@ -424,6 +449,7 @@ module ModerationAPI
             languages: nil,
             max_severity: nil,
             media_types: nil,
+            metadata_filters: nil,
             min_severity: nil,
             recommendation_actions: nil,
             search: nil,
@@ -466,6 +492,10 @@ module ModerationAPI
                 media_types:
                   T::Array[
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType::TaggedSymbol
+                  ],
+                metadata_filters:
+                  T::Array[
+                    ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter
                   ],
                 min_severity: Integer,
                 recommendation_actions:
@@ -815,6 +845,30 @@ module ModerationAPI
               )
             end
             def self.values
+            end
+          end
+
+          class MetadataFilter < ModerationAPI::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter,
+                  ModerationAPI::Internal::AnyHash
+                )
+              end
+
+            sig { returns(String) }
+            attr_accessor :key
+
+            sig { returns(String) }
+            attr_accessor :value
+
+            sig { params(key: String, value: String).returns(T.attached_class) }
+            def self.new(key:, value:)
+            end
+
+            sig { override.returns({ key: String, value: String }) }
+            def to_hash
             end
           end
 

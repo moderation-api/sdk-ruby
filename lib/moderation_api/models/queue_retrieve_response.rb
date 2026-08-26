@@ -171,6 +171,13 @@ module ModerationAPI
                    -> { ModerationAPI::Internal::Type::ArrayOf[enum: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType] },
                    api_name: :mediaTypes
 
+          # @!attribute metadata_filters
+          #
+          #   @return [Array<ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter>, nil]
+          optional :metadata_filters,
+                   -> { ModerationAPI::Internal::Type::ArrayOf[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter] },
+                   api_name: :metadataFilters
+
           # @!attribute min_severity
           #
           #   @return [Integer, nil]
@@ -200,7 +207,7 @@ module ModerationAPI
                    enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit },
                    api_name: :withinUnit
 
-          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, casebook_handled: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
+          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, casebook_handled: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, metadata_filters: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
           #   @param after_date [String]
           #   @param author_id [String]
           #   @param author_trust_levels [Array<Integer>]
@@ -219,6 +226,7 @@ module ModerationAPI
           #   @param languages [Array<String>]
           #   @param max_severity [Integer]
           #   @param media_types [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MediaType>]
+          #   @param metadata_filters [Array<ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::MetadataFilter>]
           #   @param min_severity [Integer]
           #   @param recommendation_actions [Array<Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::RecommendationAction>]
           #   @param search [Array<String>]
@@ -332,6 +340,22 @@ module ModerationAPI
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          class MetadataFilter < ModerationAPI::Internal::Type::BaseModel
+            # @!attribute key
+            #
+            #   @return [String]
+            required :key, String
+
+            # @!attribute value
+            #
+            #   @return [String]
+            required :value, String
+
+            # @!method initialize(key:, value:)
+            #   @param key [String]
+            #   @param value [String]
           end
 
           module RecommendationAction

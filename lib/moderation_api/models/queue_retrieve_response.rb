@@ -239,7 +239,7 @@ module ModerationAPI
 
             ALL = :ALL
             HANDLED = :HANDLED
-            WOULD_HAVE_HANDLED = :WOULD_HAVE_HANDLED
+            OVERRULED = :OVERRULED
 
             # @!method self.values
             #   @return [Array<Symbol>]

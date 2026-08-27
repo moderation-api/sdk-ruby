@@ -253,13 +253,14 @@ module ModerationAPI
             within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
           }
 
-          type casebook_handled = :ALL | :HANDLED | :OVERRULED
+          type casebook_handled = :ALL | :ALLOWED | :REJECTED | :OVERRULED
 
           module CasebookHandled
             extend ModerationAPI::Internal::Type::Enum
 
             ALL: :ALL
-            HANDLED: :HANDLED
+            ALLOWED: :ALLOWED
+            REJECTED: :REJECTED
             OVERRULED: :OVERRULED
 
             def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled]

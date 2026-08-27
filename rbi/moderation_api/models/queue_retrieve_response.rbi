@@ -529,9 +529,14 @@ module ModerationAPI
                 :ALL,
                 ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
               )
-            HANDLED =
+            ALLOWED =
               T.let(
-                :HANDLED,
+                :ALLOWED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+              )
+            REJECTED =
+              T.let(
+                :REJECTED,
                 ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
               )
             OVERRULED =

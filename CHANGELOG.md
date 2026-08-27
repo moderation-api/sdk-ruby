@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.38.0 (2026-08-27)
+
+Full Changelog: [v2.37.0...v2.38.0](https://github.com/moderation-api/sdk-ruby/compare/v2.37.0...v2.38.0)
+
+### Features
+
+* **api:** api update ([c7386a5](https://github.com/moderation-api/sdk-ruby/commit/c7386a538a5d2a60cc887dad91f88c650ed6172a))
+
 ## 2.37.0 (2026-08-26)
 
 Full Changelog: [v2.36.0...v2.37.0](https://github.com/moderation-api/sdk-ruby/compare/v2.36.0...v2.37.0)

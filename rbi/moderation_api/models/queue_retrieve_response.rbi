@@ -534,9 +534,9 @@ module ModerationAPI
                 :HANDLED,
                 ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
               )
-            WOULD_HAVE_HANDLED =
+            OVERRULED =
               T.let(
-                :WOULD_HAVE_HANDLED,
+                :OVERRULED,
                 ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
               )
 

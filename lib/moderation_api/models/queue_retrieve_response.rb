@@ -238,7 +238,8 @@ module ModerationAPI
             extend ModerationAPI::Internal::Type::Enum
 
             ALL = :ALL
-            HANDLED = :HANDLED
+            ALLOWED = :ALLOWED
+            REJECTED = :REJECTED
             OVERRULED = :OVERRULED
 
             # @!method self.values

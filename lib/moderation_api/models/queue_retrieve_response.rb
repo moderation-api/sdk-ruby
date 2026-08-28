@@ -82,12 +82,19 @@ module ModerationAPI
           #   @return [String, nil]
           optional :before_date, String, api_name: :beforeDate
 
-          # @!attribute casebook_handled
+          # @!attribute casebook_agreement
           #
-          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled, nil]
-          optional :casebook_handled,
-                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled },
-                   api_name: :casebookHandled
+          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement, nil]
+          optional :casebook_agreement,
+                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement },
+                   api_name: :casebookAgreement
+
+          # @!attribute casebook_answer
+          #
+          #   @return [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer, nil]
+          optional :casebook_answer,
+                   enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer },
+                   api_name: :casebookAnswer
 
           # @!attribute check_status
           #
@@ -207,12 +214,13 @@ module ModerationAPI
                    enum: -> { ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit },
                    api_name: :withinUnit
 
-          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, casebook_handled: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, metadata_filters: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
+          # @!method initialize(after_date: nil, author_id: nil, author_trust_levels: nil, before_date: nil, casebook_agreement: nil, casebook_answer: nil, check_status: nil, clear_date_window: nil, content_id: nil, content_types: nil, conversation_ids: nil, filtered_action_ids: nil, filtered_channel_ids: nil, filter_labels: nil, is_flagged: nil, labels: nil, languages: nil, max_severity: nil, media_types: nil, metadata_filters: nil, min_severity: nil, recommendation_actions: nil, search: nil, within: nil, within_unit: nil)
           #   @param after_date [String]
           #   @param author_id [String]
           #   @param author_trust_levels [Array<Integer>]
           #   @param before_date [String]
-          #   @param casebook_handled [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled]
+          #   @param casebook_agreement [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement]
+          #   @param casebook_answer [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer]
           #   @param check_status [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus, nil]
           #   @param clear_date_window [Boolean]
           #   @param content_id [String]
@@ -233,14 +241,26 @@ module ModerationAPI
           #   @param within [Float]
           #   @param within_unit [Symbol, ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::WithinUnit]
 
-          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#casebook_handled
-          module CasebookHandled
+          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#casebook_agreement
+          module CasebookAgreement
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL = :ALL
+            OVERRULED = :OVERRULED
+            AGREED = :AGREED
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter#casebook_answer
+          module CasebookAnswer
             extend ModerationAPI::Internal::Type::Enum
 
             ALL = :ALL
             ALLOWED = :ALLOWED
             REJECTED = :REJECTED
-            OVERRULED = :OVERRULED
+            NO_ANSWER = :NO_ANSWER
 
             # @!method self.values
             #   @return [Array<Symbol>]

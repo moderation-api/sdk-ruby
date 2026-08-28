@@ -66,7 +66,8 @@ module ModerationAPI
             author_id: String,
             author_trust_levels: ::Array[Integer],
             before_date: String,
-            casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled,
+            casebook_agreement: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement,
+            casebook_answer: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer,
             check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
             clear_date_window: bool,
             content_id: String,
@@ -105,11 +106,17 @@ module ModerationAPI
 
           def before_date=: (String) -> String
 
-          attr_reader casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled?
+          attr_reader casebook_agreement: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement?
 
-          def casebook_handled=: (
-            ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled
-          ) -> ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled
+          def casebook_agreement=: (
+            ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement
+          ) -> ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement
+
+          attr_reader casebook_answer: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer?
+
+          def casebook_answer=: (
+            ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer
+          ) -> ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer
 
           attr_accessor check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?
 
@@ -204,7 +211,8 @@ module ModerationAPI
             ?author_id: String,
             ?author_trust_levels: ::Array[Integer],
             ?before_date: String,
-            ?casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled,
+            ?casebook_agreement: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement,
+            ?casebook_answer: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer,
             ?check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
             ?clear_date_window: bool,
             ?content_id: String,
@@ -231,7 +239,8 @@ module ModerationAPI
             author_id: String,
             author_trust_levels: ::Array[Integer],
             before_date: String,
-            casebook_handled: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled,
+            casebook_agreement: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement,
+            casebook_answer: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer,
             check_status: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::check_status?,
             clear_date_window: bool,
             content_id: String,
@@ -253,17 +262,29 @@ module ModerationAPI
             within_unit: ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::within_unit
           }
 
-          type casebook_handled = :ALL | :ALLOWED | :REJECTED | :OVERRULED
+          type casebook_agreement = :ALL | :OVERRULED | :AGREED
 
-          module CasebookHandled
+          module CasebookAgreement
+            extend ModerationAPI::Internal::Type::Enum
+
+            ALL: :ALL
+            OVERRULED: :OVERRULED
+            AGREED: :AGREED
+
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_agreement]
+          end
+
+          type casebook_answer = :ALL | :ALLOWED | :REJECTED | :NO_ANSWER
+
+          module CasebookAnswer
             extend ModerationAPI::Internal::Type::Enum
 
             ALL: :ALL
             ALLOWED: :ALLOWED
             REJECTED: :REJECTED
-            OVERRULED: :OVERRULED
+            NO_ANSWER: :NO_ANSWER
 
-            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_handled]
+            def self?.values: -> ::Array[ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::casebook_answer]
           end
 
           type check_status = :all | :checked | :unchecked

@@ -153,19 +153,36 @@ module ModerationAPI
           sig do
             returns(
               T.nilable(
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::TaggedSymbol
               )
             )
           end
-          attr_reader :casebook_handled
+          attr_reader :casebook_agreement
 
           sig do
             params(
-              casebook_handled:
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::OrSymbol
+              casebook_agreement:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::OrSymbol
             ).void
           end
-          attr_writer :casebook_handled
+          attr_writer :casebook_agreement
+
+          sig do
+            returns(
+              T.nilable(
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :casebook_answer
+
+          sig do
+            params(
+              casebook_answer:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::OrSymbol
+            ).void
+          end
+          attr_writer :casebook_answer
 
           sig do
             returns(
@@ -387,8 +404,10 @@ module ModerationAPI
               author_id: String,
               author_trust_levels: T::Array[Integer],
               before_date: String,
-              casebook_handled:
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::OrSymbol,
+              casebook_agreement:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::OrSymbol,
+              casebook_answer:
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::OrSymbol,
               check_status:
                 T.nilable(
                   ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::OrSymbol
@@ -435,7 +454,8 @@ module ModerationAPI
             author_id: nil,
             author_trust_levels: nil,
             before_date: nil,
-            casebook_handled: nil,
+            casebook_agreement: nil,
+            casebook_answer: nil,
             check_status: nil,
             clear_date_window: nil,
             content_id: nil,
@@ -465,8 +485,10 @@ module ModerationAPI
                 author_id: String,
                 author_trust_levels: T::Array[Integer],
                 before_date: String,
-                casebook_handled:
-                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol,
+                casebook_agreement:
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::TaggedSymbol,
+                casebook_answer:
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol,
                 check_status:
                   T.nilable(
                     ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CheckStatus::TaggedSymbol
@@ -512,14 +534,14 @@ module ModerationAPI
           def to_hash
           end
 
-          module CasebookHandled
+          module CasebookAgreement
             extend ModerationAPI::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -527,28 +549,67 @@ module ModerationAPI
             ALL =
               T.let(
                 :ALL,
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
-              )
-            ALLOWED =
-              T.let(
-                :ALLOWED,
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
-              )
-            REJECTED =
-              T.let(
-                :REJECTED,
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::TaggedSymbol
               )
             OVERRULED =
               T.let(
                 :OVERRULED,
-                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::TaggedSymbol
+              )
+            AGREED =
+              T.let(
+                :AGREED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookHandled::TaggedSymbol
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAgreement::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          module CasebookAnswer
+            extend ModerationAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ALL =
+              T.let(
+                :ALL,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol
+              )
+            ALLOWED =
+              T.let(
+                :ALLOWED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol
+              )
+            REJECTED =
+              T.let(
+                :REJECTED,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol
+              )
+            NO_ANSWER =
+              T.let(
+                :NO_ANSWER,
+                ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  ModerationAPI::Models::QueueRetrieveResponse::Queue::Filter::CasebookAnswer::TaggedSymbol
                 ]
               )
             end

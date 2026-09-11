@@ -73,6 +73,7 @@ module ModerationAPI
                 ModerationAPI::ContentSubmitParams::Policy::Adult::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Crypto::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Sexual::OrHash,
+                ModerationAPI::ContentSubmitParams::Policy::SexualMinors::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Flirtation::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Profanity::OrHash,
                 ModerationAPI::ContentSubmitParams::Policy::Violence::OrHash,

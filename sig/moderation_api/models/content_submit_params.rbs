@@ -362,6 +362,7 @@ module ModerationAPI
         | ModerationAPI::ContentSubmitParams::Policy::Adult
         | ModerationAPI::ContentSubmitParams::Policy::Crypto
         | ModerationAPI::ContentSubmitParams::Policy::Sexual
+        | ModerationAPI::ContentSubmitParams::Policy::SexualMinors
         | ModerationAPI::ContentSubmitParams::Policy::Flirtation
         | ModerationAPI::ContentSubmitParams::Policy::Profanity
         | ModerationAPI::ContentSubmitParams::Policy::Violence
@@ -659,6 +660,27 @@ module ModerationAPI
           def initialize: (flag: bool, ?threshold: Float, ?id: :sexual) -> void
 
           def to_hash: -> { id: :sexual, flag: bool, threshold: Float }
+        end
+
+        type sexual_minors =
+          { id: :sexual_minors, flag: bool, threshold: Float }
+
+        class SexualMinors < ModerationAPI::Internal::Type::BaseModel
+          attr_accessor id: :sexual_minors
+
+          attr_accessor flag: bool
+
+          attr_reader threshold: Float?
+
+          def threshold=: (Float) -> Float
+
+          def initialize: (
+            flag: bool,
+            ?threshold: Float,
+            ?id: :sexual_minors
+          ) -> void
+
+          def to_hash: -> { id: :sexual_minors, flag: bool, threshold: Float }
         end
 
         type flirtation = { id: :flirtation, flag: bool, threshold: Float }

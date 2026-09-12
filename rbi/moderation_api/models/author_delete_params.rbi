@@ -14,6 +14,7 @@ module ModerationAPI
           )
         end
 
+      # Either external ID or the ID assigned by moderation API.
       sig { returns(String) }
       attr_accessor :id
 
@@ -23,7 +24,11 @@ module ModerationAPI
           request_options: ModerationAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(id:, request_options: {})
+      def self.new(
+        # Either external ID or the ID assigned by moderation API.
+        id:,
+        request_options: {}
+      )
       end
 
       sig do

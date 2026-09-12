@@ -154,11 +154,14 @@ module ModerationAPI
         )
       end
 
-      # Delete a specific author
+      # Delete a specific author. This resets the author: status, blocks, trust level,
+      # metrics and action history are removed. The author is created again with a clean
+      # record the next time content is moderated for the same ID.
       #
       # @overload delete(id, request_options: {})
       #
-      # @param id [String]
+      # @param id [String] Either external ID or the ID assigned by moderation API.
+      #
       # @param request_options [ModerationAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [ModerationAPI::Models::AuthorDeleteResponse]

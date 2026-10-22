@@ -17,4 +17,10 @@ class ModerationApi::Models::Operations::RemoveWordlistWordsRequest
 
   def words=(str_)
   end
+
+  def project_id
+  end
+
+  def project_id=(str_)
+  end
 end

@@ -93,9 +93,9 @@ module ModerationApi
 
       @language = "ruby"
       @openapi_doc_version = "1.1.0"
-      @sdk_version = "3.0.0"
+      @sdk_version = "3.1.0"
       @gen_version = "internal"
-      @user_agent = "speakeasy-sdk/ruby 3.0.0 internal 1.1.0 moderation_api"
+      @user_agent = "speakeasy-sdk/ruby 3.1.0 internal 1.1.0 moderation_api"
     end
 
     sig { returns([String, T::Hash[Symbol, String]]) }

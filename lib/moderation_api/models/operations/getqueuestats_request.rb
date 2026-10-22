@@ -13,6 +13,12 @@ module ModerationApi
 
         # The queue ID
         field :id, ::String, {'path_param': {'field_name': "id", 'style': "simple", 'explode': false}}
+        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        field(
+          :project_id,
+          Crystalline::Nilable.new(::String),
+          {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
+        )
 
         field(
           :within_days,
@@ -20,9 +26,10 @@ module ModerationApi
           {'query_param': {'field_name': "withinDays", 'style': "form", 'explode': true}}
         )
 
-        sig { params(id: ::String, within_days: T.nilable(::Integer)).void }
-        def initialize(id:, within_days: 30)
+        sig { params(id: ::String, project_id: T.nilable(::String), within_days: T.nilable(::Integer)).void }
+        def initialize(id:, project_id: nil, within_days: 30)
           @id = id
+          @project_id = project_id
           @within_days = within_days
         end
 
@@ -30,6 +37,7 @@ module ModerationApi
         def ==(other)
           return false unless other.is_a?(self.class)
           return false unless @id == other.id
+          return false unless @project_id == other.project_id
           return false unless @within_days == other.within_days
           true
         end

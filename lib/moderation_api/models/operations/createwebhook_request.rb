@@ -11,50 +11,25 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
-        # The webhook's name, used to identify it in the dashboard
+        field :body, Models::Operations::CreateWebhookRequestBody, {'request': {'media_type': "application/json"}}
+        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         field(
-          :name,
-          ::String,
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("name"), required: true}}
-        )
-        # The webhook's URL. We'll call this URL when an event occurs.
-        field :url, ::String, {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("url"), required: true}}
-        # Event types this webhook subscribes to. One webhook URL receives all events you list here.
-        field(
-          :event_types,
-          Crystalline::Array.new(Models::Operations::CreateWebhookEventTypeRequest),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("eventTypes"), required: true}}
-        )
-        # The webhook's description
-        field(
-          :description,
+          :project_id,
           Crystalline::Nilable.new(::String),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("description")}}
+          {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
         )
 
-        sig {
-          params(
-            name: ::String,
-            url: ::String,
-            event_types: T::Array[Models::Operations::CreateWebhookEventTypeRequest],
-            description: T.nilable(::String)
-          )
-            .void
-        }
-        def initialize(name:, url:, event_types:, description: nil)
-          @name = name
-          @url = url
-          @event_types = event_types
-          @description = description
+        sig { params(body: Models::Operations::CreateWebhookRequestBody, project_id: T.nilable(::String)).void }
+        def initialize(body:, project_id: nil)
+          @body = body
+          @project_id = project_id
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
         def ==(other)
           return false unless other.is_a?(self.class)
-          return false unless @name == other.name
-          return false unless @url == other.url
-          return false unless @event_types == other.event_types
-          return false unless @description == other.description
+          return false unless @body == other.body
+          return false unless @project_id == other.project_id
           true
         end
       end

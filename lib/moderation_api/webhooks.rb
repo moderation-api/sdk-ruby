@@ -42,22 +42,24 @@ module ModerationApi
       params(
         page: T.nilable(::Integer),
         page_size: T.nilable(::Integer),
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::ListWebhooksResponse)
     }
-    def list(page: nil, page_size: nil, timeout_ms: nil, http_headers: nil)
+    def list(page: nil, page_size: nil, project_id: nil, timeout_ms: nil, http_headers: nil)
       # list - List webhooks
       # List the webhooks of the project. The list is paginated.
       request = Models::Operations::ListWebhooksRequest.new(
         page: page,
-        page_size: page_size
+        page_size: page_size,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/webhooks"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::ListWebhooksRequest, request, nil)
       headers["Accept"] = "application/json"
@@ -173,6 +175,7 @@ module ModerationApi
             sdk.list(
               page: next_page,
               page_size: request.page_size,
+              project_id: request.project_id,
               http_headers: http_headers
             )
           end
@@ -265,21 +268,26 @@ module ModerationApi
 
     sig {
       params(
-        request: Models::Operations::CreateWebhookRequest,
+        body: Models::Operations::CreateWebhookRequestBody,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::CreateWebhookResponse)
     }
-    def create(request:, timeout_ms: nil, http_headers: nil)
+    def create(body:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # create - Create a webhook
       # Create a webhook subscribed to one or more event types. Deliveries use the v2 envelope and are signed with the project signing secret (see the signing secret endpoint).
+      request = Models::Operations::CreateWebhookRequest.new(
+        body: body,
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/webhooks"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
-      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :request, :json)
+      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
       raise StandardError, "request body is required" if data.nil? && form.nil?
 
@@ -485,16 +493,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetWebhookResponse)
     }
-    def retrieve(id:, timeout_ms: nil, http_headers: nil)
+    def retrieve(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get a webhook
       # Get a webhook by ID.
       request = Models::Operations::GetWebhookRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -504,7 +514,7 @@ module ModerationApi
         "/webhooks/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
@@ -700,17 +710,19 @@ module ModerationApi
       params(
         body: Models::Operations::UpdateWebhookRequestBody,
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::UpdateWebhookResponse)
     }
-    def update(body:, id:, timeout_ms: nil, http_headers: nil)
+    def update(body:, id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # update - Update a webhook
       # Update a webhook. Legacy v1 webhooks are read-only: delete them and create a new webhook instead.
       request = Models::Operations::UpdateWebhookRequest.new(
         id: id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -720,7 +732,7 @@ module ModerationApi
         "/webhooks/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
@@ -950,16 +962,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::DeleteWebhookResponse)
     }
-    def delete(id:, timeout_ms: nil, http_headers: nil)
+    def delete(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # delete - Delete a webhook
       # Delete a webhook.
       request = Models::Operations::DeleteWebhookRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -969,7 +983,7 @@ module ModerationApi
         "/webhooks/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent

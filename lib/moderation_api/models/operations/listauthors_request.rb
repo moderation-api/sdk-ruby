@@ -34,6 +34,12 @@ module ModerationApi
           Crystalline::Nilable.new(Crystalline::Array.new(::String)),
           {'query_param': {'field_name': "contentTypes", 'style': "form", 'explode': true}}
         )
+        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        field(
+          :project_id,
+          Crystalline::Nilable.new(::String),
+          {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
+        )
 
         field(
           :page,
@@ -59,6 +65,7 @@ module ModerationApi
             member_since_date: T.nilable(::String),
             last_active_date: T.nilable(::String),
             content_types: T.nilable(T::Array[::String]),
+            project_id: T.nilable(::String),
             page: T.nilable(::Integer),
             page_size: T.nilable(::Integer),
             sort_direction: T.nilable(Models::Operations::ListAuthorsSortDirection)
@@ -70,6 +77,7 @@ module ModerationApi
           member_since_date: nil,
           last_active_date: nil,
           content_types: nil,
+          project_id: nil,
           page: 1,
           page_size: 20,
           sort_direction: Models::Operations::ListAuthorsSortDirection::DESC
@@ -78,6 +86,7 @@ module ModerationApi
           @member_since_date = member_since_date
           @last_active_date = last_active_date
           @content_types = content_types
+          @project_id = project_id
           @page = page
           @page_size = page_size
           @sort_direction = sort_direction
@@ -90,6 +99,7 @@ module ModerationApi
           return false unless @member_since_date == other.member_since_date
           return false unless @last_active_date == other.last_active_date
           return false unless @content_types == other.content_types
+          return false unless @project_id == other.project_id
           return false unless @page == other.page
           return false unless @page_size == other.page_size
           return false unless @sort_direction == other.sort_direction

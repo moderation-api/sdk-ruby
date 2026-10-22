@@ -47,16 +47,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetQueueResponse)
     }
-    def retrieve(id:, timeout_ms: nil, http_headers: nil)
+    def retrieve(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get a queue
       # Get a queue
       request = Models::Operations::GetQueueRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -66,7 +68,7 @@ module ModerationApi
         "/queue/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
@@ -328,17 +330,19 @@ module ModerationApi
       params(
         id: ::String,
         within_days: T.nilable(::Integer),
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetQueueStatsResponse)
     }
-    def get_stats(id:, within_days: nil, timeout_ms: nil, http_headers: nil)
+    def get_stats(id:, within_days: nil, project_id: nil, timeout_ms: nil, http_headers: nil)
       # get_stats - Get queue statistics
       # Get detailed statistics about a moderation queue including review times, action counts, and trends
       request = Models::Operations::GetQueueStatsRequest.new(
         id: id,
-        within_days: within_days
+        within_days: within_days,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -348,7 +352,7 @@ module ModerationApi
         "/queue/{id}/stats",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::GetQueueStatsRequest, request, nil)
       headers["Accept"] = "application/json"

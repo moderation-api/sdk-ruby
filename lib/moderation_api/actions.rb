@@ -43,23 +43,25 @@ module ModerationApi
         queue_id: T.nilable(::String),
         page: T.nilable(::Integer),
         page_size: T.nilable(::Integer),
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::ListActionsResponse)
     }
-    def list(queue_id: nil, page: nil, page_size: nil, timeout_ms: nil, http_headers: nil)
+    def list(queue_id: nil, page: nil, page_size: nil, project_id: nil, timeout_ms: nil, http_headers: nil)
       # list - List moderation actions
       # List the moderation actions of the project. The list is paginated.
       request = Models::Operations::ListActionsRequest.new(
         queue_id: queue_id,
         page: page,
-        page_size: page_size
+        page_size: page_size,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/actions"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::ListActionsRequest, request, nil)
       headers["Accept"] = "application/json"
@@ -176,6 +178,7 @@ module ModerationApi
               queue_id: request.queue_id,
               page: next_page,
               page_size: request.page_size,
+              project_id: request.project_id,
               http_headers: http_headers
             )
           end
@@ -356,21 +359,26 @@ module ModerationApi
 
     sig {
       params(
-        request: Models::Operations::CreateActionRequest,
+        body: Models::Operations::CreateActionRequestBody,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::CreateActionResponse)
     }
-    def create(request:, timeout_ms: nil, http_headers: nil)
+    def create(body:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # create - Create an action
       # Create an action.
+      request = Models::Operations::CreateActionRequest.new(
+        body: body,
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/actions"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
-      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :request, :json)
+      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
       raise StandardError, "request body is required" if data.nil? && form.nil?
 
@@ -598,16 +606,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetActionResponse)
     }
-    def retrieve(id:, timeout_ms: nil, http_headers: nil)
+    def retrieve(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get an action
       # Get an action by ID.
       request = Models::Operations::GetActionRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -617,7 +627,7 @@ module ModerationApi
         "/actions/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
@@ -835,17 +845,19 @@ module ModerationApi
       params(
         body: Models::Operations::UpdateActionRequestBody,
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::UpdateActionResponse)
     }
-    def update(body:, id:, timeout_ms: nil, http_headers: nil)
+    def update(body:, id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # update - Update an action
       # Update an action.
       request = Models::Operations::UpdateActionRequest.new(
         id: id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -855,7 +867,7 @@ module ModerationApi
         "/actions/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
@@ -1107,16 +1119,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::DeleteActionResponse)
     }
-    def delete(id:, timeout_ms: nil, http_headers: nil)
+    def delete(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # delete - Delete an action
       # Delete an action and all of its webhooks.
       request = Models::Operations::DeleteActionRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -1126,7 +1140,7 @@ module ModerationApi
         "/actions/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
@@ -1342,21 +1356,26 @@ module ModerationApi
 
     sig {
       params(
-        request: Models::Operations::ExecuteActionRequest,
+        body: Models::Operations::ExecuteActionRequestBody,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::ExecuteActionResponse)
     }
-    def execute(request:, timeout_ms: nil, http_headers: nil)
+    def execute(body:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # execute - Execute moderation action
       # Execute a moderation action on one or more content items.
+      request = Models::Operations::ExecuteActionRequest.new(
+        body: body,
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/actions/execute"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
-      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :request, :json)
+      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
       raise StandardError, "request body is required" if data.nil? && form.nil?
 

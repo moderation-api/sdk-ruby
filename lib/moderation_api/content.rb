@@ -39,20 +39,25 @@ module ModerationApi
 
     sig {
       params(
-        request: Models::Operations::SubmitContentRequest,
+        body: Models::Operations::SubmitContentRequestBody,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::SubmitContentResponse)
     }
-    def submit(request:, timeout_ms: nil, http_headers: nil)
-
+    def submit(body:, project_id: nil, timeout_ms: nil, http_headers: nil)
+      # submit - Submit content
+      request = Models::Operations::SubmitContentRequest.new(
+        body: body,
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/moderate"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
-      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :request, :json)
+      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
       raise StandardError, "request body is required" if data.nil? && form.nil?
 

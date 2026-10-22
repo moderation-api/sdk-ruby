@@ -41,17 +41,19 @@ module ModerationApi
       params(
         body: Models::Operations::AddWordlistWordsRequestBody,
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::AddWordlistWordsResponse)
     }
-    def add(body:, id:, timeout_ms: nil, http_headers: nil)
+    def add(body:, id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # add - Add words to wordlist
       # Add words to an existing wordlist
       request = Models::Operations::AddWordlistWordsRequest.new(
         id: id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -61,7 +63,7 @@ module ModerationApi
         "/wordlist/{id}/words",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
@@ -292,17 +294,19 @@ module ModerationApi
       params(
         id: ::String,
         words: T::Array[::String],
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::RemoveWordlistWordsResponse)
     }
-    def remove(id:, words:, timeout_ms: nil, http_headers: nil)
+    def remove(id:, words:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # remove - Remove words from wordlist
       # Remove words from an existing wordlist
       request = Models::Operations::RemoveWordlistWordsRequest.new(
         id: id,
-        words: words
+        words: words,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -312,7 +316,7 @@ module ModerationApi
         "/wordlist/{id}/words",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::RemoveWordlistWordsRequest, request, nil)
       headers["Accept"] = "application/json"

@@ -1,237 +1,470 @@
-# Moderation API Ruby library
+<!-- Start Custom [intro] -->
+# Moderation API Ruby SDK
 
-The Moderation API Ruby library provides convenient access to the Moderation API REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/moderation-api/sdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+[![Gem](https://img.shields.io/gem/v/moderation_api.svg)](https://rubygems.org/gems/moderation_api)
 
-## Documentation
+The official Ruby library for [Moderation API](https://moderationapi.com). Use it to moderate text, images, video and audio, manage authors, review queues, actions and wordlists, and verify webhooks. It includes [Sorbet](https://sorbet.org) type signatures.
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/moderation_api).
+- Get an API key in the [dashboard](https://dash.moderationapi.com).
+- Read the [documentation](https://docs.moderationapi.com) and the [API reference](https://docs.moderationapi.com/api-reference/introduction).
+<!-- End Custom [intro] -->
 
-The REST API documentation can be found on [docs.moderationapi.com](https://docs.moderationapi.com).
+<!-- Start Summary [summary] -->
+## Summary
 
-## Installation
+Moderation API: Moderate text, images, video and audio in real time, manage authors, review queues and actions, and receive webhooks.
 
-To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
+More information about the API can be found at https://docs.moderationapi.com
+<!-- End Summary [summary] -->
 
-<!-- x-release-please-start-version -->
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Moderation API Ruby SDK](#moderation-api-ruby-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Moderating content](#moderating-content)
+  * [Verifying webhooks](#verifying-webhooks)
+  * [Authentication](#authentication)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Timeouts](#timeouts)
+  * [Requirements](#requirements)
+  * [Support](#support)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-```ruby
-gem "moderation_api", "~> 2.41.0"
+<!-- End Table of Contents [toc] -->
+
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+The SDK can be installed using [RubyGems](https://rubygems.org/):
+
+```bash
+gem install moderation_api
 ```
+<!-- End SDK Installation [installation] -->
 
-<!-- x-release-please-end -->
+<!-- Start SDK Example Usage [usage] -->
+## SDK Example Usage
 
-## Usage
+### Example
 
 ```ruby
-require "bundler/setup"
 require "moderation_api"
 
-moderation_api = ModerationAPI::Client.new(
-  secret_key: ENV["MODAPI_SECRET_KEY"] # This is the default and can be omitted
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: "<YOUR_BEARER_TOKEN_HERE>"
 )
 
-response = moderation_api.content.submit(content: {text: "text", type: "text"})
+req = Models::Operations::SubmitContentRequest.new(
+  content: Models::Operations::TextRequest.new(
+    type: "text",
+    text: "Hey, check out my profile for a deal!"
+  ),
+  content_id: "message-48213",
+  author_id: "user-1092",
+  conversation_id: "room-general",
+  metadata: {
+    "platform" => "ios"
+  }
+)
+res = s.content.submit(request: req)
 
-puts(response.recommendation)
+unless res.object.nil?
+  # handle response
+end
+
 ```
+<!-- End SDK Example Usage [usage] -->
+<!-- Start Custom [guide] -->
+## Moderating content
 
-### Handling errors
+Use `content.submit` to moderate text, images, video, audio, or objects with several fields. All parameters except `content` are optional.
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ModerationAPI::Errors::APIError` will be thrown:
+Pass your API key as `secret_key`. The examples read it from the `MODAPI_SECRET_KEY` environment variable.
 
 ```ruby
-begin
-  content = moderation_api.content.submit(content: {text: "text", type: "text"})
-rescue ModerationAPI::Errors::APIConnectionError => e
-  puts("The server could not be reached")
-  puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue ModerationAPI::Errors::RateLimitError => e
-  puts("A 429 status code was received; we should back off a bit.")
-rescue ModerationAPI::Errors::APIStatusError => e
-  puts("Another non-200-range status code was received")
-  puts(e.status)
+require "moderation_api"
+
+Operations = ModerationApi::Models::Operations
+client = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_SECRET_KEY"))
+
+# Text
+client.content.submit(request: Operations::SubmitContentRequest.new(
+  content: Operations::TextRequest.new(text: "Your text here"),
+  content_id: "message-123", # your ID for the content
+  author_id: "user-123", # your ID for the user who wrote it
+  conversation_id: "room-123", # groups related content
+  metadata: { platform: "ios" }
+))
+
+# Image, video and audio: send a URL
+client.content.submit(request: Operations::SubmitContentRequest.new(
+  content: Operations::ImageRequest.new(url: "https://example.com/image.jpg")
+))
+client.content.submit(request: Operations::SubmitContentRequest.new(
+  content: Operations::VideoRequest.new(url: "https://example.com/video.mp4")
+))
+client.content.submit(request: Operations::SubmitContentRequest.new(
+  content: Operations::AudioRequest.new(url: "https://example.com/audio.mp3")
+))
+
+# An object with several fields, moderated together
+client.content.submit(request: Operations::SubmitContentRequest.new(
+  content: Operations::Object.new(data: {
+    title: Operations::DataText.new(text: "Post title"),
+    body: Operations::DataText.new(text: "Post content"),
+    thumbnail: Operations::DataImage.new(url: "https://example.com/thumb.jpg")
+  })
+))
+```
+
+### Using the result
+
+`evaluation.flagged` tells you if any policy flagged the content. `recommendation.action` is the action the API recommends after it applies your thresholds and rules: `allow`, `review` or `reject`.
+
+```ruby
+response = client.content.submit(request: Operations::SubmitContentRequest.new(
+  content: Operations::TextRequest.new(text: "Some content")
+))
+result = response.object
+
+puts "A policy flagged the content" if result.evaluation.flagged
+
+case result.recommendation.action.serialize
+when "reject"
+  # Block the content
+when "review"
+  # Publish or hold it, and send it to a review queue
+when "allow"
+  # Publish the content
+end
+
+result.policies.each do |policy|
+  puts "#{policy.id}: flagged=#{policy.flagged}"
 end
 ```
 
-Error codes are as follows:
+## Verifying webhooks
 
-| Cause            | Error Type                 |
-| ---------------- | -------------------------- |
-| HTTP 400         | `BadRequestError`          |
-| HTTP 401         | `AuthenticationError`      |
-| HTTP 403         | `PermissionDeniedError`    |
-| HTTP 404         | `NotFoundError`            |
-| HTTP 409         | `ConflictError`            |
-| HTTP 422         | `UnprocessableEntityError` |
-| HTTP 429         | `RateLimitError`           |
-| HTTP >= 500      | `InternalServerError`      |
-| Other HTTP error | `APIStatusError`           |
-| Timeout          | `APITimeoutError`          |
-| Network error    | `APIConnectionError`       |
+Moderation API signs every webhook delivery with your project's webhook signing secret. The signature is in the `modapi-signature` header.
 
-### Retries
+### Webhook signing secret
 
-Certain errors will be automatically retried 2 times by default, with a short exponential backoff.
+Find the secret on the [API keys page in the dashboard](https://dash.moderationapi.com/project/latest/configure/api-keys), or get it with `client.webhook_secret.retrieve`. Store it in the `MODAPI_WEBHOOK_SECRET` environment variable. It is not your API key. Get it once, for example in a setup script, and do not call `retrieve` for each delivery, so verification does not depend on a call to the API. Keep it as secret as your API key: anyone with it can sign webhooks.
 
-Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.
+### Verify a delivery
 
-You can use the `max_retries` option to configure or disable this:
+`ModerationApi::WebhookSignature.construct_event` checks the signature against the raw body and returns the event as a Hash. It reads the secret from `MODAPI_WEBHOOK_SECRET`; to set it in code, pass it as the third argument. It raises `ModerationApi::WebhookSignature::VerificationError` if the signature does not match.
 
 ```ruby
-# Configure the default for all requests:
-moderation_api = ModerationAPI::Client.new(
-  max_retries: 0 # default is 2
-)
+require "moderation_api/webhook_signature"
 
-# Or, configure per-request:
-moderation_api.content.submit(content: {text: "text", type: "text"}, request_options: {max_retries: 5})
-```
-
-### Timeouts
-
-By default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:
-
-```ruby
-# Configure the default for all requests:
-moderation_api = ModerationAPI::Client.new(
-  timeout: nil # default is 60
-)
-
-# Or, configure per-request:
-moderation_api.content.submit(content: {text: "text", type: "text"}, request_options: {timeout: 5})
-```
-
-On timeout, `ModerationAPI::Errors::APITimeoutError` is raised.
-
-Note that requests that time out are retried by default.
-
-## Advanced concepts
-
-### BaseModel
-
-All parameter and response objects inherit from `ModerationAPI::Internal::Type::BaseModel`, which provides several conveniences, including:
-
-1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
-
-2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.
-
-3. Both instances and the classes themselves can be pretty-printed.
-
-4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.
-
-### Making custom or undocumented requests
-
-#### Undocumented properties
-
-You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
-
-Note: the `extra_` parameters of the same name overrides the documented parameters.
-
-```ruby
-response =
-  moderation_api.content.submit(
-    content: {text: "text", type: "text"},
-    request_options: {
-      extra_query: {my_query_parameter: value},
-      extra_body: {my_body_parameter: value},
-      extra_headers: {"my-header": value}
-    }
+# For example, in a Rails controller
+def moderation_webhook
+  event = ModerationApi::WebhookSignature.construct_event(
+    request.raw_post, # the raw body, not parsed JSON
+    request.headers["modapi-signature"]
   )
-
-puts(response[:my_undocumented_property])
+  Rails.logger.info(event["type"])
+  head :ok
+rescue ModerationApi::WebhookSignature::VerificationError
+  head :bad_request
+end
 ```
+<!-- End Custom [guide] -->
 
-#### Undocumented request params
 
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.
+<!-- Start Authentication [security] -->
+## Authentication
 
-#### Undocumented endpoints
+### Per-Client Security Schemes
 
-To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:
+This SDK supports the following security scheme globally:
 
+| Name         | Type | Scheme      |
+| ------------ | ---- | ----------- |
+| `secret_key` | http | HTTP Bearer |
+
+To authenticate with the API the `secret_key` parameter must be set when initializing the SDK client instance. For example:
 ```ruby
-response = client.request(
-  method: :post,
-  path: '/undocumented/endpoint',
-  query: {"dog": "woof"},
-  headers: {"useful-header": "interesting-value"},
-  body: {"hello": "world"}
-)
-```
+require "moderation_api"
 
-### Concurrency & connection pooling
-
-The `ModerationAPI::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
-
-Each instance of `ModerationAPI::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
-
-When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
-
-Unless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.
-
-## Sorbet
-
-This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.
-
-You can provide typesafe request parameters like so:
-
-```ruby
-moderation_api.content.submit(
-  content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "text")
-)
-```
-
-Or, equivalently:
-
-```ruby
-# Hashes work, but are not typesafe:
-moderation_api.content.submit(content: {text: "text", type: "text"})
-
-# You can also splat a full Params class:
-params = ModerationAPI::ContentSubmitParams.new(
-  content: ModerationAPI::ContentSubmitParams::Content::Text.new(text: "text")
-)
-moderation_api.content.submit(**params)
-```
-
-### Enums
-
-Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
-
-```ruby
-# :trustLevel
-puts(ModerationAPI::AuthorListParams::SortBy::TRUST_LEVEL)
-
-# Revealed type: `T.all(ModerationAPI::AuthorListParams::SortBy, Symbol)`
-T.reveal_type(ModerationAPI::AuthorListParams::SortBy::TRUST_LEVEL)
-```
-
-Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
-
-```ruby
-# Using the enum constants preserves the tagged type information:
-moderation_api.authors.list(
-  sort_by: ModerationAPI::AuthorListParams::SortBy::TRUST_LEVEL,
-  # …
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: "<YOUR_BEARER_TOKEN_HERE>"
 )
 
-# Literal values are also permissible:
-moderation_api.authors.list(
-  sort_by: :trustLevel,
-  # …
-)
+req = Models::Operations::ListAuthorsRequest.new
+res = s.authors.list(request: req)
+
+unless res.object.nil?
+  # handle response
+end
+
+```
+<!-- End Authentication [security] -->
+<!-- Start Custom [auth] -->
+### Project and organization keys
+
+Moderation API has two kinds of API keys:
+
+- A **project key** works with one project: content, authors, review queues, actions, wordlists, webhooks and the account. Most integrations need only this key.
+- An **organization key** works with the [management API](https://docs.moderationapi.com/api-reference/management-api): projects and channels. The management API is available on Enterprise plans.
+
+Each key works only with its own endpoints. With the wrong key the API returns `403` with the code `project_key_required` or `organization_key_required`. If you use both, create one client for each key:
+
+```ruby
+require "moderation_api"
+
+# Project key
+client = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_SECRET_KEY"))
+
+# Organization key
+management = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_ORGANIZATION_KEY"))
+
+management.projects.list.each do |page|
+  page.object.data.each { |project| puts "#{project.id} #{project.name}" }
+end
 ```
 
-## Versioning
+Create the organization client only where you manage projects and channels, for example in a setup script, and keep the organization key out of the code that moderates content.
+<!-- End Custom [auth] -->
 
-This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.
 
-This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
+
+### [Account](docs/sdks/account/README.md)
+
+* [retrieve](docs/sdks/account/README.md#retrieve) - Get account details
+
+### [Actions](docs/sdks/actions/README.md)
+
+* [list](docs/sdks/actions/README.md#list) - List moderation actions
+* [create](docs/sdks/actions/README.md#create) - Create an action
+* [retrieve](docs/sdks/actions/README.md#retrieve) - Get an action
+* [update](docs/sdks/actions/README.md#update) - Update an action
+* [delete](docs/sdks/actions/README.md#delete) - Delete an action
+* [execute](docs/sdks/actions/README.md#execute) - Execute moderation action
+
+### [Authors](docs/sdks/authors/README.md)
+
+* [list](docs/sdks/authors/README.md#list) - List authors
+* [create](docs/sdks/authors/README.md#create) - Create a new author
+* [retrieve](docs/sdks/authors/README.md#retrieve) - Get author details
+* [update](docs/sdks/authors/README.md#update) - Update author details
+* [delete](docs/sdks/authors/README.md#delete) - Delete an author
+
+### [Channels](docs/sdks/channels/README.md)
+
+* [list](docs/sdks/channels/README.md#list) - List channels
+* [create](docs/sdks/channels/README.md#create) - Create a channel
+* [retrieve](docs/sdks/channels/README.md#retrieve) - Get a channel
+* [update](docs/sdks/channels/README.md#update) - Update a channel
+* [delete](docs/sdks/channels/README.md#delete) - Delete a channel
+* [duplicate](docs/sdks/channels/README.md#duplicate) - Duplicate a channel
+
+### [Content](docs/sdks/content/README.md)
+
+* [submit](docs/sdks/content/README.md#submit)
+
+### [Projects](docs/sdks/projects/README.md)
+
+* [list](docs/sdks/projects/README.md#list) - List projects
+* [create](docs/sdks/projects/README.md#create) - Create a project
+* [retrieve](docs/sdks/projects/README.md#retrieve) - Get a project
+* [update](docs/sdks/projects/README.md#update) - Update a project
+* [delete](docs/sdks/projects/README.md#delete) - Delete a project
+* [duplicate](docs/sdks/projects/README.md#duplicate) - Duplicate a project
+
+### [Queue](docs/sdks/queue/README.md)
+
+* [retrieve](docs/sdks/queue/README.md#retrieve) - Get a queue
+* [get_stats](docs/sdks/queue/README.md#get_stats) - Get queue statistics
+
+#### [Queue.Items](docs/sdks/items/README.md)
+
+* [list](docs/sdks/items/README.md#list) - Get queue items
+* [resolve](docs/sdks/items/README.md#resolve) - Resolve a queue item
+* [unresolve](docs/sdks/items/README.md#unresolve) - Unresolve a queue item
+
+### [Webhooks](docs/sdks/webhooks/README.md)
+
+* [list](docs/sdks/webhooks/README.md#list) - List webhooks
+* [create](docs/sdks/webhooks/README.md#create) - Create a webhook
+* [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get a webhook
+* [update](docs/sdks/webhooks/README.md#update) - Update a webhook
+* [delete](docs/sdks/webhooks/README.md#delete) - Delete a webhook
+
+### [WebhookSecret](docs/sdks/webhooksecret/README.md)
+
+* [retrieve](docs/sdks/webhooksecret/README.md#retrieve) - Get the webhook signing secret
+
+### [Wordlist](docs/sdks/wordlist/README.md)
+
+* [list](docs/sdks/wordlist/README.md#list) - List wordlists
+* [retrieve](docs/sdks/wordlist/README.md#retrieve) - Get wordlist
+* [update](docs/sdks/wordlist/README.md#update) - Update wordlist
+* [get_embedding_status](docs/sdks/wordlist/README.md#get_embedding_status) - Get embedding status
+
+#### [Wordlist.Words](docs/sdks/words/README.md)
+
+* [add](docs/sdks/words/README.md#add) - Add words to wordlist
+* [remove](docs/sdks/words/README.md#remove) - Remove words from wordlist
+
+</details>
+<!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Error Handling [errors] -->
+## Error Handling
+
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an error.
+
+By default an API error will raise a `Errors::APIError`, which has the following properties:
+
+| Property       | Type                                    | Description           |
+|----------------|-----------------------------------------|-----------------------|
+| `message`     | *string*                                 | The error message     |
+| `status_code`  | *int*                                   | The HTTP status code  |
+| `raw_response` | *Faraday::Response*                     | The raw HTTP response |
+| `body`        | *string*                                 | The response content  |
+
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
+
+| Error Type                            | Status Code | Content Type     |
+| ------------------------------------- | ----------- | ---------------- |
+| Models::Errors::BadRequestError       | 400         | application/json |
+| Models::Errors::AuthenticationError   | 401         | application/json |
+| Models::Errors::PermissionDeniedError | 403         | application/json |
+| Models::Errors::NotFoundError         | 404         | application/json |
+| Models::Errors::RateLimitError        | 429         | application/json |
+| Models::Errors::InternalServerError   | 500         | application/json |
+| Errors::APIError                      | 4XX, 5XX    | \*/\*            |
+
+### Example
+
+```ruby
+require "moderation_api"
+
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: "<YOUR_BEARER_TOKEN_HERE>"
+)
+
+begin
+  req = Models::Operations::ListAuthorsRequest.new
+  res = s.authors.list(request: req)
+
+  unless res.object.nil?
+    # handle response
+  end
+
+rescue Models::Errors::BadRequestError => e
+  # handle e.container data
+  raise e
+rescue Models::Errors::AuthenticationError => e
+  # handle e.container data
+  raise e
+rescue Models::Errors::PermissionDeniedError => e
+  # handle e.container data
+  raise e
+rescue Models::Errors::NotFoundError => e
+  # handle e.container data
+  raise e
+rescue Models::Errors::RateLimitError => e
+  # handle e.container data
+  raise e
+rescue Models::Errors::InternalServerError => e
+  # handle e.container data
+  raise e
+rescue Errors::APIError => e
+  # handle default exception
+  raise e
+end
+
+```
+<!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Override Server URL Per-Client
+
+The default server can be overridden globally by passing a URL to the `server_url (String)` optional parameter when initializing the SDK client instance. For example:
+```ruby
+require "moderation_api"
+
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  server_url: "https://moderationapi.com/api/v1",
+  secret_key: "<YOUR_BEARER_TOKEN_HERE>"
+)
+
+req = Models::Operations::ListAuthorsRequest.new
+res = s.authors.list(request: req)
+
+unless res.object.nil?
+  # handle response
+end
+
+```
+<!-- End Server Selection [server] -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+<!-- Start Custom [more] -->
+## Timeouts
+
+Set a timeout in milliseconds for all requests on the client, or for one request:
+
+```ruby
+client = ModerationApi::ModerationApi.new(
+  secret_key: ENV.fetch("MODAPI_SECRET_KEY"),
+  timeout_ms: 10_000
+)
+
+client.content.submit(
+  request: Operations::SubmitContentRequest.new(content: Operations::TextRequest.new(text: "Hello")),
+  timeout_ms: 5_000
+)
+```
 
 ## Requirements
 
-Ruby 3.2.0 or higher.
+Ruby 3.2 or later.
 
-## Contributing
 
-See [the contributing documentation](https://github.com/moderation-api/sdk-ruby/tree/main/CONTRIBUTING.md).
+## Support
+
+- [API reference](https://docs.moderationapi.com/api-reference/introduction)
+- [Errors and error codes](https://docs.moderationapi.com/api-reference/errors)
+- [Rate limits](https://docs.moderationapi.com/api-reference/rate-limits)
+- [Guides](https://docs.moderationapi.com/get-started/introduction)
+- Email [support@moderationapi.com](mailto:support@moderationapi.com)
+
+Found a bug? Open an issue in this repository. This package is generated from the [Moderation API OpenAPI spec](https://api.moderationapi.com/v1/openapi.json), so pull requests to the generated code can't be merged as they are, but we use them to fix the generator.
+<!-- End Custom [more] -->
+
+# Development
+
+## Maturity
+
+This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
+to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
+looking for the latest version.
+
+## Contributions
+
+While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
+We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
+
+### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=moderation-api&utm_campaign=ruby)

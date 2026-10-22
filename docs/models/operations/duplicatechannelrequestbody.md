@@ -1,0 +1,9 @@
+# DuplicateChannelRequestBody
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `name`                                                                                         | *T.nilable(::String)*                                                                          | :heavy_minus_sign:                                                                             | Name of the copy. Defaults to the original name with "(copy)".                                 |
+| `key`                                                                                          | *T.nilable(::String)*                                                                          | :heavy_minus_sign:                                                                             | Key of the copy. Defaults to the original key with a timestamp. Must be unique in the project. |

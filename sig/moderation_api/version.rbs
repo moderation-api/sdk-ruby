@@ -1,3 +1,0 @@
-module ModerationAPI
-  VERSION: String
-end

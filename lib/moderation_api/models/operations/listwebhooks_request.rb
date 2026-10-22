@@ -11,6 +11,13 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
+        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        field(
+          :project_id,
+          Crystalline::Nilable.new(::String),
+          {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
+        )
+
         field(
           :page,
           Crystalline::Nilable.new(::Integer),
@@ -23,8 +30,11 @@ module ModerationApi
           {'query_param': {'field_name': "pageSize", 'style': "form", 'explode': true}}
         )
 
-        sig { params(page: T.nilable(::Integer), page_size: T.nilable(::Integer)).void }
-        def initialize(page: 1, page_size: 20)
+        sig {
+          params(project_id: T.nilable(::String), page: T.nilable(::Integer), page_size: T.nilable(::Integer)).void
+        }
+        def initialize(project_id: nil, page: 1, page_size: 20)
+          @project_id = project_id
           @page = page
           @page_size = page_size
         end
@@ -32,6 +42,7 @@ module ModerationApi
         sig { params(other: T.untyped).returns(T::Boolean) }
         def ==(other)
           return false unless other.is_a?(self.class)
+          return false unless @project_id == other.project_id
           return false unless @page == other.page
           return false unless @page_size == other.page_size
           true

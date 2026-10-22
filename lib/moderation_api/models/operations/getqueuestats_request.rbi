@@ -12,6 +12,12 @@ class ModerationApi::Models::Operations::GetQueueStatsRequest
   def id=(str_)
   end
 
+  def project_id
+  end
+
+  def project_id=(str_)
+  end
+
   def within_days
   end
 

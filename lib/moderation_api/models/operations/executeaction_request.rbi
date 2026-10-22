@@ -6,39 +6,15 @@ class ModerationApi::Models::Operations::ExecuteActionRequest
 end
 
 class ModerationApi::Models::Operations::ExecuteActionRequest
-  def action_key
+  def body
   end
 
-  def action_key=(str_)
+  def body=(str_)
   end
 
-  def content_ids
+  def project_id
   end
 
-  def content_ids=(str_)
-  end
-
-  def author_ids
-  end
-
-  def author_ids=(str_)
-  end
-
-  def value
-  end
-
-  def value=(str_)
-  end
-
-  def queue_id
-  end
-
-  def queue_id=(str_)
-  end
-
-  def duration
-  end
-
-  def duration=(str_)
+  def project_id=(str_)
   end
 end

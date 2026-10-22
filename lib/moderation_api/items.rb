@@ -57,7 +57,7 @@ module ModerationApi
         "/queue/{id}/items",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::ListQueueItemsRequest, request, nil)
       headers["Accept"] = "application/json"
@@ -183,7 +183,8 @@ module ModerationApi
                 before_date: request.before_date,
                 include_resolved: request.include_resolved,
                 author_id: request.author_id,
-                filtered_action_ids: request.filtered_action_ids
+                filtered_action_ids: request.filtered_action_ids,
+                project_id: request.project_id
               ),
               http_headers: http_headers
             )
@@ -368,18 +369,20 @@ module ModerationApi
         body: Models::Operations::ResolveQueueItemRequestBody,
         id: ::String,
         item_id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::ResolveQueueItemResponse)
     }
-    def resolve(body:, id:, item_id:, timeout_ms: nil, http_headers: nil)
+    def resolve(body:, id:, item_id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # resolve - Resolve a queue item
       # Mark a queue item as resolved with a specific moderation action
       request = Models::Operations::ResolveQueueItemRequest.new(
         id: id,
         item_id: item_id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -389,7 +392,7 @@ module ModerationApi
         "/queue/{id}/items/{itemId}/resolve",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
@@ -643,18 +646,20 @@ module ModerationApi
         body: Models::Operations::UnresolveQueueItemRequestBody,
         id: ::String,
         item_id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::UnresolveQueueItemResponse)
     }
-    def unresolve(body:, id:, item_id:, timeout_ms: nil, http_headers: nil)
+    def unresolve(body:, id:, item_id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # unresolve - Unresolve a queue item
       # Mark a previously resolved queue item as unresolved/pending
       request = Models::Operations::UnresolveQueueItemRequest.new(
         id: id,
         item_id: item_id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -664,7 +669,7 @@ module ModerationApi
         "/queue/{id}/items/{itemId}/unresolve",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type

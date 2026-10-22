@@ -1,5 +1,46 @@
 # Changelog
 
+## 3.1.0 (2026-10-22)
+
+Full Changelog: [v3.0.0...v3.1.0](https://github.com/moderation-api/sdk-ruby/compare/v3.0.0...v3.1.0)
+
+### API changes
+
+- Update to the latest API spec.
+
+## 3.0.0 (2026-10-22)
+
+A new major version of the Ruby SDK. Read the breaking changes before you upgrade.
+
+```bash
+gem install moderation_api -v "~> 3.0"
+```
+
+### Ruby-specific changes
+
+- The module is `ModerationApi` (was `ModerationAPI`). Create the client with `ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_SECRET_KEY"))`.
+- Requests are typed objects, for example `Operations::SubmitContentRequest.new(content: Operations::TextRequest.new(text: "..."))`, and responses carry the result in `.object`. Sorbet type signatures are included.
+- Verify webhooks with `require "moderation_api/webhook_signature"` and `ModerationApi::WebhookSignature.construct_event(payload, signature)`.
+### What's new
+
+- **Covers the whole API**, including the management API (`projects`, `channels`), wordlists and the review queue.
+- **Automatic pagination.** List methods return an iterator that fetches the next page for you.
+- **Clear errors.** One error class per HTTP status (`BadRequestError`, `NotFoundError`, `RateLimitError`, ...). Every error has a specific `code` (for example `invalid_api_key`, `quota_exceeded` or `author_not_found`), a `request_id` and a `doc_url`. See [Errors](https://docs.moderationapi.com/api-reference/errors).
+- **Retries** with exponential backoff on `429` and `5xx`, and timeouts per client or per request.
+- **Webhook verification** that reads the secret from `MODAPI_WEBHOOK_SECRET`.
+
+### Breaking changes
+
+The SDK is now generated from our OpenAPI spec with a new generator. Most calls keep their names, but check these:
+
+- **List responses** are `{ data, pagination }` instead of a plain array or a resource-specific shape, and list methods take `page` and `pageSize`.
+- **Errors** have a new body: `code` is the specific error code, not the HTTP category. The old `data` field is gone.
+- **Renamed:** `account.list` is now `account.retrieve`, and `actions.execute.execute` is now `actions.execute`.
+- **Removed:** `actions.execute.executeByID` (use `actions.execute` with `actionId` or `actionKey`), `auth.*`, and `content.stream` (see [Real-time voice](https://docs.moderationapi.com/content-moderation/real-time-voice)).
+- **Organization keys** work only with `projects` and `channels`; project keys work with everything else. Use one client per key. See the README.
+
+The license is unchanged: Apache-2.0.
+
 ## 2.41.0 (2026-09-14)
 
 Full Changelog: [v2.40.0...v2.41.0](https://github.com/moderation-api/sdk-ruby/compare/v2.40.0...v2.41.0)

@@ -17,4 +17,10 @@ class ModerationApi::Models::Operations::AddWordlistWordsRequest
 
   def body=(str_)
   end
+
+  def project_id
+  end
+
+  def project_id=(str_)
+  end
 end

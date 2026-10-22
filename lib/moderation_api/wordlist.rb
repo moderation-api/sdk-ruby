@@ -49,22 +49,24 @@ module ModerationApi
       params(
         page: T.nilable(::Integer),
         page_size: T.nilable(::Integer),
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::ListWordlistsResponse)
     }
-    def list(page: nil, page_size: nil, timeout_ms: nil, http_headers: nil)
+    def list(page: nil, page_size: nil, project_id: nil, timeout_ms: nil, http_headers: nil)
       # list - List wordlists
       # List the wordlists of the organization. The list is paginated.
       request = Models::Operations::ListWordlistsRequest.new(
         page: page,
-        page_size: page_size
+        page_size: page_size,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/wordlist"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::ListWordlistsRequest, request, nil)
       headers["Accept"] = "application/json"
@@ -180,6 +182,7 @@ module ModerationApi
             sdk.list(
               page: next_page,
               page_size: request.page_size,
+              project_id: request.project_id,
               http_headers: http_headers
             )
           end
@@ -361,16 +364,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetWordlistResponse)
     }
-    def retrieve(id:, timeout_ms: nil, http_headers: nil)
+    def retrieve(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get wordlist
       # Get a specific wordlist by ID
       request = Models::Operations::GetWordlistRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -380,7 +385,7 @@ module ModerationApi
         "/wordlist/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
@@ -642,17 +647,19 @@ module ModerationApi
       params(
         body: Models::Operations::UpdateWordlistRequestBody,
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::UpdateWordlistResponse)
     }
-    def update(body:, id:, timeout_ms: nil, http_headers: nil)
+    def update(body:, id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # update - Update wordlist
       # Update a wordlist
       request = Models::Operations::UpdateWordlistRequest.new(
         id: id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -662,7 +669,7 @@ module ModerationApi
         "/wordlist/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
@@ -892,16 +899,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetWordlistEmbeddingStatusResponse)
     }
-    def get_embedding_status(id:, timeout_ms: nil, http_headers: nil)
+    def get_embedding_status(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # get_embedding_status - Get embedding status
       # Get the current embedding progress status for a wordlist
       request = Models::Operations::GetWordlistEmbeddingStatusRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -911,7 +920,7 @@ module ModerationApi
         "/wordlist/{id}/embedding-status",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent

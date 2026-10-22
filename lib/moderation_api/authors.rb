@@ -52,7 +52,7 @@ module ModerationApi
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/authors"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       query_params = Utils.get_query_params(Models::Operations::ListAuthorsRequest, request, nil)
       headers["Accept"] = "application/json"
@@ -173,7 +173,8 @@ module ModerationApi
                 sort_direction: request.sort_direction,
                 member_since_date: request.member_since_date,
                 last_active_date: request.last_active_date,
-                content_types: request.content_types
+                content_types: request.content_types,
+                project_id: request.project_id
               ),
               http_headers: http_headers
             )
@@ -355,21 +356,26 @@ module ModerationApi
 
     sig {
       params(
-        request: Models::Operations::CreateAuthorRequest,
+        body: Models::Operations::CreateAuthorRequestBody,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::CreateAuthorResponse)
     }
-    def create(request:, timeout_ms: nil, http_headers: nil)
+    def create(body:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # create - Create a new author
       # Create a new author. Typically not needed as authors are created automatically when content is moderated.
+      request = Models::Operations::CreateAuthorRequest.new(
+        body: body,
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/authors"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
-      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :request, :json)
+      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
       raise StandardError, "request body is required" if data.nil? && form.nil?
 
@@ -619,16 +625,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::GetAuthorResponse)
     }
-    def retrieve(id:, timeout_ms: nil, http_headers: nil)
+    def retrieve(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get author details
       # Get detailed information about a specific author including historical data and analysis
       request = Models::Operations::GetAuthorRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -638,7 +646,7 @@ module ModerationApi
         "/authors/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
@@ -900,17 +908,19 @@ module ModerationApi
       params(
         body: Models::Operations::UpdateAuthorRequestBody,
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::UpdateAuthorResponse)
     }
-    def update(body:, id:, timeout_ms: nil, http_headers: nil)
+    def update(body:, id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # update - Update author details
       # Update the details of a specific author
       request = Models::Operations::UpdateAuthorRequest.new(
         id: id,
-        body: body
+        body: body,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -920,7 +930,7 @@ module ModerationApi
         "/authors/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
       headers["content-type"] = req_content_type
@@ -1194,16 +1204,18 @@ module ModerationApi
     sig {
       params(
         id: ::String,
+        project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
         .returns(Models::Operations::DeleteAuthorResponse)
     }
-    def delete(id:, timeout_ms: nil, http_headers: nil)
+    def delete(id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # delete - Delete an author
       # Delete a specific author. This resets the author: status, blocks, trust level, metrics and action history are removed. The author is created again with a clean record the next time content is moderated for the same ID.
       request = Models::Operations::DeleteAuthorRequest.new(
-        id: id
+        id: id,
+        project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
@@ -1213,7 +1225,7 @@ module ModerationApi
         "/authors/{id}",
         request
       )
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent

@@ -61,6 +61,12 @@ module ModerationApi
           Crystalline::Nilable.new(Crystalline::Array.new(::String)),
           {'query_param': {'field_name': "filteredActionIds", 'style': "form", 'explode': true}}
         )
+        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        field(
+          :project_id,
+          Crystalline::Nilable.new(::String),
+          {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
+        )
 
         field(
           :page,
@@ -91,6 +97,7 @@ module ModerationApi
             include_resolved: T.nilable(T::Boolean),
             author_id: T.nilable(::String),
             filtered_action_ids: T.nilable(T::Array[::String]),
+            project_id: T.nilable(::String),
             page: T.nilable(::Integer),
             page_size: T.nilable(::Integer),
             sort_direction: T.nilable(Models::Operations::ListQueueItemsSortDirection)
@@ -107,6 +114,7 @@ module ModerationApi
           include_resolved: nil,
           author_id: nil,
           filtered_action_ids: nil,
+          project_id: nil,
           page: 1,
           page_size: 20,
           sort_direction: Models::Operations::ListQueueItemsSortDirection::DESC
@@ -120,6 +128,7 @@ module ModerationApi
           @include_resolved = include_resolved
           @author_id = author_id
           @filtered_action_ids = filtered_action_ids
+          @project_id = project_id
           @page = page
           @page_size = page_size
           @sort_direction = sort_direction
@@ -137,6 +146,7 @@ module ModerationApi
           return false unless @include_resolved == other.include_resolved
           return false unless @author_id == other.author_id
           return false unless @filtered_action_ids == other.filtered_action_ids
+          return false unless @project_id == other.project_id
           return false unless @page == other.page
           return false unless @page_size == other.page_size
           return false unless @sort_direction == other.sort_direction

@@ -38,17 +38,23 @@ module ModerationApi
     end
 
     sig {
-      params(timeout_ms: T.nilable(Integer), http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])).returns(
-        Models::Operations::GetAccountResponse
+      params(
+        project_id: T.nilable(::String),
+        timeout_ms: T.nilable(Integer),
+        http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
+        .returns(Models::Operations::GetAccountResponse)
     }
-    def retrieve(timeout_ms: nil, http_headers: nil)
+    def retrieve(project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get account details
       # Get account details
+      request = Models::Operations::GetAccountRequest.new(
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/account"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent

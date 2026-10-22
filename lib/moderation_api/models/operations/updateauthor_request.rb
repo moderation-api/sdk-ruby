@@ -15,11 +15,20 @@ module ModerationApi
         field :id, ::String, {'path_param': {'field_name': "id", 'style': "simple", 'explode': false}}
 
         field :body, Models::Operations::UpdateAuthorRequestBody, {'request': {'media_type': "application/json"}}
+        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        field(
+          :project_id,
+          Crystalline::Nilable.new(::String),
+          {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
+        )
 
-        sig { params(id: ::String, body: Models::Operations::UpdateAuthorRequestBody).void }
-        def initialize(id:, body:)
+        sig {
+          params(id: ::String, body: Models::Operations::UpdateAuthorRequestBody, project_id: T.nilable(::String)).void
+        }
+        def initialize(id:, body:, project_id: nil)
           @id = id
           @body = body
+          @project_id = project_id
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
@@ -27,6 +36,7 @@ module ModerationApi
           return false unless other.is_a?(self.class)
           return false unless @id == other.id
           return false unless @body == other.body
+          return false unless @project_id == other.project_id
           true
         end
       end

@@ -23,4 +23,10 @@ class ModerationApi::Models::Operations::ResolveQueueItemRequest
 
   def body=(str_)
   end
+
+  def project_id
+  end
+
+  def project_id=(str_)
+  end
 end

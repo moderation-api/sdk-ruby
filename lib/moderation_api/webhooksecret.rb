@@ -38,17 +38,23 @@ module ModerationApi
     end
 
     sig {
-      params(timeout_ms: T.nilable(Integer), http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])).returns(
-        Models::Operations::GetWebhookSecretResponse
+      params(
+        project_id: T.nilable(::String),
+        timeout_ms: T.nilable(Integer),
+        http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
+        .returns(Models::Operations::GetWebhookSecretResponse)
     }
-    def retrieve(timeout_ms: nil, http_headers: nil)
+    def retrieve(project_id: nil, timeout_ms: nil, http_headers: nil)
       # retrieve - Get the webhook signing secret
       # Get the signing secret used to sign webhook deliveries for this project, creating one if none exists yet. Verify deliveries by comparing the `modapi-signature` header to HMAC-SHA256(raw request body, secret) hex-encoded.
+      request = Models::Operations::GetWebhookSecretRequest.new(
+        project_id: project_id
+      )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/webhook-secret"
-      headers = {}
+      headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent

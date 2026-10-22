@@ -30,6 +30,12 @@ class ModerationApi::Models::Operations::ListAuthorsRequest
   def content_types=(str_)
   end
 
+  def project_id
+  end
+
+  def project_id=(str_)
+  end
+
   def page
   end
 

@@ -6,6 +6,12 @@ class ModerationApi::Models::Operations::ListWordlistsRequest
 end
 
 class ModerationApi::Models::Operations::ListWordlistsRequest
+  def project_id
+  end
+
+  def project_id=(str_)
+  end
+
   def page
   end
 

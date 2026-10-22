@@ -95,7 +95,7 @@ Operations = ModerationApi::Models::Operations
 client = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_SECRET_KEY"))
 
 # Text
-client.content.submit(request: Operations::SubmitContentRequest.new(
+client.content.submit(body: Operations::SubmitContentRequestBody.new(
   content: Operations::TextRequest.new(text: "Your text here"),
   content_id: "message-123", # your ID for the content
   author_id: "user-123", # your ID for the user who wrote it
@@ -104,18 +104,18 @@ client.content.submit(request: Operations::SubmitContentRequest.new(
 ))
 
 # Image, video and audio: send a URL
-client.content.submit(request: Operations::SubmitContentRequest.new(
+client.content.submit(body: Operations::SubmitContentRequestBody.new(
   content: Operations::ImageRequest.new(url: "https://example.com/image.jpg")
 ))
-client.content.submit(request: Operations::SubmitContentRequest.new(
+client.content.submit(body: Operations::SubmitContentRequestBody.new(
   content: Operations::VideoRequest.new(url: "https://example.com/video.mp4")
 ))
-client.content.submit(request: Operations::SubmitContentRequest.new(
+client.content.submit(body: Operations::SubmitContentRequestBody.new(
   content: Operations::AudioRequest.new(url: "https://example.com/audio.mp3")
 ))
 
 # An object with several fields, moderated together
-client.content.submit(request: Operations::SubmitContentRequest.new(
+client.content.submit(body: Operations::SubmitContentRequestBody.new(
   content: Operations::Object.new(data: {
     title: Operations::DataText.new(text: "Post title"),
     body: Operations::DataText.new(text: "Post content"),
@@ -129,7 +129,7 @@ client.content.submit(request: Operations::SubmitContentRequest.new(
 `evaluation.flagged` tells you if any policy flagged the content. `recommendation.action` is the action the API recommends after it applies your thresholds and rules: `allow`, `review` or `reject`.
 
 ```ruby
-response = client.content.submit(request: Operations::SubmitContentRequest.new(
+response = client.content.submit(body: Operations::SubmitContentRequestBody.new(
   content: Operations::TextRequest.new(text: "Some content")
 ))
 result = response.object
@@ -405,7 +405,7 @@ require "moderation_api"
 
 Models = ::ModerationApi::Models
 s = ::ModerationApi::ModerationApi.new(
-  server_url: "https://moderationapi.com/api/v1",
+  server_url: "https://api.moderationapi.com/v1",
   secret_key: "<YOUR_BEARER_TOKEN_HERE>"
 )
 
@@ -433,7 +433,7 @@ client = ModerationApi::ModerationApi.new(
 )
 
 client.content.submit(
-  request: Operations::SubmitContentRequest.new(content: Operations::TextRequest.new(text: "Hello")),
+  body: Operations::SubmitContentRequestBody.new(content: Operations::TextRequest.new(text: "Hello")),
   timeout_ms: 5_000
 )
 ```

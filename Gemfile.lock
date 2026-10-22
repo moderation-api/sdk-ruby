@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moderation_api (3.1.0)
+    moderation_api (3.1.1)
       faraday
       faraday-multipart
       faraday-retry

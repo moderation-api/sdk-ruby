@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.1 (2026-10-22)
+
+Full Changelog: [v3.1.0...v3.1.1](https://github.com/moderation-api/sdk-ruby/compare/v3.1.0...v3.1.1)
+
+### Chores
+
+- Update the generated code.
+
 ## 3.1.0 (2026-10-22)
 
 Full Changelog: [v3.0.0...v3.1.0](https://github.com/moderation-api/sdk-ruby/compare/v3.0.0...v3.1.0)

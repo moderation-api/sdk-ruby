@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: a78f35a2-6d8d-4b9f-8962-89b8103f2924
 management:
-  docChecksum: c27787b45fc5b72aafff31ba945a9e61
+  docChecksum: 38730339aa1da77855e86c169896f12f
   docVersion: 1.1.0
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 3.1.0
-  configChecksum: d394a681c78d7e75a42f9911e6bba463
+  releaseVersion: 3.1.1
+  configChecksum: 6d84855e7fac71cdbcc700bbc8102e87
   repoURL: https://github.com/moderation-api/sdk-ruby
   installationURL: https://github.com/moderation-api/sdk-ruby
   published: true
@@ -38,7 +38,7 @@ trackedFiles:
   Gemfile:
     last_write_checksum: sha1:8c1b6fa9505f61abd0fb6741f8094e9655a55495
   Gemfile.lock:
-    last_write_checksum: sha1:845cf20712b81ec8ccacfdb698fa691e7f776ff5
+    last_write_checksum: sha1:f506e56bb9f5f60261e76361a78ccd3239079288
   Rakefile:
     last_write_checksum: sha1:c572639efdae8c7b24141ee5c02d8f009e101ed8
   USAGE.md:
@@ -2144,7 +2144,7 @@ trackedFiles:
   lib/moderation_api/sdk_hooks/types.rb:
     last_write_checksum: sha1:4c965332c50ba795946cf8df50a6202e89db0a45
   lib/moderation_api/sdkconfiguration.rb:
-    last_write_checksum: sha1:6903a5aaac8e69fc9c4980b3c4d058956e905469
+    last_write_checksum: sha1:f7dfc163b0483e449e76faa2d9c7d2e54322137e
   lib/moderation_api/sdkconfiguration.rbi:
     last_write_checksum: sha1:0ff7c53716ae2b6668c84ad4f83b9a8697482c33
   lib/moderation_api/utils/forms.rb:
@@ -2172,7 +2172,7 @@ trackedFiles:
   lib/moderation_api/words.rb:
     last_write_checksum: sha1:1caff3b1db9983d6cd6d76e0f90d47a39e376842
   moderation_api.gemspec:
-    last_write_checksum: sha1:9cd7f7552878319cf4c9ce64e4fe6fadb40050f9
+    last_write_checksum: sha1:071948ee566406c7314b8ff48f67d64576c4069c
   sorbet/config:
     last_write_checksum: sha1:d02b32628dad70edc5929a9b9801d5e2dca15d40
   sorbet/rbi/annotations/.gitattributes:

@@ -1,0 +1,14 @@
+# GetAccountResponseBody
+
+Account details retrieved successfully
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *::String*                                                                                 | :heavy_check_mark:                                                                         | ID of the account                                                                          |
+| `paid_plan_name`                                                                           | *::String*                                                                                 | :heavy_check_mark:                                                                         | Name of the paid plan                                                                      |
+| `text_api_quota`                                                                           | *::Float*                                                                                  | :heavy_check_mark:                                                                         | Text API quota                                                                             |
+| `remaining_quota`                                                                          | *::Float*                                                                                  | :heavy_check_mark:                                                                         | Remaining quota                                                                            |
+| `current_project`                                                                          | [T.nilable(Models::Operations::CurrentProject)](../../models/operations/currentproject.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |

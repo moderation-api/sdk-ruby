@@ -1,29 +1,40 @@
 # frozen_string_literal: true
 
-require_relative "lib/moderation_api/version"
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 
 Gem::Specification.new do |s|
-  s.name = "moderation_api"
-  s.version = ModerationAPI::VERSION
-  s.summary = "Ruby library to access the Moderation API"
-  s.authors = ["Moderation API"]
-  s.email = "support@moderationapi.com"
-  s.homepage = "https://gemdocs.org/gems/moderation_api"
-  s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/moderation-api/sdk-ruby"
-  s.metadata["rubygems_mfa_required"] = false.to_s
-  s.required_ruby_version = ">= 3.2.0"
+  s.name        = 'moderation_api'
+  s.version     = '3.0.0'
+  s.platform    = Gem::Platform::RUBY
+  s.licenses    = ['Apache-2.0']
+  s.summary     = ''
+  s.homepage    = 'https://github.com/moderation-api/sdk-ruby'
+  s.description = 'The official Ruby library for the Moderation API'
+  s.authors     = ['Moderation API']
+  s.metadata    = {
+    'homepage_uri' => 'https://github.com/moderation-api/sdk-ruby',
+    'documentation_uri' => 'https://github.com/moderation-api/sdk-ruby',
+    'source_code_uri' => 'https://github.com/moderation-api/sdk-ruby'
+  }
 
-  s.files = Dir[
-    "lib/**/*.rb",
-    "rbi/**/*.rbi",
-    "sig/**/*.rbs",
-    "manifest.yaml",
-    "SECURITY.md",
-    "CHANGELOG.md",
-    ".ignore"
-  ]
-  s.extra_rdoc_files = ["README.md"]
-  s.add_dependency "cgi"
-  s.add_dependency "connection_pool"
+  s.files         = Dir['{lib,test}/**/*'].reject { |f| f.start_with?('test/mockserver') }
+  s.require_paths = ['lib']
+  s.required_ruby_version = '>= 3.2'
+
+  s.add_dependency('base64', '>= 0.2.0', '< 1.0')
+  s.add_dependency('faraday', '>= 2.14.3')
+  s.add_dependency('faraday-multipart', '~> 1.2.0')
+  s.add_dependency('faraday-retry', '~> 2.4.0')
+  s.add_dependency('janeway-jsonpath', '~> 0.6.0')
+  s.add_dependency('sorbet-runtime', '~> 0.6.12872')
+  s.add_development_dependency('irb')
+  s.add_development_dependency('minitest', '>= 5.27.0')
+  s.add_development_dependency('minitest-focus', '~> 1.4.1')
+  s.add_development_dependency('minitest-reporters', '~> 1.7.1')
+  s.add_development_dependency('rake')
+  s.add_development_dependency('rubocop', '~> 1.73.2')
+  s.add_development_dependency('rubocop-minitest', '~> 0.37.1')
+  s.add_development_dependency('sorbet', '~> 0.6.12872')
+  s.add_development_dependency('tapioca', '~> 0.17.10')
+  s.add_development_dependency('tsort', '~> 0.2.0')
 end

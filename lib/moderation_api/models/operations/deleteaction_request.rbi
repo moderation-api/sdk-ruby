@@ -1,0 +1,14 @@
+# typed: true
+# frozen_string_literal: true
+
+class ModerationApi::Models::Operations::DeleteActionRequest
+  extend ::Crystalline::MetadataFields::ClassMethods
+end
+
+class ModerationApi::Models::Operations::DeleteActionRequest
+  def id
+  end
+
+  def id=(str_)
+  end
+end

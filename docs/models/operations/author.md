@@ -1,0 +1,12 @@
+# Author
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `id`                                                                        | *::String*                                                                  | :heavy_check_mark:                                                          | Author ID in Moderation API                                                 |
+| `external_id`                                                               | *T.nilable(::String)*                                                       | :heavy_minus_sign:                                                          | The author's ID from your system                                            |
+| `block`                                                                     | [T.nilable(Models::Operations::Block)](../../models/operations/block.md)    | :heavy_check_mark:                                                          | Block or suspension details, if applicable. Null if the author is enabled.  |
+| `status`                                                                    | [Models::Operations::AuthorStatus](../../models/operations/authorstatus.md) | :heavy_check_mark:                                                          | Current author status                                                       |
+| `trust_level`                                                               | [Models::Operations::TrustLevel](../../models/operations/trustlevel.md)     | :heavy_check_mark:                                                          | N/A                                                                         |

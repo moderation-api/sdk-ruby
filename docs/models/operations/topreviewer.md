@@ -1,0 +1,13 @@
+# TopReviewer
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `user_id`                                                                       | *::String*                                                                      | :heavy_check_mark:                                                              | ID of the reviewer                                                              |
+| `name`                                                                          | *::String*                                                                      | :heavy_check_mark:                                                              | Name of the reviewer                                                            |
+| `review_count`                                                                  | *::Float*                                                                       | :heavy_check_mark:                                                              | Number of items reviewed                                                        |
+| `average_time_per_review`                                                       | *::Float*                                                                       | :heavy_check_mark:                                                              | Average review time in milliseconds                                             |
+| `accuracy_score`                                                                | *T.nilable(::Float)*                                                            | :heavy_minus_sign:                                                              | Optional accuracy score based on review quality metrics                         |
+| `top_actions`                                                                   | T::Array<[Models::Operations::TopAction](../../models/operations/topaction.md)> | :heavy_check_mark:                                                              | Most common actions taken by this reviewer                                      |

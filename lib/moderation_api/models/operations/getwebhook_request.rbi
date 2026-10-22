@@ -1,0 +1,14 @@
+# typed: true
+# frozen_string_literal: true
+
+class ModerationApi::Models::Operations::GetWebhookRequest
+  extend ::Crystalline::MetadataFields::ClassMethods
+end
+
+class ModerationApi::Models::Operations::GetWebhookRequest
+  def id
+  end
+
+  def id=(str_)
+  end
+end

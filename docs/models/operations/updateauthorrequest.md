@@ -1,0 +1,9 @@
+# UpdateAuthorRequest
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `id`                                                                                              | *::String*                                                                                        | :heavy_check_mark:                                                                                | Either external ID or the ID assigned by moderation API.                                          |
+| `body`                                                                                            | [Models::Operations::UpdateAuthorRequestBody](../../models/operations/updateauthorrequestbody.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |

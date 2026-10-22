@@ -1,0 +1,9 @@
+# CreateChannelRequest
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `project_id`                                                                                        | *::String*                                                                                          | :heavy_check_mark:                                                                                  | The ID of the project to add the channel to.                                                        |
+| `body`                                                                                              | [Models::Operations::CreateChannelRequestBody](../../models/operations/createchannelrequestbody.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |

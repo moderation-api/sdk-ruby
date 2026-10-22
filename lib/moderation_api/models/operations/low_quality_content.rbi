@@ -1,0 +1,32 @@
+# typed: true
+# frozen_string_literal: true
+
+class ModerationApi::Models::Operations::LowQualityContent
+  extend ::Crystalline::MetadataFields::ClassMethods
+end
+
+class ModerationApi::Models::Operations::LowQualityContent
+  def flag
+  end
+
+  def flag=(str_)
+  end
+
+  def threshold
+  end
+
+  def threshold=(str_)
+  end
+
+  def id
+  end
+
+  def id=(str_)
+  end
+
+  def min_words
+  end
+
+  def min_words=(str_)
+  end
+end

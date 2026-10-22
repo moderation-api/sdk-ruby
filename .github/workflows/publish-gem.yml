@@ -1,12 +1,17 @@
 # Maintained in moderation-api/sdk-generator (custom/ruby). Edits here are overwritten.
+# Every push to main whose package version has no release tag yet publishes
+# that version and creates the GitHub release (notes: .github/release-notes/vX.Y.Z.md
+# if present, otherwise generated from the merged pull requests).
 name: Publish Gem
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
   workflow_dispatch:
 
+concurrency: release
+
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   publish:
@@ -16,15 +21,32 @@ jobs:
       - uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
         with:
           ruby-version: "3.2"
-      - name: Check the release tag matches the gem version
-        if: github.event_name == 'release'
+      - name: Read the version
+        run: echo "VERSION=$(ruby -e 'puts Gem::Specification.load("moderation_api.gemspec").version')" >> "$GITHUB_ENV"
+      - name: Check for an unreleased version
+        id: version
         run: |
-          version=$(ruby -e 'puts Gem::Specification.load("moderation_api.gemspec").version')
-          if [ "${GITHUB_REF_NAME#v}" != "$version" ]; then
-            echo "::error::Release tag $GITHUB_REF_NAME does not match gem version $version"
-            exit 1
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+          if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" >/dev/null; then
+            echo "v${VERSION} is already released."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=true" >> "$GITHUB_OUTPUT"
           fi
-      - run: gem build moderation_api.gemspec
-      - run: gem push moderation_api-*.gem
+      - if: steps.version.outputs.release == 'true'
+        run: gem build moderation_api.gemspec
+      - if: steps.version.outputs.release == 'true'
+        run: gem push moderation_api-${VERSION}.gem
         env:
           GEM_HOST_API_KEY: ${{ secrets.MODERATION_API_GEM_HOST_API_KEY || secrets.GEM_HOST_API_KEY }}
+      - name: Create the GitHub release
+        if: steps.version.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes=".github/release-notes/v${VERSION}.md"
+          if [ -f "$notes" ]; then
+            gh release create "v${VERSION}" --target "$GITHUB_SHA" --title "v${VERSION}" --notes-file "$notes"
+          else
+            gh release create "v${VERSION}" --target "$GITHUB_SHA" --title "v${VERSION}" --generate-notes
+          fi

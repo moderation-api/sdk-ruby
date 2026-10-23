@@ -16,6 +16,7 @@ module ModerationApi
       autoload :Pagination, "moderation_api/models/components/pagination.rb"
       autoload :PermissionDeniedErrorCode, "moderation_api/models/components/permissiondeniederror_code.rb"
       autoload :Project, "moderation_api/models/components/project.rb"
+      autoload :ProjectApiKey, "moderation_api/models/components/projectapikey.rb"
       autoload :ProjectWithKey, "moderation_api/models/components/projectwithkey.rb"
       autoload(
         :ProjectWithKeyGlobalFlaggingMode,

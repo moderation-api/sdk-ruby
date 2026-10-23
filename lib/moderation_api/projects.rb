@@ -17,10 +17,17 @@ module ModerationApi
 
   class Projects
     extend T::Sig
+    attr_accessor :api_keys
 
     sig { params(sdk_config: SDKConfiguration).void }
     def initialize(sdk_config)
       @sdk_configuration = sdk_config
+      init_sdks
+    end
+
+    sig { void }
+    def init_sdks
+      @api_keys = ::ModerationApi::ApiKeys.new(@sdk_configuration)
     end
 
     sig { params(base_url: String, url_variables: T.nilable(T::Hash[Symbol, T.any(String, T::Enum)])).returns(String) }

@@ -16,6 +16,7 @@ module ModerationApi
   autoload :Words, "moderation_api/words"
   autoload :Content, "moderation_api/content"
   autoload :Projects, "moderation_api/projects"
+  autoload :ApiKeys, "moderation_api/apikeys"
   autoload :Channels, "moderation_api/channels"
 
   module Models

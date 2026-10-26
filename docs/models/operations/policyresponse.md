@@ -1,4 +1,0 @@
-# PolicyResponse
-
-Policy output schema.
-

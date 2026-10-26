@@ -199,9 +199,7 @@ Models = ::ModerationApi::Models
 s = ::ModerationApi::ModerationApi.new(
   secret_key: "<YOUR_BEARER_TOKEN_HERE>"
 )
-
-req = Models::Operations::ListAuthorsRequest.new
-res = s.authors.list(request: req)
+res = s.analytics.summary(range: Models::Operations::GetAnalyticsSummaryQueryParamRange::THIRTYD)
 
 unless res.object.nil?
   # handle response
@@ -215,9 +213,9 @@ end
 Moderation API has two kinds of API keys:
 
 - A **project key** works with one project: content, authors, review queues, actions, wordlists, webhooks and the account. Most integrations need only this key.
-- An **organization key** works with the [management API](https://docs.moderationapi.com/api-reference/management-api): projects and channels. The management API is available on Enterprise plans.
+- An **organization key** works with the [management API](https://docs.moderationapi.com/api-reference/management-api): projects and channels. It can also use any project's endpoints: name the project with `projectId`.
 
-Each key works only with its own endpoints. With the wrong key the API returns `403` with the code `project_key_required` or `organization_key_required`. If you use both, create one client for each key:
+A project key can't call the management API: the API returns `403` with the code `organization_key_required`. If you use both kinds of key, create one client for each:
 
 ```ruby
 require "moderation_api"
@@ -256,6 +254,15 @@ Create the organization client only where you manage projects and channels, for 
 * [delete](docs/sdks/actions/README.md#delete) - Delete an action
 * [execute](docs/sdks/actions/README.md#execute) - Execute moderation action
 
+### [Analytics](docs/sdks/analytics/README.md)
+
+* [summary](docs/sdks/analytics/README.md#summary) - Get the analytics summary
+* [policies](docs/sdks/analytics/README.md#policies) - Get the most flagged policies
+* [authors](docs/sdks/analytics/README.md#authors) - Get the most flagged authors
+* [channels](docs/sdks/analytics/README.md#channels) - Get analytics per channel
+* [volumes](docs/sdks/analytics/README.md#volumes) - Get volumes over time
+* [automation](docs/sdks/analytics/README.md#automation) - Get the automation breakdown
+
 ### [Authors](docs/sdks/authors/README.md)
 
 * [list](docs/sdks/authors/README.md#list) - List authors
@@ -277,6 +284,10 @@ Create the organization client only where you manage projects and channels, for 
 
 * [submit](docs/sdks/content/README.md#submit) - Submit content
 
+### [Feedback](docs/sdks/feedback/README.md)
+
+* [create](docs/sdks/feedback/README.md#create) - Send feedback
+
 ### [Projects](docs/sdks/projects/README.md)
 
 * [list](docs/sdks/projects/README.md#list) - List projects
@@ -286,15 +297,21 @@ Create the organization client only where you manage projects and channels, for 
 * [delete](docs/sdks/projects/README.md#delete) - Delete a project
 * [duplicate](docs/sdks/projects/README.md#duplicate) - Duplicate a project
 
+#### [Projects.ApiKeys](docs/sdks/apikeys/README.md)
+
+* [create](docs/sdks/apikeys/README.md#create) - Create a project API key
+
 ### [Queue](docs/sdks/queue/README.md)
 
+* [list](docs/sdks/queue/README.md#list) - List queues
 * [retrieve](docs/sdks/queue/README.md#retrieve) - Get a queue
 * [get_stats](docs/sdks/queue/README.md#get_stats) - Get queue statistics
 
 #### [Queue.Items](docs/sdks/items/README.md)
 
-* [list](docs/sdks/items/README.md#list) - Get queue items
+* [list](docs/sdks/items/README.md#list) - List queue items
 * [resolve](docs/sdks/items/README.md#resolve) - Resolve a queue item
+* [resolve_many](docs/sdks/items/README.md#resolve_many) - Resolve queue items
 * [unresolve](docs/sdks/items/README.md#unresolve) - Unresolve a queue item
 
 ### [Webhooks](docs/sdks/webhooks/README.md)
@@ -312,6 +329,7 @@ Create the organization client only where you manage projects and channels, for 
 ### [Wordlist](docs/sdks/wordlist/README.md)
 
 * [list](docs/sdks/wordlist/README.md#list) - List wordlists
+* [create](docs/sdks/wordlist/README.md#create) - Create wordlist
 * [retrieve](docs/sdks/wordlist/README.md#retrieve) - Get wordlist
 * [update](docs/sdks/wordlist/README.md#update) - Update wordlist
 * [get_embedding_status](docs/sdks/wordlist/README.md#get_embedding_status) - Get embedding status
@@ -338,7 +356,7 @@ By default an API error will raise a `Errors::APIError`, which has the following
 | `raw_response` | *Faraday::Response*                     | The raw HTTP response |
 | `body`        | *string*                                 | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `summary` method throws the following exceptions:
 
 | Error Type                            | Status Code | Content Type     |
 | ------------------------------------- | ----------- | ---------------- |
@@ -361,8 +379,7 @@ s = ::ModerationApi::ModerationApi.new(
 )
 
 begin
-  req = Models::Operations::ListAuthorsRequest.new
-  res = s.authors.list(request: req)
+  res = s.analytics.summary(range: Models::Operations::GetAnalyticsSummaryQueryParamRange::THIRTYD)
 
   unless res.object.nil?
     # handle response
@@ -408,9 +425,7 @@ s = ::ModerationApi::ModerationApi.new(
   server_url: "https://api.moderationapi.com/v1",
   secret_key: "<YOUR_BEARER_TOKEN_HERE>"
 )
-
-req = Models::Operations::ListAuthorsRequest.new
-res = s.authors.list(request: req)
+res = s.analytics.summary(range: Models::Operations::GetAnalyticsSummaryQueryParamRange::THIRTYD)
 
 unless res.object.nil?
   # handle response

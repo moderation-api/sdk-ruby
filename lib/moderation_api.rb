@@ -5,7 +5,9 @@
 
 module ModerationApi
   autoload :ModerationApi, "moderation_api/moderationapi"
+  autoload :Analytics, "moderation_api/analytics"
   autoload :Authors, "moderation_api/authors"
+  autoload :Feedback, "moderation_api/feedback"
   autoload :Queue, "moderation_api/queue"
   autoload :Items, "moderation_api/items"
   autoload :Actions, "moderation_api/actions"
@@ -16,6 +18,7 @@ module ModerationApi
   autoload :Words, "moderation_api/words"
   autoload :Content, "moderation_api/content"
   autoload :Projects, "moderation_api/projects"
+  autoload :ApiKeys, "moderation_api/apikeys"
   autoload :Channels, "moderation_api/channels"
 
   module Models

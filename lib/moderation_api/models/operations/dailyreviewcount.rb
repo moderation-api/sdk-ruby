@@ -11,20 +11,20 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
-        # Date in YYYY-MM-DD format
+        # Date in YYYY-MM-DD format (UTC).
         field(
           :date,
           ::String,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("date"), required: true}}
         )
-        # Number of reviews on this date
+        # Number of items resolved.
         field(
           :count,
-          ::Float,
+          ::Integer,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("count"), required: true}}
         )
 
-        sig { params(date: ::String, count: ::Float).void }
+        sig { params(date: ::String, count: ::Integer).void }
         def initialize(date:, count:)
           @date = date
           @count = count

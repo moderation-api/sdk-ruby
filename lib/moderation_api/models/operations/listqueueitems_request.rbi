@@ -12,10 +12,16 @@ class ModerationApi::Models::Operations::ListQueueItemsRequest
   def id=(str_)
   end
 
-  def sort_field
+  def sort
   end
 
-  def sort_field=(str_)
+  def sort=(str_)
+  end
+
+  def include_resolved
+  end
+
+  def include_resolved=(str_)
   end
 
   def conversation_ids
@@ -30,24 +36,6 @@ class ModerationApi::Models::Operations::ListQueueItemsRequest
   def labels=(str_)
   end
 
-  def after_date
-  end
-
-  def after_date=(str_)
-  end
-
-  def before_date
-  end
-
-  def before_date=(str_)
-  end
-
-  def include_resolved
-  end
-
-  def include_resolved=(str_)
-  end
-
   def author_id
   end
 
@@ -58,6 +46,18 @@ class ModerationApi::Models::Operations::ListQueueItemsRequest
   end
 
   def filtered_action_ids=(str_)
+  end
+
+  def after_date
+  end
+
+  def after_date=(str_)
+  end
+
+  def before_date
+  end
+
+  def before_date=(str_)
   end
 
   def project_id
@@ -76,11 +76,5 @@ class ModerationApi::Models::Operations::ListQueueItemsRequest
   end
 
   def page_size=(str_)
-  end
-
-  def sort_direction
-  end
-
-  def sort_direction=(str_)
   end
 end

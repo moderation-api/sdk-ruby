@@ -17,10 +17,4 @@ class ModerationApi::Models::Operations::ResolveQueueItemResponseBody
 
   def resolved_at=(str_)
   end
-
-  def comment
-  end
-
-  def comment=(str_)
-  end
 end

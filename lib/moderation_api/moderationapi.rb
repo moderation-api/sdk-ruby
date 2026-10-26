@@ -18,7 +18,9 @@ module ModerationApi
     extend T::Sig
 
     attr_accessor(
+      :analytics,
       :authors,
+      :feedback,
       :queue,
       :actions,
       :webhooks,
@@ -100,7 +102,9 @@ module ModerationApi
 
     sig { void }
     def init_sdks
+      @analytics = Analytics.new(@sdk_configuration)
       @authors = Authors.new(@sdk_configuration)
+      @feedback = Feedback.new(@sdk_configuration)
       @queue = Queue.new(@sdk_configuration)
       @actions = Actions.new(@sdk_configuration)
       @webhooks = Webhooks.new(@sdk_configuration)

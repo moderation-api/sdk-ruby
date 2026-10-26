@@ -70,7 +70,7 @@ module ModerationApi
         # The author of the content if your account has authors enabled. Requires you to send authorId when submitting content.
         field(
           :author,
-          Crystalline::Nilable.new(Models::Operations::Author),
+          Crystalline::Nilable.new(Models::Operations::SubmitContentAuthor),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("author"), required: true}}
         )
         # What your casebook — the record of your past moderation decisions — found for this content, or null when it had nothing close enough to say, when the matching cases disagreed, or when casebook lookups are not switched on for this channel. Reports what the casebook found; whether it decided the outcome is shown in `recommendation`, where a higher-priority rule may have settled the item first.
@@ -103,7 +103,7 @@ module ModerationApi
               )
             ],
             meta: Models::Operations::Meta,
-            author: T.nilable(Models::Operations::Author),
+            author: T.nilable(Models::Operations::SubmitContentAuthor),
             casebook: T.nilable(Models::Operations::Casebook),
             errors: T.nilable(T::Array[Models::Operations::Error])
           )

@@ -11,35 +11,22 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
+        # Resolved items per day. Days with no reviews are left out.
         field(
           :daily_review_counts,
           Crystalline::Array.new(Models::Operations::DailyReviewCount),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("dailyReviewCounts"), required: true}}
         )
 
-        field(
-          :flagged_content_trends,
-          Crystalline::Array.new(Models::Operations::FlaggedContentTrend),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("flaggedContentTrends"), required: true}}
-        )
-
-        sig {
-          params(
-            daily_review_counts: T::Array[Models::Operations::DailyReviewCount],
-            flagged_content_trends: T::Array[Models::Operations::FlaggedContentTrend]
-          )
-            .void
-        }
-        def initialize(daily_review_counts:, flagged_content_trends:)
+        sig { params(daily_review_counts: T::Array[Models::Operations::DailyReviewCount]).void }
+        def initialize(daily_review_counts:)
           @daily_review_counts = daily_review_counts
-          @flagged_content_trends = flagged_content_trends
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
         def ==(other)
           return false unless other.is_a?(self.class)
           return false unless @daily_review_counts == other.daily_review_counts
-          return false unless @flagged_content_trends == other.flagged_content_trends
           true
         end
       end

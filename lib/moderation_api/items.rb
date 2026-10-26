@@ -47,8 +47,8 @@ module ModerationApi
         .returns(Models::Operations::ListQueueItemsResponse)
     }
     def list(request:, timeout_ms: nil, http_headers: nil)
-      # list - Get queue items
-      # Get paginated list of items in a moderation queue with filtering options
+      # list - List queue items
+      # List the items of a review queue, with the filters and the date window of the queue applied. By default only pending items. The list is paginated. Use the item `id` to resolve or unresolve an item.
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = Utils.generate_url(
@@ -175,15 +175,14 @@ module ModerationApi
                 id: request.id,
                 page: next_page,
                 page_size: request.page_size,
-                sort_field: request.sort_field,
-                sort_direction: request.sort_direction,
+                sort: request.sort,
+                include_resolved: request.include_resolved,
                 conversation_ids: request.conversation_ids,
                 labels: request.labels,
-                after_date: request.after_date,
-                before_date: request.before_date,
-                include_resolved: request.include_resolved,
                 author_id: request.author_id,
                 filtered_action_ids: request.filtered_action_ids,
+                after_date: request.after_date,
+                before_date: request.before_date,
                 project_id: request.project_id
               ),
               http_headers: http_headers
@@ -366,7 +365,6 @@ module ModerationApi
 
     sig {
       params(
-        body: Models::Operations::ResolveQueueItemRequestBody,
         id: ::String,
         item_id: ::String,
         project_id: T.nilable(::String),
@@ -375,13 +373,12 @@ module ModerationApi
       )
         .returns(Models::Operations::ResolveQueueItemResponse)
     }
-    def resolve(body:, id:, item_id:, project_id: nil, timeout_ms: nil, http_headers: nil)
+    def resolve(id:, item_id:, project_id: nil, timeout_ms: nil, http_headers: nil)
       # resolve - Resolve a queue item
-      # Mark a queue item as resolved with a specific moderation action
+      # Mark an item of a queue as resolved. It is the same as a check-off in the dashboard: the item leaves the pending list and a QUEUE_ITEM_COMPLETED webhook is sent. To also take a moderation action, use `POST /actions/execute`.
       request = Models::Operations::ResolveQueueItemRequest.new(
         id: id,
         item_id: item_id,
-        body: body,
         project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
@@ -394,18 +391,6 @@ module ModerationApi
       )
       headers = Utils.get_headers(request)
       headers = T.cast(headers, T::Hash[String, String])
-      req_content_type, data, form = Utils.serialize_request_body(request, false, false, :body, :json)
-      headers["content-type"] = req_content_type
-      raise StandardError, "request body is required" if data.nil? && form.nil?
-
-      if form && !form.empty?
-        body = Utils.encode_form(form)
-      elsif Utils.match_content_type(req_content_type, "application/x-www-form-urlencoded")
-        body = URI.encode_www_form(T.cast(data, T::Hash[Symbol, Object]))
-      else
-        body = data
-      end
-
       headers["Accept"] = "application/json"
       headers["user-agent"] = @sdk_configuration.user_agent
 
@@ -429,7 +414,6 @@ module ModerationApi
 
       begin
         http_response = T.must(connection).post(url) do |req|
-          req.body = body
           req.headers.merge!(headers)
           req.options.timeout = timeout unless timeout.nil?
           Utils.configure_request_security(req, security)
@@ -643,30 +627,28 @@ module ModerationApi
 
     sig {
       params(
-        body: Models::Operations::UnresolveQueueItemRequestBody,
+        body: Models::Operations::ResolveQueueItemsRequestBody,
         id: ::String,
-        item_id: ::String,
         project_id: T.nilable(::String),
         timeout_ms: T.nilable(Integer),
         http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
       )
-        .returns(Models::Operations::UnresolveQueueItemResponse)
+        .returns(Models::Operations::ResolveQueueItemsResponse)
     }
-    def unresolve(body:, id:, item_id:, project_id: nil, timeout_ms: nil, http_headers: nil)
-      # unresolve - Unresolve a queue item
-      # Mark a previously resolved queue item as unresolved/pending
-      request = Models::Operations::UnresolveQueueItemRequest.new(
+    def resolve_many(body:, id:, project_id: nil, timeout_ms: nil, http_headers: nil)
+      # resolve_many - Resolve queue items
+      # Mark up to 100 items of a queue as resolved in one request. Each item is resolved the same as with `POST /queue/{id}/items/{itemId}/resolve`. IDs that do not exist in the project are skipped and returned in `notFoundIds`.
+      request = Models::Operations::ResolveQueueItemsRequest.new(
         id: id,
-        item_id: item_id,
         body: body,
         project_id: project_id
       )
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = Utils.generate_url(
-        Models::Operations::UnresolveQueueItemRequest,
+        Models::Operations::ResolveQueueItemsRequest,
         base_url,
-        "/queue/{id}/items/{itemId}/unresolve",
+        "/queue/{id}/items/resolve",
         request
       )
       headers = Utils.get_headers(request)
@@ -697,7 +679,7 @@ module ModerationApi
         config: @sdk_configuration,
         base_url: base_url,
         oauth2_scopes: nil,
-        operation_id: "unresolveQueueItem",
+        operation_id: "resolveQueueItems",
         security_source: @sdk_configuration.security_source
       )
 
@@ -707,6 +689,268 @@ module ModerationApi
       begin
         http_response = T.must(connection).post(url) do |req|
           req.body = body
+          req.headers.merge!(headers)
+          req.options.timeout = timeout unless timeout.nil?
+          Utils.configure_request_security(req, security)
+          http_headers&.each do |key, value|
+            req.headers[key.to_s] = value
+          end
+
+          @sdk_configuration.hooks.before_request(
+            hook_ctx: SDKHooks::BeforeRequestHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            request: req
+          )
+        end
+
+      rescue StandardError => e
+        error = e
+      ensure
+        if http_response.nil? || Utils.error_status?(http_response.status)
+          http_response = @sdk_configuration.hooks.after_error(
+            error: error,
+            hook_ctx: SDKHooks::AfterErrorHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+        else
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+        end
+
+        if http_response.nil?
+          raise error if !error.nil?
+          raise "no response"
+        end
+      end
+
+      content_type = http_response.headers.fetch("Content-Type", "application/octet-stream")
+      if Utils.match_status_code(http_response.status, ["200"])
+        if Utils.match_content_type(content_type, "application/json")
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+          response_data = http_response.env.response_body
+          obj = Crystalline.unmarshal_json(JSON.parse(response_data), Models::Operations::ResolveQueueItemsResponseBody)
+          response = Models::Operations::ResolveQueueItemsResponse.new(
+            status_code: http_response.status,
+            content_type: content_type,
+            raw_response: http_response,
+            object: T.unsafe(obj)
+          )
+
+          return response
+        else
+          raise(
+            ::ModerationApi::Models::Errors::APIError.new(
+              status_code: http_response.status,
+              body: http_response.env.response_body,
+              raw_response: http_response
+            ),
+            "Unknown content type received"
+          )
+        end
+      elsif Utils.match_status_code(http_response.status, ["400"])
+        if Utils.match_content_type(content_type, "application/json")
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+          response_data = http_response.env.response_body
+          obj = Crystalline.unmarshal_json(JSON.parse(response_data), Models::Errors::BadRequestError)
+          obj.raw_response = http_response
+          raise obj
+        else
+          raise(
+            ::ModerationApi::Models::Errors::APIError.new(
+              status_code: http_response.status,
+              body: http_response.env.response_body,
+              raw_response: http_response
+            ),
+            "Unknown content type received"
+          )
+        end
+      elsif Utils.match_status_code(http_response.status, ["401"])
+        if Utils.match_content_type(content_type, "application/json")
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+          response_data = http_response.env.response_body
+          obj = Crystalline.unmarshal_json(JSON.parse(response_data), Models::Errors::AuthenticationError)
+          obj.raw_response = http_response
+          raise obj
+        else
+          raise(
+            ::ModerationApi::Models::Errors::APIError.new(
+              status_code: http_response.status,
+              body: http_response.env.response_body,
+              raw_response: http_response
+            ),
+            "Unknown content type received"
+          )
+        end
+      elsif Utils.match_status_code(http_response.status, ["403"])
+        if Utils.match_content_type(content_type, "application/json")
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+          response_data = http_response.env.response_body
+          obj = Crystalline.unmarshal_json(JSON.parse(response_data), Models::Errors::PermissionDeniedError)
+          obj.raw_response = http_response
+          raise obj
+        else
+          raise(
+            ::ModerationApi::Models::Errors::APIError.new(
+              status_code: http_response.status,
+              body: http_response.env.response_body,
+              raw_response: http_response
+            ),
+            "Unknown content type received"
+          )
+        end
+      elsif Utils.match_status_code(http_response.status, ["429"])
+        if Utils.match_content_type(content_type, "application/json")
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+          response_data = http_response.env.response_body
+          obj = Crystalline.unmarshal_json(JSON.parse(response_data), Models::Errors::RateLimitError)
+          obj.raw_response = http_response
+          raise obj
+        else
+          raise(
+            ::ModerationApi::Models::Errors::APIError.new(
+              status_code: http_response.status,
+              body: http_response.env.response_body,
+              raw_response: http_response
+            ),
+            "Unknown content type received"
+          )
+        end
+      elsif Utils.match_status_code(http_response.status, ["500"])
+        if Utils.match_content_type(content_type, "application/json")
+          http_response = @sdk_configuration.hooks.after_success(
+            hook_ctx: SDKHooks::AfterSuccessHookContext.new(
+              hook_ctx: hook_ctx
+            ),
+            response: http_response
+          )
+          response_data = http_response.env.response_body
+          obj = Crystalline.unmarshal_json(JSON.parse(response_data), Models::Errors::InternalServerError)
+          obj.raw_response = http_response
+          raise obj
+        else
+          raise(
+            ::ModerationApi::Models::Errors::APIError.new(
+              status_code: http_response.status,
+              body: http_response.env.response_body,
+              raw_response: http_response
+            ),
+            "Unknown content type received"
+          )
+        end
+      elsif Utils.match_status_code(http_response.status, ["4XX"])
+        raise(
+          ::ModerationApi::Models::Errors::APIError.new(
+            status_code: http_response.status,
+            body: http_response.env.response_body,
+            raw_response: http_response
+          ),
+          "API error occurred"
+        )
+      elsif Utils.match_status_code(http_response.status, ["5XX"])
+        raise(
+          ::ModerationApi::Models::Errors::APIError.new(
+            status_code: http_response.status,
+            body: http_response.env.response_body,
+            raw_response: http_response
+          ),
+          "API error occurred"
+        )
+      else
+        raise(
+          ::ModerationApi::Models::Errors::APIError.new(
+            status_code: http_response.status,
+            body: http_response.env.response_body,
+            raw_response: http_response
+          ),
+          "Unknown status code received"
+        )
+
+      end
+    end
+
+    sig {
+      params(
+        id: ::String,
+        item_id: ::String,
+        project_id: T.nilable(::String),
+        timeout_ms: T.nilable(Integer),
+        http_headers: T.nilable(T::Hash[T.any(String, Symbol), String])
+      )
+        .returns(Models::Operations::UnresolveQueueItemResponse)
+    }
+    def unresolve(id:, item_id:, project_id: nil, timeout_ms: nil, http_headers: nil)
+      # unresolve - Unresolve a queue item
+      # Mark a resolved item of a queue as pending again. It is the same as removing a check-off in the dashboard: the item comes back in the pending list.
+      request = Models::Operations::UnresolveQueueItemRequest.new(
+        id: id,
+        item_id: item_id,
+        project_id: project_id
+      )
+      url, params = @sdk_configuration.get_server_details
+      base_url = Utils.template_url(url, params)
+      url = Utils.generate_url(
+        Models::Operations::UnresolveQueueItemRequest,
+        base_url,
+        "/queue/{id}/items/{itemId}/unresolve",
+        request
+      )
+      headers = Utils.get_headers(request)
+      headers = T.cast(headers, T::Hash[String, String])
+      headers["Accept"] = "application/json"
+      headers["user-agent"] = @sdk_configuration.user_agent
+
+      security = @sdk_configuration.security_source&.call
+
+      timeout = (timeout_ms.to_f / 1000) unless timeout_ms.nil?
+      timeout ||= @sdk_configuration.timeout
+
+      connection = @sdk_configuration.client
+
+      hook_ctx = SDKHooks::HookContext.new(
+        config: @sdk_configuration,
+        base_url: base_url,
+        oauth2_scopes: nil,
+        operation_id: "unresolveQueueItem",
+        security_source: @sdk_configuration.security_source
+      )
+
+      error = T.let(nil, T.nilable(StandardError))
+      http_response = T.let(nil, T.nilable(Faraday::Response))
+
+      begin
+        http_response = T.must(connection).post(url) do |req|
           req.headers.merge!(headers)
           req.options.timeout = timeout unless timeout.nil?
           Utils.configure_request_security(req, security)

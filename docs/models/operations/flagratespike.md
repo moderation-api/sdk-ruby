@@ -1,0 +1,12 @@
+# FlagRateSpike
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `multiple`                                                                        | *::Float*                                                                         | :heavy_check_mark:                                                                | How many times higher the recent flag rate is than the baseline, for example 2.4. |
+| `recent_flag_rate`                                                                | *::Float*                                                                         | :heavy_check_mark:                                                                | The flag rate in the last 2 days.                                                 |
+| `baseline_flag_rate`                                                              | *::Float*                                                                         | :heavy_check_mark:                                                                | The flag rate in the 30 days before that.                                         |
+| `recent_flagged`                                                                  | *::Integer*                                                                       | :heavy_check_mark:                                                                | Flagged requests in the last 2 days.                                              |
+| `recent_requests`                                                                 | *::Integer*                                                                       | :heavy_check_mark:                                                                | Requests in the last 2 days.                                                      |

@@ -16,13 +16,7 @@ module ModerationApi
           Models::Operations::ReviewStats,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("reviewStats"), required: true}}
         )
-
-        field(
-          :action_stats,
-          Crystalline::Array.new(Models::Operations::ActionStat),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("actionStats"), required: true}}
-        )
-        # List of top reviewers and their statistics
+        # Reviewers with the most resolved items, most first. Up to 10.
         field(
           :top_reviewers,
           Crystalline::Array.new(Models::Operations::TopReviewer),
@@ -38,15 +32,13 @@ module ModerationApi
         sig {
           params(
             review_stats: Models::Operations::ReviewStats,
-            action_stats: T::Array[Models::Operations::ActionStat],
             top_reviewers: T::Array[Models::Operations::TopReviewer],
             trends: Models::Operations::Trends
           )
             .void
         }
-        def initialize(review_stats:, action_stats:, top_reviewers:, trends:)
+        def initialize(review_stats:, top_reviewers:, trends:)
           @review_stats = review_stats
-          @action_stats = action_stats
           @top_reviewers = top_reviewers
           @trends = trends
         end
@@ -55,7 +47,6 @@ module ModerationApi
         def ==(other)
           return false unless other.is_a?(self.class)
           return false unless @review_stats == other.review_stats
-          return false unless @action_stats == other.action_stats
           return false unless @top_reviewers == other.top_reviewers
           return false unless @trends == other.trends
           true

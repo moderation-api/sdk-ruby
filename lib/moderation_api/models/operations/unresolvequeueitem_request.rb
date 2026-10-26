@@ -11,32 +11,21 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
-        # The queue ID
+        # The queue ID.
         field :id, ::String, {'path_param': {'field_name': "id", 'style': "simple", 'explode': false}}
-        # The item ID to unresolve
+        # The item ID to unresolve.
         field :item_id, ::String, {'path_param': {'field_name': "itemId", 'style': "simple", 'explode': false}}
-
-        field :body, Models::Operations::UnresolveQueueItemRequestBody, {'request': {'media_type': "application/json"}}
-        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        # The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         field(
           :project_id,
           Crystalline::Nilable.new(::String),
           {'header': {'field_name': "Project-Id", 'style': "simple", 'explode': false}}
         )
 
-        sig {
-          params(
-            id: ::String,
-            item_id: ::String,
-            body: Models::Operations::UnresolveQueueItemRequestBody,
-            project_id: T.nilable(::String)
-          )
-            .void
-        }
-        def initialize(id:, item_id:, body:, project_id: nil)
+        sig { params(id: ::String, item_id: ::String, project_id: T.nilable(::String)).void }
+        def initialize(id:, item_id:, project_id: nil)
           @id = id
           @item_id = item_id
-          @body = body
           @project_id = project_id
         end
 
@@ -45,7 +34,6 @@ module ModerationApi
           return false unless other.is_a?(self.class)
           return false unless @id == other.id
           return false unless @item_id == other.item_id
-          return false unless @body == other.body
           return false unless @project_id == other.project_id
           true
         end

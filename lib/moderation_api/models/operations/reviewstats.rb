@@ -11,28 +11,21 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
-        # Average time in milliseconds to review an item
-        field(
-          :average_time_to_review,
-          ::Float,
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("averageTimeToReview"), required: true}}
-        )
-        # Total number of items reviewed
+        # Number of items resolved in this queue in the period.
         field(
           :total_reviewed,
-          ::Float,
+          ::Integer,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("totalReviewed"), required: true}}
         )
-        # Total number of items pending review
+        # Number of items submitted in the period that wait for review now.
         field(
           :total_pending,
-          ::Float,
+          ::Integer,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("totalPending"), required: true}}
         )
 
-        sig { params(average_time_to_review: ::Float, total_reviewed: ::Float, total_pending: ::Float).void }
-        def initialize(average_time_to_review:, total_reviewed:, total_pending:)
-          @average_time_to_review = average_time_to_review
+        sig { params(total_reviewed: ::Integer, total_pending: ::Integer).void }
+        def initialize(total_reviewed:, total_pending:)
           @total_reviewed = total_reviewed
           @total_pending = total_pending
         end
@@ -40,7 +33,6 @@ module ModerationApi
         sig { params(other: T.untyped).returns(T::Boolean) }
         def ==(other)
           return false unless other.is_a?(self.class)
-          return false unless @average_time_to_review == other.average_time_to_review
           return false unless @total_reviewed == other.total_reviewed
           return false unless @total_pending == other.total_pending
           true

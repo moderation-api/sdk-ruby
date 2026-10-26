@@ -16,24 +16,17 @@ module ModerationApi
           Crystalline::Boolean.new,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("success"), required: true}}
         )
-        # Timestamp when the item was resolved
+        # When the item was resolved (ISO 8601).
         field(
           :resolved_at,
           ::String,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("resolvedAt"), required: true}}
         )
-        # Optional comment
-        field(
-          :comment,
-          Crystalline::Nilable.new(::String),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("comment")}}
-        )
 
-        sig { params(success: T::Boolean, resolved_at: ::String, comment: T.nilable(::String)).void }
-        def initialize(success:, resolved_at:, comment: nil)
+        sig { params(success: T::Boolean, resolved_at: ::String).void }
+        def initialize(success:, resolved_at:)
           @success = success
           @resolved_at = resolved_at
-          @comment = comment
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
@@ -41,7 +34,6 @@ module ModerationApi
           return false unless other.is_a?(self.class)
           return false unless @success == other.success
           return false unless @resolved_at == other.resolved_at
-          return false unless @comment == other.comment
           true
         end
       end

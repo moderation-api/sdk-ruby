@@ -48,7 +48,7 @@ module ModerationApi
     }
     def list(request:, timeout_ms: nil, http_headers: nil)
       # list - List authors
-      # List authors with their activity metrics and reputation. The list is paginated.
+      # List the authors of the project, with their status, trust level and content metrics. The list is paginated. By default, the authors that were active most recently come first.
       url, params = @sdk_configuration.get_server_details
       base_url = Utils.template_url(url, params)
       url = "#{base_url}/authors"
@@ -173,7 +173,6 @@ module ModerationApi
                 sort_direction: request.sort_direction,
                 member_since_date: request.member_since_date,
                 last_active_date: request.last_active_date,
-                content_types: request.content_types,
                 project_id: request.project_id
               ),
               http_headers: http_headers

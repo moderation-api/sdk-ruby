@@ -28,12 +28,12 @@ module ModerationApi
         # Current author status
         field(
           :status,
-          Models::Components::Status,
+          Models::Components::PublicAuthorStatus,
           {
             'format_json': {
               'letter_case': ::ModerationApi::Utils.field_name("status"),
               required: true,
-              'decoder': ::ModerationApi::Utils.open_enum_from_string(Models::Components::Status, false)
+              'decoder': ::ModerationApi::Utils.open_enum_from_string(Models::Components::PublicAuthorStatus, false)
             }
           }
         )
@@ -115,7 +115,7 @@ module ModerationApi
             id: ::String,
             first_seen: ::Float,
             last_seen: ::Float,
-            status: Models::Components::Status,
+            status: Models::Components::PublicAuthorStatus,
             trust_level: Models::Components::TrustLevel,
             metrics: Models::Components::Metrics,
             metadata: Models::Components::Metadata,

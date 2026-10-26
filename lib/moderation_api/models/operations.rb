@@ -65,21 +65,19 @@ module ModerationApi
       autoload :VideoResponse, "moderation_api/models/operations/video_response.rb"
       autoload :Violence, "moderation_api/models/operations/violence.rb"
       autoload :Weapons, "moderation_api/models/operations/weapons.rb"
-      autoload :ActionStat, "moderation_api/models/operations/actionstat.rb"
       autoload :ActionRequest, "moderation_api/models/operations/action_request.rb"
+      autoload :ActionResponse, "moderation_api/models/operations/action_response.rb"
       autoload :AddWordlistWordsRequestBody, "moderation_api/models/operations/addwordlistwords_requestbody.rb"
       autoload :AddWordlistWordsResponseBody, "moderation_api/models/operations/addwordlistwords_responsebody.rb"
       autoload :AddWordlistWordsRequest, "moderation_api/models/operations/addwordlistwords_request.rb"
       autoload :AddWordlistWordsResponse, "moderation_api/models/operations/addwordlistwords_response.rb"
-      autoload :Author, "moderation_api/models/operations/author.rb"
       autoload :AuthorStatus, "moderation_api/models/operations/author_status.rb"
       autoload :Behavior, "moderation_api/models/operations/behavior.rb"
       autoload :Block, "moderation_api/models/operations/block.rb"
       autoload :BrandImpersonation, "moderation_api/models/operations/brand_impersonation.rb"
+      autoload :Bucket, "moderation_api/models/operations/bucket.rb"
       autoload :Casebook, "moderation_api/models/operations/casebook.rb"
-      autoload :CasebookAgreement, "moderation_api/models/operations/casebookagreement.rb"
-      autoload :CasebookAnswer, "moderation_api/models/operations/casebookanswer.rb"
-      autoload :CheckStatus, "moderation_api/models/operations/checkstatus.rb"
+      autoload :Channel, "moderation_api/models/operations/channel.rb"
       autoload :ClientAction, "moderation_api/models/operations/clientaction.rb"
       autoload :Comparator, "moderation_api/models/operations/comparator.rb"
       autoload :ContentRequest, "moderation_api/models/operations/content_request.rb"
@@ -116,6 +114,14 @@ module ModerationApi
       autoload :CreateChannelContentType, "moderation_api/models/operations/createchannel_contenttype.rb"
       autoload :CreateChannelRequest, "moderation_api/models/operations/createchannel_request.rb"
       autoload :CreateChannelResponse, "moderation_api/models/operations/createchannel_response.rb"
+      autoload :CreateFeedbackRequestBody, "moderation_api/models/operations/createfeedback_requestbody.rb"
+      autoload :CreateFeedbackResponseBody, "moderation_api/models/operations/createfeedback_responsebody.rb"
+      autoload :CreateFeedbackRequest, "moderation_api/models/operations/createfeedback_request.rb"
+      autoload :CreateFeedbackResponse, "moderation_api/models/operations/createfeedback_response.rb"
+      autoload :CreateFeedbackType, "moderation_api/models/operations/createfeedback_type.rb"
+      autoload :CreateProjectApiKeyRequestBody, "moderation_api/models/operations/createprojectapikey_requestbody.rb"
+      autoload :CreateProjectApiKeyRequest, "moderation_api/models/operations/createprojectapikey_request.rb"
+      autoload :CreateProjectApiKeyResponse, "moderation_api/models/operations/createprojectapikey_response.rb"
       autoload :CreateProjectRequest, "moderation_api/models/operations/createproject_request.rb"
       autoload :CreateProjectResponse, "moderation_api/models/operations/createproject_response.rb"
       autoload :CreateWebhookRequestBody, "moderation_api/models/operations/createwebhook_requestbody.rb"
@@ -125,6 +131,10 @@ module ModerationApi
       autoload :CreateWebhookPayloadVersion, "moderation_api/models/operations/createwebhook_payloadversion.rb"
       autoload :CreateWebhookRequest, "moderation_api/models/operations/createwebhook_request.rb"
       autoload :CreateWebhookResponse, "moderation_api/models/operations/createwebhook_response.rb"
+      autoload :CreateWordlistRequestBody, "moderation_api/models/operations/createwordlist_requestbody.rb"
+      autoload :CreateWordlistResponseBody, "moderation_api/models/operations/createwordlist_responsebody.rb"
+      autoload :CreateWordlistRequest, "moderation_api/models/operations/createwordlist_request.rb"
+      autoload :CreateWordlistResponse, "moderation_api/models/operations/createwordlist_response.rb"
       autoload :CurrentProject, "moderation_api/models/operations/current_project.rb"
       autoload :DailyReviewCount, "moderation_api/models/operations/dailyreviewcount.rb"
       autoload :DataAudio, "moderation_api/models/operations/data_audio.rb"
@@ -160,9 +170,7 @@ module ModerationApi
       autoload :ExecuteActionResponseBody, "moderation_api/models/operations/executeaction_responsebody.rb"
       autoload :ExecuteActionRequest, "moderation_api/models/operations/executeaction_request.rb"
       autoload :ExecuteActionResponse, "moderation_api/models/operations/executeaction_response.rb"
-      autoload :Filter, "moderation_api/models/operations/filter.rb"
-      autoload :FilterLabel, "moderation_api/models/operations/filterlabel.rb"
-      autoload :FlaggedContentTrend, "moderation_api/models/operations/flaggedcontenttrend.rb"
+      autoload :FlagRateSpike, "moderation_api/models/operations/flagratespike.rb"
       autoload :FlaggingMode, "moderation_api/models/operations/flaggingmode.rb"
       autoload :GetAccountResponseBody, "moderation_api/models/operations/getaccount_responsebody.rb"
       autoload :GetAccountRequest, "moderation_api/models/operations/getaccount_request.rb"
@@ -174,6 +182,83 @@ module ModerationApi
       autoload :GetActionRequest, "moderation_api/models/operations/getaction_request.rb"
       autoload :GetActionResponse, "moderation_api/models/operations/getaction_response.rb"
       autoload :GetActionType, "moderation_api/models/operations/getaction_type.rb"
+      autoload :GetAnalyticsAuthorsResponseBody, "moderation_api/models/operations/getanalyticsauthors_responsebody.rb"
+      autoload :GetAnalyticsAuthorsAuthor, "moderation_api/models/operations/getanalyticsauthors_author.rb"
+      autoload(
+        :GetAnalyticsAuthorsQueryParamRange,
+        "moderation_api/models/operations/getanalyticsauthors_queryparam_range.rb"
+      )
+      autoload(
+        :GetAnalyticsAuthorsRangeResponse,
+        "moderation_api/models/operations/getanalyticsauthors_range_response.rb"
+      )
+      autoload :GetAnalyticsAuthorsRequest, "moderation_api/models/operations/getanalyticsauthors_request.rb"
+      autoload :GetAnalyticsAuthorsResponse, "moderation_api/models/operations/getanalyticsauthors_response.rb"
+      autoload(
+        :GetAnalyticsAutomationResponseBody,
+        "moderation_api/models/operations/getanalyticsautomation_responsebody.rb"
+      )
+      autoload(
+        :GetAnalyticsAutomationQueryParamRange,
+        "moderation_api/models/operations/getanalyticsautomation_queryparam_range.rb"
+      )
+      autoload(
+        :GetAnalyticsAutomationRangeResponse,
+        "moderation_api/models/operations/getanalyticsautomation_range_response.rb"
+      )
+      autoload :GetAnalyticsAutomationRequest, "moderation_api/models/operations/getanalyticsautomation_request.rb"
+      autoload :GetAnalyticsAutomationResponse, "moderation_api/models/operations/getanalyticsautomation_response.rb"
+      autoload(
+        :GetAnalyticsChannelsResponseBody,
+        "moderation_api/models/operations/getanalyticschannels_responsebody.rb"
+      )
+      autoload(
+        :GetAnalyticsChannelsQueryParamRange,
+        "moderation_api/models/operations/getanalyticschannels_queryparam_range.rb"
+      )
+      autoload(
+        :GetAnalyticsChannelsRangeResponse,
+        "moderation_api/models/operations/getanalyticschannels_range_response.rb"
+      )
+      autoload :GetAnalyticsChannelsRequest, "moderation_api/models/operations/getanalyticschannels_request.rb"
+      autoload :GetAnalyticsChannelsResponse, "moderation_api/models/operations/getanalyticschannels_response.rb"
+      autoload(
+        :GetAnalyticsPoliciesResponseBody,
+        "moderation_api/models/operations/getanalyticspolicies_responsebody.rb"
+      )
+      autoload :GetAnalyticsPoliciesPolicy, "moderation_api/models/operations/getanalyticspolicies_policy.rb"
+      autoload(
+        :GetAnalyticsPoliciesQueryParamRange,
+        "moderation_api/models/operations/getanalyticspolicies_queryparam_range.rb"
+      )
+      autoload(
+        :GetAnalyticsPoliciesRangeResponse,
+        "moderation_api/models/operations/getanalyticspolicies_range_response.rb"
+      )
+      autoload :GetAnalyticsPoliciesRequest, "moderation_api/models/operations/getanalyticspolicies_request.rb"
+      autoload :GetAnalyticsPoliciesResponse, "moderation_api/models/operations/getanalyticspolicies_response.rb"
+      autoload :GetAnalyticsSummaryResponseBody, "moderation_api/models/operations/getanalyticssummary_responsebody.rb"
+      autoload(
+        :GetAnalyticsSummaryQueryParamRange,
+        "moderation_api/models/operations/getanalyticssummary_queryparam_range.rb"
+      )
+      autoload(
+        :GetAnalyticsSummaryRangeResponse,
+        "moderation_api/models/operations/getanalyticssummary_range_response.rb"
+      )
+      autoload :GetAnalyticsSummaryRequest, "moderation_api/models/operations/getanalyticssummary_request.rb"
+      autoload :GetAnalyticsSummaryResponse, "moderation_api/models/operations/getanalyticssummary_response.rb"
+      autoload :GetAnalyticsVolumesResponseBody, "moderation_api/models/operations/getanalyticsvolumes_responsebody.rb"
+      autoload(
+        :GetAnalyticsVolumesQueryParamRange,
+        "moderation_api/models/operations/getanalyticsvolumes_queryparam_range.rb"
+      )
+      autoload(
+        :GetAnalyticsVolumesRangeResponse,
+        "moderation_api/models/operations/getanalyticsvolumes_range_response.rb"
+      )
+      autoload :GetAnalyticsVolumesRequest, "moderation_api/models/operations/getanalyticsvolumes_request.rb"
+      autoload :GetAnalyticsVolumesResponse, "moderation_api/models/operations/getanalyticsvolumes_response.rb"
       autoload :GetAuthorRequest, "moderation_api/models/operations/getauthor_request.rb"
       autoload :GetAuthorResponse, "moderation_api/models/operations/getauthor_response.rb"
       autoload :GetChannelRequest, "moderation_api/models/operations/getchannel_request.rb"
@@ -184,11 +269,8 @@ module ModerationApi
       autoload :GetQueueStatsRequest, "moderation_api/models/operations/getqueuestats_request.rb"
       autoload :GetQueueStatsResponse, "moderation_api/models/operations/getqueuestats_response.rb"
       autoload :GetQueueResponseBody, "moderation_api/models/operations/getqueue_responsebody.rb"
-      autoload :GetQueueContentType, "moderation_api/models/operations/getqueue_contenttype.rb"
-      autoload :GetQueueRecommendationAction, "moderation_api/models/operations/getqueue_recommendationaction.rb"
       autoload :GetQueueRequest, "moderation_api/models/operations/getqueue_request.rb"
       autoload :GetQueueResponse, "moderation_api/models/operations/getqueue_response.rb"
-      autoload :GetQueueType, "moderation_api/models/operations/getqueue_type.rb"
       autoload :GetWebhookSecretResponseBody, "moderation_api/models/operations/getwebhooksecret_responsebody.rb"
       autoload :GetWebhookSecretRequest, "moderation_api/models/operations/getwebhooksecret_request.rb"
       autoload :GetWebhookSecretResponse, "moderation_api/models/operations/getwebhooksecret_response.rb"
@@ -214,7 +296,7 @@ module ModerationApi
       autoload :GetWordlistResponse, "moderation_api/models/operations/getwordlist_response.rb"
       autoload :GlobalFlaggingMode, "moderation_api/models/operations/globalflaggingmode.rb"
       autoload :Insight, "moderation_api/models/operations/insight.rb"
-      autoload :IsFlagged, "moderation_api/models/operations/isflagged.rb"
+      autoload :Label, "moderation_api/models/operations/label.rb"
       autoload :ListActionsResponseBody, "moderation_api/models/operations/listactions_responsebody.rb"
       autoload :ListActionsData, "moderation_api/models/operations/listactions_data.rb"
       autoload :ListActionsPosition, "moderation_api/models/operations/listactions_position.rb"
@@ -226,7 +308,6 @@ module ModerationApi
       autoload :ListAuthorsResponseBody, "moderation_api/models/operations/listauthors_responsebody.rb"
       autoload :ListAuthorsRequest, "moderation_api/models/operations/listauthors_request.rb"
       autoload :ListAuthorsResponse, "moderation_api/models/operations/listauthors_response.rb"
-      autoload :ListAuthorsSortDirection, "moderation_api/models/operations/listauthors_sortdirection.rb"
       autoload :ListChannelsResponseBody, "moderation_api/models/operations/listchannels_responsebody.rb"
       autoload :ListChannelsRequest, "moderation_api/models/operations/listchannels_request.rb"
       autoload :ListChannelsResponse, "moderation_api/models/operations/listchannels_response.rb"
@@ -234,13 +315,11 @@ module ModerationApi
       autoload :ListProjectsRequest, "moderation_api/models/operations/listprojects_request.rb"
       autoload :ListProjectsResponse, "moderation_api/models/operations/listprojects_response.rb"
       autoload :ListQueueItemsResponseBody, "moderation_api/models/operations/listqueueitems_responsebody.rb"
-      autoload :ListQueueItemsAction, "moderation_api/models/operations/listqueueitems_action.rb"
-      autoload :ListQueueItemsData, "moderation_api/models/operations/listqueueitems_data.rb"
-      autoload :ListQueueItemsLabel, "moderation_api/models/operations/listqueueitems_label.rb"
       autoload :ListQueueItemsRequest, "moderation_api/models/operations/listqueueitems_request.rb"
       autoload :ListQueueItemsResponse, "moderation_api/models/operations/listqueueitems_response.rb"
-      autoload :ListQueueItemsSortDirection, "moderation_api/models/operations/listqueueitems_sortdirection.rb"
-      autoload :ListQueueItemsStatus, "moderation_api/models/operations/listqueueitems_status.rb"
+      autoload :ListQueuesResponseBody, "moderation_api/models/operations/listqueues_responsebody.rb"
+      autoload :ListQueuesRequest, "moderation_api/models/operations/listqueues_request.rb"
+      autoload :ListQueuesResponse, "moderation_api/models/operations/listqueues_response.rb"
       autoload :ListWebhooksResponseBody, "moderation_api/models/operations/listwebhooks_responsebody.rb"
       autoload :ListWebhooksData, "moderation_api/models/operations/listwebhooks_data.rb"
       autoload :ListWebhooksEventType, "moderation_api/models/operations/listwebhooks_eventtype.rb"
@@ -253,51 +332,51 @@ module ModerationApi
       autoload :ListWordlistsResponse, "moderation_api/models/operations/listwordlists_response.rb"
       autoload :Match, "moderation_api/models/operations/match.rb"
       autoload :MatchedRule, "moderation_api/models/operations/matched_rule.rb"
-      autoload :MediaType, "moderation_api/models/operations/mediatype.rb"
       autoload :Meta, "moderation_api/models/operations/meta.rb"
       autoload :MetaType, "moderation_api/models/operations/metatype.rb"
       autoload :MetaStatus, "moderation_api/models/operations/meta_status.rb"
-      autoload :MetadataFilter, "moderation_api/models/operations/metadatafilter.rb"
       autoload :Method, "moderation_api/models/operations/method.rb"
       autoload :Modified, "moderation_api/models/operations/modified.rb"
       autoload :PolicyRequest, "moderation_api/models/operations/policy_request.rb"
-      autoload :PolicyResponse, "moderation_api/models/operations/policy_response.rb"
-      autoload :Queue, "moderation_api/models/operations/queue.rb"
+      autoload :PreviousPeriod, "moderation_api/models/operations/previousperiod.rb"
       autoload :ReasonCode, "moderation_api/models/operations/reason_code.rb"
       autoload :ReasonCodeEnum, "moderation_api/models/operations/reason_code_enum.rb"
       autoload :Recommendation, "moderation_api/models/operations/recommendation.rb"
       autoload :RemoveWordlistWordsResponseBody, "moderation_api/models/operations/removewordlistwords_responsebody.rb"
       autoload :RemoveWordlistWordsRequest, "moderation_api/models/operations/removewordlistwords_request.rb"
       autoload :RemoveWordlistWordsResponse, "moderation_api/models/operations/removewordlistwords_response.rb"
-      autoload :ResolveQueueItemRequestBody, "moderation_api/models/operations/resolvequeueitem_requestbody.rb"
       autoload :ResolveQueueItemResponseBody, "moderation_api/models/operations/resolvequeueitem_responsebody.rb"
       autoload :ResolveQueueItemRequest, "moderation_api/models/operations/resolvequeueitem_request.rb"
       autoload :ResolveQueueItemResponse, "moderation_api/models/operations/resolvequeueitem_response.rb"
+      autoload :ResolveQueueItemsRequestBody, "moderation_api/models/operations/resolvequeueitems_requestbody.rb"
+      autoload :ResolveQueueItemsResponseBody, "moderation_api/models/operations/resolvequeueitems_responsebody.rb"
+      autoload :ResolveQueueItemsRequest, "moderation_api/models/operations/resolvequeueitems_request.rb"
+      autoload :ResolveQueueItemsResponse, "moderation_api/models/operations/resolvequeueitems_response.rb"
       autoload :ReviewStats, "moderation_api/models/operations/reviewstats.rb"
+      autoload :Rule, "moderation_api/models/operations/rule.rb"
       autoload :Scores, "moderation_api/models/operations/scores.rb"
       autoload :SignalsRequest, "moderation_api/models/operations/signals_request.rb"
       autoload :SignalsResponse, "moderation_api/models/operations/signals_response.rb"
+      autoload :Sort, "moderation_api/models/operations/sort.rb"
       autoload :SortBy, "moderation_api/models/operations/sortby.rb"
-      autoload :SortField, "moderation_api/models/operations/sortfield.rb"
+      autoload :SortDirection, "moderation_api/models/operations/sortdirection.rb"
+      autoload :Source, "moderation_api/models/operations/source.rb"
       autoload :SubmitContentRequestBody, "moderation_api/models/operations/submitcontent_requestbody.rb"
       autoload :SubmitContentResponseBody, "moderation_api/models/operations/submitcontent_responsebody.rb"
-      autoload :SubmitContentLabel, "moderation_api/models/operations/submitcontent_label.rb"
-      autoload(
-        :SubmitContentRecommendationAction,
-        "moderation_api/models/operations/submitcontent_recommendation_action.rb"
-      )
+      autoload :SubmitContentAuthor, "moderation_api/models/operations/submitcontent_author.rb"
+      autoload :SubmitContentPolicyResponse, "moderation_api/models/operations/submitcontent_policy_response.rb"
       autoload :SubmitContentRequest, "moderation_api/models/operations/submitcontent_request.rb"
       autoload :SubmitContentResponse, "moderation_api/models/operations/submitcontent_response.rb"
-      autoload :TopAction, "moderation_api/models/operations/topaction.rb"
       autoload :TopReviewer, "moderation_api/models/operations/topreviewer.rb"
       autoload :Topic, "moderation_api/models/operations/topic.rb"
+      autoload :Totals, "moderation_api/models/operations/totals.rb"
       autoload :TranscriptionQuality, "moderation_api/models/operations/transcriptionquality.rb"
       autoload :Trends, "moderation_api/models/operations/trends.rb"
       autoload :TrustLevel, "moderation_api/models/operations/trust_level.rb"
-      autoload :UnresolveQueueItemRequestBody, "moderation_api/models/operations/unresolvequeueitem_requestbody.rb"
       autoload :UnresolveQueueItemResponseBody, "moderation_api/models/operations/unresolvequeueitem_responsebody.rb"
       autoload :UnresolveQueueItemRequest, "moderation_api/models/operations/unresolvequeueitem_request.rb"
       autoload :UnresolveQueueItemResponse, "moderation_api/models/operations/unresolvequeueitem_response.rb"
+      autoload :UnresolveQueueItemStatus, "moderation_api/models/operations/unresolvequeueitem_status.rb"
       autoload :UpdateActionRequestBody, "moderation_api/models/operations/updateaction_requestbody.rb"
       autoload :UpdateActionResponseBody, "moderation_api/models/operations/updateaction_responsebody.rb"
       autoload :UpdateActionPositionRequest, "moderation_api/models/operations/updateaction_position_request.rb"
@@ -346,7 +425,7 @@ module ModerationApi
       autoload :UpdateWordlistResponse, "moderation_api/models/operations/updatewordlist_response.rb"
       autoload :Value, "moderation_api/models/operations/value.rb"
       autoload :Verdict, "moderation_api/models/operations/verdict.rb"
-      autoload :WithinUnit, "moderation_api/models/operations/withinunit.rb"
+      autoload :Volume, "moderation_api/models/operations/volume.rb"
     end
   end
 end

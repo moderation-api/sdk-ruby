@@ -6,12 +6,6 @@ class ModerationApi::Models::Operations::ReviewStats
 end
 
 class ModerationApi::Models::Operations::ReviewStats
-  def average_time_to_review
-  end
-
-  def average_time_to_review=(str_)
-  end
-
   def total_reviewed
   end
 

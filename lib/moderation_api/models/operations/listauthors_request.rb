@@ -28,13 +28,7 @@ module ModerationApi
           Crystalline::Nilable.new(::String),
           {'query_param': {'field_name': "lastActiveDate", 'style': "form", 'explode': true}}
         )
-
-        field(
-          :content_types,
-          Crystalline::Nilable.new(Crystalline::Array.new(::String)),
-          {'query_param': {'field_name': "contentTypes", 'style': "form", 'explode': true}}
-        )
-        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        # The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         field(
           :project_id,
           Crystalline::Nilable.new(::String),
@@ -55,7 +49,7 @@ module ModerationApi
         # Sort direction
         field(
           :sort_direction,
-          Crystalline::Nilable.new(Models::Operations::ListAuthorsSortDirection),
+          Crystalline::Nilable.new(Models::Operations::SortDirection),
           {'query_param': {'field_name': "sortDirection", 'style': "form", 'explode': true}}
         )
 
@@ -64,11 +58,10 @@ module ModerationApi
             sort_by: T.nilable(Models::Operations::SortBy),
             member_since_date: T.nilable(::String),
             last_active_date: T.nilable(::String),
-            content_types: T.nilable(T::Array[::String]),
             project_id: T.nilable(::String),
             page: T.nilable(::Integer),
             page_size: T.nilable(::Integer),
-            sort_direction: T.nilable(Models::Operations::ListAuthorsSortDirection)
+            sort_direction: T.nilable(Models::Operations::SortDirection)
           )
             .void
         }
@@ -76,16 +69,14 @@ module ModerationApi
           sort_by: nil,
           member_since_date: nil,
           last_active_date: nil,
-          content_types: nil,
           project_id: nil,
           page: 1,
           page_size: 20,
-          sort_direction: Models::Operations::ListAuthorsSortDirection::DESC
+          sort_direction: Models::Operations::SortDirection::DESC
         )
           @sort_by = sort_by
           @member_since_date = member_since_date
           @last_active_date = last_active_date
-          @content_types = content_types
           @project_id = project_id
           @page = page
           @page_size = page_size
@@ -98,7 +89,6 @@ module ModerationApi
           return false unless @sort_by == other.sort_by
           return false unless @member_since_date == other.member_since_date
           return false unless @last_active_date == other.last_active_date
-          return false unless @content_types == other.content_types
           return false unless @project_id == other.project_id
           return false unless @page == other.page
           return false unless @page_size == other.page_size

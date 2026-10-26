@@ -14,15 +14,12 @@ module ModerationApi
         # The action to take based on the recommendation
         field(
           :action,
-          Models::Operations::SubmitContentRecommendationAction,
+          Models::Operations::ActionResponse,
           {
             'format_json': {
               'letter_case': ::ModerationApi::Utils.field_name("action"),
               required: true,
-              'decoder': ::ModerationApi::Utils.open_enum_from_string(
-                Models::Operations::SubmitContentRecommendationAction,
-                false
-              )
+              'decoder': ::ModerationApi::Utils.open_enum_from_string(Models::Operations::ActionResponse, false)
             }
           }
         )
@@ -41,7 +38,7 @@ module ModerationApi
 
         sig {
           params(
-            action: Models::Operations::SubmitContentRecommendationAction,
+            action: Models::Operations::ActionResponse,
             reason_codes: T::Array[T.any(Models::Operations::ReasonCodeEnum, ::String)],
             matched_rules: T.nilable(T::Array[Models::Operations::MatchedRule])
           )

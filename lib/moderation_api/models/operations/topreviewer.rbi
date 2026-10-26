@@ -6,6 +6,12 @@ class ModerationApi::Models::Operations::TopReviewer
 end
 
 class ModerationApi::Models::Operations::TopReviewer
+  def review_count
+  end
+
+  def review_count=(str_)
+  end
+
   def user_id
   end
 
@@ -16,29 +22,5 @@ class ModerationApi::Models::Operations::TopReviewer
   end
 
   def name=(str_)
-  end
-
-  def review_count
-  end
-
-  def review_count=(str_)
-  end
-
-  def average_time_per_review
-  end
-
-  def average_time_per_review=(str_)
-  end
-
-  def top_actions
-  end
-
-  def top_actions=(str_)
-  end
-
-  def accuracy_score
-  end
-
-  def accuracy_score=(str_)
   end
 end

@@ -14,7 +14,7 @@ module ModerationApi
         # The items on this page.
         field(
           :data,
-          Crystalline::Array.new(Models::Operations::ListQueueItemsData),
+          Crystalline::Array.new(Models::Components::QueueItem),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("data"), required: true}}
         )
         # Where this page is in the full list.
@@ -24,10 +24,7 @@ module ModerationApi
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("pagination"), required: true}}
         )
 
-        sig {
-          params(data: T::Array[Models::Operations::ListQueueItemsData], pagination: Models::Components::Pagination)
-            .void
-        }
+        sig { params(data: T::Array[Models::Components::QueueItem], pagination: Models::Components::Pagination).void }
         def initialize(data:, pagination:)
           @data = data
           @pagination = pagination

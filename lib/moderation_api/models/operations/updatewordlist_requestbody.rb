@@ -29,7 +29,7 @@ module ModerationApi
           Crystalline::Nilable.new(::String),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("description")}}
         )
-        # New words for the wordlist. Replace the existing words with these new ones. Duplicate words will be ignored.
+        # New words for the wordlist. Replace the existing words with these new ones. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words.
         field(
           :words,
           Crystalline::Nilable.new(Crystalline::Array.new(::String)),

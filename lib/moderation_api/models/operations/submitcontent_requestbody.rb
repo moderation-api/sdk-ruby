@@ -86,7 +86,7 @@ module ModerationApi
           Crystalline::Nilable.new(Models::Operations::ClientAction),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("clientAction")}}
         )
-        # Do not store the content. The content won't enter the review queue
+        # Process the content without saving it on our servers. The item is still created and appears in the review queue, analytics and author history with its moderation results, but its content is empty, so reviewers cannot see what was submitted.
         field(
           :do_not_store,
           Crystalline::Nilable.new(Crystalline::Boolean.new),

@@ -13,11 +13,11 @@ module ModerationApi
 
         field(
           :queue,
-          Models::Operations::Queue,
+          Models::Components::QueueWithCounts,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("queue"), required: true}}
         )
 
-        sig { params(queue: Models::Operations::Queue).void }
+        sig { params(queue: Models::Components::QueueWithCounts).void }
         def initialize(queue:)
           @queue = queue
         end

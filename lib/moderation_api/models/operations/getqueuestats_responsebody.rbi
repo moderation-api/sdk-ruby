@@ -12,12 +12,6 @@ class ModerationApi::Models::Operations::GetQueueStatsResponseBody
   def review_stats=(str_)
   end
 
-  def action_stats
-  end
-
-  def action_stats=(str_)
-  end
-
   def top_reviewers
   end
 

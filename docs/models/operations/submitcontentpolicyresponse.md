@@ -1,0 +1,4 @@
+# SubmitContentPolicyResponse
+
+Policy output schema.
+

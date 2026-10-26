@@ -11,72 +11,38 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
-        # ID of the reviewer
-        field(
-          :user_id,
-          ::String,
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("userId"), required: true}}
-        )
-        # Name of the reviewer
-        field(
-          :name,
-          ::String,
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("name"), required: true}}
-        )
-        # Number of items reviewed
+        # Number of items the reviewer resolved in the period.
         field(
           :review_count,
-          ::Float,
+          ::Integer,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("reviewCount"), required: true}}
         )
-        # Average review time in milliseconds
+        # The user ID of the reviewer. `null` for items resolved with an API key.
         field(
-          :average_time_per_review,
-          ::Float,
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("averageTimePerReview"), required: true}}
+          :user_id,
+          Crystalline::Nilable.new(::String),
+          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("userId"), required: true}}
         )
-        # Most common actions taken by this reviewer
+        # The name of the reviewer.
         field(
-          :top_actions,
-          Crystalline::Array.new(Models::Operations::TopAction),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("topActions"), required: true}}
-        )
-        # Optional accuracy score based on review quality metrics
-        field(
-          :accuracy_score,
-          Crystalline::Nilable.new(::Float),
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("accuracyScore")}}
+          :name,
+          Crystalline::Nilable.new(::String),
+          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("name"), required: true}}
         )
 
-        sig {
-          params(
-            user_id: ::String,
-            name: ::String,
-            review_count: ::Float,
-            average_time_per_review: ::Float,
-            top_actions: T::Array[Models::Operations::TopAction],
-            accuracy_score: T.nilable(::Float)
-          )
-            .void
-        }
-        def initialize(user_id:, name:, review_count:, average_time_per_review:, top_actions:, accuracy_score: nil)
+        sig { params(review_count: ::Integer, user_id: T.nilable(::String), name: T.nilable(::String)).void }
+        def initialize(review_count:, user_id: nil, name: nil)
+          @review_count = review_count
           @user_id = user_id
           @name = name
-          @review_count = review_count
-          @average_time_per_review = average_time_per_review
-          @top_actions = top_actions
-          @accuracy_score = accuracy_score
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
         def ==(other)
           return false unless other.is_a?(self.class)
+          return false unless @review_count == other.review_count
           return false unless @user_id == other.user_id
           return false unless @name == other.name
-          return false unless @review_count == other.review_count
-          return false unless @average_time_per_review == other.average_time_per_review
-          return false unless @top_actions == other.top_actions
-          return false unless @accuracy_score == other.accuracy_score
           true
         end
       end

@@ -11,7 +11,6 @@ module ModerationApi
         enums do
           TRUST_LEVEL = new("trustLevel")
           VIOLATION_COUNT = new("violationCount")
-          REPORT_COUNT = new("reportCount")
           MEMBER_SINCE = new("memberSince")
           LAST_ACTIVE = new("lastActive")
           CONTENT_COUNT = new("contentCount")

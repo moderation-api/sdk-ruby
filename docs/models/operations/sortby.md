@@ -15,7 +15,6 @@ value = SortBy::TRUST_LEVEL
 | ----------------------- | ----------------------- |
 | `TRUST_LEVEL`           | trustLevel              |
 | `VIOLATION_COUNT`       | violationCount          |
-| `REPORT_COUNT`          | reportCount             |
 | `MEMBER_SINCE`          | memberSince             |
 | `LAST_ACTIVE`           | lastActive              |
 | `CONTENT_COUNT`         | contentCount            |

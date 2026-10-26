@@ -1,0 +1,12 @@
+# GetAnalyticsPoliciesResponseBody
+
+Successful response
+
+
+## Fields
+
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `range`                                                                                                               | [Models::Operations::GetAnalyticsPoliciesRangeResponse](../../models/operations/getanalyticspoliciesrangeresponse.md) | :heavy_check_mark:                                                                                                    | The time window of the numbers.                                                                                       |
+| `channel_id`                                                                                                          | *T.nilable(::String)*                                                                                                 | :heavy_check_mark:                                                                                                    | The channel the numbers are for. Null when they are for all channels.                                                 |
+| `policies`                                                                                                            | T::Array<[Models::Operations::GetAnalyticsPoliciesPolicy](../../models/operations/getanalyticspoliciespolicy.md)>     | :heavy_check_mark:                                                                                                    | The policy labels with the most flagged requests, largest first.                                                      |

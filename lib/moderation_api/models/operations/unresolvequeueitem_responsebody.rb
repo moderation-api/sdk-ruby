@@ -16,20 +16,32 @@ module ModerationApi
           Crystalline::Boolean.new,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("success"), required: true}}
         )
-        # New status of the item
+        # `pending` waits for review. `resolved` is reviewed.
         field(
           :status,
-          ::String,
-          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("status"), required: true}}
+          Models::Operations::UnresolveQueueItemStatus,
+          {
+            'format_json': {
+              'letter_case': ::ModerationApi::Utils.field_name("status"),
+              required: true,
+              'decoder': ::ModerationApi::Utils.open_enum_from_string(
+                Models::Operations::UnresolveQueueItemStatus,
+                false
+              )
+            }
+          }
         )
-        # Timestamp when the item was unresolved
+        # When the item was unresolved (ISO 8601).
         field(
           :unresolved_at,
           ::String,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("unresolvedAt"), required: true}}
         )
 
-        sig { params(success: T::Boolean, status: ::String, unresolved_at: ::String).void }
+        sig {
+          params(success: T::Boolean, status: Models::Operations::UnresolveQueueItemStatus, unresolved_at: ::String)
+            .void
+        }
         def initialize(success:, status:, unresolved_at:)
           @success = success
           @status = status

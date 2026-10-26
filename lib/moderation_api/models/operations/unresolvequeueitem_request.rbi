@@ -18,12 +18,6 @@ class ModerationApi::Models::Operations::UnresolveQueueItemRequest
   def item_id=(str_)
   end
 
-  def body
-  end
-
-  def body=(str_)
-  end
-
   def project_id
   end
 

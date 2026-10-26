@@ -11,13 +11,19 @@ module ModerationApi
         extend T::Sig
         include Crystalline::MetadataFields
 
-        # The queue ID
+        # The queue ID.
         field :id, ::String, {'path_param': {'field_name': "id", 'style': "simple", 'explode': false}}
 
         field(
-          :sort_field,
-          Crystalline::Nilable.new(Models::Operations::SortField),
-          {'query_param': {'field_name': "sortField", 'style': "form", 'explode': true}}
+          :sort,
+          Crystalline::Nilable.new(Models::Operations::Sort),
+          {'query_param': {'field_name': "sort", 'style': "form", 'explode': true}}
+        )
+
+        field(
+          :include_resolved,
+          Crystalline::Nilable.new(Crystalline::Boolean.new),
+          {'query_param': {'field_name': "includeResolved", 'style': "form", 'explode': true}}
         )
 
         field(
@@ -33,24 +39,6 @@ module ModerationApi
         )
 
         field(
-          :after_date,
-          Crystalline::Nilable.new(::String),
-          {'query_param': {'field_name': "afterDate", 'style': "form", 'explode': true}}
-        )
-
-        field(
-          :before_date,
-          Crystalline::Nilable.new(::String),
-          {'query_param': {'field_name': "beforeDate", 'style': "form", 'explode': true}}
-        )
-
-        field(
-          :include_resolved,
-          Crystalline::Nilable.new(Crystalline::Boolean.new),
-          {'query_param': {'field_name': "includeResolved", 'style': "form", 'explode': true}}
-        )
-
-        field(
           :author_id,
           Crystalline::Nilable.new(::String),
           {'query_param': {'field_name': "authorId", 'style': "form", 'explode': true}}
@@ -61,7 +49,19 @@ module ModerationApi
           Crystalline::Nilable.new(Crystalline::Array.new(::String)),
           {'query_param': {'field_name': "filteredActionIds", 'style': "form", 'explode': true}}
         )
-        # The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+
+        field(
+          :after_date,
+          Crystalline::Nilable.new(::String),
+          {'query_param': {'field_name': "afterDate", 'style': "form", 'explode': true}}
+        )
+
+        field(
+          :before_date,
+          Crystalline::Nilable.new(::String),
+          {'query_param': {'field_name': "beforeDate", 'style': "form", 'explode': true}}
+        )
+        # The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         field(
           :project_id,
           Crystalline::Nilable.new(::String),
@@ -79,77 +79,67 @@ module ModerationApi
           Crystalline::Nilable.new(::Integer),
           {'query_param': {'field_name': "pageSize", 'style': "form", 'explode': true}}
         )
-        # Sort direction
-        field(
-          :sort_direction,
-          Crystalline::Nilable.new(Models::Operations::ListQueueItemsSortDirection),
-          {'query_param': {'field_name': "sortDirection", 'style': "form", 'explode': true}}
-        )
 
         sig {
           params(
             id: ::String,
-            sort_field: T.nilable(Models::Operations::SortField),
+            sort: T.nilable(Models::Operations::Sort),
+            include_resolved: T.nilable(T::Boolean),
             conversation_ids: T.nilable(T::Array[::String]),
             labels: T.nilable(T::Array[::String]),
-            after_date: T.nilable(::String),
-            before_date: T.nilable(::String),
-            include_resolved: T.nilable(T::Boolean),
             author_id: T.nilable(::String),
             filtered_action_ids: T.nilable(T::Array[::String]),
+            after_date: T.nilable(::String),
+            before_date: T.nilable(::String),
             project_id: T.nilable(::String),
             page: T.nilable(::Integer),
-            page_size: T.nilable(::Integer),
-            sort_direction: T.nilable(Models::Operations::ListQueueItemsSortDirection)
+            page_size: T.nilable(::Integer)
           )
             .void
         }
         def initialize(
           id:,
-          sort_field: nil,
+          sort: nil,
+          include_resolved: nil,
           conversation_ids: nil,
           labels: nil,
-          after_date: nil,
-          before_date: nil,
-          include_resolved: nil,
           author_id: nil,
           filtered_action_ids: nil,
+          after_date: nil,
+          before_date: nil,
           project_id: nil,
           page: 1,
-          page_size: 20,
-          sort_direction: Models::Operations::ListQueueItemsSortDirection::DESC
+          page_size: 20
         )
           @id = id
-          @sort_field = sort_field
+          @sort = sort
+          @include_resolved = include_resolved
           @conversation_ids = conversation_ids
           @labels = labels
-          @after_date = after_date
-          @before_date = before_date
-          @include_resolved = include_resolved
           @author_id = author_id
           @filtered_action_ids = filtered_action_ids
+          @after_date = after_date
+          @before_date = before_date
           @project_id = project_id
           @page = page
           @page_size = page_size
-          @sort_direction = sort_direction
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
         def ==(other)
           return false unless other.is_a?(self.class)
           return false unless @id == other.id
-          return false unless @sort_field == other.sort_field
+          return false unless @sort == other.sort
+          return false unless @include_resolved == other.include_resolved
           return false unless @conversation_ids == other.conversation_ids
           return false unless @labels == other.labels
-          return false unless @after_date == other.after_date
-          return false unless @before_date == other.before_date
-          return false unless @include_resolved == other.include_resolved
           return false unless @author_id == other.author_id
           return false unless @filtered_action_ids == other.filtered_action_ids
+          return false unless @after_date == other.after_date
+          return false unless @before_date == other.before_date
           return false unless @project_id == other.project_id
           return false unless @page == other.page
           return false unless @page_size == other.page_size
-          return false unless @sort_direction == other.sort_direction
           true
         end
       end

@@ -24,12 +24,6 @@ class ModerationApi::Models::Operations::ListAuthorsRequest
   def last_active_date=(str_)
   end
 
-  def content_types
-  end
-
-  def content_types=(str_)
-  end
-
   def project_id
   end
 

@@ -40,7 +40,7 @@ module ModerationApi
 
         field(
           :labels,
-          Crystalline::Nilable.new(Crystalline::Array.new(Models::Operations::SubmitContentLabel)),
+          Crystalline::Nilable.new(Crystalline::Array.new(Models::Operations::Label)),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("labels")}}
         )
         # Optional structured data produced by the policy. For face detection: { count, faces: [{ confidence, gender, age }] }.
@@ -57,7 +57,7 @@ module ModerationApi
             flagged: T::Boolean,
             type: ::String,
             flagged_fields: T.nilable(T::Array[::String]),
-            labels: T.nilable(T::Array[Models::Operations::SubmitContentLabel]),
+            labels: T.nilable(T::Array[Models::Operations::Label]),
             data: T.nilable(T::Hash[Symbol, ::Object])
           )
             .void

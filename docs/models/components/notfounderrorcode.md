@@ -6,6 +6,7 @@ Exactly what went wrong. Stable; safe to branch on. New codes may be added.
 - `action_not_found`: The action does not exist.
 - `author_not_found`: The author does not exist.
 - `queue_not_found`: The review queue does not exist.
+- `queue_item_not_found`: The queue item does not exist in the project.
 - `wordlist_not_found`: The wordlist does not exist.
 - `webhook_not_found`: The webhook does not exist.
 - `project_not_found`: The project does not exist.
@@ -25,13 +26,14 @@ custom = NotFoundErrorCode.deserialize("custom_value")
 
 ## Values
 
-| Name                 | Value                |
-| -------------------- | -------------------- |
-| `RESOURCE_NOT_FOUND` | resource_not_found   |
-| `ACTION_NOT_FOUND`   | action_not_found     |
-| `AUTHOR_NOT_FOUND`   | author_not_found     |
-| `QUEUE_NOT_FOUND`    | queue_not_found      |
-| `WORDLIST_NOT_FOUND` | wordlist_not_found   |
-| `WEBHOOK_NOT_FOUND`  | webhook_not_found    |
-| `PROJECT_NOT_FOUND`  | project_not_found    |
-| `CHANNEL_NOT_FOUND`  | channel_not_found    |
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `RESOURCE_NOT_FOUND`   | resource_not_found     |
+| `ACTION_NOT_FOUND`     | action_not_found       |
+| `AUTHOR_NOT_FOUND`     | author_not_found       |
+| `QUEUE_NOT_FOUND`      | queue_not_found        |
+| `QUEUE_ITEM_NOT_FOUND` | queue_item_not_found   |
+| `WORDLIST_NOT_FOUND`   | wordlist_not_found     |
+| `WEBHOOK_NOT_FOUND`    | webhook_not_found      |
+| `PROJECT_NOT_FOUND`    | project_not_found      |
+| `CHANNEL_NOT_FOUND`    | channel_not_found      |

@@ -1,0 +1,12 @@
+# Channel
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `id`                                                                         | *::String*                                                                   | :heavy_check_mark:                                                           | The channel ID.                                                              |
+| `name`                                                                       | *::String*                                                                   | :heavy_check_mark:                                                           | The channel name.                                                            |
+| `requests`                                                                   | *::Integer*                                                                  | :heavy_check_mark:                                                           | Requests received in this channel.                                           |
+| `flagged`                                                                    | *::Integer*                                                                  | :heavy_check_mark:                                                           | Requests flagged in this channel.                                            |
+| `flag_rate`                                                                  | *::Float*                                                                    | :heavy_check_mark:                                                           | The share of requests in this channel that were flagged: flagged / requests. |

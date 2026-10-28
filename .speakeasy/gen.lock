@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: a78f35a2-6d8d-4b9f-8962-89b8103f2924
 management:
-  docChecksum: ed2fd953cba3e99fb81365252925a0d4
+  docChecksum: d6bce8a263f0ec11d54bdf026957ba2f
   docVersion: 1.1.0
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 3.2.0
-  configChecksum: 0d197436b8968818862fd1ec6291022b
+  releaseVersion: 3.3.0
+  configChecksum: f643d19c39f460f5b897b686b9f50d2e
   repoURL: https://github.com/moderation-api/sdk-ruby
   installationURL: https://github.com/moderation-api/sdk-ruby
   published: true
@@ -38,7 +38,7 @@ trackedFiles:
   Gemfile:
     last_write_checksum: sha1:8c1b6fa9505f61abd0fb6741f8094e9655a55495
   Gemfile.lock:
-    last_write_checksum: sha1:2c3d61f3767431df09409eb83c03b5d10688ab22
+    last_write_checksum: sha1:6e10344330d556edc920935336fa64f52bda4df7
   Rakefile:
     last_write_checksum: sha1:c572639efdae8c7b24141ee5c02d8f009e101ed8
   USAGE.md:
@@ -165,6 +165,14 @@ trackedFiles:
     last_write_checksum: sha1:969a12c5fdfb0b1b78abe63361e1fa1628e4fc26
   docs/models/operations/alcohol.md:
     last_write_checksum: sha1:2543c55aacd828f37e5d0696b7f8a7c76fe11ace
+  docs/models/operations/allowcontentrequest.md:
+    last_write_checksum: sha1:7d8ef2efaa5ca546f59b7f512d15fe8d5be84a68
+  docs/models/operations/allowcontentrequestbody.md:
+    last_write_checksum: sha1:f360e703396a76e1088c44bbc69f6995fabe4230
+  docs/models/operations/allowcontentresponse.md:
+    last_write_checksum: sha1:64b8c5b136755285be0f9d09b9e53736a7f200cb
+  docs/models/operations/allowcontentresponsebody.md:
+    last_write_checksum: sha1:79148067391a6482ba7a57c129e294baff33565d
   docs/models/operations/audiorequest.md:
     last_write_checksum: sha1:a6eae479403113a3826b970f5623555a1e5ecbe7
   docs/models/operations/audioresponse.md:
@@ -175,6 +183,14 @@ trackedFiles:
     last_write_checksum: sha1:7d59dfb7d20044f836c22c10727f7766cf9e81b8
   docs/models/operations/block.md:
     last_write_checksum: sha1:85e7f9959076166397c429e3ad1b86f11e5f84e0
+  docs/models/operations/blockauthorrequest.md:
+    last_write_checksum: sha1:2bc4610a2e41080670d0f1676d6de13144bd183f
+  docs/models/operations/blockauthorrequestbody.md:
+    last_write_checksum: sha1:a368f9dbf13d9ea7a91cc087ed34d7313eafcc02
+  docs/models/operations/blockauthorresponse.md:
+    last_write_checksum: sha1:e225349fc3a69e079af18cce63fc52c4790ede3b
+  docs/models/operations/blockauthorresponsebody.md:
+    last_write_checksum: sha1:4e3a7b7b72d4c417d645f9b61ba11c222a6be82d
   docs/models/operations/brandimpersonation.md:
     last_write_checksum: sha1:d499d8bbab4a265e56c70f2029d7abb956f44246
   docs/models/operations/bucket.md:
@@ -360,7 +376,7 @@ trackedFiles:
   docs/models/operations/executeactionrequest.md:
     last_write_checksum: sha1:e3e8882f31cf89a48dfc71153757dd9dc5f7f3c5
   docs/models/operations/executeactionrequestbody.md:
-    last_write_checksum: sha1:f5f76dfd308978b06c0afbaa7fcc71ab9f6b98cc
+    last_write_checksum: sha1:1b83f563d25735196fb00fbf7a227a0cda3586ba
   docs/models/operations/executeactionresponse.md:
     last_write_checksum: sha1:7f09f76bb4556f2710c60479a59f18b24c0c3671
   docs/models/operations/executeactionresponsebody.md:
@@ -647,6 +663,14 @@ trackedFiles:
     last_write_checksum: sha1:9b2f9fe2aafa6b75258e9ae6f3a474f0e32cd2f0
   docs/models/operations/recommendation.md:
     last_write_checksum: sha1:7231d6311be79410b5fc5fd8e5a7277ea6a1086c
+  docs/models/operations/rejectcontentrequest.md:
+    last_write_checksum: sha1:1896b7ba9e6fef0df2a94d7fa30bd3d9b512c8a7
+  docs/models/operations/rejectcontentrequestbody.md:
+    last_write_checksum: sha1:231f642cba2c0690600705a77cae93dd8dfd5cd3
+  docs/models/operations/rejectcontentresponse.md:
+    last_write_checksum: sha1:cfd32ebc8300ae105fedbe2ab2220787a8c135da
+  docs/models/operations/rejectcontentresponsebody.md:
+    last_write_checksum: sha1:803a9023db2246f13a7a616272f84b73b53c60fc
   docs/models/operations/religion.md:
     last_write_checksum: sha1:60a7524aee8d44058881d8a10476e8ba57c7d461
   docs/models/operations/removewordlistwordsrequest.md:
@@ -715,6 +739,14 @@ trackedFiles:
     last_write_checksum: sha1:c7f8c3160bb9f0334022cd29f35780cada7e2a22
   docs/models/operations/submitcontentresponsebody.md:
     last_write_checksum: sha1:3150c95ae933694ca052c336fa7eb7ed9dbeb404
+  docs/models/operations/suspendauthorrequest.md:
+    last_write_checksum: sha1:139cb7914ece6613d0324715d3617b0612d8377a
+  docs/models/operations/suspendauthorrequestbody.md:
+    last_write_checksum: sha1:98c0180e9c225f4f77842f412695d2c977b300c9
+  docs/models/operations/suspendauthorresponse.md:
+    last_write_checksum: sha1:4e4ee8570c6da2a5660d0f3b9f63d78c6aad2f48
+  docs/models/operations/suspendauthorresponsebody.md:
+    last_write_checksum: sha1:80ba580addfc7f8ffd00ffd920314c8912d3af4b
   docs/models/operations/textrequest.md:
     last_write_checksum: sha1:5504d33c603553cf5434bcc71ea51e6ffa339493
   docs/models/operations/textresponse.md:
@@ -737,6 +769,14 @@ trackedFiles:
     last_write_checksum: sha1:896458c2c4d6db0a02757bfe454b701ef1251f42
   docs/models/operations/trustlevel.md:
     last_write_checksum: sha1:2c6430450c436021710ec3ceb5a9daac5add8230
+  docs/models/operations/unblockauthorrequest.md:
+    last_write_checksum: sha1:5fab7b81bafa369b7c31206e5dbf370c1928dfcf
+  docs/models/operations/unblockauthorrequestbody.md:
+    last_write_checksum: sha1:bc507d54086dad0e114d9dbea17e6b595ca7c9a5
+  docs/models/operations/unblockauthorresponse.md:
+    last_write_checksum: sha1:b9f3f4f20c6b8796e9501dd34dd6551ee7865f85
+  docs/models/operations/unblockauthorresponsebody.md:
+    last_write_checksum: sha1:8b747cfe2e8ef37842c4b1d0672dd205a9bd3fd1
   docs/models/operations/unicodespoofing.md:
     last_write_checksum: sha1:79534af1086c3960979eeadb5a132cbba08a993a
   docs/models/operations/unresolvequeueitemrequest.md:
@@ -842,11 +882,11 @@ trackedFiles:
   docs/sdks/apikeys/README.md:
     last_write_checksum: sha1:c277df0dc195f6588c29736d6c4ee2c062a92061
   docs/sdks/authors/README.md:
-    last_write_checksum: sha1:7800c609dcf0d08704bc564985dc5daf8b9283ad
+    last_write_checksum: sha1:8a28389b11c3e77f27d77a5cf26428d1253a89ec
   docs/sdks/channels/README.md:
     last_write_checksum: sha1:ed1f37cd92ff8ef60df01de8567e533f4c2adf26
   docs/sdks/content/README.md:
-    last_write_checksum: sha1:6eb462eba4263a50a6f9f023e26f52d766dd7eba
+    last_write_checksum: sha1:a83d960a8c159a36fb3f99a1912dbdf346d0ad13
   docs/sdks/feedback/README.md:
     last_write_checksum: sha1:a01d711b5e761184a0033a59f4604075be684cfb
   docs/sdks/items/README.md:
@@ -876,7 +916,7 @@ trackedFiles:
   lib/crystalline/utils.rb:
     last_write_checksum: sha1:b32469851da6f9f729e484ade6a23b38639a652a
   lib/moderation_api.rb:
-    last_write_checksum: sha1:cc55cd355ce1b4ca083afbb3e6217ed0044ad1f7
+    last_write_checksum: sha1:3c337d208b6e1ac750ea701bb0d014fe1a00fa21
   lib/moderation_api/account.rb:
     last_write_checksum: sha1:ea3cfe55787ecb7cc8ed798b76d4036b1aa3d3bc
   lib/moderation_api/actions.rb:
@@ -886,11 +926,11 @@ trackedFiles:
   lib/moderation_api/apikeys.rb:
     last_write_checksum: sha1:bc9c59b88e2aa7858c248ec13e4fa42569878378
   lib/moderation_api/authors.rb:
-    last_write_checksum: sha1:0753376a42796e32cc32f15b8492a235debe8a21
+    last_write_checksum: sha1:cfd86b92eb9ff40dc3c057c558a17186829f8686
   lib/moderation_api/channels.rb:
     last_write_checksum: sha1:8d995eac91d890d34e95f9c6120c503337bda145
   lib/moderation_api/content.rb:
-    last_write_checksum: sha1:f167674cc2738936de6ea0d3d2da6a9bf76cf918
+    last_write_checksum: sha1:3bb7a2028db1c2e83b3e66f428e4ded4c7f5a9bc
   lib/moderation_api/feedback.rb:
     last_write_checksum: sha1:184f119c5d2fc1bcb5f65416c2d61ae445759303
   lib/moderation_api/items.rb:
@@ -1118,7 +1158,7 @@ trackedFiles:
   lib/moderation_api/models/errors/ratelimiterror.rbi:
     last_write_checksum: sha1:87922693e4ec7f67110e261b50d041d6591d3a6b
   lib/moderation_api/models/operations.rb:
-    last_write_checksum: sha1:2f5aa99b821bb90b2a263a3b518b17db90ee984e
+    last_write_checksum: sha1:2d68be2cd15f38a13613397ed812fad2c5472039
   lib/moderation_api/models/operations/action_request.rb:
     last_write_checksum: sha1:dfab71edc86fbc3977a4b8a8a5b781c24536b087
   lib/moderation_api/models/operations/action_request.rbi:
@@ -1151,6 +1191,22 @@ trackedFiles:
     last_write_checksum: sha1:f7c82df8e8e3c6b6133dd498f154b8ed1eb017d8
   lib/moderation_api/models/operations/alcohol.rbi:
     last_write_checksum: sha1:a18912c78aa45cd1816f1f671a613a36ccc28ede
+  lib/moderation_api/models/operations/allowcontent_request.rb:
+    last_write_checksum: sha1:8199ae0e3d00ba0b24e0a43bb1aa09b397c583f4
+  lib/moderation_api/models/operations/allowcontent_request.rbi:
+    last_write_checksum: sha1:3742af0ff2b0a2d9f420e138688aa76f7facd9f6
+  lib/moderation_api/models/operations/allowcontent_requestbody.rb:
+    last_write_checksum: sha1:06ae0f58f2b8d49984f26f94d1433b2a94c7469d
+  lib/moderation_api/models/operations/allowcontent_requestbody.rbi:
+    last_write_checksum: sha1:e69dded6e686e5969a39d40fbc5f6ebcaf6241ef
+  lib/moderation_api/models/operations/allowcontent_response.rb:
+    last_write_checksum: sha1:e68bc46e71302fefe3beb8a7e1716ceca5264d32
+  lib/moderation_api/models/operations/allowcontent_response.rbi:
+    last_write_checksum: sha1:4fb5b123546d43a758da8db1b1651dbe9ade660e
+  lib/moderation_api/models/operations/allowcontent_responsebody.rb:
+    last_write_checksum: sha1:bda18a9068fb4cb8065364fcec546696a7c7c726
+  lib/moderation_api/models/operations/allowcontent_responsebody.rbi:
+    last_write_checksum: sha1:7870071fdf5b5c9288b06964f0938a31ed7999d6
   lib/moderation_api/models/operations/audio_request.rb:
     last_write_checksum: sha1:8b07425430cd7bd96317e68130d28b8e8b07d422
   lib/moderation_api/models/operations/audio_request.rbi:
@@ -1171,6 +1227,22 @@ trackedFiles:
     last_write_checksum: sha1:0db271858041f1d44b1ec1b86ad160ebe9492141
   lib/moderation_api/models/operations/block.rbi:
     last_write_checksum: sha1:20f7fb992b0329290177fe82792568f5642b4614
+  lib/moderation_api/models/operations/blockauthor_request.rb:
+    last_write_checksum: sha1:cc635efbe530baead1710ba0bc80d02b428c80b1
+  lib/moderation_api/models/operations/blockauthor_request.rbi:
+    last_write_checksum: sha1:9827259d4bd10003425af14c1a742bcceadffff6
+  lib/moderation_api/models/operations/blockauthor_requestbody.rb:
+    last_write_checksum: sha1:ad3d2ca8d8c40174ce2b3e6e3ede00eb00d90a22
+  lib/moderation_api/models/operations/blockauthor_requestbody.rbi:
+    last_write_checksum: sha1:b09921f73d3864eecdece5b1059e810333765707
+  lib/moderation_api/models/operations/blockauthor_response.rb:
+    last_write_checksum: sha1:e47ce98d8aa44aa9177cd798eec2c965d7f88af2
+  lib/moderation_api/models/operations/blockauthor_response.rbi:
+    last_write_checksum: sha1:1386f16668d50b9c933fc24108029db83fd76d5f
+  lib/moderation_api/models/operations/blockauthor_responsebody.rb:
+    last_write_checksum: sha1:694a21b3eac61c52a9a5b142054bc8ffeb2e81cd
+  lib/moderation_api/models/operations/blockauthor_responsebody.rbi:
+    last_write_checksum: sha1:6af16e8ac0452ee286544fb0c9a70e30f8b6c12e
   lib/moderation_api/models/operations/brand_impersonation.rb:
     last_write_checksum: sha1:987e096717f8ea05b9f81c72cb98106c88d5580d
   lib/moderation_api/models/operations/brand_impersonation.rbi:
@@ -1540,9 +1612,9 @@ trackedFiles:
   lib/moderation_api/models/operations/executeaction_request.rbi:
     last_write_checksum: sha1:42184359c803c8c4b96ced107032b9c114ab4712
   lib/moderation_api/models/operations/executeaction_requestbody.rb:
-    last_write_checksum: sha1:4b49ead8234cc17e317fdfcc3667bf7f469e093c
+    last_write_checksum: sha1:413e5bd15e0dfe36d39004d0640264bbe1dcd0a8
   lib/moderation_api/models/operations/executeaction_requestbody.rbi:
-    last_write_checksum: sha1:e742bb1d237260f36f8b2b3b5006a9763c766733
+    last_write_checksum: sha1:e398561a1cbd94ab49aebef173b0a7c14df3d1cd
   lib/moderation_api/models/operations/executeaction_response.rb:
     last_write_checksum: sha1:da59db1849ef77e0bf76977365fa7f09f1aba52e
   lib/moderation_api/models/operations/executeaction_response.rbi:
@@ -2115,6 +2187,22 @@ trackedFiles:
     last_write_checksum: sha1:c162f92b4453f05e10e5f8cff275714bc6f390bc
   lib/moderation_api/models/operations/recommendation.rbi:
     last_write_checksum: sha1:20a88cdefbd0d8599acb625e728c9ce459fb2b27
+  lib/moderation_api/models/operations/rejectcontent_request.rb:
+    last_write_checksum: sha1:071d46527236522ce8bbc0a92117c0772d39d149
+  lib/moderation_api/models/operations/rejectcontent_request.rbi:
+    last_write_checksum: sha1:f2c28f403c3fc9178c82038ddfc8d2e0e8201446
+  lib/moderation_api/models/operations/rejectcontent_requestbody.rb:
+    last_write_checksum: sha1:24ce844df5fdd36e98d27dc22871f5d83f628fba
+  lib/moderation_api/models/operations/rejectcontent_requestbody.rbi:
+    last_write_checksum: sha1:923c45d3b3ed5778caf970b53d9f1654a281f54a
+  lib/moderation_api/models/operations/rejectcontent_response.rb:
+    last_write_checksum: sha1:9dd74f63f102da4d25f75430bc40f96744bbd344
+  lib/moderation_api/models/operations/rejectcontent_response.rbi:
+    last_write_checksum: sha1:a42b5dff3093fe5a396a490dba5aeccfb3d4ff2a
+  lib/moderation_api/models/operations/rejectcontent_responsebody.rb:
+    last_write_checksum: sha1:4bb0640d963eb7007548d8f7e04b28f5336e838f
+  lib/moderation_api/models/operations/rejectcontent_responsebody.rbi:
+    last_write_checksum: sha1:5024d752b3d8ba970be5c06e2d637b29ff895a1e
   lib/moderation_api/models/operations/religion.rb:
     last_write_checksum: sha1:f413eaedc03cf11bebefb587ffbe3e9dd4ea521e
   lib/moderation_api/models/operations/religion.rbi:
@@ -2251,6 +2339,22 @@ trackedFiles:
     last_write_checksum: sha1:bd0dd24084a1a6a6ea06c84429a9fbfc306bf4a8
   lib/moderation_api/models/operations/submitcontent_responsebody.rbi:
     last_write_checksum: sha1:e0fabb1cacec37c365400b79867ae09b48112717
+  lib/moderation_api/models/operations/suspendauthor_request.rb:
+    last_write_checksum: sha1:ad2ed7c9a52169185b74b6e25245f8ed7cdc3172
+  lib/moderation_api/models/operations/suspendauthor_request.rbi:
+    last_write_checksum: sha1:9b42baa394294ed3bbff16e001ebb2adfe144654
+  lib/moderation_api/models/operations/suspendauthor_requestbody.rb:
+    last_write_checksum: sha1:7a7790dd3beac12563063e02824fb4174ae7633d
+  lib/moderation_api/models/operations/suspendauthor_requestbody.rbi:
+    last_write_checksum: sha1:532d41dcffcc126feb7a29fd0095e332cfdc734a
+  lib/moderation_api/models/operations/suspendauthor_response.rb:
+    last_write_checksum: sha1:139139572b75d8e021a2342c8f4724c236c0946d
+  lib/moderation_api/models/operations/suspendauthor_response.rbi:
+    last_write_checksum: sha1:a4c06271777241328980dd7c3644b759d5f7d794
+  lib/moderation_api/models/operations/suspendauthor_responsebody.rb:
+    last_write_checksum: sha1:6c5d84d42fd6d4d55c5f2097324efc812b4f2f02
+  lib/moderation_api/models/operations/suspendauthor_responsebody.rbi:
+    last_write_checksum: sha1:47c29af2904562ca979166f44ef221ed9e6efda5
   lib/moderation_api/models/operations/text_request.rb:
     last_write_checksum: sha1:d8ca25b0e420051d42bda6bc462f628369aef3c5
   lib/moderation_api/models/operations/text_request.rbi:
@@ -2295,6 +2399,22 @@ trackedFiles:
     last_write_checksum: sha1:c059f420bb935dfe26e632b2f5d98ffb7139264b
   lib/moderation_api/models/operations/trust_level.rbi:
     last_write_checksum: sha1:851cc3b44b9bc61eefc82aa80e238a54766c3185
+  lib/moderation_api/models/operations/unblockauthor_request.rb:
+    last_write_checksum: sha1:db00b2cb82679f24a9959c073c45abaf033ac1be
+  lib/moderation_api/models/operations/unblockauthor_request.rbi:
+    last_write_checksum: sha1:5eafc818e42d95804bbdc0d7e10cd9713155d625
+  lib/moderation_api/models/operations/unblockauthor_requestbody.rb:
+    last_write_checksum: sha1:1eb787416705e9e5ce0989202849e917a1889a28
+  lib/moderation_api/models/operations/unblockauthor_requestbody.rbi:
+    last_write_checksum: sha1:02e674509664c4b40d32f451c88d23a7bdea30c2
+  lib/moderation_api/models/operations/unblockauthor_response.rb:
+    last_write_checksum: sha1:2c6c336136d3fa6bb5583a7843b2812a5f82e01e
+  lib/moderation_api/models/operations/unblockauthor_response.rbi:
+    last_write_checksum: sha1:a3cea31856e5d50141068617155fc6484eaf6c27
+  lib/moderation_api/models/operations/unblockauthor_responsebody.rb:
+    last_write_checksum: sha1:7bf9f60245e39bdbd0cbf131b378d405c12e8722
+  lib/moderation_api/models/operations/unblockauthor_responsebody.rbi:
+    last_write_checksum: sha1:d4c3f778a488c456376e95499608a2cd231c7b0a
   lib/moderation_api/models/operations/unicode_spoofing.rb:
     last_write_checksum: sha1:0727fb610bfaa91f2a8dab9edc155cfd097d4a21
   lib/moderation_api/models/operations/unicode_spoofing.rbi:
@@ -2488,7 +2608,7 @@ trackedFiles:
   lib/moderation_api/models/operations/weapons.rbi:
     last_write_checksum: sha1:4364de74124b139535fb707c2adc59b643a8aa40
   lib/moderation_api/moderationapi.rb:
-    last_write_checksum: sha1:d5e263282892850a609fae581962e68453b55f40
+    last_write_checksum: sha1:fe5a892bf05d33e92c5ec576208dd8ee01568038
   lib/moderation_api/projects.rb:
     last_write_checksum: sha1:6f991dc6452fc24dc62a44eab0278bf9d55a7c11
   lib/moderation_api/queue.rb:
@@ -2498,7 +2618,7 @@ trackedFiles:
   lib/moderation_api/sdk_hooks/types.rb:
     last_write_checksum: sha1:4c965332c50ba795946cf8df50a6202e89db0a45
   lib/moderation_api/sdkconfiguration.rb:
-    last_write_checksum: sha1:f829e80250eee5e239bf0c6d532e68250d34410a
+    last_write_checksum: sha1:80368426dbf67637927adc40f84b77e1ee1d2aa4
   lib/moderation_api/sdkconfiguration.rbi:
     last_write_checksum: sha1:0ff7c53716ae2b6668c84ad4f83b9a8697482c33
   lib/moderation_api/utils/forms.rb:
@@ -2526,7 +2646,7 @@ trackedFiles:
   lib/moderation_api/words.rb:
     last_write_checksum: sha1:1caff3b1db9983d6cd6d76e0f90d47a39e376842
   moderation_api.gemspec:
-    last_write_checksum: sha1:81aef4cf4776d475b8ceb30d30c84428286a8360
+    last_write_checksum: sha1:06d86939c2481dab45a58511862ea78f38c7df98
   sorbet/config:
     last_write_checksum: sha1:d02b32628dad70edc5929a9b9801d5e2dca15d40
   sorbet/rbi/annotations/.gitattributes:
@@ -3496,4 +3616,94 @@ examples:
           application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://impractical-bin.info/"}
         "429":
           application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://damaged-bandwidth.name"}
+  blockAuthor:
+    speakeasy-default-block-author:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://mammoth-appliance.org/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://clumsy-ectoderm.com/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://square-custody.com"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://mysterious-dime.name/"}
+  suspendAuthor:
+    speakeasy-default-suspend-author:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://cluttered-hubris.name/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://far-off-farm.net/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://scented-farmer.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://miserly-cuckoo.org/"}
+  unblockAuthor:
+    speakeasy-default-unblock-author:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://utter-cornet.org"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://oddball-bathhouse.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://apprehensive-fisherman.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://unhappy-simple.net/"}
+  rejectContent:
+    speakeasy-default-reject-content:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://expert-pasta.com"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://vibrant-adaptation.name"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://boiling-gym.com/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://spanish-backburn.net"}
+  allowContent:
+    speakeasy-default-allow-content:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": true}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://earnest-fishery.com"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://meager-climb.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://confused-bell.org"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://nervous-partridge.org/"}
 examplesVersion: 1.0.2

@@ -41,4 +41,16 @@ class ModerationApi::Models::Operations::ExecuteActionRequestBody
 
   def duration=(str_)
   end
+
+  def moderator
+  end
+
+  def moderator=(str_)
+  end
+
+  def create_casebook_case
+  end
+
+  def create_casebook_case=(str_)
+  end
 end

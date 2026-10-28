@@ -23,11 +23,11 @@ module ModerationApi
       :feedback,
       :queue,
       :actions,
+      :content,
       :webhooks,
       :webhook_secret,
       :account,
       :wordlist,
-      :content,
       :projects,
       :channels
     )
@@ -107,11 +107,11 @@ module ModerationApi
       @feedback = Feedback.new(@sdk_configuration)
       @queue = Queue.new(@sdk_configuration)
       @actions = Actions.new(@sdk_configuration)
+      @content = Content.new(@sdk_configuration)
       @webhooks = Webhooks.new(@sdk_configuration)
       @webhook_secret = WebhookSecret.new(@sdk_configuration)
       @account = Account.new(@sdk_configuration)
       @wordlist = Wordlist.new(@sdk_configuration)
-      @content = Content.new(@sdk_configuration)
       @projects = Projects.new(@sdk_configuration)
       @channels = Channels.new(@sdk_configuration)
     end

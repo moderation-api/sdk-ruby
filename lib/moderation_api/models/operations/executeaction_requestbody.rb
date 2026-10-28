@@ -47,6 +47,18 @@ module ModerationApi
           Crystalline::Nilable.new(::Float),
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("duration")}}
         )
+        # The user ID or email of the organization member who made the decision. The action is recorded as theirs.
+        field(
+          :moderator,
+          Crystalline::Nilable.new(::String),
+          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("moderator")}}
+        )
+        # Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System.
+        field(
+          :create_casebook_case,
+          Crystalline::Nilable.new(Crystalline::Boolean.new),
+          {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("createCasebookCase")}}
+        )
 
         sig {
           params(
@@ -55,17 +67,30 @@ module ModerationApi
             author_ids: T.nilable(T::Array[::String]),
             value: T.nilable(::String),
             queue_id: T.nilable(::String),
-            duration: T.nilable(::Float)
+            duration: T.nilable(::Float),
+            moderator: T.nilable(::String),
+            create_casebook_case: T.nilable(T::Boolean)
           )
             .void
         }
-        def initialize(action_key:, content_ids: nil, author_ids: nil, value: nil, queue_id: nil, duration: nil)
+        def initialize(
+          action_key:,
+          content_ids: nil,
+          author_ids: nil,
+          value: nil,
+          queue_id: nil,
+          duration: nil,
+          moderator: nil,
+          create_casebook_case: nil
+        )
           @action_key = action_key
           @content_ids = content_ids
           @author_ids = author_ids
           @value = value
           @queue_id = queue_id
           @duration = duration
+          @moderator = moderator
+          @create_casebook_case = create_casebook_case
         end
 
         sig { params(other: T.untyped).returns(T::Boolean) }
@@ -77,6 +102,8 @@ module ModerationApi
           return false unless @value == other.value
           return false unless @queue_id == other.queue_id
           return false unless @duration == other.duration
+          return false unless @moderator == other.moderator
+          return false unless @create_casebook_case == other.create_casebook_case
           true
         end
       end

@@ -9,6 +9,9 @@
 * [retrieve](#retrieve) - Get author details
 * [update](#update) - Update author details
 * [delete](#delete) - Delete an author
+* [block](#block) - Block author
+* [suspend](#suspend) - Suspend author
+* [unblock](#unblock) - Unblock author
 
 ## list
 
@@ -248,3 +251,138 @@ end
 | Models::Errors::RateLimitError        | 429                                   | application/json                      |
 | Models::Errors::InternalServerError   | 500                                   | application/json                      |
 | Errors::APIError                      | 4XX, 5XX                              | \*/\*                                 |
+
+## block
+
+Block an author with the built-in block action. A blocked author cannot post new content until unblocked.
+
+### Example Usage
+
+<!-- UsageSnippet language="ruby" operationID="blockAuthor" method="post" path="/authors/{id}/block" -->
+```ruby
+require 'moderation_api'
+
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: '<YOUR_BEARER_TOKEN_HERE>'
+)
+res = s.authors.block(id: '<id>', body: Models::Operations::BlockAuthorRequestBody.new)
+
+unless res.object.nil?
+  # handle response
+end
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *::String*                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                           | Either external ID or the ID assigned by moderation API.                                                                                                                                                                                     |
+| `body`                                                                                                                                                                                                                                       | [Models::Operations::BlockAuthorRequestBody](../../models/operations/blockauthorrequestbody.md)                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                           | N/A                                                                                                                                                                                                                                          |
+| `project_id`                                                                                                                                                                                                                                 | *T.nilable(::String)*                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+
+### Response
+
+**[T.nilable(Models::Operations::BlockAuthorResponse)](../../models/operations/blockauthorresponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| Models::Errors::BadRequestError     | 400                                 | application/json                    |
+| Models::Errors::AuthenticationError | 401                                 | application/json                    |
+| Models::Errors::NotFoundError       | 404                                 | application/json                    |
+| Models::Errors::RateLimitError      | 429                                 | application/json                    |
+| Errors::APIError                    | 4XX, 5XX                            | \*/\*                               |
+
+## suspend
+
+Block an author for a limited time with the built-in suspend action.
+
+### Example Usage
+
+<!-- UsageSnippet language="ruby" operationID="suspendAuthor" method="post" path="/authors/{id}/suspend" -->
+```ruby
+require 'moderation_api'
+
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: '<YOUR_BEARER_TOKEN_HERE>'
+)
+res = s.authors.suspend(id: '<id>', body: Models::Operations::SuspendAuthorRequestBody.new(
+  reason: 'Violation of community guidelines',
+  duration: 604_800_000.0
+))
+
+unless res.object.nil?
+  # handle response
+end
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *::String*                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                           | Either external ID or the ID assigned by moderation API.                                                                                                                                                                                     |
+| `body`                                                                                                                                                                                                                                       | [Models::Operations::SuspendAuthorRequestBody](../../models/operations/suspendauthorrequestbody.md)                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                                           | N/A                                                                                                                                                                                                                                          |
+| `project_id`                                                                                                                                                                                                                                 | *T.nilable(::String)*                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+
+### Response
+
+**[T.nilable(Models::Operations::SuspendAuthorResponse)](../../models/operations/suspendauthorresponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| Models::Errors::BadRequestError     | 400                                 | application/json                    |
+| Models::Errors::AuthenticationError | 401                                 | application/json                    |
+| Models::Errors::NotFoundError       | 404                                 | application/json                    |
+| Models::Errors::RateLimitError      | 429                                 | application/json                    |
+| Errors::APIError                    | 4XX, 5XX                            | \*/\*                               |
+
+## unblock
+
+Unblock a blocked or suspended author with the built-in unblock action, so they can post new content again.
+
+### Example Usage
+
+<!-- UsageSnippet language="ruby" operationID="unblockAuthor" method="post" path="/authors/{id}/unblock" -->
+```ruby
+require 'moderation_api'
+
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: '<YOUR_BEARER_TOKEN_HERE>'
+)
+res = s.authors.unblock(id: '<id>', body: Models::Operations::UnblockAuthorRequestBody.new)
+
+unless res.object.nil?
+  # handle response
+end
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *::String*                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                           | Either external ID or the ID assigned by moderation API.                                                                                                                                                                                     |
+| `body`                                                                                                                                                                                                                                       | [Models::Operations::UnblockAuthorRequestBody](../../models/operations/unblockauthorrequestbody.md)                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                                           | N/A                                                                                                                                                                                                                                          |
+| `project_id`                                                                                                                                                                                                                                 | *T.nilable(::String)*                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+
+### Response
+
+**[T.nilable(Models::Operations::UnblockAuthorResponse)](../../models/operations/unblockauthorresponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| Models::Errors::BadRequestError     | 400                                 | application/json                    |
+| Models::Errors::AuthenticationError | 401                                 | application/json                    |
+| Models::Errors::NotFoundError       | 404                                 | application/json                    |
+| Models::Errors::RateLimitError      | 429                                 | application/json                    |
+| Errors::APIError                    | 4XX, 5XX                            | \*/\*                               |

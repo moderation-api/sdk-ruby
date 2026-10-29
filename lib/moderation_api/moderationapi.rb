@@ -59,7 +59,7 @@ module ModerationApi
       client: nil,
       retry_config: nil,
       timeout_ms: nil,
-      secret_key: nil,
+      secret_key: ENV.fetch("MODAPI_SECRET_KEY", nil),
       security_source: nil,
       server_idx: nil,
       server_url: nil,

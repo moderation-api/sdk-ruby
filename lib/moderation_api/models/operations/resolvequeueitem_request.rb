@@ -13,7 +13,7 @@ module ModerationApi
 
         # The queue ID.
         field :id, ::String, {'path_param': {'field_name': "id", 'style': "simple", 'explode': false}}
-        # The item ID to resolve.
+        # The item to resolve: the item `id` from `GET /queue/{id}/items`, or the `contentId` you sent to `POST /moderate` (webhooks send it as `item.id`). For a content ID, the newest submission with that content ID is used, as the queue shows it.
         field :item_id, ::String, {'path_param': {'field_name': "itemId", 'style': "simple", 'explode': false}}
         # The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         field(

@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.4.0 (2026-10-29)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/moderation-api/sdk-ruby/compare/v3.3.0...v3.4.0)
+
+### API changes
+
+- `POST /moderate`: added the new `hidden_lookalike` enum value to the request property `policies/items/oneOf[subschema #36: Unicode Spoofing]/signals/propertyNames/`
+- `POST /moderate`: added the new `leetspeak` enum value to the request property `policies/items/oneOf[subschema #36: Unicode Spoofing]/signals/propertyNames/`
+- `DELETE /wordlist/{id}`: endpoint added
+
 ## 3.3.0 (2026-10-28)
 
 Full Changelog: [v3.2.0...v3.3.0](https://github.com/moderation-api/sdk-ruby/compare/v3.2.0...v3.3.0)

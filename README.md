@@ -86,13 +86,13 @@ end
 
 Use `content.submit` to moderate text, images, video, audio, or objects with several fields. All parameters except `content` are optional.
 
-Pass your API key as `secret_key`. The examples read it from the `MODAPI_SECRET_KEY` environment variable.
+The client reads your API key from the `MODAPI_SECRET_KEY` environment variable. To set it in code, pass `secret_key`.
 
 ```ruby
 require "moderation_api"
 
 Operations = ModerationApi::Models::Operations
-client = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_SECRET_KEY"))
+client = ModerationApi::ModerationApi.new # reads MODAPI_SECRET_KEY
 
 # Text
 client.content.submit(body: Operations::SubmitContentRequestBody.new(
@@ -220,8 +220,8 @@ A project key can't call the management API: the API returns `403` with the code
 ```ruby
 require "moderation_api"
 
-# Project key
-client = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_SECRET_KEY"))
+# Project key, from MODAPI_SECRET_KEY
+client = ModerationApi::ModerationApi.new
 
 # Organization key
 management = ModerationApi::ModerationApi.new(secret_key: ENV.fetch("MODAPI_ORGANIZATION_KEY"))
@@ -337,6 +337,7 @@ Create the organization client only where you manage projects and channels, for 
 * [create](docs/sdks/wordlist/README.md#create) - Create wordlist
 * [retrieve](docs/sdks/wordlist/README.md#retrieve) - Get wordlist
 * [update](docs/sdks/wordlist/README.md#update) - Update wordlist
+* [delete](docs/sdks/wordlist/README.md#delete) - Delete wordlist
 * [get_embedding_status](docs/sdks/wordlist/README.md#get_embedding_status) - Get embedding status
 
 #### [Wordlist.Words](docs/sdks/words/README.md)
@@ -447,10 +448,7 @@ end
 Set a timeout in milliseconds for all requests on the client, or for one request:
 
 ```ruby
-client = ModerationApi::ModerationApi.new(
-  secret_key: ENV.fetch("MODAPI_SECRET_KEY"),
-  timeout_ms: 10_000
-)
+client = ModerationApi::ModerationApi.new(timeout_ms: 10_000)
 
 client.content.submit(
   body: Operations::SubmitContentRequestBody.new(content: Operations::TextRequest.new(text: "Hello")),

@@ -8,6 +8,7 @@
 * [create](#create) - Create wordlist
 * [retrieve](#retrieve) - Get wordlist
 * [update](#update) - Update wordlist
+* [delete](#delete) - Delete wordlist
 * [get_embedding_status](#get_embedding_status) - Get embedding status
 
 ## list
@@ -184,6 +185,48 @@ end
 | Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | Models::Errors::BadRequestError     | 400                                 | application/json                    |
+| Models::Errors::AuthenticationError | 401                                 | application/json                    |
+| Models::Errors::NotFoundError       | 404                                 | application/json                    |
+| Models::Errors::RateLimitError      | 429                                 | application/json                    |
+| Errors::APIError                    | 4XX, 5XX                            | \*/\*                               |
+
+## delete
+
+Delete a wordlist and its words. Channels that use the wordlist do not block the delete: the wordlist is removed from their policies. `detachedChannelIds` lists those channels. This cannot be undone.
+
+### Example Usage
+
+<!-- UsageSnippet language="ruby" operationID="deleteWordlist" method="delete" path="/wordlist/{id}" -->
+```ruby
+require 'moderation_api'
+
+Models = ::ModerationApi::Models
+s = ::ModerationApi::ModerationApi.new(
+  secret_key: '<YOUR_BEARER_TOKEN_HERE>'
+)
+res = s.wordlist.delete(id: '<id>')
+
+unless res.object.nil?
+  # handle response
+end
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *::String*                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                           | ID of the wordlist to delete                                                                                                                                                                                                                 |
+| `project_id`                                                                                                                                                                                                                                 | *T.nilable(::String)*                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+
+### Response
+
+**[T.nilable(Models::Operations::DeleteWordlistResponse)](../../models/operations/deletewordlistresponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | Models::Errors::AuthenticationError | 401                                 | application/json                    |
 | Models::Errors::NotFoundError       | 404                                 | application/json                    |
 | Models::Errors::RateLimitError      | 429                                 | application/json                    |

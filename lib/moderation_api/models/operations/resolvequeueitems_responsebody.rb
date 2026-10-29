@@ -17,7 +17,7 @@ module ModerationApi
           ::Integer,
           {'format_json': {'letter_case': ::ModerationApi::Utils.field_name("resolved"), required: true}}
         )
-        # Item IDs that do not exist in the project.
+        # IDs from `itemIds` that match no item or content ID in the project.
         field(
           :not_found_ids,
           Crystalline::Array.new(::String),

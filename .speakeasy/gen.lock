@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: a78f35a2-6d8d-4b9f-8962-89b8103f2924
 management:
-  docChecksum: 29c7bb10b9655dcfe925eacf9d5f4758
+  docChecksum: d1c7a760d4c00f34fad01646ab23b9eb
   docVersion: 1.1.0
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 3.4.0
-  configChecksum: c9a222e953fdc5d702181456b833ed7c
+  releaseVersion: 3.5.0
+  configChecksum: ce2c622cc19dc09d2d1f3762fa7ed26e
   repoURL: https://github.com/moderation-api/sdk-ruby
   installationURL: https://github.com/moderation-api/sdk-ruby
   published: true
@@ -38,7 +38,7 @@ trackedFiles:
   Gemfile:
     last_write_checksum: sha1:8c1b6fa9505f61abd0fb6741f8094e9655a55495
   Gemfile.lock:
-    last_write_checksum: sha1:c8e6dae81c73f4a444ac274375a62c07a4bf1853
+    last_write_checksum: sha1:bc90cde5e7816f72d047b535d2b1751f85f94d74
   Rakefile:
     last_write_checksum: sha1:c572639efdae8c7b24141ee5c02d8f009e101ed8
   USAGE.md:
@@ -724,7 +724,7 @@ trackedFiles:
   docs/models/operations/signalsresponse.md:
     last_write_checksum: sha1:5b353278302ad0b1cbdd679f0bcba3d3f7daa12a
   docs/models/operations/sort.md:
-    last_write_checksum: sha1:95eebfceaa7d2bff93bce63c80396fc17c3bdca6
+    last_write_checksum: sha1:0dbc3e07ed3bb3d8f5c2b39e375d79f61de9804d
   docs/models/operations/sortby.md:
     last_write_checksum: sha1:1b1edd5725c7f62071e643064436dea559772933
   docs/models/operations/sortdirection.md:
@@ -882,7 +882,7 @@ trackedFiles:
   docs/sdks/account/README.md:
     last_write_checksum: sha1:8287c6d548c1942909e34ec4c9dc7e5cbb966c83
   docs/sdks/actions/README.md:
-    last_write_checksum: sha1:698e3600b3ae9416e882ccfc7f2204de9d49949b
+    last_write_checksum: sha1:339f36c15d221795a15b7b0ff5bda69f45757ee6
   docs/sdks/analytics/README.md:
     last_write_checksum: sha1:8e703b00a8e03fed2d138c7bcccb15cf091b8d22
   docs/sdks/apikeys/README.md:
@@ -892,7 +892,7 @@ trackedFiles:
   docs/sdks/channels/README.md:
     last_write_checksum: sha1:ed1f37cd92ff8ef60df01de8567e533f4c2adf26
   docs/sdks/content/README.md:
-    last_write_checksum: sha1:a83d960a8c159a36fb3f99a1912dbdf346d0ad13
+    last_write_checksum: sha1:805c9fd790313074b8692450451f04e8dd215200
   docs/sdks/feedback/README.md:
     last_write_checksum: sha1:a01d711b5e761184a0033a59f4604075be684cfb
   docs/sdks/items/README.md:
@@ -926,7 +926,7 @@ trackedFiles:
   lib/moderation_api/account.rb:
     last_write_checksum: sha1:ea3cfe55787ecb7cc8ed798b76d4036b1aa3d3bc
   lib/moderation_api/actions.rb:
-    last_write_checksum: sha1:176a1320c5e48a9a9198fa2f934aea4719173fbe
+    last_write_checksum: sha1:fc8df659f5fbc2b00ed6849fb4a510b35f8db83c
   lib/moderation_api/analytics.rb:
     last_write_checksum: sha1:6a23dddf048a3ca91c1a78c1bc75ac97f1ab5e15
   lib/moderation_api/apikeys.rb:
@@ -936,7 +936,7 @@ trackedFiles:
   lib/moderation_api/channels.rb:
     last_write_checksum: sha1:8d995eac91d890d34e95f9c6120c503337bda145
   lib/moderation_api/content.rb:
-    last_write_checksum: sha1:3bb7a2028db1c2e83b3e66f428e4ded4c7f5a9bc
+    last_write_checksum: sha1:04c3ec8becc60dab54d1143df4f7918cb57e8404
   lib/moderation_api/feedback.rb:
     last_write_checksum: sha1:184f119c5d2fc1bcb5f65416c2d61ae445759303
   lib/moderation_api/items.rb:
@@ -2314,7 +2314,7 @@ trackedFiles:
   lib/moderation_api/models/operations/signals_response.rbi:
     last_write_checksum: sha1:940bd85b83ca55cde1d96a9ebb6b8b48505cc75f
   lib/moderation_api/models/operations/sort.rb:
-    last_write_checksum: sha1:463f524ac3587870a9ca62dc74aaf97d5b46c1b4
+    last_write_checksum: sha1:1f21a1fab7eef5ed597b83989f3522b5bb74d7a1
   lib/moderation_api/models/operations/sort.rbi:
     last_write_checksum: sha1:b2e3ffdcf17a1fd7b8577ddd0c8c463e5a41ee95
   lib/moderation_api/models/operations/sortby.rb:
@@ -2636,7 +2636,7 @@ trackedFiles:
   lib/moderation_api/sdk_hooks/types.rb:
     last_write_checksum: sha1:4c965332c50ba795946cf8df50a6202e89db0a45
   lib/moderation_api/sdkconfiguration.rb:
-    last_write_checksum: sha1:2f2fbd9b5954e2fc9f4ee6e206490ea6f067ed7f
+    last_write_checksum: sha1:04ebeab88831fe74ff107e603042be7f78f9e187
   lib/moderation_api/sdkconfiguration.rbi:
     last_write_checksum: sha1:0ff7c53716ae2b6668c84ad4f83b9a8697482c33
   lib/moderation_api/utils/forms.rb:
@@ -2664,7 +2664,7 @@ trackedFiles:
   lib/moderation_api/words.rb:
     last_write_checksum: sha1:1caff3b1db9983d6cd6d76e0f90d47a39e376842
   moderation_api.gemspec:
-    last_write_checksum: sha1:166cc314904fa48b06f09c7fcb565cf219238c51
+    last_write_checksum: sha1:88f1fb881b71f1fd2642e55c3866572e548d41a8
   sorbet/config:
     last_write_checksum: sha1:d02b32628dad70edc5929a9b9801d5e2dca15d40
   sorbet/rbi/annotations/.gitattributes:

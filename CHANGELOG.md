@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.5.0 (2026-11-12)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/moderation-api/sdk-ruby/compare/v3.4.0...v3.5.0)
+
+### API changes
+
+- `GET /queue/{id}/items`: added the new enum value `ROBOCALL_DESC` to the `query` request parameter `sort`
+
 ## 3.4.0 (2026-10-29)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/moderation-api/sdk-ruby/compare/v3.3.0...v3.4.0)

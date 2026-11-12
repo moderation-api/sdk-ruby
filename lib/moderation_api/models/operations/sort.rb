@@ -13,6 +13,7 @@ module ModerationApi
           LIFO = new("LIFO")
           RANDOM = new("RANDOM")
           SEVERITY_DESC = new("SEVERITY_DESC")
+          ROBOCALL_DESC = new("ROBOCALL_DESC")
         end
       end
     end

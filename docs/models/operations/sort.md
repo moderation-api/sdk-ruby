@@ -17,3 +17,4 @@ value = Sort::FIFO
 | `LIFO`          | LIFO            |
 | `RANDOM`        | RANDOM          |
 | `SEVERITY_DESC` | SEVERITY_DESC   |
+| `ROBOCALL_DESC` | ROBOCALL_DESC   |
